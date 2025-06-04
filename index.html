@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GATE CSE Study Tracker - RN</title>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style15.css" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet" />
+
+  <!-- Chart.js Library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+  <!-- 🔰 Header -->
+  <header>
+    <!-- <h1>GATE CSE Study Tracker <span class="dev-credit">by RN</span></h1> -->
+
+    <!-- <h1 class="head_style">
+      GATE CSE Study Tracker <span class="dev-credit">by RN</span>
+    </h1> -->
+
+    <h1 id="mainHeading"><span>GATE CSE Study Tracker</span> <span class="by-rn">Raut N</span></h1>
+
+
+
+
+    <!-- 🕒 Countdown Timer -->
+    <div class="countdown-container">
+      <span id="countdown">Loading...</span>
+    </div>
+  </header>
+
+  <!-- 🔍 Search Bar -->
+  <section class="search-section">
+    <input
+      type="text"
+      id="searchInput"
+      class="search-bar"
+      placeholder="🔍 Search Subject..."
+    />
+  </section>
+
+  <!-- 🔘 Filter Buttons -->
+  <section class="filter-section">
+    <button class="filter-btn active" data-filter="all">All Subjects</button>
+    <button class="filter-btn" data-filter="pendingPYQs">Pending PYQs</button>
+    <button class="filter-btn" data-filter="pendinglectures">Pending Lectures</button>
+    <button class="filter-btn" data-filter="completed">Fully Completed Subjects</button>
+  </section>
+
+  <!-- 📊 Overall Progress Chart -->
+  <section class="overall-progress-section">
+    <h2>Overall Progress</h2>
+    <canvas id="overallProgressChart" width="150" height="150"></canvas>
+    <div id="overallProgressPercent"></div>
+  </section>
+
+  <!-- 📚 Subject Cards -->
+  <section class="subjects-section" id="subjectsContainer">
+    <!-- Subject cards will be dynamically inserted here -->
+  </section>
+
+  <!-- 🔻 Footer -->
+  <footer>
+    Made by RN 💻 | GATE Aspirant 🎓 | MERN Developer 🚀
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="script15_firebase.js"></script>
+
+  
+</body>
+</html>
