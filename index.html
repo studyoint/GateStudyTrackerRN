@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GATE CSE Study Tracker - RN</title>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style15.css" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet" />
+
+  <!-- Chart.js Library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+
+  <!-- 🔰 Header -->
+  <header>
+    <h1 id="mainHeading"><span>GATE CSE Study Tracker</span> <span class="by-rn">[ Raut N ]</span></h1>
+ 
+ <!-- ✅ MOTIVATIONAL QUOTE SECTION -->
+<!-- ✅ MOTIVATIONAL QUOTE SECTION (Styled Container) -->
+<div id="quoteContainer">
+  <div id="quoteDate">Loading date...</div>
+  <div id="quoteOfTheDay">Loading quote...</div>
+</div>
+
+
+
+    <!-- 🕒 Countdown Timer -->
+    <div class="countdown-container">
+      <span id="countdown">Loading...</span>
+    </div>
+  </header>
+
+  <!-- 🔍 Search Bar -->
+  <section class="search-section">
+    <input type="text" id="searchInput" class="search-bar" placeholder="🔍 Search ..." />
+  </section>
+
+  <!-- 🔘 Filter Buttons -->
+  <section class="filter-section">
+    <button class="filter-btn active" data-filter="all">📚 All Subjects</button>
+    <button class="filter-btn" data-filter="pendinglectures">⏳ Pending Lectures</button>
+    <button class="filter-btn" data-filter="pendingPYQs">❓ Pending PYQs</button>
+    <button class="filter-btn" data-filter="pendingMockTests">🧪 Pending Mock Test</button>
+    <button class="filter-btn" data-filter="completed">🔰 Fully Completed Subjects</button>
+    <a href="Notes2.html">
+      <button class="filter-btn">📝 Notes</button>
+    </a>
+  </section>
+
+  <!-- 📊 Overall Progress Chart -->
+<section class="overall-progress-section flex flex-col items-center justify-center p-4">
+<h2 id="progress_text"
+  class="text-xl md:text-2xl font-semibold text-white 
+         bg-gradient-to-r from-cyan-400 to-blue-500 
+         bg-clip-text text-transparent 
+         tracking-wide drop-shadow-[0_0_4px_rgba(0,255,255,0.4)] 
+         border-b-2 border-cyan-400 pb-1 
+         mb-2 animate-pulse">
+  Overall Progress
+</h2>
+
+
+  <!-- Stylish smaller animated chart -->
+  <div class="relative w-28 h-28">
+    <canvas id="overallProgressChart" class="w-full h-full"></canvas>
+    <!-- Optional center text handled via JS -->
+    <div id="overallProgressPercent"
+         class="absolute inset-0 flex items-center justify-center 
+                text-white text-lg font-medium pointer-events-none"></div>
+  </div>
+</section>
+
+
+
+
+  <!-- 📚 Subject Cards -->
+  <section class="subjects-section" id="subjectsContainer">
+    <!-- Subject cards will be dynamically inserted here via JS -->
+  </section>
+
+  <!-- 🔻 Footer -->
+  <footer class="footer_style">
+    <span class="tag rn">Made by RN <span class="emoji">👨‍🎓</span></span> |
+    <span class="tag gate">GATE Aspirant <span class="emoji">🎓</span></span> |
+    <span class="tag mern">MERN Developer <span class="emoji">🚀</span></span>
+  </footer>
+
+  <!-- 📜 Main Script File -->
+  <script type="module" src="script30.js"></script>
+
+</body>
+</html>

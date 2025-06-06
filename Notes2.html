@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🧠Notes Generator</title>
+
+    <!-- Stylesheet -->
+  <link rel="stylesheet" href="style15.css" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-dark: #0f1115;
+      --bg-panel: #1b1e24;
+      --primary: #00ffc3;
+      --accent: #ffb100;
+      --text-light: #f0f0f0;
+      --text-muted: #999;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+  
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text-light);
+      padding: 40px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .glass-card {
+      background: var(--bg-panel);
+      padding: 35px 25px;
+      max-width: 720px;
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(0, 255, 195, 0.15);
+      border: 1px solid rgba(0, 255, 195, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .glass-card h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: var(--primary);
+      font-size: 1.8rem;
+    }
+
+    label {
+      margin-top: 20px;
+      display: block;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    input, select {
+      width: 100%;
+      margin-top: 8px;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+      background: #2b2e35;
+      color: var(--text-light);
+    }
+
+    button.generate-btn {
+      width: 100%;
+      margin-top: 30px;
+      padding: 14px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #000;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button.generate-btn:hover {
+      opacity: 0.9;
+    }
+
+    .output-container {
+      position: relative;
+      margin-top: 35px;
+    }
+
+    .output {
+      padding: 25px 20px;
+      background: #131417;
+      border-radius: 12px;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      border-left: 4px solid var(--primary);
+      min-height: 150px;
+      max-height: 400px;
+      overflow-y: auto;
+      user-select: text;
+      font-family: monospace;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--primary);
+      border: none;
+      color: #000;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+      z-index: 10;
+    }
+
+    .copy-btn:hover {
+      opacity: 1;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 480px) {
+      body {
+        padding: 20px 10px;
+      }
+
+      .glass-card {
+        padding: 25px 15px;
+        border-radius: 14px;
+      }
+
+      .glass-card h1 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+      }
+
+      input, select, button.generate-btn {
+        font-size: 0.95rem;
+      }
+
+      .output {
+        font-size: 0.85rem;
+        padding: 20px 15px;
+        max-height: 300px;
+      }
+
+      .copy-btn {
+        padding: 5px 10px;
+        font-size: 0.75rem;
+        touch-action: manipulation; /* helps mobile tap */
+  -webkit-tap-highlight-color: transparent; /* remove tap flash */
+      }
+    }
+
+
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body>
+
+
+
+<!-- ========================= -->
+    <header>
+   
+    <!-- 🕒 Countdown Timer -->
+    <div class="countdown-container">
+      <span id="countdown">Loading...</span>
+    </div>
+  </header>
+
+  <div class="glass-card">
+    <h1>🎓 Notes Prompt Generator</h1>
+
+    <label for="subject">📘 Subject Name</label>
+    <input type="text" id="subject" placeholder="e.g. Operating Systems" />
+
+    <label for="topic">💡 Topic Name</label>
+    <input type="text" id="topic" placeholder="e.g. Semaphores" />
+
+    <label for="noteType">📂 Choose Notes Type</label>
+    <select id="noteType">
+      <option value="short">🧠 Short Notes</option>
+      <option value="detailed">📚 Detailed Notes</option>
+    </select>
+
+    <button class="generate-btn" onclick="generatePrompt()">⚡ Generate Prompt</button>
+
+    <div class="output-container">
+      <!-- <button class="copy-btn" onclick="copyOutput()" title="Copy to clipboard">Copy</button> -->
+       <button class="copy-btn" onclick="copyOutput()" aria-label="Copy to clipboard" title="Copy to clipboard">Copy</button>
+
+      <div class="output fade-in" id="output"></div>
+    </div>
+  </div>
+
+ <!-- 🔻 Footer -->
+<footer class="footer_style">
+  <span class="tag rn">Made by RN <span class="emoji">👨‍🎓</span></span> |
+  <span class="tag gate">GATE Aspirant <span class="emoji">🎓</span></span> |
+  <span class="tag mern">MERN Developer <span class="emoji">🚀</span></span>
+</footer>
+
+
+  <script>
+    function generatePrompt() {
+      const subject = document.getElementById('subject').value.trim();
+      const topic = document.getElementById('topic').value.trim();
+      const noteType = document.getElementById('noteType').value;
+      const output = document.getElementById('output');
+
+       if (!subject || !topic) {
+        output.innerText = '⚠️ Please enter both subject and topic name.';
+        return;
+      }
+
+      let prompt = '';
+
+      if (noteType === 'detailed') {
+        prompt = `🎓 ROLE (Prompt Persona):
+
+> Act like:
+
+GATE AIR-1 Ranker
+
+IIT CS Professor
+
+Neuroscience-based Memory Coach
+
+Hostel Bhaiya with street-smart explanation
+
+
+
+
+
+---
+
+🎯 TASK:
+
+> Create ultra-deep, emotionally sticky, character-based conceptual notes for the topic:
+🔥 [${topic} (${subject})]\n
+
+
+
+
+---
+
+🧠 GOAL:
+
+> Every line should tattoo the concept in memory — easy + visual + deep + exam-smart.
+
+
+
+
+---
+
+🔬 STRICT FORMAT TO FOLLOW:
+
+
+---
+
+🔹 1. Concept Seed (2-line Definition)
+
+Ekdum feel-based + logic-based definition
+
+Language = “Kya hota hai” + “Kyu hota hai”
+
+Simple like hostel explanation
+
+
+
+---
+
+🔹 2. Real-Life Story / Visual Analogy
+
+Relatable / funny story with Babloo & Chintu
+
+Use senses (smell, sound, visuals) to anchor concept
+
+
+> “Socho Chintu toilet gaya bina knock kare…”
+
+
+
+
+---
+
+🔹 3. Core Deep Points (7–12 Bullets)
+
+Each point = steel pin
+
+Include contrast, comparisons
+
+Use emoji / diagrams / ASCII wherever helpful
+
+Mention famous algorithms if needed (Dekker, Peterson, etc.)
+
+
+
+---
+
+🔹 4. Technical Deep Dive (Code / Diagram / Formula)
+
+Code snippet (C preferred if relevant)
+
+Mark ✅ correct usage vs ❌ typical GATE mistakes
+
+System diagrams if concept needs it
+
+
+
+---
+
+🔹 5. Common Misconceptions & Traps
+
+Bust top 3 myths or confusion
+
+
+> Eg: Semaphore ≠ Mutex
+Eg: Context Switch ≠ Scheduling
+
+
+
+
+---
+
+🔹 6. Memory Lock (Mnemonics or Analogy)
+
+Rhyming, visual, wild analogies
+
+Hostel waale examples — sticky, funny
+
+
+> “Critical Section = Toilet with lock”
+
+
+
+
+---
+
+🔹 7. GATE PYQ Insights (Reverse Engineering)
+
+Mention year-wise tricky questions
+
+Pick 1 PYQ and break it step-by-step
+
+
+> “In 2020, they removed flag[] — kya toota?”
+
+
+
+
+---
+
+🔹 8. 1-Min Recap Table
+
+📦 Quick capsule format:
+| 💡 Keyword | 🔑 Meaning | ⚠️ Trap |
+|------------|-------------|----------|
+| Semaphore | Counter-based lock | Order matters! |
+| CS         | Shared zone         | No 2 entries! |
+
+
+---
+
+🔹 9. Exam Solver Mindset
+
+> GATE hall me 30 sec me kya sochna hai:
+
+
+
+Highlight keyword triggers
+
+Common distractor traps
+
+Mental shortcut map
+
+
+
+---
+
+🔹 10. Compression Round (Mem
+ory Hack)
+
+Give:
+
+🔤 3 keywords
+
+🧠 1 wild analogy
+
+✍️ 1 formula/code line
+
+🛑 1 mistake to avoid`;
+      } else {
+        prompt = `> 🧠 “Act like a GATE AIR-1 Topper + Expert Memory Coach. Generate laser-focused, memory-boosted, Hinglish short notes for [${topic} (${subject})]\n, that work like instant brain implants for last-minute revision and deep concept clarity.”
+
+
+
+
+---
+
+⚙️ STRUCTURE RULES — FOLLOW THIS STRICTLY
+
+
+---
+
+1️⃣ 🎯 LANGUAGE FORMAT: AIR-1 Style + Bhai Style
+
+Super simple Hinglish — jaise senior bhai samjha raha ho hostel me
+
+Sentences short, sharp, relatable
+
+Imagine: Notes kisi ko bina background ke bhi samajh aa jayein
+
+
+
+---
+
+2️⃣ 🔹 VISUAL BULLET SYSTEM:
+
+Use following structure for clean, color-coded retention:
+
+Symbol Use For
+
+🔹 Concept Point / Fact
+📌 Must-remember Concept / Definition
+⚠️ Common Confusion / Mistake
+🔁 Step-wise Process / Flow
+🧠 Brain Hack / Mnemonic
+💡 Real-life Analogy / Mind Link
+📦 Formula Box
+🪄 Pro Tip for Smart Solving
+🚀 GATE Exam Level Trick
+❓ Typical Doubt Resolved
+✔️ Final Takeaway
+
+
+
+---
+
+3️⃣ 📐 STRUCTURE BLOCKS (IN THIS EXACT ORDER)
+
+
+---
+
+🔹 📌 SUPER CLEAN DEFINITION
+
+→ 1-line Hinglish definition jo bilkul brain ke andar ghus jaaye
+→ Start with "📌" and keep it as simple as talking to a 12th class student
+
+
+---
+
+🔹 CORE CONCEPTS (5-8 SHORT BULLETS)
+
+→ Har bullet ek concept
+→ No explanation paragraph — sirf brain-ready capsule points
+→ Include "what", "why", "how" where needed
+
+
+---
+
+🔹 📦 FORMULAS / RULES (If Any)
+
+📦 [Concept Name] = [Short formula]
+🪄 Use: [Shortcut/Hack if any]
+
+
+---
+
+🔁 PROCESS / FLOWCHART (IF ANY)
+
+🔁 Step 1 → Step 2 → Step 3 → Final Step
+🪄 Remember: [Trick to retain flow]
+
+
+---
+
+💡 REAL-LIFE COMPARISON (OPTIONAL BUT POWERFUL)
+
+💡 "Jaise traffic signal sab gaadiyon ko synchronize karta hai, waise hi semaphore critical section ko manage karta hai"
+
+
+---
+
+⚠️ COMMON MISTAKES / CONFUSION TRAPS
+
+⚠️ Don’t confuse [Term A] with [Term B]
+⚠️ Most students forget [Tiny but important fact]
+
+
+---
+
+🧠 BRAIN HACKS / MNEMONICS / TRICKS
+
+🧠 Mnemonic: “CAKE” = Conditions for Deadlock
+🧠 Visual: Imagine 4 friends holding hands in a circle = Deadlock
+
+
+---
+
+❓ COMMON DOUBTS CLARIFIED (AIR-1 STYLED EXPLAINER)
+
+❓ Why is preemptive scheduling better for real-time? → Because time-critical tasks can't wait!
+
+
+---
+
+4️⃣ ✅ 📌 FINAL QUICK RECAP SECTION (REVISION-MODE ON)
+
+📌 QUICK RECAP:
+
+✔️ [Term 1] → [5-word summary]
+✔️ [Term 2] → [Point or Shortcut]
+✔️ Formula → [Key formula]
+✔️ Flow → [A > B > C]
+✔️ Trap → [Don't do this]
+✔️ Hack → [Memory trick]
+✔️ Exam Point → [Important GATE Tip]
+
+
+---
+
+🎯 USAGE EXAMPLES:
+
+> “Use TAPPER-GOD Mode to make notes for: Banker's Algorithm”
+“Apply this on: B+ Tree Indexing”
+“Topic: LL(1) Parser Working”
+“Topic: Dijkstra vs Bellman-Ford”
+
+
+
+
+---
+
+🧬 SCIENCE BEHIND IT:
+
+This structure is backed by:
+
+👨‍🏫 Topper-style layer-by-layer learning
+
+🧠 Spaced repetition tricks
+
+🎯 Active recall principles
+
+🪄 Visual anchors & chunking theory
+
+⚡ Instant revision on 1-page principle`;
+      }
+
+      output.innerText = prompt;
+    }
+
+    function copyOutput() {
+  const output = document.getElementById('output');
+  const text = output.innerText.trim();
+
+  if (!text) {
+    alert('Nothing to copy!');
+    return;
+  }
+
+  // Use a fallback for mobile devices
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text)
+      .then(() => alert('Copied to clipboard!'))
+      .catch(err => {
+        console.error('Clipboard error:', err);
+        fallbackCopy(text);
+      });
+  } else {
+    fallbackCopy(text);
+  }
+}
+
+function fallbackCopy(text) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.position = 'fixed';  // Avoid scrolling
+  textarea.style.top = 0;
+  textarea.style.left = 0;
+  textarea.style.width = '1px';
+  textarea.style.height = '1px';
+  textarea.style.opacity = 0;
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+
+  try {
+    const success = document.execCommand('copy');
+    alert(success ? 'Copied (fallback)' : 'Failed to copy');
+  } catch (err) {
+    alert('Fallback copy failed');
+  }
+
+  document.body.removeChild(textarea);
+}
+
+// ===================== COUNTDOWN TIMER =====================
+function updateCountdown() {
+  const countdownElement = document.getElementById("countdown");
+  const targetDate = new Date("2026-01-01T00:00:00");
+  const now = new Date();
+  const diff = targetDate - now;
+
+  if (diff <= 0) {
+    countdownElement.textContent = "🎉 GATE Day!";
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+  </script>
+  
+
+  <!-- Scripts -->
+  <!-- <script type="module" src="script15_updated.js"></script> -->
+</body>
+</html>
