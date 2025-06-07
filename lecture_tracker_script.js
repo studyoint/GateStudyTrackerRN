@@ -9,7 +9,6 @@ let subjects = JSON.parse(localStorage.getItem("subjects")) || [
   { name: "Discrete Maths (Satish Yadav Sir)", total: 75 },
   { name: "TOC (Ankit Kumar Sir)", total: 60 },
   { name: "Compiler Design (Vishal Rawat Sir)", total: 30 },
-  { name: "Computer Network (Ankit Kumar Sir)", total: 78 },
   { name: "Operating System (Vishwadeep Gothi Sir)", total: 40 },
   { name: "DBMS (Vijay Kumar Sir)", total: 60 },
   { name: "General Aptitude (Saurabh Thakur Sir)", total: 70 }
@@ -47,6 +46,17 @@ function calculateDeadline(startDate, totalLectures) {
   return formatDate(d);
 }
 
+// IST date helper function
+function getTodayDateIST() {
+  const now = new Date();
+  const istOffset = 330; // IST offset in minutes
+  const istTime = new Date(now.getTime() + istOffset * 60000);
+  const year = istTime.getUTCFullYear();
+  const month = String(istTime.getUTCMonth() + 1).padStart(2, "0");
+  const day = String(istTime.getUTCDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
 tracker.innerHTML = "";
 
 subjects.forEach((subject, idx) => {
@@ -57,7 +67,7 @@ subjects.forEach((subject, idx) => {
     if (localStorage.getItem(`${key}_${i}`)) completed++;
   }
 
-  const incomplete = subject.total - completed; // Added incomplete calculation
+  const incomplete = subject.total - completed;
   const percent = Math.round((completed / subject.total) * 100);
   globalTotal += subject.total;
   globalCompleted += completed;
@@ -134,8 +144,8 @@ const percentGlobal = globalTotal === 0 ? 0 : Math.round((globalCompleted / glob
 const incompleteGlobal = globalTotal - globalCompleted;
 document.getElementById("overall-percentage").innerText = `Total Progress: ${percentGlobal}%`;
 document.getElementById("total-lectures").innerText = `📚 Total Lectures: ${globalTotal}`;
-document.getElementById("completed-lectures").innerText = `✅ Completed Lectures: ${globalCompleted}`;  // Added
-document.getElementById("incomplete-lectures").innerText = `❌ Incomplete Lectures: ${incompleteGlobal}`; // Added
+document.getElementById("completed-lectures").innerText = `✅ Completed Lectures: ${globalCompleted}`;
+document.getElementById("incomplete-lectures").innerText = `❌ Incomplete Lectures: ${incompleteGlobal}`;
 
 const daysNeeded = Math.ceil(incompleteGlobal / 10);
 document.getElementById("estimated-time").innerText = `📅 Completion Estimate: ${daysNeeded} days (at 10 lectures/day)`;
@@ -167,13 +177,15 @@ tracker.addEventListener("click", function (e) {
       localStorage.setItem(id, true);
 
       if (!localStorage.getItem(startKey)) {
-        const today = new Date().toISOString().split("T")[0];
-        localStorage.setItem(startKey, today);
+        const completedCount = [...allLectures].filter(box => localStorage.getItem(box.dataset.id)).length;
+        if (completedCount === 1) {
+          localStorage.setItem(startKey, getTodayDateIST());
+        }
       }
 
       const allChecked = [...allLectures].every(box => box.classList.contains("completed"));
       if (allChecked) {
-        localStorage.setItem(endKey, new Date().toISOString().split("T")[0]);
+        localStorage.setItem(endKey, getTodayDateIST());
       }
     }
 
