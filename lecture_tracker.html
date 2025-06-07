@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🚀 Ultra GATE Tracker</title>
+  <link rel="stylesheet" href="lecture_tracker_style.css" />
+</head>
+<body>
+<div class="container" style="text-align: center;">
+  <h1 class="main-title">🚀 GATE CSE Lecture Tracker</h1>
+  <div class="summary" style="font-family: Arial, sans-serif; font-weight: bold; font-size: 18px; max-width: 450px; margin: 0 auto; text-align: center; line-height: 1.6;">
+    <div id="overall-percentage" style="color: #1E90FF; margin: 6px 0;">
+      Total Progress: <span style="color: #007700;">0%</span>
+    </div>
+    <div id="total-lectures" style="color: #663399; margin: 6px 0;">
+      📚 Total Lectures: <span style="color: #000;">0</span>
+    </div>
+    <div id="completed-lectures" style="color: #228B22; margin: 6px 0;">
+      ✅ Completed Lectures: <span style="color: #006400;">0</span>
+    </div>
+    <div id="incomplete-lectures" style="color: #B22222; margin: 6px 0;">
+      ❌ Incomplete Lectures: <span style="color: #8B0000;">0</span>
+    </div>
+    <div id="estimated-time" style="color: #FF8C00; margin: 6px 0;">
+      📅 Completion Estimate: <span style="color: #FF4500;">-- days</span>
+    </div>
+  </div>
+</div>
+
+<div id="tracker" class="tracker-grid"></div>
+
+    <div
+      id="add-subject-form"
+      style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0; width: 100%; max-width: 600px;"
+    >
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: nowrap;">
+        <input type="text" id="subject-name" placeholder="Enter subject name" />
+        <input type="number" id="subject-total" placeholder="Total lectures" />
+        <button id="add-subject">➕ Add Subject</button>
+      </div>
+    </div>
+
+   <!-- 🔻 Footer -->
+  <footer class="footer_style">
+    <span class="tag rn">Made by RN <span class="emoji">👨‍🎓</span></span> |
+    <span class="tag gate">GATE Aspirant <span class="emoji">🎓</span></span> |
+    <span class="tag mern">MERN Developer <span class="emoji">🚀</span></span>
+  </footer>
+
+
+  <script src="lecture_tracker_script.js"></script>
+</body>
+</html>
