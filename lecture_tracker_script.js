@@ -1,17 +1,18 @@
 // Load subjects from localStorage or fallback to default
 let subjects = JSON.parse(localStorage.getItem("subjects")) || [
-  { name: "C Programming (Pankaj Sir)", total: 40 },
-  { name: "Data Structure (Pankaj Sir)", total: 30 },
+  { name: "C Programming (Pankaj Sir)", total: 38 },
+  { name: "Data Structure (Pankaj Sir)", total: 29 },
   { name: "DAA (Pankaj Sir)", total: 50 },
-  { name: "Digital Logic (Chandaj Jha Sir)", total: 50 },
+  { name: "Digital Logic (Chandaj Jha Sir)", total: 49 },
   { name: "COA (Vijay Kumar Sir)", total: 50 },
-  { name: "Engineering Maths (Gurupal Sir)", total: 35 },
-  { name: "Discrete Maths (Satish Yadav Sir)", total: 75 },
+  { name: "Engineering Maths (Gurupal Sir)", total: 34 },
+  { name: "Discrete Maths (Satish Yadav Sir)", total: 73 },
   { name: "TOC (Ankit Kumar Sir)", total: 60 },
   { name: "Compiler Design (Vishal Rawat Sir)", total: 30 },
-  { name: "Operating System (Vishwadeep Gothi Sir)", total: 40 },
-  { name: "DBMS (Vijay Kumar Sir)", total: 60 },
-  { name: "General Aptitude (Saurabh Thakur Sir)", total: 70 }
+  { name: "COMPUTER NETWORK (ANKIT KUMAR sir)", total: 80 },
+  { name: "Operating System (Vishwadeep Gothi Sir)", total: 36 },
+  { name: "DBMS (Vijay Kumar Sir)", total: 56 },
+  { name: "General Aptitude (Saurabh Thakur Sir)", total: 64 }
 ];
 
 // Prompt user to update total lectures for existing subjects if needed
