@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PPT SUMMARY Notes Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top left, #0f172a, #1e293b);
+      color: #f8fafc;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .container {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(15px);
+      border: 2px solid transparent;
+      border-radius: 20px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 960px;
+      position: relative;
+      z-index: 2;
+      animation: fadeIn 1s ease-in-out;
+      box-shadow: 0 0 40px #00f0ff33;
+    }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      padding: 2px;
+      background: linear-gradient(45deg, #00f0ff, #38bdf8, #00f0ff);
+      -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      z-index: -1;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.7rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #00f0ff;
+      text-shadow: 0 0 5px #00f0ff, 0 0 20px #00f0ff;
+    }
+
+    label {
+      font-weight: 600;
+      margin-top: 1.3rem;
+      display: block;
+      color: #cbd5e1;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.9rem;
+      margin-top: 0.4rem;
+      border-radius: 12px;
+      border: 1px solid #334155;
+      background-color: #1e293b;
+      color: #e2e8f0;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #38bdf8;
+      box-shadow: 0 0 10px #38bdf88f;
+    }
+
+    button {
+      margin-top: 2rem;
+      padding: 1rem;
+      width: 100%;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #0f172a;
+      background: linear-gradient(90deg, #00f0ff, #38bdf8);
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #00f0ff, 0 0 30px #38bdf83a;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 25px #00f0ff, 0 0 50px #38bdf8;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      color: #7dd3fc;
+    }
+
+    .output-container {
+      position: relative;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: -35px;
+      right: 0;
+      width: 10%;
+      background-color: #1e293b;
+      border: 1px solid #38bdf8;
+      color: #7dd3fc;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.3s;
+    }
+
+    .copy-btn:hover {
+      background-color: #334155;
+    }
+
+    pre {
+      background-color: #0f172a;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+      color: #f1f5f9;
+      font-size: 0.95rem;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      /* max-height: 400px; */
+      overflow-y: auto;
+    }
+
+    .glow-ring {
+      position: absolute;
+      top: -80px;
+      left: -80px;
+      width: 250px;
+      height: 250px;
+      background: #00f0ff;
+      border-radius: 50%;
+      filter: blur(120px);
+      z-index: 0;
+      opacity: 0.2;
+      animation: pulse 4s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.2;
+      }
+      50% {
+        transform: scale(1.4);
+        opacity: 0.4;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow-ring"></div>
+  <div class="container">
+    <h1>🚀 PPT Summary Notes Prompt</h1>
+
+    <label for="subject">📘 Subject Name</label>
+    <input type="text" id="subject" placeholder="e.g. C Programming" />
+
+    <label for="topic">🧩 Topic Name</label>
+    <input type="text" id="topic" placeholder="e.g. Data Types & Operators" />
+
+    <label for="points">🔹 Lecture Bullet Points</label>
+    <textarea id="points" rows="6" placeholder="Enter each point on new line..."></textarea>
+
+    <button onclick="generateTemplate()">✨ Generate GPT Template</button>
+
+    <h2>📝 Generated Template</h2>
+    <div class="output-container">
+      <button class="copy-btn" onclick="copyOutput()">📋 Copy</button>
+      <pre id="output"></pre>
+    </div>
+  </div>
+
+
+  
+  <script>
+    function generateTemplate() {
+      const subject = document.getElementById('subject').value.trim();
+      const topic = document.getElementById('topic').value.trim();
+      const rawPoints = document.getElementById('points').value.trim();
+
+      const bulletList = rawPoints
+        .split('\n')
+        .map((bp, index) => `\t• [BP${index + 1}] ${bp.trim()}`)
+        .filter(bp => bp);
+
+      const bulletBlock = bulletList.join('\n');
+
+      const template = `🚀 GATE CSE MASTER NOTES TEMPLATE (🔥)
+📘 Subject: ${subject}
+🧩 Topic: ${topic}
+🔹 Lecture Bullet Points (User Input)
+${bulletBlock}
+
+📢 INSTRUCTIONS FOR GPT (Must Follow All)
+🧭 PURPOSE:
+Tu ek expert GATE CSE mentor hai (AIR 1 level), tera kaam hai:
+	1. User ke diye bullet points ka deep analysis karna
+	2. Unhe logically sahi sequence me arrange karna (syllabus-friendly order me)
+	3. Phir in bullets ke base par full conceptual notes banana
+	4. Notes aise hone chahiye jo ek average/dumb student bhi ek baar me padhkar samajh le
+	5. Reader ko lage: 👉 “Ab samjha asli concept kya hota hai!”
+
+🎯 GOAL:
+	• Concept ko halwa bana do
+	• Zero se AIR 1 tak samjhao
+	• Notes sirf ratne ke liye nahi, deeply samajhne ke liye ho
+	• Doubts zero ho jaye
+	• Confidence 100% ho jaye
+
+📌 LANGUAGE STYLE:
+	• Pure Hinglish (Hindi-English mix)
+	• Hard technical terms ka simple breakdown
+	• Difficult words ko bold ya "quotes" me likho
+	• Formal tone avoid karo
+	• Friendly tone ho — jaise ek bhai ya mentor samjha raha ho
+	• Relatable examples ka use karo
+
+🧠 DEPTH LEVEL:
+	• Har point ko deeply expand karo
+	• Tricky concept ka peeche ka logic explain karo
+	• Layman + Technical dono angle se samjhao
+	• Tuition teacher style explanation do (1-on-1 feel)
+
+🧪 MANDATORY SECTIONS (Must Be in Notes in Same Order)
+✅ 1. Super Simple Concept Explanation
+→ Har point ko breakdown karo as if student is beginner
+→ Koshish karo real-life relatable example ya analogy dene ki
+[EXAMPLE] <Concept = Real-life analogy (e.g., X = Ghar ka address)>
+✅ 2. Technical Definition (if any)
+→ Pehle simple explanation do
+→ Phir formal definition (quotes/bold me likho)
+[DEFINITION] "Formal definition goes here"
+✅ 3. Code Example / Real-Life Analogy
+→ Agar topic programming se related ho to code likho
+→ Warna daily life se relatable analogy do
+[EXAMPLE] <Code snippet or analogy here>
+✅ 4. Diagram / Flow / ASCII Visual
+→ Agar concept allow karta ho to text-based diagram ya flowchart do
+→ Visual samajhne layak ho, clean aur simple
+[DIAGRAM]
+Start  
+↓  
+Condition Check  
+↓  
+True → Action A  
+↓  
+False → Action B
+✅ 5. Common Mistakes / Traps
+→ Students commonly kaha galti karte hain, wo explain karo
+→ MCQ traps bhi likho
+[NOTE BOX] ⚠️ <Common confusion ya trap>
+✅ 6. MCQ / PYQ Style Practice
+→ Har concept ke baad ek chhoti MCQ type question do
+→ Uska answer + clear explanation do
+[MCQ]
+Q: <Question>
+A: <Answer>
+[EXPLAIN] <Short explanation>
+✅ 7. Quick Revision Capsule
+→ Ek 5-second me revise hone wala point-wise summary section do
+[SUMMARY BOX]
+📌 Point 1
+📌 Point 2
+📌 Point 3
+✅ 8. Memory Tricks / Mnemonics (if any)
+→ Short formula ya hook line agar ho to do
+[TRICK] 💡 "Simple ya funny ya rhyming shortcut"
+✅ 9. Connection to Other Topics
+→ Yeh topic kis-kis se linked hai (mention karo)
+[LINKED TOPICS] 🔗 <Topic A>, <Topic B>, <Topic C>
+✅ 10. Why It’s Important for GATE
+→ GATE relevance batao
+→ Agar PYQs aaye ho is topic pe to years mention karo
+🔥 [GATE IMPACT] "Topic came in 2019, 2021, and 2023"
+✅ 11. Mini Quiz (Optional)
+→ 2-3 chhoti questions for quick testing
+[QUIZ]
+Q1: <Question>
+Q2: <Question>
+Q3: <Question>
+✅ 12. Confidence Booster Line
+💪 "Ab yeh concept tera slave hai!"
+Ya
+🔥 "Aaj ke baad isse kabhi nahi bhoologe!"
+
+📊 VISUALS & FORMATTING RULES:
+	• Bullet points ka smart use karo
+	• Important cheeze bold karo
+	• Definitions, examples, notes ko clearly tag karo
+	• Section wise headings do
+	• Smart emojis use karo (✅, ⚠️, 💡, 🔥, 💪)
+
+✅ FINAL OUTCOME EXPECTED:
+	• Student ka confidence boost ho
+	• Concept crystal clear ho jaye
+	• MCQ me option dekhte hi answer click ho
+	• Tuition ki zarurat feel na ho
+	• Revision bhi lightning-fast ho
+
+⚠️ GPT ke liye reminder:
+Template ka har section compulsory hai — skip mat karna
+Notes ka tone samjhaane waala + motivating hona chahiye
+Bas rote-learning nahi, concept clarity highest priority hai`;
+
+
+      document.getElementById('output').textContent = template;
+
+      // 👇 Scroll into view
+      document.getElementById('output').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function copyOutput() {
+      const text = document.getElementById('output').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent = '✅ Copied!';
+        setTimeout(() => { btn.textContent = '📋 Copy'; }, 2000);
+      });
+    }
+  </script>
+</body>
+
+</html>
