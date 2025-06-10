@@ -149,7 +149,7 @@ document.getElementById("completed-lectures").innerText = `✅ Completed Lecture
 document.getElementById("incomplete-lectures").innerText = `❌ Incomplete Lectures: ${incompleteGlobal}`;
 
 const daysNeeded = Math.ceil(incompleteGlobal / 10);
-document.getElementById("estimated-time").innerText = `📅 Completion Estimate: ${daysNeeded} days (at 10 lectures/day)`;
+document.getElementById("estimated-time").innerText = `📅 Completion Estimate: ${daysNeeded} days (10 LPD)`;
 
 // TOGGLE BOX LOGIC
 tracker.addEventListener("click", function (e) {
