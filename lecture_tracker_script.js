@@ -1,7 +1,7 @@
 // Load subjects from localStorage or fallback to default
 let subjects = JSON.parse(localStorage.getItem("subjects")) || [
   { name: "C Programming (Pankaj Sir)", total: 38 },
-  { name: "Data Structure (Pankaj Sir)", total: 29 },
+  { name: "Data Structure (Pankaj Sir)", total: 36 },
   { name: "DAA (Pankaj Sir)", total: 50 },
   { name: "Digital Logic (Chandaj Jha Sir)", total: 49 },
   { name: "COA (Vijay Kumar Sir)", total: 50 },
