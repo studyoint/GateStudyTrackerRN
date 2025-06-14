@@ -3,15 +3,15 @@ let subjects = JSON.parse(localStorage.getItem("subjects")) || [
   { name: "C Programming (Pankaj Sir)", total: 38 },
   { name: "Data Structure (Pankaj Sir)", total: 36 },
   { name: "DAA (Pankaj Sir)", total: 50 },
-  { name: "Digital Logic (Chandaj Jha Sir)", total: 49 },
-  { name: "COA (Vijay Kumar Sir)", total: 50 },
+  { name: "Digital Logic (Chandaj Jha Sir)", total: 40 },
+  { name: "COA (Vijay Kumar Sir)", total: 45 },
   { name: "Engineering Maths (Gurupal Sir)", total: 34 },
-  { name: "Discrete Maths (Satish Yadav Sir)", total: 73 },
+  { name: "Discrete Maths (Satish Yadav Sir)", total: 52 },
   { name: "TOC (Ankit Kumar Sir)", total: 60 },
-  { name: "Compiler Design (Vishal Rawat Sir)", total: 30 },
-  { name: "COMPUTER NETWORK (ANKIT KUMAR sir)", total: 80 },
+  { name: "Compiler Design (Vishal Rawat Sir)", total: 18 },
+  { name: "COMPUTER NETWORK (ANKIT KUMAR sir)", total: 96 },
   { name: "Operating System (Vishwadeep Gothi Sir)", total: 36 },
-  { name: "DBMS (Vijay Kumar Sir)", total: 56 },
+  { name: "DBMS (Vijay Kumar Sir)", total: 42 },
   { name: "General Aptitude (Saurabh Thakur Sir)", total: 64 }
 ];
 
