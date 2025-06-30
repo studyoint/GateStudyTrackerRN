@@ -789,7 +789,38 @@ saveTitleBtn.addEventListener("click", () => {
   saveToLocal();
   flashButton(saveTitleBtn);
 });
+  let wakeLock = null;
 
+  async function requestWakeLock() {
+    try {
+      wakeLock = await navigator.wakeLock.request('screen');
+      console.log('✅ Wake Lock active');
+      
+      // Agar screen lock hata diya jaye ya browser background me chala jaye
+      wakeLock.addEventListener('release', () => {
+        console.log('🔁 Wake Lock released, trying to re-acquire...');
+        requestWakeLock(); // Retry
+      });
+    } catch (err) {
+      console.error('Wake Lock failed:', err);
+    }
+  }
+
+  // Jab page load ho
+  window.addEventListener('load', () => {
+    if ('wakeLock' in navigator) {
+      requestWakeLock();
+    } else {
+      alert("❌ Wake Lock not supported on this browser");
+    }
+  });
+
+  // Visibility change handle karo (browser minimize ho ya tab switch)
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+      requestWakeLock();
+    }
+  });
    </script>
 </body>
 </html>
