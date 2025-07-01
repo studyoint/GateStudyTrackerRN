@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Study Sprint Tracker</title>
+    <!-- <link rel="stylesheet" href="style3.css"/> -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ==================================================================
+ /* ==================================================================
+   [Section 01] → Import Google Fonts 
+   Fonts: Inter (Body), Orbitron (Headings), Poppins (Optional fallback)
+   ================================================================== */
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Orbitron:wght@600&family=Poppins:wght@500&display=swap");
+/* ================================================================== */
+
+
+      /* ==================================================================
+   [Section 02] → Base Reset Styles
+   ================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Body Styling: Dark Theme + Center Layout */
+body {
+  background-color: #121212;
+  /* Optional grid texture — comment/uncomment below */
+  /* background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+     background-size: 30px 30px; */
+  font-family: "Inter", sans-serif;
+  color: #ffffff;
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  position: relative;
+  z-index: 0;
+}
+/* ================================================================== */
+
+      /* ================================================================== */
+
+      /* ==================================================================
+  /* ==================================================================
+   [Section 03] → Scrollbar Styles
+   Purpose: Neon-themed custom scroll for better UX
+   ================================================================== */
+
+/* Width of the scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track area */
+::-webkit-scrollbar-track {
+  background: #1e1e1e;
+  box-shadow: inset 0 0 4px rgba(0, 255, 255, 0.1);
+}
+
+/* Scroll thumb (draggable part) */
+::-webkit-scrollbar-thumb {
+  background: #00ffff;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+/* On hover effect */
+::-webkit-scrollbar-thumb:hover {
+  background: #00ffffcc;
+}
+/* ================================================================== */
+
+
+      /* ==================================================================
+   [Section 4] → Animations
+   ================================================================== */
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      @keyframes pulseGlow {
+        0% {
+          box-shadow: 0 0 5px #00ffff;
+        }
+        50% {
+          box-shadow: 0 0 15px #00ffff;
+        }
+        100% {
+          box-shadow: 0 0 5px #00ffff;
+        }
+      }
+      @keyframes blinkPause {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+      @keyframes pulseRunning {
+        0% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.6;
+          transform: scale(1.05);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      /* ================================================================== */
+
+      /* ==================================================================
+   [Section 5] → Fullscreen Toggle Button
+   ================================================================== */
+      #fullscreen-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #00bcd4;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        z-index: 1001;
+        box-shadow: 0 0 8px #00ffff;
+        transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      #fullscreen-btn:hover {
+        background-color: #00ffff;
+        color: #121212;
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 0 12px #00ffff, 0 0 24px #00ffff;
+      }
+      #fullscreen-btn.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      /* ================================================================== */
+
+      /* ==================================================================
+   [Section 6] → Fullscreen Overlay
+   ================================================================== */
+      #fullscreen-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        background-color: #121212;
+        z-index: 999;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #00ffff;
+        text-align: center;
+        animation: fadeIn 0.6s ease-in-out;
+      }
+      #fullscreen-overlay.show {
+        display: flex;
+      }
+      #fullscreen-overlay h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        font-family: "Orbitron", sans-serif;
+      }
+      #fullscreen-timer {
+        font-size: 4rem;
+        font-weight: bold;
+        letter-spacing: 2px;
+      }
+      /* ================================================================== */
+
+      /* ==================================================================
+  /* ==================================================================
+   [Section 07] → Fullscreen Title & Timer Styling
+   Purpose: Clean, glowing central title and timer for fullscreen mode
+   ================================================================== */
+
+#fullscreen-title {
+  color: #00ffff;
+  font-size: 2.5rem;
+  margin-bottom: 1.2rem;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-shadow: 0 0 12px #00ffff, 0 0 24px #00ffff33;
+}
+
+#fullscreen-timer {
+  color: #ffffff;
+  font-size: 3.8rem;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-shadow: 0 0 15px #ffffff, 0 0 25px #ffffff55;
+}
+/* ================================================================== */
+
+     /* ==================================================================
+   [Section 08] → Fullscreen Controls
+   Purpose: Floating pause/resume buttons with neon-glow effect
+   ================================================================== */
+
+#fullscreen-controls {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1002;
+  display: flex;
+  gap: 12px;
+  transition: opacity 0.3s ease;
+}
+
+#fullscreen-controls.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#fullscreen-controls button {
+  padding: 10px 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(0, 188, 212, 0.9);
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 0 12px #00ffff99, 0 0 20px rgba(0, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+  text-shadow: 0 0 6px #00ffffaa;
+}
+
+#fullscreen-controls button:hover {
+  background-color: #00ffff;
+  color: #121212;
+  transform: scale(1.05);
+  box-shadow: 0 0 18px #00ffff, 0 0 36px #00ffff66;
+}
+/* ================================================================== */
+
+
+  /* ==================================================================
+   [Section 09] → Pause Message
+   Purpose: Blinking neon-red alert when paused (center stage)
+   ================================================================== */
+
+#pause-message {
+  font-size: 3.6rem;
+  color: #ff4d4d;
+  margin-bottom: 24px;
+  text-align: center;
+  display: none;
+  animation: blinkPause 1.2s infinite ease-in-out;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-shadow:
+    0 0 6px #ff4d4d,
+    0 0 12px #ff4d4d,
+    0 0 24px #ff0000,
+    0 0 40px #ff1a1a,
+    0 0 60px #ff1a1a;
+  user-select: none;
+  max-width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 📱 Mobile-Friendly Adjustments */
+@media (max-width: 480px) {
+  #pause-message {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    padding: 0;
+  }
+}
+
+/* ================================================================== */
+
+
+   /* ==================================================================
+   [Section 10] → Container Styles
+   Purpose: Central content box with glassmorphic neon glow effect
+   ================================================================== */
+
+.container {
+  width: 100%;
+  max-width: 960px; /* Responsive container width */
+  margin: 0 auto;
+  background-color: rgba(30, 30, 30, 0.75);
+  backdrop-filter: blur(14px);
+  padding: 32px;
+  border-radius: 18px;
+
+  /* Outer Glow + Inner Edge */
+  box-shadow:
+    0 0 20px rgba(0, 255, 255, 0.15),
+    inset 0 0 4px rgba(0, 255, 255, 0.2);
+
+  border: 1px solid rgba(0, 255, 255, 0.25);
+  animation: fadeIn 0.6s ease-in-out;
+
+  position: relative;
+  z-index: 1;
+}
+
+
+@media (max-width: 480px) {
+  .container {
+    padding: 20px;
+  }
+}
+
+/* ================================================================== */
+
+
+     /* ==================================================================
+   [Section 11] → Headings
+   Purpose: Futuristic but subtle heading styles (clean neon)
+   ================================================================== */
+
+/* 🌐 Common base */
+h1,
+h2 {
+  text-align: center;
+  font-family: "Orbitron", sans-serif;
+  color: #00e0e0;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  text-shadow:
+    0 0 2px #00e0e0,
+    0 0 4px rgba(0, 255, 255, 0.4);
+}
+
+/* 🔷 h1 - Section Title */
+h1 {
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+/* 🔹 h2 - Subsection Title */
+h2 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #66ffff;
+  text-shadow:
+    0 0 1px #66ffff,
+    0 0 3px rgba(102, 255, 255, 0.3);
+}
+
+/* 📱 Mobile responsiveness */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+  h2 {
+    font-size: 1.3rem;
+  }
+}
+
+/* ================================================================== */
+
+
+  /* ==================================================================
+   [Section 12] → Timer Display
+   Purpose: Modern, clear and responsive sprint time blocks
+   ================================================================== */
+
+.timer-section {
+  margin-bottom: 30px;
+}
+
+/* 🚀 Time block design */
+.time-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 14px 18px;
+  margin: 12px 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #222, #2c2c2c);
+  border: 1px solid rgba(0, 255, 255, 0.15);
+  box-shadow:
+    inset 0 0 4px rgba(0, 255, 255, 0.1),
+    0 0 8px rgba(0, 255, 255, 0.1);
+  font-size: 1.6rem;
+  color: #e0f7fa;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* ✨ On hover – minor lift */
+.time-block:hover {
+  transform: scale(1.02);
+  box-shadow:
+    inset 0 0 6px rgba(0, 255, 255, 0.2),
+    0 0 12px rgba(0, 255, 255, 0.2);
+}
+
+/* 🧠 Responsive tuning */
+@media (max-width: 480px) {
+  .time-block {
+    flex-direction: column;
+    text-align: center;
+    font-size: 1.3rem;
+    padding: 12px 14px;
+  }
+}
+
+/* ================================================================== */
+
+/* ==================================================================
+   [Section 13] → Progress Bar
+   Purpose: Futuristic gradient + glowing progress indicator
+   ================================================================== */
+
+/* 🔲 Wrapper: Glass effect base track */
+.progress-bar-wrapper {
+  width: 100%;
+  height: 12px;
+  margin-top: 12px;
+  background: rgba(51, 51, 51, 0.7);
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: inset 0 0 5px rgba(0, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+}
+
+/* 🚀 Animated Progress Fill */
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, #00ffff, #00ff99);
+  transition: width 0.4s ease-in-out;
+  animation: progressPulse 2s infinite ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  border-radius: 30px;
+}
+
+/* ✨ Glow Pulse Animation */
+@keyframes progressPulse {
+  0% {
+    box-shadow: 0 0 6px rgba(0, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 6px rgba(0, 255, 255, 0.2);
+  }
+}
+
+/* ================================================================== */
+/* ==================================================================
+   [Section 14] → Sprint Input Section (Ultra Pro+ Optimized)
+   ================================================================== */
+
+/* 🧱 Layout Flex Wrap */
+.sprint-setup {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 26px;
+  padding: 10px;
+}
+
+/* ⌨️ Time Inputs with glass blur and glow */
+.sprint-setup input {
+  width: 72px;
+  padding: 12px;
+  font-size: 1.05rem;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  background: rgba(0, 255, 255, 0.06);
+  backdrop-filter: blur(4px);
+  box-shadow:
+    inset 0 0 6px rgba(0, 255, 255, 0.2),
+    0 0 4px rgba(0, 255, 255, 0.15);
+  transition: 0.3s ease all;
+}
+
+.sprint-setup input:focus {
+  outline: none;
+  background-color: rgba(0, 255, 255, 0.1);
+  box-shadow:
+    0 0 10px #00ffff,
+    inset 0 0 10px #00ffff;
+  border: 1px solid #00ffff;
+}
+
+/* 🚀 Sprint Start Button - Gradient + Neon Glow */
+.sprint-setup button {
+  padding: 14px 26px;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  color: #121212;
+  background: linear-gradient(135deg, #00e5ff, #00ffb3);
+  box-shadow: 0 0 10px #00ffff99, 0 0 18px #00ffff33;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.sprint-setup button:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffcc66;
+  background: linear-gradient(135deg, #00ffff, #00e5ff);
+  color: #121212;
+}
+
+/* ================================================================== */
+
+
+/* ==================================================================
+   [Section 15] → Controls Section (Ultimate GlowGlass Edition 🚨)
+   ================================================================== */
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 28px 0;
+  padding: 12px;
+}
+
+/* ✨ Button: Glassy Background + Rainbow Glow + Smooth Border */
+.controls button {
+  padding: 14px 28px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(10px);
+  color: #e0ffff;
+  border: 1px solid rgba(0, 255, 204, 0.3);
+  box-shadow:
+    0 0 6px rgba(0, 255, 255, 0.3),
+    inset 0 0 4px rgba(0, 255, 255, 0.1),
+    0 0 20px rgba(0, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  z-index: 1;
+}
+
+/* 🧊 Hover Effect: Aqua Glow + Depth Pop */
+.controls button:hover {
+  background: rgba(0, 255, 204, 0.15);
+  color: #ff69b4; /* Hot Pink */
+  transform: translateY(-2px) scale(1.07);
+  box-shadow:
+    0 0 12px #ff69b4,
+    0 0 24px rgba(255, 105, 180, 0.4),
+    0 0 32px rgba(255, 105, 180, 0.1);
+}
+
+/* ⚡ Active/Selected Button */
+.active-button {
+  background: linear-gradient(to right, #00fff0, #00c9ff);
+  color: #121212 !important;
+  box-shadow:
+    0 0 18px #00fff0,
+    0 0 28px rgba(0, 255, 255, 0.5);
+  transform: scale(1.1);
+  border: none !important;
+}
+
+.controls button::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  background: radial-gradient(circle, rgba(0,255,255,0.15) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: 20px;
+  z-index: -1;
+}
+.controls button:hover::after {
+  opacity: 1;
+}
+
+
+
+.controls button {
+  animation: controlPulse 4s infinite ease-in-out;
+}
+
+@keyframes controlPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+/* ================================================================== */
+
+/* ================================================================== */
+/* ==================================================================
+   [Section 17] → Status Display
+   ================================================================== */
+.status-display {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 255, 255, 0.12);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+}
+
+.status-display p {
+  margin: 10px 0;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: rgba(42, 42, 42, 0.9);
+  color: #eee;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.5px;
+  transition: background 0.3s ease;
+}
+
+.status-display .status-true {
+  color: #00ffae;
+  font-weight: bold;
+  text-shadow: 0 0 6px #00ffae;
+  border-left: 4px solid #00ffae;
+}
+
+.status-display .status-false {
+  color: #ff4d6d;
+  font-weight: bold;
+  text-shadow: 0 0 6px #ff4d6d;
+  border-left: 4px solid #ff4d6d;
+}
+/* ================================================================== */
+
+
+    /* ==================================================================
+   [Section 18] → Log Section
+   ================================================================== */
+.log-section {
+  margin-top: 30px;
+  background: rgba(0, 255, 255, 0.03);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+}
+
+#log-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 12px;
+  max-height: 300px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+#log-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  background-color: rgba(37, 37, 37, 0.95);
+  border-left: 4px solid #00ffff;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #e0e0e0;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.4px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#log-list li:hover {
+  background-color: #2e2e2e;
+  transform: scale(1.01);
+}
+/* ================================================================== */
+
+      /* ==================================================================
+   [Section 19] → Analytics Section
+   ================================================================== */
+      .analytics {
+        margin-top: 30px;
+      }
+      .analytics h2 {
+        color: #00ffff;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      #analytics-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 auto;
+        max-width: 400px;
+      }
+      #analytics-list li {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 10px;
+        background-color: #2a2a2a;
+        border-radius: 6px;
+        margin-bottom: 5px;
+        font-size: 0.95rem;
+      }
+      /* ================================================================== */
+
+    /* ==================================================================
+   [Section 20] → Popup Notes
+   ================================================================== */
+.popup.hidden {
+  display: none;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(30, 30, 30, 0.95);
+  padding: 25px 22px;
+  border-radius: 16px;
+  box-shadow: 0 0 25px #00ffff, 0 0 10px #00ffff inset;
+  z-index: 10000;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+  border: 1px solid rgba(0, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+}
+
+.popup textarea {
+  width: 100%;
+  height: 120px;
+  padding: 12px;
+  background: #1e1e1e;
+  border: 1px solid rgba(0, 255, 255, 0.1);
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-family: "Inter", sans-serif;
+  resize: none;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.15);
+}
+
+.popup textarea:focus {
+  border: 1px solid #00ffff;
+  box-shadow: 0 0 12px #00ffff;
+  outline: none;
+}
+
+.popup button {
+  padding: 10px 20px;
+  margin-top: 12px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(to right, #00ffff, #00bcd4);
+  color: #121212;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0 0 8px #00ffff;
+  transition: all 0.3s ease;
+}
+
+.popup button:hover {
+  background: linear-gradient(to right, #ff66cc, #ff99ff);
+  color: #ffffff;
+  box-shadow: 0 0 15px #ff66cc, 0 0 25px #ff99ff;
+}
+/* ================================================================== */
+
+
+     /* ==================================================================
+   [Section 21] → Title Input Section
+   ================================================================== */
+.title-setup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0;
+  flex-wrap: wrap;
+  padding: 0 10px;
+}
+
+.title-setup input {
+  padding: 12px 16px;
+  width: clamp(200px, 30%, 320px);
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #1e1e1e;
+  color: #ffffff;
+  box-shadow: 0 0 6px rgba(0, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 255, 255, 0.15);
+}
+
+.title-setup input::placeholder {
+  color: #888;
+  font-style: italic;
+}
+
+.title-setup input:focus {
+  outline: none;
+  border: 1px solid #00ffff;
+  box-shadow: 0 0 12px #00ffff;
+}
+
+.title-setup button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(to right, #00ffff, #00bcd4);
+  color: #121212;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 0 10px #00ffff;
+  transition: all 0.3s ease;
+}
+
+.title-setup button:hover {
+  background: linear-gradient(to right, #ff66cc, #ff99ff);
+  color: #ffffff;
+  transform: scale(1.06);
+  box-shadow: 0 0 15px #ff66cc, 0 0 25px #ff99ff;
+}
+/* ================================================================== */
+
+/* ==================================================================
+   [Section 22] → Responsive Layout
+   ================================================================== */
+@media (max-width: 768px) {
+  .container {
+    max-width: 92vw;
+    padding: 20px;
+  }
+
+  .controls,
+  .sprint-setup,
+  .title-setup {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sprint-setup input,
+  .sprint-setup button,
+  .title-setup input,
+  .title-setup button,
+  .controls button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1,
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  #fullscreen-overlay h1 {
+    font-size: 1.8rem;
+  }
+
+  #fullscreen-timer {
+    font-size: 2.2rem;
+  }
+
+  .time-block {
+    font-size: 1.1rem;
+    flex-direction: column;
+    text-align: center;
+    padding: 8px;
+  }
+
+  .popup textarea {
+    height: 70px;
+  }
+
+  #fullscreen-btn {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+  }
+
+  #running-message {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+
+  .progress-bar-wrapper {
+    height: 8px;
+  }
+
+  .controls button {
+    font-size: 0.95rem;
+  }
+}
+/* ================================================================== */
+
+
+    /* ==================================================================
+   [Section 23] → Running Motivational Message
+   ================================================================== */
+#running-message {
+  font-size: 1.8rem;
+  color: #ff69b4; /* Soft neon pink for fresh look */
+  margin-bottom: 20px;
+  text-align: center;
+  display: none;
+  font-family: "Orbitron", sans-serif;
+  text-shadow: 0 0 5px #ff69b4, 0 0 10px #ff69b4, 0 0 15px #ff1493;
+  animation: pulseRunning 2s infinite;
+  letter-spacing: 1px;
+  user-select: none;
+  line-height: 1.4;
+  max-width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 480px) {
+  #running-message {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+}
+/* ================================================================== */
+
+/* ==================================================================
+   [Section 24] → Sprint Toast
+   ================================================================== */
+#sprint-toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #00ffae, #00ffff);
+  color: #121212;
+  padding: 14px 24px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  z-index: 9999;
+  box-shadow: 0 0 12px #00ffff, 0 0 25px rgba(0, 255, 255, 0.5);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: opacity 0.4s ease, bottom 0.4s ease;
+  text-shadow: 0 0 2px #fff;
+}
+
+#sprint-toast.show {
+  opacity: 1;
+  bottom: 50px;
+}
+
+#sprint-toast button {
+  background: transparent;
+  border: none;
+  color: #121212;
+  font-size: 1.3rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+#sprint-toast button:hover {
+  color: #ff69b4;
+  text-shadow: 0 0 6px #ff69b4;
+}
+
+@media (max-width: 480px) {
+  #sprint-toast {
+    padding: 12px 18px;
+    font-size: 1rem;
+    gap: 10px;
+  }
+
+  #sprint-toast button {
+    font-size: 1.1rem;
+  }
+}
+/* ================================================================== */
+/* ==================================================================
+   [Section 25] → 🕘 Sprint History Section (Neon Glass UI)
+   ================================================================== */
+.sprint-history {
+  margin-top: 40px;
+  padding: 24px 28px;
+  background: rgba(0, 255, 255, 0.05);
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.15), 0 8px 30px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  color: #e0f7fa;
+  font-family: 'Segoe UI', sans-serif;
+  animation: fadeIn 0.6s ease-in-out;
+  transition: all 0.4s ease;
+}
+
+.sprint-history:hover {
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.3), 0 12px 35px rgba(0, 0, 0, 0.6);
+  transform: translateY(-4px);
+}
+
+.sprint-history h2 {
+  margin-bottom: 18px;
+  font-size: 1.8rem;
+  color: #00ffff;
+  text-shadow: 0 0 8px #00e5ff, 0 0 15px rgba(0, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+  padding-bottom: 6px;
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 480px) {
+  .sprint-history {
+    padding: 18px;
+  }
+  .sprint-history h2 {
+    font-size: 1.5rem;
+  }
+}
+/* ================================================================== */
+
+   /* ==================================================================
+   [Section 25.1] → Scrollable List Container (Enhanced Neon Style)
+   ================================================================== */
+#sprint-history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 320px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #00ffff #1e1e1e;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: inset 0 0 8px rgba(0, 255, 255, 0.08);
+  padding-right: 8px;
+}
+
+#sprint-history-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+#sprint-history-list::-webkit-scrollbar-track {
+  background: #1e1e1e;
+  border-radius: 10px;
+}
+
+#sprint-history-list::-webkit-scrollbar-thumb {
+  background: #00ffff;
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px #00ffff;
+}
+/* ================================================================== */
+
+/* ==================================================================
+   [Section 25.2] → 🔷 Date Headers (Enhanced Neon Tab)
+   ================================================================== */
+#sprint-history-list .date-header {
+  background: linear-gradient(90deg, rgba(0,229,255,0.08), rgba(0,229,255,0));
+  border-left: 5px solid #00e5ff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  margin: 20px 0 12px;
+  font-weight: 700;
+  color: #00e5ff;
+  text-shadow: 0 0 6px rgba(0, 229, 255, 0.5);
+  font-size: 1.1rem;
+  box-shadow: inset 0 0 8px rgba(0, 229, 255, 0.1), 0 0 8px rgba(0, 229, 255, 0.1);
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(2px);
+}
+/* ================================================================== */
+
+     /* ==================================================================
+   [Section 25.3] → 🧊 Sprint/Timer Entries (Frosted Neon Card)
+   ================================================================== */
+#sprint-history-list li {
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.03), rgba(255, 255, 255, 0.02));
+  padding: 16px 20px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(0, 229, 255, 0.12);
+  color: #e0f7fa;
+  backdrop-filter: blur(6px);
+  box-shadow: inset 0 0 4px rgba(0, 229, 255, 0.05), 0 0 8px rgba(0, 229, 255, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  position: relative;
+  font-size: 0.98rem;
+  letter-spacing: 0.3px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+#sprint-history-list li:hover {
+  transform: translateY(-3px) scale(1.02);
+  background: rgba(0, 229, 255, 0.06);
+  box-shadow: 0 0 14px rgba(0, 229, 255, 0.3), 0 0 4px rgba(0, 229, 255, 0.15);
+  border-color: #00e5ff66;
+}
+/* ================================================================== */
+
+     /* ==================================================================
+   [Section 25.4] → Sprint Entry Text (Enhanced Glow Typography)
+   ================================================================== */
+#sprint-history-list li span {
+  display: block;
+  margin-bottom: 5px;
+  line-height: 1.5;
+  font-size: 0.97rem;
+  color: #e0ffff;
+  text-shadow: 0 0 3px rgba(0, 255, 255, 0.15);
+  letter-spacing: 0.3px;
+  font-weight: 500;
+  word-break: break-word;
+  transition: color 0.3s ease;
+}
+
+#sprint-history-list li:hover span {
+  color: #ffffff;
+  text-shadow: 0 0 5px rgba(0, 229, 255, 0.3);
+}
+/* ================================================================== */
+
+
+   /* ==================================================================
+   [Section 25.5] → 🔺 Color Highlights (Sprint/Timer)
+   ================================================================== */
+#sprint-history-list li span:first-child {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #ffffff;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.1);
+}
+
+/* Sprint entries */
+#sprint-history-list li .sprint {
+  color: #7df9ff;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(125, 249, 255, 0.3);
+}
+
+/* Timer entries */
+#sprint-history-list li .timer {
+  color: #ffb347;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(255, 179, 71, 0.3);
+}
+/* ================================================================== */
+
+
+   /* ==================================================================
+   [Section 25.6] → 🌀 Custom Scrollbar (Vertical Only)
+   ================================================================== */
+#sprint-history-list {
+  overflow-y: auto;
+  overflow-x: hidden; /* 👈 disables horizontal scrollbar */
+}
+
+#sprint-history-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+#sprint-history-list::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00e5ff, #7df9ff);
+  border-radius: 12px;
+  box-shadow: 0 0 6px rgba(0, 229, 255, 0.4);
+  transition: background 0.3s ease;
+}
+
+#sprint-history-list::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00ffff, #00bcd4);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+}
+
+#sprint-history-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+}
+/* ================================================================== */
+@media (max-width: 480px) {
+  .container {
+    padding-top: 43px; /* Button se neeche dikhane ke liye space */
+  }
+}
+
+    </style>
+  </head>
+  <body>
+    <!-- Fullscreen Button -->
+    <button id="fullscreen-btn">⛶ Full Screen</button>
+
+    <!-- App Container -->
+    <div class="container">
+      <!-- App Title -->
+      <h1>⏱ RN Study Sprint</h1>
+
+      <!-- Custom Title Input -->
+      <div class="title-setup">
+        <input
+          type="text"
+          id="custom-title-input"
+          placeholder="Enter your Sprint Title"
+        />
+        <button id="save-title-btn">Save Title</button>
+      </div>
+
+      <!-- Timer Display -->
+      <div class="timer-section">
+        <div id="elapsed-time" class="time-block">
+          <label>🔁 Time Spent</label>
+          <span>00:00:00</span>
+        </div>
+        <div id="remaining-time" class="time-block">
+          <label> ⌛ Time Left</label>
+          <span>00:00:00</span>
+        </div>
+        <div class="progress-bar-wrapper">
+          <div id="progress-bar" class="progress-bar"></div>
+        </div>
+      </div>
+
+      <!-- Sprint Goal -->
+      <div class="sprint-setup">
+        <h2>🎯 Set Sprint Goal</h2>
+        <input type="number" id="hours" placeholder="HH" min="0" />
+        <input type="number" id="minutes" placeholder="MM" min="0" max="59" />
+        <input type="number" id="seconds" placeholder="SS" min="0" max="59" />
+        <button id="set-sprint">Set Sprint</button>
+      </div>
+
+      <!-- Controls -->
+      <div class="controls">
+        <button id="start-btn">▶️ Start</button>
+        <button id="pause-btn">⏸ Pause</button>
+        <button id="reset-btn">🔄 Reset</button>
+        <!-- 💾 Timer Mode Save Button -->
+        <button id="save-timer-session-btn" class="hidden">
+          💾 Save Timer Session
+        </button>
+      </div>
+
+     
+
+      <!-- 📅 Daily Log (renamed from Sprint History) -->
+      <div class="sprint-history">
+        <h2>📅 Daily Log</h2>
+        <ul id="sprint-history-list"></ul>
+      </div>
+    </div>
+
+    <!-- Session Notes Popup -->
+    <div id="notes-popup" class="popup hidden">
+      <h2>📝 Sprint Notes</h2>
+      <textarea id="notes-text" placeholder="What did you study?"></textarea>
+      <button id="save-note-btn">Save Note</button>
+    </div>
+
+    <!-- Fullscreen Overlay Display -->
+    <div id="fullscreen-overlay" class="hidden">
+      <div id="fullscreen-controls" class="hidden">
+        <button id="fs-toggle-btn">▶️</button>
+        <button id="music-toggle-btn">🎵</button>
+<audio id="study-music" src="rn.mp3" preload="auto" loop></audio>
+
+      </div>
+
+      <!-- ✅ Funny pause message -->
+      <div id="pause-message" class="hidden">Why stop? I'm crying 😭💀⏱️</div>
+
+      <!-- ✅ Motivational running message -->
+      <div id="running-message" class="hidden">Keep Pushing 🔥, Hustle in Progress… ⏳😎</div>
+
+      <h1 id="fullscreen-title">📘 Study Sprint</h1>
+
+      <div id="fullscreen-timer">00:00:00</div>
+    </div>
+
+    <!-- ✅ Toast Message -->
+    <div id="sprint-toast" class="hidden">
+      <span id="sprint-toast-message">🎯 Sprint Complete!</span>
+      <button id="sprint-toast-close">✖</button>
+    </div>
+
+    <!-- <script src="script.js"></script> -->
+    <script>
+      let elapsedSeconds = 0;
+      let sprintGoalSeconds = 0;
+      let sprintSet = false;
+      let timerInterval = null;
+      let customTitle = "";
+      let lastDate = getISTDate();
+      let sprintStartTime = null;
+      let sprintEndTime = null;
+      let startedAs = "timer";
+
+      // DOM References
+      const elapsedTimeDisplay = document.querySelector("#elapsed-time span");
+      const remainingTimeDisplay = document.querySelector(
+        "#remaining-time span"
+      );
+      const progressBar = document.getElementById("progress-bar");
+      const startBtn = document.getElementById("start-btn");
+      const pauseBtn = document.getElementById("pause-btn");
+      const resetBtn = document.getElementById("reset-btn");
+      const setSprintBtn = document.getElementById("set-sprint");
+      const modeStatus = document.getElementById("mode-status");
+      const fullscreenBtn = document.getElementById("fullscreen-btn");
+      const fullscreenOverlay = document.getElementById("fullscreen-overlay");
+      const fullscreenTimer = document.getElementById("fullscreen-timer");
+      const titleInput = document.getElementById("custom-title-input");
+      const saveTitleBtn = document.getElementById("save-title-btn");
+      const fullscreenTitle = document.getElementById("fullscreen-title");
+      const pauseMessage = document.getElementById("pause-message");
+      const runningMessage = document.getElementById("running-message");
+      const sprintToast = document.getElementById("sprint-toast");
+      const sprintToastMessage = document.getElementById(
+        "sprint-toast-message"
+      );
+      const sprintToastClose = document.getElementById("sprint-toast-close");
+      const fsControls = document.getElementById("fullscreen-controls");
+      const fsToggleBtn = document.getElementById("fs-toggle-btn");
+      const sprintHistoryList = document.getElementById("sprint-history-list");
+      const saveTimerSessionBtn = document.getElementById(
+        "save-timer-session-btn"
+      ); // ✅ added
+
+      let fsControlsTimeout = null;
+
+      window.addEventListener("DOMContentLoaded", () => {
+        loadFromLocal();
+        updateDisplay();
+        renderSprintHistory();
+        setInterval(autoResetDaily, 60 * 1000);
+        modeStatus.textContent = "Current Mode: Focus";
+      });
+
+      // === Timer ===
+      function startTimer() {
+        if (timerInterval) return;
+
+        if (!sprintStartTime) {
+          sprintStartTime = getCurrentTime();
+        }
+
+        startedAs = sprintSet ? "sprint" : "timer";
+
+        timerInterval = setInterval(() => {
+          elapsedSeconds++;
+          updateDisplay();
+          saveToLocal();
+
+          if (sprintSet && elapsedSeconds >= sprintGoalSeconds) {
+            pauseTimer();
+            saveSprintHistory();
+            renderSprintHistory();
+            showSprintToast(
+              `✅ Sprint "${
+                customTitle || "Untitled"
+              }" complete! ⏱️ ${formatTime(sprintGoalSeconds)}`
+            );
+          }
+        }, 1000);
+
+        if (pauseMessage) pauseMessage.style.display = "none";
+        if (runningMessage && document.fullscreenElement)
+          runningMessage.style.display = "block";
+        saveTimerSessionBtn.classList.add("hidden"); // hide when running
+      }
+
+      function pauseTimer() {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        sprintEndTime = getCurrentTime();
+        saveToLocal();
+
+        if (!sprintSet) {
+          saveTimerSessionBtn.classList.remove("hidden"); // show if it's timer mode
+        }
+
+        if (document.fullscreenElement) {
+          if (pauseMessage) pauseMessage.style.display = "block";
+          if (runningMessage) runningMessage.style.display = "none";
+        }
+      }
+
+      function resetTimer() {
+        pauseTimer();
+        elapsedSeconds = 0;
+        sprintGoalSeconds = 0;
+        sprintSet = false;
+        sprintStartTime = null;
+        sprintEndTime = null;
+        saveTimerSessionBtn.classList.add("hidden"); // hide reset
+        saveToLocal();
+        updateDisplay();
+        renderSprintHistory();
+      }
+
+      function updateDisplay() {
+        elapsedTimeDisplay.textContent = formatTime(elapsedSeconds);
+
+        if (sprintSet) {
+          const remaining = Math.max(0, sprintGoalSeconds - elapsedSeconds);
+          remainingTimeDisplay.textContent = formatTime(remaining);
+          progressBar.style.width = `${calculateProgress()}%`;
+
+          if (fullscreenOverlay.classList.contains("show")) {
+            fullscreenTimer.textContent = formatTime(remaining);
+          }
+        } else {
+          remainingTimeDisplay.textContent = "00:00:00";
+          progressBar.style.width = "0%";
+
+          if (fullscreenOverlay.classList.contains("show")) {
+            fullscreenTimer.textContent = formatTime(elapsedSeconds);
+          }
+        }
+      }
+
+      function calculateProgress() {
+        return Math.min(
+          100,
+          (elapsedSeconds / sprintGoalSeconds) * 100
+        ).toFixed(1);
+      }
+
+      function formatTime(sec) {
+        const h = String(Math.floor(sec / 3600)).padStart(2, "0");
+        const m = String(Math.floor((sec % 3600) / 60)).padStart(2, "0");
+        const s = String(sec % 60).padStart(2, "0");
+        return `${h}:${m}:${s}`;
+      }
+
+      // === Storage ===
+      function getISTDate() {
+        return new Date().toLocaleDateString("en-GB", {
+          timeZone: "Asia/Kolkata",
+        });
+      }
+
+      function getCurrentTime() {
+        return new Date().toLocaleTimeString("en-GB", {
+          timeZone: "Asia/Kolkata",
+        });
+      }
+
+      function saveSprintHistory() {
+        const history = JSON.parse(
+          localStorage.getItem("sprint_history") || "[]"
+        );
+
+        history.push({
+          title: customTitle || "Untitled",
+          duration: formatTime(sprintGoalSeconds || elapsedSeconds),
+          startTime: sprintStartTime || "Unknown",
+          endTime: sprintEndTime || getCurrentTime(),
+          date: getISTDate(),
+          type: startedAs,
+        });
+
+        localStorage.setItem("sprint_history", JSON.stringify(history));
+      }
+
+      function renderSprintHistory() {
+        if (!sprintHistoryList) return;
+        sprintHistoryList.innerHTML = "";
+
+        const history = JSON.parse(
+          localStorage.getItem("sprint_history") || "[]"
+        );
+        const grouped = {};
+
+        history.reverse().forEach((entry) => {
+          if (!grouped[entry.date]) grouped[entry.date] = [];
+          grouped[entry.date].push(entry);
+        });
+
+        for (let date in grouped) {
+          const dateHeader = document.createElement("li");
+          dateHeader.classList.add("date-header"); // ⭐ Add class for styling
+          dateHeader.innerHTML = `📅 ${date}`;
+          sprintHistoryList.appendChild(dateHeader);
+
+          grouped[date].forEach((entry, index, arr) => {
+            const li = document.createElement("li");
+            const displayIndex = arr.length - index;
+            li.innerHTML = `
+      <span>📌 ${displayIndex}. ${entry.title} (${entry.type})</span>
+      <span>⏱️ ${entry.duration} | ${entry.startTime} → ${entry.endTime}</span>
+    `;
+            sprintHistoryList.appendChild(li);
+          });
+        }
+      }
+
+      function autoResetDaily() {
+        const today = getISTDate();
+        if (today !== lastDate) {
+          elapsedSeconds = 0;
+          lastDate = today;
+          saveToLocal();
+          renderSprintHistory();
+          updateDisplay();
+        }
+      }
+
+      function saveToLocal() {
+        localStorage.setItem(
+          "study_data",
+          JSON.stringify({
+            elapsedSeconds,
+            sprintGoalSeconds,
+            sprintSet,
+            date: getISTDate(),
+            customTitle,
+          })
+        );
+      }
+
+      function loadFromLocal() {
+        const saved = JSON.parse(localStorage.getItem("study_data") || "{}");
+        if (saved.date === getISTDate()) {
+          elapsedSeconds = saved.elapsedSeconds || 0;
+          sprintGoalSeconds = saved.sprintGoalSeconds || 0;
+          sprintSet = saved.sprintSet || false;
+          customTitle = saved.customTitle || "";
+          titleInput.value = customTitle;
+          fullscreenTitle.textContent = customTitle || "Study Sprint";
+        }
+      }
+
+      // === UI Controls ===
+      function flashButton(button) {
+        button.classList.add("active-button");
+        setTimeout(() => button.classList.remove("active-button"), 500);
+      }
+
+      startBtn.addEventListener("click", () => {
+        flashButton(startBtn);
+        startTimer();
+      });
+
+      pauseBtn.addEventListener("click", () => {
+        flashButton(pauseBtn);
+        pauseTimer();
+      });
+
+      resetBtn.addEventListener("click", () => {
+        flashButton(resetBtn);
+        resetTimer();
+      });
+
+      setSprintBtn.addEventListener("click", () => {
+        flashButton(setSprintBtn);
+        const h = parseInt(document.getElementById("hours").value) || 0;
+        const m = parseInt(document.getElementById("minutes").value) || 0;
+        const s = parseInt(document.getElementById("seconds").value) || 0;
+        const total = h * 3600 + m * 60 + s;
+        if (total <= 0) return alert("❌ Invalid Sprint Time.");
+        sprintGoalSeconds = total;
+        sprintSet = true;
+        elapsedSeconds = 0;
+        sprintStartTime = null;
+        updateDisplay();
+        saveToLocal();
+      });
+
+      saveTitleBtn.addEventListener("click", () => {
+        const title = titleInput.value.trim();
+        if (!title) return alert("❌ Enter a title.");
+        customTitle = title;
+        fullscreenTitle.textContent = title;
+        saveToLocal();
+        flashButton(saveTitleBtn);
+      });
+
+      // === Save Timer Session (Manual)
+      saveTimerSessionBtn.addEventListener("click", () => {
+        saveSprintHistory();
+        renderSprintHistory();
+        showSprintToast("💾 Timer session saved!");
+        saveTimerSessionBtn.classList.add("hidden");
+      });
+
+      // === Fullscreen
+      fullscreenBtn.addEventListener("click", () => {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().then(() => {
+            fullscreenOverlay.classList.add("show");
+            fullscreenBtn.textContent = "❌ Exit Fullscreen";
+            fullscreenTimer.textContent = sprintSet
+              ? formatTime(Math.max(0, sprintGoalSeconds - elapsedSeconds))
+              : formatTime(elapsedSeconds);
+            fullscreenTitle.textContent = customTitle || "Study Sprint";
+            if (timerInterval && runningMessage)
+              runningMessage.style.display = "block";
+            showAndHideFullscreenControls();
+          });
+        } else {
+          document.exitFullscreen().then(() => {
+            fullscreenOverlay.classList.remove("show");
+            fullscreenBtn.textContent = "⛶ Full Screen";
+            fullscreenBtn.classList.remove("hidden");
+            fsControls.classList.remove("hidden");
+            if (pauseMessage) pauseMessage.style.display = "none";
+            if (runningMessage) runningMessage.style.display = "none";
+          });
+        }
+      });
+
+      fsToggleBtn.addEventListener("click", () => {
+        if (timerInterval) {
+          pauseTimer();
+          fsToggleBtn.textContent = "▶️";
+        } else {
+          startTimer();
+          fsToggleBtn.textContent = "⏸";
+        }
+      });
+
+      function showAndHideFullscreenControls() {
+        fullscreenBtn.classList.remove("hidden");
+        fsControls.classList.remove("hidden");
+        if (fsControlsTimeout) clearTimeout(fsControlsTimeout);
+        fsControlsTimeout = setTimeout(() => {
+          if (document.fullscreenElement) {
+            fullscreenBtn.classList.add("hidden");
+            fsControls.classList.add("hidden");
+          }
+        }, 3000);
+      }
+
+      document.addEventListener("mousemove", showAndHideFullscreenControls);
+      document.addEventListener("touchstart", showAndHideFullscreenControls);
+
+      // === Toast
+      function showSprintToast(message) {
+        if (!sprintToast || !sprintToastMessage) return;
+        sprintToastMessage.textContent = message;
+        sprintToast.classList.add("show");
+        sprintToast.classList.remove("hidden");
+      }
+
+      sprintToastClose.addEventListener("click", () => {
+        sprintToast.classList.remove("show");
+      });
+
+      const musicToggleBtn = document.getElementById("music-toggle-btn");
+const studyMusic = document.getElementById("study-music");
+let isMusicPlaying = false;
+
+musicToggleBtn.addEventListener("click", () => {
+  if (!isMusicPlaying) {
+    studyMusic.play().then(() => {
+      musicToggleBtn.textContent = "⏸️";
+      isMusicPlaying = true;
+    }).catch((err) => {
+      console.log("Music play error:", err);
+      alert("⚠️ Cannot play music. It may be blocked by browser or file is missing.");
+    });
+  } else {
+    studyMusic.pause();
+    musicToggleBtn.textContent = "🎵";
+    isMusicPlaying = false;
+  }
+});
+
+    </script>
+  </body>
+</html>
