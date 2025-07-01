@@ -1669,7 +1669,7 @@
   musicToggleBtn.addEventListener("click", () => {
     if (!isMusicPlaying) {
       studyMusic.play().then(() => {
-        musicToggleBtn.textContent = "▶️";
+        musicToggleBtn.textContent = "🎧";
         isMusicPlaying = true;
       }).catch((err) => {
         console.log("Music play error:", err);
