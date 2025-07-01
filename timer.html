@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RN Timer </title>
+    <title>Study Sprint Tracker</title>
     <!-- <link rel="stylesheet" href="style3.css"/> -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
@@ -950,61 +950,174 @@
       /* ================================================================== */
 
       /* ==================================================================
-   [Section 24] → Sprint Toast
+   
+/* [Section 24] → Sprint Toast
    ================================================================== */
-      #sprint-toast {
-        position: fixed;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: linear-gradient(135deg, #00ffae, #00ffff);
-        color: #121212;
-        padding: 14px 24px;
-        border-radius: 10px;
-        font-size: 1.1rem;
-        font-weight: 600;
-        z-index: 9999;
-        box-shadow: 0 0 12px #00ffff, 0 0 25px rgba(0, 255, 255, 0.5);
-        opacity: 0;
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        transition: opacity 0.4s ease, bottom 0.4s ease;
-        text-shadow: 0 0 2px #fff;
-      }
+#sprint-toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(20, 20, 20, 0.85); /* frosted dark */
+  backdrop-filter: blur(12px);
+  color: #f2f2f2;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  z-index: 9999;
+  box-shadow: inset 0 0 8px rgba(0, 255, 255, 0.08), 0 0 18px rgba(0, 255, 255, 0.25);
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  max-width: 95vw;
+  width: 430px;
+  max-height: 250px;
+  overflow: hidden;
+  text-align: left;
+  text-shadow: 0 0 2px #000;
+  line-height: 1.5;
+  word-wrap: break-word;
+  white-space: normal;
+  transform: scale(0.96);
+  border: 1px solid rgba(0, 255, 255, 0.15);
+}
 
-      #sprint-toast.show {
-        opacity: 1;
-        bottom: 50px;
-      }
+#sprint-toast.show {
+  opacity: 1;
+  bottom: 30px;
+  transform: scale(1);
+  transition: opacity 0.4s ease, bottom 0.4s ease, transform 0.4s ease;
+}
 
-      #sprint-toast button {
-        background: transparent;
-        border: none;
-        color: #121212;
-        font-size: 1.3rem;
-        cursor: pointer;
-        font-weight: bold;
-        transition: color 0.3s ease;
-      }
+/* ✅ Sticky Close Button */
+#sprint-toast-close {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #ccc;
+  font-size: 1.3rem;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 10001;
+  transition: color 0.3s ease;
+}
+#sprint-toast-close:hover {
+  color: #ff69b4;
+  text-shadow: 0 0 6px #ff69b4;
+}
 
-      #sprint-toast button:hover {
-        color: #ff69b4;
-        text-shadow: 0 0 6px #ff69b4;
-      }
+/* ✅ Scrollable Toast Message */
+#sprint-toast-message {
+  margin-top: 28px;
+  overflow-y: auto;
+  max-height: 190px;
+  padding-right: 6px;
+  white-space: normal;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
 
-      @media (max-width: 480px) {
-        #sprint-toast {
-          padding: 12px 18px;
-          font-size: 1rem;
-          gap: 10px;
-        }
+/* ✅ Webkit Scrollbar */
+#sprint-toast-message::-webkit-scrollbar {
+  width: 6px;
+}
+#sprint-toast-message::-webkit-scrollbar-thumb {
+  background-color: #00cccc;
+  border-radius: 4px;
+}
 
-        #sprint-toast button {
-          font-size: 1.1rem;
-        }
-      }
-      /* ================================================================== */
+/* ✅ Mobile Responsive */
+@media (max-width: 600px) {
+  #sprint-toast {
+    bottom: 12px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%) scale(0.96);
+    width: 94%;
+    /* height: 95vh; */
+    max-height: 37vh;
+    padding: 14px 12px;
+    font-size: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* keep this to prevent full screen overflow */
+  }
+
+  #sprint-toast.show {
+    bottom: 12px;
+    transform: translateX(-50%) scale(1);
+  }
+
+  #sprint-toast-message {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 100%;
+    font-size: 0.75rem;
+    line-height: 1.45;
+    padding-right: 4px;
+    pointer-events: auto;
+  }
+
+  #sprint-toast-close {
+    font-size: 1.1rem;
+    pointer-events: auto;
+    top: 4px;
+    right: 8px;
+  }
+}
+
+
+
+/* 🌟 Toast Inner Styling Classes */
+.toast-title {
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-shadow: 0 0 6px #ffffffaa, 0 0 12px #00ffff;
+  margin-bottom: 6px;
+}
+
+.toast-label {
+  color: #ffa500;
+  font-weight: 600;
+  text-shadow: 0 0 5px rgba(255, 165, 0, 0.4);
+}
+
+.toast-time {
+  color: #00eaff;
+  font-weight: 500;
+  text-shadow: 0 0 5px #00ffff66;
+}
+
+.toast-break {
+  color: #ff66cc;
+  font-weight: 500;
+  text-shadow: 0 0 6px #ff66ccaa;
+}
+
+.toast-focus {
+  color: #ffd700;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 0 0 6px #ffd700aa;
+  font-family: 'Orbitron', sans-serif;
+  margin-top: 4px;
+}
+
+.toast-success {
+  color: #39ff14;
+  font-weight: bold;
+  text-shadow: 0 0 5px #39ff1488;
+  font-family: 'Orbitron', sans-serif;
+  margin-top: 6px;
+}
+
+
+/* ================================================================== */
+
+
       /* ==================================================================
    [Section 25] → 🕘 Sprint History Section (Neon Glass UI)
    ================================================================== */
@@ -1234,6 +1347,27 @@
   
 }
 
+/* === [Fullscreen Scroll Lock] === */
+:fullscreen,
+:-webkit-full-screen,
+:-moz-full-screen,
+:-ms-fullscreen {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
+body:fullscreen,
+html:fullscreen {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
+body.fullscreen-mode,
+html.fullscreen-mode {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
 
     </style>
   </head>
@@ -1332,357 +1466,473 @@
     </div>
 
     <!-- ✅ Toast Message -->
-    <div id="sprint-toast" class="hidden">
-      <span id="sprint-toast-message">🎯 Sprint Complete!</span>
-      <button id="sprint-toast-close">✖</button>
-    </div>
+<div id="sprint-toast">
+  <button id="sprint-toast-close">✖</button>
+  <div id="sprint-toast-message"></div>
+</div>
+
 
     <!-- <script src="script.js"></script> -->
 <script>
+
   let elapsedSeconds = 0;
-  let sprintGoalSeconds = 0;
-  let sprintSet = false;
-  let sprintCompleted = false; // ✅ NEW
-  let timerInterval = null;
-  let customTitle = "";
-  let lastDate = getISTDate();
-  let sprintStartTime = null;
-  let sprintEndTime = null;
-  let startedAs = "timer";
+let sprintGoalSeconds = 0;
+let sprintSet = false;
+let sprintCompleted = false; // ✅ NEW
+let timerInterval = null;
+let customTitle = "";
+let lastDate = getISTDate();
+let sprintStartTime = null;
+let sprintEndTime = null;
+let startedAs = "timer";
+let sprintBreaks = [];
 
-  const elapsedTimeDisplay = document.querySelector("#elapsed-time span");
-  const remainingTimeDisplay = document.querySelector("#remaining-time span");
-  const progressBar = document.getElementById("progress-bar");
-  const startBtn = document.getElementById("start-btn");
-  const pauseBtn = document.getElementById("pause-btn");
-  const resetBtn = document.getElementById("reset-btn");
-  const setSprintBtn = document.getElementById("set-sprint");
-  const modeStatus = document.getElementById("mode-status");
-  const fullscreenBtn = document.getElementById("fullscreen-btn");
-  const fullscreenOverlay = document.getElementById("fullscreen-overlay");
-  const fullscreenTimer = document.getElementById("fullscreen-timer");
-  const titleInput = document.getElementById("custom-title-input");
-  const saveTitleBtn = document.getElementById("save-title-btn");
-  const fullscreenTitle = document.getElementById("fullscreen-title");
-  const pauseMessage = document.getElementById("pause-message");
-  const runningMessage = document.getElementById("running-message");
-  const sprintToast = document.getElementById("sprint-toast");
-  const sprintToastMessage = document.getElementById("sprint-toast-message");
-  const sprintToastClose = document.getElementById("sprint-toast-close");
-  const fsControls = document.getElementById("fullscreen-controls");
-  const fsToggleBtn = document.getElementById("fs-toggle-btn");
-  const sprintHistoryList = document.getElementById("sprint-history-list");
-  const saveTimerSessionBtn = document.getElementById("save-timer-session-btn");
-  const musicToggleBtn = document.getElementById("music-toggle-btn");
-  const studyMusic = document.getElementById("study-music");
+const elapsedTimeDisplay = document.querySelector("#elapsed-time span");
+const remainingTimeDisplay = document.querySelector("#remaining-time span");
+const progressBar = document.getElementById("progress-bar");
+const startBtn = document.getElementById("start-btn");
+const pauseBtn = document.getElementById("pause-btn");
+const resetBtn = document.getElementById("reset-btn");
+const setSprintBtn = document.getElementById("set-sprint");
+const modeStatus = document.getElementById("mode-status");
+const fullscreenBtn = document.getElementById("fullscreen-btn");
+const fullscreenOverlay = document.getElementById("fullscreen-overlay");
+const fullscreenTimer = document.getElementById("fullscreen-timer");
+const titleInput = document.getElementById("custom-title-input");
+const saveTitleBtn = document.getElementById("save-title-btn");
+const fullscreenTitle = document.getElementById("fullscreen-title");
+const pauseMessage = document.getElementById("pause-message");
+const runningMessage = document.getElementById("running-message");
+const sprintToast = document.getElementById("sprint-toast");
+const sprintToastMessage = document.getElementById("sprint-toast-message");
+const sprintToastClose = document.getElementById("sprint-toast-close");
+const fsControls = document.getElementById("fullscreen-controls");
+const fsToggleBtn = document.getElementById("fs-toggle-btn");
+const sprintHistoryList = document.getElementById("sprint-history-list");
+const saveTimerSessionBtn = document.getElementById("save-timer-session-btn");
+const musicToggleBtn = document.getElementById("music-toggle-btn");
+const studyMusic = document.getElementById("study-music");
 
-  let fsControlsTimeout = null;
-  let isMusicPlaying = false;
+let fsControlsTimeout = null;
+let isMusicPlaying = false;
 
-  window.addEventListener("DOMContentLoaded", () => {
-    loadFromLocal();
-    updateDisplay();
-    renderSprintHistory();
-    setInterval(autoResetDaily, 60 * 1000);
-    modeStatus.textContent = "Current Mode: Focus";
-  });
+window.addEventListener("DOMContentLoaded", () => {
+  loadFromLocal();
+  updateDisplay();
+  renderSprintHistory();
+  setInterval(autoResetDaily, 60 * 1000);
+  modeStatus.textContent = "Current Mode: Focus";
+});
 
-  function startTimer() {
-    if (timerInterval) return;
+function startTimer() {
+  if (timerInterval) return;
 
-    if (!sprintStartTime) {
-      sprintStartTime = getCurrentTime();
-    }
-
-    startedAs = sprintSet ? "sprint" : "timer";
-    sprintCompleted = false; // ✅ reset
-
-    timerInterval = setInterval(() => {
-      elapsedSeconds++;
-      updateDisplay();
-      saveToLocal();
-
-      if (sprintSet && elapsedSeconds >= sprintGoalSeconds && !sprintCompleted) {
-        sprintCompleted = true; // ✅ prevent duplicate
-        pauseTimer();
-        saveSprintHistory();
-        renderSprintHistory();
-        showSprintToast(`✅ Sprint "${customTitle || "Untitled"}" complete! ⏱️ ${formatTime(sprintGoalSeconds)}`);
-        if (pauseMessage) {
-          pauseMessage.textContent = " 🎉 Target hit! 🎯  Be proud. 💪  Keep moving. ✨";
-          pauseMessage.style.display = "block";
-        }
-      }
-    }, 1000);
-
-    if (pauseMessage) pauseMessage.style.display = "none"; // ✅ hide pause msg
-    if (runningMessage && document.fullscreenElement)
-      runningMessage.style.display = "block";
-    saveTimerSessionBtn.classList.add("hidden");
+  if (!sprintStartTime) {
+    sprintStartTime = getCurrentTime();
   }
 
-  function pauseTimer() {
-    clearInterval(timerInterval);
-    timerInterval = null;
-    sprintEndTime = getCurrentTime();
+  startedAs = sprintSet ? "sprint" : "timer";
+  sprintCompleted = false; // ✅ reset
+  // Close last break if it was ongoing
+  if (sprintSet && sprintBreaks.length > 0) {
+    const last = sprintBreaks[sprintBreaks.length - 1];
+    if (last && !last.end) {
+      last.end = getCurrentTime();
+      const totalBefore = sprintBreaks
+        .slice(0, -1)
+        .reduce((s, b) => s + b.duration, 0);
+      last.duration = elapsedSeconds - totalBefore;
+    }
+  }
+
+  timerInterval = setInterval(() => {
+    elapsedSeconds++;
+    updateDisplay();
     saveToLocal();
 
-    if (!sprintSet) saveTimerSessionBtn.classList.remove("hidden");
-
-    if (document.fullscreenElement) {
-      if (pauseMessage && !sprintCompleted) {
-        pauseMessage.textContent = "Why stop? I'm crying 😭💀⏱️";
+    if (sprintSet && elapsedSeconds >= sprintGoalSeconds && !sprintCompleted) {
+      sprintCompleted = true; // ✅ prevent duplicate
+      pauseTimer();
+      saveSprintHistory();
+      renderSprintHistory();
+      showSprintToast(
+        `✅ Sprint "${customTitle || "Untitled"}" complete! ⏱️ ${formatTime(
+          sprintGoalSeconds
+        )}`
+      );
+      if (pauseMessage) {
+        pauseMessage.textContent =
+          " 🎉 Target hit! 🎯  Be proud. 💪  Keep moving. ✨";
         pauseMessage.style.display = "block";
       }
-      if (runningMessage) runningMessage.style.display = "none";
     }
+  }, 1000);
+
+  if (pauseMessage) pauseMessage.style.display = "none"; // ✅ hide pause msg
+  if (runningMessage && document.fullscreenElement)
+    runningMessage.style.display = "block";
+  saveTimerSessionBtn.classList.add("hidden");
+}
+
+function pauseTimer() {
+  clearInterval(timerInterval);
+  timerInterval = null;
+  sprintEndTime = getCurrentTime();
+
+  if (sprintSet && !sprintCompleted) {
+    const now = getCurrentTime();
+
+    // ✅ If last break is open (not ended), end it and calculate the duration
+    const last = sprintBreaks[sprintBreaks.length - 1];
+    if (last && !last.end) {
+      last.end = now;
+      const totalBefore = sprintBreaks
+        .slice(0, -1)
+        .reduce((s, b) => s + b.duration, 0);
+      last.duration = elapsedSeconds - totalBefore;
+    }
+
+    // ✅ Start a new break
+    sprintBreaks.push({ start: now, end: null, duration: 0 });
   }
 
-  function resetTimer() {
-    pauseTimer();
+  saveToLocal();
+
+  if (!sprintSet) saveTimerSessionBtn.classList.remove("hidden");
+
+  if (document.fullscreenElement) {
+    if (pauseMessage && !sprintCompleted) {
+      pauseMessage.textContent = "Why stop? I'm crying 😭💀⏱️";
+      pauseMessage.style.display = "block";
+    }
+    if (runningMessage) runningMessage.style.display = "none";
+  }
+}
+
+function resetTimer() {
+  pauseTimer();
+  elapsedSeconds = 0;
+  sprintGoalSeconds = 0;
+  sprintSet = false;
+  sprintCompleted = false; // ✅ reset
+  sprintStartTime = null;
+  sprintEndTime = null;
+  sprintBreaks = [];
+  saveTimerSessionBtn.classList.add("hidden");
+  saveToLocal();
+  updateDisplay();
+  renderSprintHistory();
+  if (pauseMessage) pauseMessage.style.display = "none"; // ✅ hide on reset
+}
+
+function updateDisplay() {
+  elapsedTimeDisplay.textContent = formatTime(elapsedSeconds);
+  if (sprintSet) {
+    const remaining = Math.max(0, sprintGoalSeconds - elapsedSeconds);
+    remainingTimeDisplay.textContent = formatTime(remaining);
+    progressBar.style.width = `${calculateProgress()}%`;
+    if (fullscreenOverlay.classList.contains("show"))
+      fullscreenTimer.textContent = formatTime(remaining);
+  } else {
+    remainingTimeDisplay.textContent = "00:00:00";
+    progressBar.style.width = "0%";
+    if (fullscreenOverlay.classList.contains("show"))
+      fullscreenTimer.textContent = formatTime(elapsedSeconds);
+  }
+}
+
+function calculateProgress() {
+  return Math.min(100, (elapsedSeconds / sprintGoalSeconds) * 100).toFixed(1);
+}
+
+function formatTime(sec) {
+  const h = String(Math.floor(sec / 3600)).padStart(2, "0");
+  const m = String(Math.floor((sec % 3600) / 60)).padStart(2, "0");
+  const s = String(sec % 60).padStart(2, "0");
+  return `${h}:${m}:${s}`;
+}
+function totalBreakSeconds() {
+  return sprintBreaks.reduce((sum, b) => sum + b.duration, 0);
+}
+
+function getISTDate() {
+  return new Date().toLocaleDateString("en-GB", { timeZone: "Asia/Kolkata" });
+}
+
+function getCurrentTime() {
+  return new Date().toLocaleTimeString("en-IN", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+    timeZone: "Asia/Kolkata",
+  });
+}
+
+function saveSprintHistory() {
+  const history = JSON.parse(localStorage.getItem("sprint_history") || "[]");
+  history.push({
+    title: customTitle || "Untitled",
+    duration: formatTime(sprintGoalSeconds || elapsedSeconds),
+    startTime: sprintStartTime || "Unknown",
+    endTime: sprintEndTime || getCurrentTime(),
+    date: getISTDate(),
+    type: startedAs,
+  });
+  localStorage.setItem("sprint_history", JSON.stringify(history));
+}
+
+function renderSprintHistory() {
+  if (!sprintHistoryList) return;
+  sprintHistoryList.innerHTML = "";
+  const history = JSON.parse(localStorage.getItem("sprint_history") || "[]");
+  const grouped = {};
+  history.reverse().forEach((entry) => {
+    if (!grouped[entry.date]) grouped[entry.date] = [];
+    grouped[entry.date].push(entry);
+  });
+  for (let date in grouped) {
+    const dateHeader = document.createElement("li");
+    dateHeader.classList.add("date-header");
+    dateHeader.innerHTML = `📅 ${date}`;
+    sprintHistoryList.appendChild(dateHeader);
+    grouped[date].forEach((entry, index, arr) => {
+      const li = document.createElement("li");
+      const displayIndex = arr.length - index;
+      li.innerHTML = `<span>📌 ${displayIndex}. ${entry.title} (${entry.type})</span><span>⏱️ ${entry.duration} | ${entry.startTime} → ${entry.endTime}</span>`;
+      sprintHistoryList.appendChild(li);
+    });
+  }
+}
+
+function autoResetDaily() {
+  const today = getISTDate();
+  if (today !== lastDate) {
     elapsedSeconds = 0;
-    sprintGoalSeconds = 0;
-    sprintSet = false;
-    sprintCompleted = false; // ✅ reset
-    sprintStartTime = null;
-    sprintEndTime = null;
-    saveTimerSessionBtn.classList.add("hidden");
+    lastDate = today;
     saveToLocal();
-    updateDisplay();
     renderSprintHistory();
-    if (pauseMessage) pauseMessage.style.display = "none"; // ✅ hide on reset
+    updateDisplay();
   }
+}
 
-  function updateDisplay() {
-    elapsedTimeDisplay.textContent = formatTime(elapsedSeconds);
-    if (sprintSet) {
-      const remaining = Math.max(0, sprintGoalSeconds - elapsedSeconds);
-      remainingTimeDisplay.textContent = formatTime(remaining);
-      progressBar.style.width = `${calculateProgress()}%`;
-      if (fullscreenOverlay.classList.contains("show"))
-        fullscreenTimer.textContent = formatTime(remaining);
-    } else {
-      remainingTimeDisplay.textContent = "00:00:00";
-      progressBar.style.width = "0%";
-      if (fullscreenOverlay.classList.contains("show"))
-        fullscreenTimer.textContent = formatTime(elapsedSeconds);
-    }
-  }
-
-  function calculateProgress() {
-    return Math.min(100, (elapsedSeconds / sprintGoalSeconds) * 100).toFixed(1);
-  }
-
-  function formatTime(sec) {
-    const h = String(Math.floor(sec / 3600)).padStart(2, "0");
-    const m = String(Math.floor((sec % 3600) / 60)).padStart(2, "0");
-    const s = String(sec % 60).padStart(2, "0");
-    return `${h}:${m}:${s}`;
-  }
-
-  function getISTDate() {
-    return new Date().toLocaleDateString("en-GB", { timeZone: "Asia/Kolkata" });
-  }
-
-  function getCurrentTime() {
-    return new Date().toLocaleTimeString("en-GB", { timeZone: "Asia/Kolkata" });
-  }
-
-  function saveSprintHistory() {
-    const history = JSON.parse(localStorage.getItem("sprint_history") || "[]");
-    history.push({
-      title: customTitle || "Untitled",
-      duration: formatTime(sprintGoalSeconds || elapsedSeconds),
-      startTime: sprintStartTime || "Unknown",
-      endTime: sprintEndTime || getCurrentTime(),
+function saveToLocal() {
+  localStorage.setItem(
+    "study_data",
+    JSON.stringify({
+      elapsedSeconds,
+      sprintGoalSeconds,
+      sprintSet,
       date: getISTDate(),
-      type: startedAs,
-    });
-    localStorage.setItem("sprint_history", JSON.stringify(history));
-  }
+      customTitle,
+    })
+  );
+}
 
-  function renderSprintHistory() {
-    if (!sprintHistoryList) return;
-    sprintHistoryList.innerHTML = "";
-    const history = JSON.parse(localStorage.getItem("sprint_history") || "[]");
-    const grouped = {};
-    history.reverse().forEach((entry) => {
-      if (!grouped[entry.date]) grouped[entry.date] = [];
-      grouped[entry.date].push(entry);
-    });
-    for (let date in grouped) {
-      const dateHeader = document.createElement("li");
-      dateHeader.classList.add("date-header");
-      dateHeader.innerHTML = `📅 ${date}`;
-      sprintHistoryList.appendChild(dateHeader);
-      grouped[date].forEach((entry, index, arr) => {
-        const li = document.createElement("li");
-        const displayIndex = arr.length - index;
-        li.innerHTML = `<span>📌 ${displayIndex}. ${entry.title} (${entry.type})</span><span>⏱️ ${entry.duration} | ${entry.startTime} → ${entry.endTime}</span>`;
-        sprintHistoryList.appendChild(li);
-      });
-    }
+function loadFromLocal() {
+  const saved = JSON.parse(localStorage.getItem("study_data") || "{}");
+  if (saved.date === getISTDate()) {
+    elapsedSeconds = saved.elapsedSeconds || 0;
+    sprintGoalSeconds = saved.sprintGoalSeconds || 0;
+    sprintSet = saved.sprintSet || false;
+    customTitle = saved.customTitle || "";
+    titleInput.value = customTitle;
+    fullscreenTitle.textContent = customTitle || "Study Sprint";
   }
+}
 
-  function autoResetDaily() {
-    const today = getISTDate();
-    if (today !== lastDate) {
-      elapsedSeconds = 0;
-      lastDate = today;
-      saveToLocal();
-      renderSprintHistory();
-      updateDisplay();
-    }
-  }
+function flashButton(button) {
+  button.classList.add("active-button");
+  setTimeout(() => button.classList.remove("active-button"), 500);
+}
 
-  function saveToLocal() {
-    localStorage.setItem("study_data", JSON.stringify({
-      elapsedSeconds, sprintGoalSeconds, sprintSet, date: getISTDate(), customTitle
-    }));
-  }
+startBtn.addEventListener("click", () => {
+  flashButton(startBtn);
+  startTimer();
+});
 
-  function loadFromLocal() {
-    const saved = JSON.parse(localStorage.getItem("study_data") || "{}");
-    if (saved.date === getISTDate()) {
-      elapsedSeconds = saved.elapsedSeconds || 0;
-      sprintGoalSeconds = saved.sprintGoalSeconds || 0;
-      sprintSet = saved.sprintSet || false;
-      customTitle = saved.customTitle || "";
-      titleInput.value = customTitle;
+pauseBtn.addEventListener("click", () => {
+  flashButton(pauseBtn);
+  pauseTimer();
+});
+
+resetBtn.addEventListener("click", () => {
+  flashButton(resetBtn);
+  resetTimer();
+});
+
+setSprintBtn.addEventListener("click", () => {
+  flashButton(setSprintBtn);
+  sprintBreaks = []; // ✅ Reset breaks for new sprint
+
+  const h = parseInt(document.getElementById("hours").value) || 0;
+  const m = parseInt(document.getElementById("minutes").value) || 0;
+  const s = parseInt(document.getElementById("seconds").value) || 0;
+  const total = h * 3600 + m * 60 + s;
+  if (total <= 0) return alert("❌ Invalid Sprint Time.");
+  sprintGoalSeconds = total;
+  sprintSet = true;
+  elapsedSeconds = 0;
+  sprintStartTime = null;
+  sprintCompleted = false;
+  updateDisplay();
+  saveToLocal();
+});
+
+saveTitleBtn.addEventListener("click", () => {
+  const title = titleInput.value.trim();
+  if (!title) return alert("❌ Enter a title.");
+  customTitle = title;
+  fullscreenTitle.textContent = title;
+  saveToLocal();
+  flashButton(saveTitleBtn);
+});
+
+saveTimerSessionBtn.addEventListener("click", () => {
+  saveSprintHistory();
+  renderSprintHistory();
+  showSprintToast("💾 Timer session saved!");
+  saveTimerSessionBtn.classList.add("hidden");
+});
+
+fullscreenBtn.addEventListener("click", () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().then(() => {
+      fullscreenOverlay.classList.add("show");
+      fullscreenBtn.textContent = "❌ Exit Fullscreen";
+      fullscreenTimer.textContent = sprintSet
+        ? formatTime(Math.max(0, sprintGoalSeconds - elapsedSeconds))
+        : formatTime(elapsedSeconds);
       fullscreenTitle.textContent = customTitle || "Study Sprint";
-    }
+      if (timerInterval && runningMessage)
+        runningMessage.style.display = "block";
+      showAndHideFullscreenControls();
+    });
+  } else {
+    document.exitFullscreen().then(() => {
+      fullscreenOverlay.classList.remove("show");
+      fullscreenBtn.textContent = "⛶ Full Screen";
+      fullscreenBtn.classList.remove("hidden");
+      fsControls.classList.remove("hidden");
+      if (pauseMessage) pauseMessage.style.display = "none";
+      if (runningMessage) runningMessage.style.display = "none";
+    });
   }
+});
 
-  function flashButton(button) {
-    button.classList.add("active-button");
-    setTimeout(() => button.classList.remove("active-button"), 500);
-  }
-
-  startBtn.addEventListener("click", () => {
-    flashButton(startBtn);
-    startTimer();
-  });
-
-  pauseBtn.addEventListener("click", () => {
-    flashButton(pauseBtn);
+fsToggleBtn.addEventListener("click", () => {
+  if (timerInterval) {
     pauseTimer();
-  });
+    fsToggleBtn.textContent = "▶️";
+  } else {
+    startTimer();
+    fsToggleBtn.textContent = "⏸";
+  }
+});
 
-  resetBtn.addEventListener("click", () => {
-    flashButton(resetBtn);
-    resetTimer();
-  });
-
-  setSprintBtn.addEventListener("click", () => {
-    flashButton(setSprintBtn);
-    const h = parseInt(document.getElementById("hours").value) || 0;
-    const m = parseInt(document.getElementById("minutes").value) || 0;
-    const s = parseInt(document.getElementById("seconds").value) || 0;
-    const total = h * 3600 + m * 60 + s;
-    if (total <= 0) return alert("❌ Invalid Sprint Time.");
-    sprintGoalSeconds = total;
-    sprintSet = true;
-    elapsedSeconds = 0;
-    sprintStartTime = null;
-    sprintCompleted = false;
-    updateDisplay();
-    saveToLocal();
-  });
-
-  saveTitleBtn.addEventListener("click", () => {
-    const title = titleInput.value.trim();
-    if (!title) return alert("❌ Enter a title.");
-    customTitle = title;
-    fullscreenTitle.textContent = title;
-    saveToLocal();
-    flashButton(saveTitleBtn);
-  });
-
-  saveTimerSessionBtn.addEventListener("click", () => {
-    saveSprintHistory();
-    renderSprintHistory();
-    showSprintToast("💾 Timer session saved!");
-    saveTimerSessionBtn.classList.add("hidden");
-  });
-
-  fullscreenBtn.addEventListener("click", () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().then(() => {
-        fullscreenOverlay.classList.add("show");
-        fullscreenBtn.textContent = "❌ Exit Fullscreen";
-        fullscreenTimer.textContent = sprintSet
-          ? formatTime(Math.max(0, sprintGoalSeconds - elapsedSeconds))
-          : formatTime(elapsedSeconds);
-        fullscreenTitle.textContent = customTitle || "Study Sprint";
-        if (timerInterval && runningMessage)
-          runningMessage.style.display = "block";
-        showAndHideFullscreenControls();
-      });
-    } else {
-      document.exitFullscreen().then(() => {
-        fullscreenOverlay.classList.remove("show");
-        fullscreenBtn.textContent = "⛶ Full Screen";
-        fullscreenBtn.classList.remove("hidden");
-        fsControls.classList.remove("hidden");
-        if (pauseMessage) pauseMessage.style.display = "none";
-        if (runningMessage) runningMessage.style.display = "none";
-      });
+function showAndHideFullscreenControls() {
+  fullscreenBtn.classList.remove("hidden");
+  fsControls.classList.remove("hidden");
+  if (fsControlsTimeout) clearTimeout(fsControlsTimeout);
+  fsControlsTimeout = setTimeout(() => {
+    if (document.fullscreenElement) {
+      fullscreenBtn.classList.add("hidden");
+      fsControls.classList.add("hidden");
     }
-  });
+  }, 3000);
+}
 
-  fsToggleBtn.addEventListener("click", () => {
-    if (timerInterval) {
-      pauseTimer();
-      fsToggleBtn.textContent = "▶️";
-    } else {
-      startTimer();
-      fsToggleBtn.textContent = "⏸";
-    }
-  });
+document.addEventListener("mousemove", showAndHideFullscreenControls);
+document.addEventListener("touchstart", showAndHideFullscreenControls);
 
-  function showAndHideFullscreenControls() {
-    fullscreenBtn.classList.remove("hidden");
-    fsControls.classList.remove("hidden");
-    if (fsControlsTimeout) clearTimeout(fsControlsTimeout);
-    fsControlsTimeout = setTimeout(() => {
-      if (document.fullscreenElement) {
-        fullscreenBtn.classList.add("hidden");
-        fsControls.classList.add("hidden");
-      }
-    }, 3000);
+function showSprintToast(message) {
+  if (!sprintToast || !sprintToastMessage) return;
+
+  if (message.startsWith("✅ Sprint")) {
+    const total = sprintGoalSeconds || elapsedSeconds;
+    const totalFormatted = formatTime(total);
+
+    // Display breaks taken and calculate total break time
+    const breakInfo =
+      sprintBreaks.length === 0
+        ? `<br><br><span class="toast-success">🚫 No Breaks Taken. Great Focus!</span>`
+        : sprintBreaks
+            .map(
+              (b, i) =>
+                `<br><span class="toast-break">${i + 1}\u20E3 Break ${
+                  i + 1
+                } — ${formatTime(
+                  b.duration
+                )}</span> <span class="toast-time">🕒 ${b.start} → ${
+                  b.end
+                }</span>`
+            )
+            .join("");
+
+    const focusPercent = Math.round(
+      ((total - totalBreakSeconds()) / total) * 100
+    );
+    const bar = "█".repeat(Math.floor(focusPercent / 10)).padEnd(10, "░");
+
+    message = `
+        <div class="toast-title">✅ Sprint: "${
+          customTitle || "Untitled"
+        }"</div><br>
+
+        <div><span class="toast-label">⏱️ Duration:</span> <span class="toast-time">${totalFormatted}</span></div><br>
+
+        <div><span class="toast-label">🟢 Start Time:</span> <span class="toast-time">${
+          sprintStartTime || "--"
+        }</span></div>
+        <div><span class="toast-label">🔴 End Time:</span> <span class="toast-time">${
+          sprintEndTime || getCurrentTime()
+        }</span></div><br>
+
+        <div><span class="toast-label">☕ Breaks Taken:</span> <span class="toast-break">${
+          sprintBreaks.length
+        }</span></div>
+        ${breakInfo}<br><br>
+
+        <div><span class="toast-label">⏱️ Total Break Time:</span> <span class="toast-time">${formatTime(
+          totalBreakSeconds()
+        )}</span></div>
+
+        <div><span class="toast-label">📊 Focus Ratio:</span></div>
+        <div class="toast-focus">${bar} ${focusPercent}%</div><br>
+
+        <div class="toast-success">🚀 Time well spent! Let’s keep the streak alive!</div>
+        `;
   }
 
-  document.addEventListener("mousemove", showAndHideFullscreenControls);
-  document.addEventListener("touchstart", showAndHideFullscreenControls);
+  sprintToastMessage.innerHTML = message;
+  sprintToast.classList.add("show");
+  sprintToast.classList.remove("hidden");
+}
 
-  function showSprintToast(message) {
-    if (!sprintToast || !sprintToastMessage) return;
-    sprintToastMessage.textContent = message;
-    sprintToast.classList.add("show");
-    sprintToast.classList.remove("hidden");
-  }
+sprintToastClose.addEventListener("click", () => {
+  sprintToast.classList.remove("show");
+});
 
-  sprintToastClose.addEventListener("click", () => {
-    sprintToast.classList.remove("show");
-  });
-
-  musicToggleBtn.addEventListener("click", () => {
-    if (!isMusicPlaying) {
-      studyMusic.play().then(() => {
-        musicToggleBtn.textContent = "🎧";
+musicToggleBtn.addEventListener("click", () => {
+  if (!isMusicPlaying) {
+    studyMusic
+      .play()
+      .then(() => {
+        musicToggleBtn.textContent = "⏸️";
         isMusicPlaying = true;
-      }).catch((err) => {
+      })
+      .catch((err) => {
         console.log("Music play error:", err);
         alert("⚠️ Cannot play music. It may be blocked or missing.");
       });
-    } else {
-      studyMusic.pause();
-      musicToggleBtn.textContent = "🎵";
-      isMusicPlaying = false;
-    }
-  });
-</script>
+  } else {
+    studyMusic.pause();
+    musicToggleBtn.textContent = "🎵";
+    isMusicPlaying = false;
+  }
+});
 
+</script>
 
   </body>
 </html>
