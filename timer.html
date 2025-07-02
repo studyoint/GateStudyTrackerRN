@@ -1463,6 +1463,8 @@ html.fullscreen-mode {
         <button id="fs-toggle-btn">▶️</button>
         <button id="music-toggle-btn">🎵</button>
         <audio id="study-music" src="got_rn.mp3" preload="auto" loop></audio>
+        <!-- ✅ NEW LOG BUTTON -->
+<button id="log-toggle-btn" class="fullscreen-btn hidden">📋</button>
       </div>
 
       <!-- ✅ Funny pause message -->
@@ -1535,6 +1537,8 @@ const studyMusic = document.getElementById("study-music");
 
 let fsControlsTimeout = null;
 let isMusicPlaying = false;
+const logToggleBtn = document.getElementById("log-toggle-btn"); // ✅ New Log Button
+
 
 
 
@@ -1899,6 +1903,13 @@ saveTimerSessionBtn.addEventListener("click", () => {
   showSprintToast("💾 Timer session saved!");
   saveTimerSessionBtn.classList.add("hidden");
 });
+
+// ✅ LOG BUTTON CLICK EVENT
+logToggleBtn.addEventListener("click", () => {
+  flashButton(logToggleBtn); // Optional visual feedback
+  showSprintToast(`✅ Sprint "${customTitle || "Untitled"}" complete! ⏱️ ${formatTime(sprintSet ? sprintGoalSeconds : elapsedSeconds)}`);
+});
+
 
 // ===================== Toast Close Button Functionality =====================
 /// Function to show the toast after the timer completes
