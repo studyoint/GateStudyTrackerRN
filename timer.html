@@ -1539,6 +1539,7 @@ let isMusicPlaying = false;
 
 
 // ========== Wake Lock Setup ==========
+// ========== Wake Lock Setup ==========
 let wakeLock = null;
 
 async function requestWakeLock() {
@@ -1556,6 +1557,11 @@ async function requestWakeLock() {
   }
 }
 
+// Try again when tab becomes visible
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") requestWakeLock();
+});
+
 
 // ===================== Part 2: Window Event Listeners =====================
 // Load saved data from localStorage when the page loads
@@ -1564,8 +1570,12 @@ window.addEventListener("DOMContentLoaded", () => {
   updateDisplay();
   renderSprintHistory();
   setInterval(autoResetDaily, 60 * 1000);
-  modeStatus.textContent = "Current Mode: Focus";
-  requestWakeLock(); // ✅ Added to prevent screen lock
+
+  // ✅ Only set text if modeStatus element exists
+  if (typeof modeStatus !== 'undefined' && modeStatus)
+    modeStatus.textContent = "Current Mode: Focus";
+
+  requestWakeLock();
 });
 
 
