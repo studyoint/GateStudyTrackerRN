@@ -1,0 +1,496 @@
+<!-- ====================================================================== -->
+<!-- Part 1: Document Setup & Head Section -->
+<!-- ====================================================================== -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RN YT</title>
+    <!-- <link rel="stylesheet" href="yt.css"> -->
+     <style>
+        /* ====================================================================== */
+/* Part 1: General Reset & Base Styles */
+/* ====================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #121212; /* Deep dark background */
+    color: #fff; /* White text for contrast */
+    line-height: 1.6;
+    font-size: 18px;
+    min-height: 100vh; /* Ensures the body takes full screen height */
+    overflow: hidden; /* Disables global scrollbar */
+}
+
+/* ====================================================================== */
+/* Part 2: Navbar Styling */
+/* ====================================================================== */
+/* ====================================================================== */
+/* ====================================================================== */
+/* Stylish Neon Text Logo Styling */
+.logo {
+    font-size: 2.5rem; /* Large font size for the logo */
+    font-weight: bold; /* Bold font for emphasis */
+    margin-left: 6.5%;
+    color: #fff; /* White text */
+    letter-spacing: 3px; /* Space out the letters */
+    text-transform: uppercase; /* Make the text all caps */
+    position: relative;
+    text-shadow: 
+        0 0 10px #9b59b6,  /* Neon Purple */
+        0 0 20px #9b59b6, 
+        0 0 30px #8e44ad,  /* Darker Purple for depth */
+        0 0 40px #8e44ad, 
+        0 0 50px #8e44ad, 
+        0 0 60px #8e44ad;  /* Enhanced Dark Purple Glow */
+    transition: text-shadow 0.3s ease, transform 0.4s ease, color 0.3s ease; /* Smooth transitions */
+    display: inline-block;  /* Inline block to allow scaling and positioning */
+}
+
+/* ====================================================================== */
+/* Hover Effect for Neon Logo (No shifting, glowing animation) */
+.logo:hover {
+    text-shadow: 
+        0 0 20px #9b59b6,  /* Vibrant Neon Purple Glow */
+        0 0 30px #9b59b6, 
+        0 0 40px #8e44ad,  /* Deep Purple Glow */
+        0 0 50px #8e44ad, 
+        0 0 60px #ff00ff,  /* Added pink for a balanced contrast */
+        0 0 70px #ff00ff, 
+        0 0 80px #00ff00;  /* Green for a subtle RGB contrast */
+    transform: scale(1.1) rotate(2deg); /* Slight rotation along with scaling */
+    color: #ff00ff; /* Slight color shift on hover to pink */
+}
+
+/* ====================================================================== */
+/* Subtle Active Effect */
+.logo:active {
+    transform: scale(1.05) rotate(0deg);  /* Slightly reduce size and remove rotation on active */
+}
+
+/* ====================================================================== */
+/* Adding Animation for Logo on Page Load */
+@keyframes logoPulse {
+    0% {
+        text-shadow: 
+            0 0 10px #9b59b6, 
+            0 0 20px #9b59b6, 
+            0 0 30px #8e44ad, 
+            0 0 40px #8e44ad, 
+            0 0 50px #8e44ad, 
+            0 0 60px #8e44ad;
+        color: #fff;
+    }
+    50% {
+        text-shadow: 
+            0 0 20px #ff00ff, 
+            0 0 30px #ff00ff, 
+            0 0 40px #00ff00, 
+            0 0 50px #00ff00, 
+            0 0 60px #ff00ff, 
+            0 0 70px #ff00ff;
+        color: #ff00ff;
+    }
+    100% {
+        text-shadow: 
+            0 0 10px #9b59b6, 
+            0 0 20px #9b59b6, 
+            0 0 30px #8e44ad, 
+            0 0 40px #8e44ad, 
+            0 0 50px #8e44ad, 
+            0 0 60px #8e44ad;
+        color: #fff;
+    }
+}
+
+/* Adding Animation */
+.logo {
+    animation: logoPulse 3s infinite alternate; /* Pulse effect when page loads */
+}
+
+
+/* ====================================================================== */
+/* Part 3: Content Container Styling with Border Animation */
+/* ====================================================================== */
+
+/* ====================================================================== */
+/* Part 3: Content Container Styling with Border Animation */
+/* ====================================================================== */
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 180px; /* Increased padding to avoid overlap with navbar */
+    padding-bottom: 50px;
+    width: 90%;  /* Width of container, to keep it responsive */
+    max-width: 1200px; /* Max width */
+    
+    margin: 0 auto;  /* Center content horizontally */
+    border: 2px solid #333;  /* Dark border for contrast */
+    border-radius: 20px;
+    background-color: #1f1f1f;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+    animation: borderGlow 3s infinite alternate; /* Animated Border Glow */
+    padding: 30px;
+    position: fixed; /* Fixing container in place */
+
+    z-index: 1; /* Ensures content is above other layers */
+    min-height: 70vh;  /* Minimum height of the container */
+    max-height: 85vh; /* Maximum height for the container */
+    overflow-y: scroll; /* Keeps scrollable functionality */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    left: 50%;
+    transform: translateX(-50%); /* Centers the container horizontally */
+}
+
+/* ====================================================================== */
+/* Hide the scrollbar but allow scrolling with touch or mouse wheel */
+/* ====================================================================== */
+
+.content-container::-webkit-scrollbar {
+    display: none; /* Hides the scrollbar */
+}
+
+.content-container {
+    -ms-overflow-style: none;  /* For Internet Explorer */
+    scrollbar-width: none; /* For Firefox */
+}
+
+/* ====================================================================== */
+/* Part 4: Main Content Area for Dynamic Channel Boxes */
+/* ====================================================================== */
+
+.main-content {
+    width: 100%;
+    padding: 20px;
+}
+
+/* ====================================================================== */
+/* Part 5: Channel Grid for Dynamic Boxes (Fix to 3 per row) */
+/* ====================================================================== */
+
+.channel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 352px); /* Fixed 3 boxes per row */
+    gap: 20px;
+    justify-content: center; /* Center the grid items */
+}
+
+
+/* ====================================================================== */
+/* Part 6: Dynamic Channel Box Styling with Dark Neon Effect */
+/* ====================================================================== */
+
+.channel-box {
+    width: 352px;  /* Fixed width */
+    height: 60px;  /* Fixed height */
+    background-color: #121212;  /* Dark black background for the box */
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.5), 0 0 20px rgba(255, 0, 128, 0.5); /* Neon Glow Shadow */
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.4s ease, background-color 0.3s ease;
+    background: #121212; /* Pure dark background */
+    color: #fff;
+    text-shadow: 0 0 10px #ff0080, 0 0 20px #00ffff, 0 0 30px #ffbf00, 0 0 40px #00ff00; /* Multi-colored glowing text shadow */
+}
+
+/* Hover effect with enhanced neon */
+.channel-box:hover {
+    transform: scale(1.05); /* Scale the box for emphasis */
+    box-shadow: 0 20px 60px rgba(0, 255, 255, 0.7), 0 0 50px rgba(255, 0, 128, 0.7); /* Bigger neon effect */
+    background-color: #222; /* Darker color when hovered */
+    text-shadow: 0 0 15px #ff0080, 0 0 25px #00ffff, 0 0 35px #ffbf00, 0 0 45px #00ff00; /* Stronger glow effect */
+}
+
+/* ====================================================================== */
+/* Channel Name Styling with Bold Neon Effect */
+.channel-box .channel-name {
+    font-size: 1.2rem; /* Larger text for the name */
+    font-weight: bold; /* Make the channel name bold */
+    color: #fff; /* White color for better contrast */
+    text-shadow: 0 0 5px #ff0080, 0 0 10px #ff0080, 0 0 15px #00ffff, 0 0 20px #ffbf00, 0 0 25px #00ff00; /* Multi-colored glow for the name */
+    letter-spacing: 1px; /* Slightly spaced out letters for more impact */
+    transition: text-shadow 0.3s ease; /* Smooth transition on hover */
+}
+
+/* ====================================================================== */
+/* Stylish Numbering for Channel Box */
+/* ====================================================================== */
+
+.channel-box__number {
+    font-size: 1.1rem; /* Slightly smaller font size */
+    font-weight: bold; /* Make the number bold */
+    color: #ff0080; /* Neon color for number */
+    margin-right: 12px; /* Space between number and name */
+    text-shadow: 0 0 5px #ff0080, 0 0 15px #ff00ff; /* Neon glow effect */
+    letter-spacing: 1px; /* Slight spacing for more style */
+}
+
+
+/* ====================================================================== */
+/* End of Dark Neon Channel Box Styles */
+/* ====================================================================== */
+
+/* ====================================================================== */
+/* Part 7: Simple Input Section Styling with Neon Glow Effect */
+/* ====================================================================== */
+
+.simple-input-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.form-input {
+    font-size: 16px;
+    padding: 14px;
+    margin: 0 15px;
+    width: 45%;
+    border: 2px solid #333;
+    border-radius: 8px;
+    background-color: #222;
+    color: #fff;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.form-input::placeholder {
+    color: #aaa; /* Light grey for placeholders */
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #00ffff;
+    background-color: #333;
+}
+
+.submit-btn {
+    font-size: 18px;
+    padding: 14px 20px;
+    background-color: #ff0080;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    width: 20%;
+    text-shadow: 0 0 10px #ff0080, 0 0 20px #00ffff;
+}
+
+.submit-btn:hover {
+    background-color: #1abc9c;
+    box-shadow: 0 0 20px #ff0080, 0 0 30px #00ffff;
+}
+
+/* ====================================================================== */
+/* Part 8: Footer Styling (Empty Footer) */
+/* ====================================================================== */
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1e1e1e;
+    font-size: 16px;
+    color: #fff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* ====================================================================== */
+/* Part 9: Border Animation Effect for Content Container */
+/* ====================================================================== */
+
+@keyframes borderGlow {
+    0% {
+        border-color: #ff0080;
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+    }
+    50% {
+        border-color: #00ffff;
+        box-shadow: 0 0 25px rgba(0, 255, 255, 0.7);
+    }
+    100% {
+        border-color: #ff0080;
+        box-shadow: 0 0 40px rgba(0, 255, 255, 0.8);
+    }
+}
+
+/* ====================================================================== */
+/* Part 10: Custom Scrollbar Styling (Neon Glow Effect) */
+/* ====================================================================== */
+
+.content-container::-webkit-scrollbar {
+    width: 12px;  /* Width of the scrollbar */
+    height: 4px;
+}
+
+/* Handle of the Scrollbar */
+.content-container::-webkit-scrollbar-thumb {
+    background-color: #9b59b6;  /* Neon Purple color for scrollbar */
+    border-radius: 8px;
+    box-shadow: 0 0 10px #ff0080, 0 0 20px #9b59b6, 0 0 30px #8e44ad; /* Neon glow effect */
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* Handle hover effect */
+.content-container::-webkit-scrollbar-thumb:hover {
+    background-color: #8e44ad;  /* Darker shade on hover */
+    box-shadow: 0 0 20px #ff0080, 0 0 30px #9b59b6, 0 0 50px #8e44ad;  /* Stronger neon glow */
+}
+
+/* Scrollbar track */
+.content-container::-webkit-scrollbar-track {
+    background-color: #121212; /* Dark background for the scrollbar track */
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px #00ffff;  /* Neon effect inside track */
+}
+
+/* ====================================================================== */
+/* End of Custom Scrollbar Styling */
+/* ====================================================================== */
+
+/* ====================================================================== */
+/* End of CSS */
+/* ====================================================================== */
+
+     </style>
+</head>
+
+<!-- ====================================================================== -->
+<!-- Part 2: Body Section -->
+<!-- ====================================================================== -->
+
+<body>
+    <!-- ====================================================================== -->
+<!-- ====================================================================== -->
+<!-- Part 3: Top Navbar with Neon Text Logo -->
+<!-- ====================================================================== -->
+
+<header class="navbar">
+    <div class="logo">RN YT</div>
+</header>
+
+    <!-- ====================================================================== -->
+    <!-- Part 4: Main Container for Content -->
+    <!-- ====================================================================== -->
+
+    <div class="content-container">
+        <!-- ====================================================================== -->
+        <!-- Part 5: Main Content Area for Dynamic Channel Boxes -->
+        <!-- ====================================================================== -->
+        <main class="main-content">
+            <section class="channel-grid" id="channelGrid">
+                <!-- Dynamically added channel boxes will appear here -->
+            </section>
+        </main>
+
+        <!-- ====================================================================== -->
+        <!-- Part 6: Input Section for Adding Channels -->
+        <!-- ====================================================================== -->
+        <section class="simple-input-section">
+            <input type="text" id="channelName" name="channelName" class="form-input" placeholder="Enter Channel Name" required>
+            <input type="url" id="channelLink" name="channelLink" class="form-input" placeholder="Paste Channel Link Here" required>
+            <button type="button" class="submit-btn" id="addChannelBtn">Add Channel</button>
+        </section>
+    </div>
+
+    <!-- ====================================================================== -->
+    <!-- Part 7: Footer Section (Empty Footer) -->
+    <!-- ====================================================================== -->
+    <!-- <footer class="footer"> -->
+        <!-- Empty Footer -->
+    <!-- </footer> -->
+
+    <!-- <script src="yt.js"></script> -->
+     <script>
+        // ======================================================================
+// Part 1: Event Listener for Form Submission
+// ======================================================================
+
+document.getElementById("addChannelBtn").addEventListener("click", function (e) {
+    e.preventDefault(); // Prevent default button action
+
+    // Get the values of the input fields
+    const channelName = document.getElementById("channelName").value;
+    const channelLink = document.getElementById("channelLink").value;
+
+    // Call the function to add the new channel box
+    addChannelBox(channelName, channelLink);
+
+    // Clear the input fields after submission
+    document.getElementById("channelName").value = "";
+    document.getElementById("channelLink").value = "";
+});
+
+// ======================================================================
+// Part 2: Function to Add a New Channel Box
+// ======================================================================
+
+let channelCount = 0; // Variable to track the channel number
+
+function addChannelBox(channelName, channelLink) {
+    // Increment the channel count for each new channel
+    channelCount++;
+
+    // Create a new div for the channel box
+    const channelBox = document.createElement("div");
+    channelBox.classList.add("channel-box");
+
+    // Create the channel number div
+    const channelNumberDiv = document.createElement("div");
+    channelNumberDiv.classList.add("channel-box__number");
+    channelNumberDiv.textContent = `#${channelCount}`; // Stylish numbering
+
+    // Create the channel name div
+    const channelNameDiv = document.createElement("div");
+    channelNameDiv.classList.add("channel-box__name");
+    channelNameDiv.textContent = channelName;
+
+    // Add an event listener to the channel box to open the link when clicked
+    channelBox.addEventListener("click", function () {
+        window.location.href = channelLink; // Open the channel link in the same tab
+    });
+
+    // Append the number and channel name to the channel box
+    channelBox.appendChild(channelNumberDiv);
+    channelBox.appendChild(channelNameDiv);
+
+    // Append the channel box to the grid container
+    document.getElementById("channelGrid").appendChild(channelBox);
+}
+
+// ======================================================================
+// End of JavaScript Code
+// ======================================================================
+
+     </script>
+</body>
+
+<!-- ====================================================================== -->
+<!-- Part 8: End of Body Section -->
+<!-- ====================================================================== -->
+
+</html>
+
+<!-- ====================================================================== -->
+<!-- End of HTML -->
+<!-- ====================================================================== -->
