@@ -368,6 +368,7 @@ body {
 /* End of Custom Scrollbar Styling */
 /* ====================================================================== */
 /* ====================================================================== */
+/* ====================================================================== */
 /* Mobile Responsiveness for Screens Smaller Than 768px */
 /* ====================================================================== */
 
@@ -391,31 +392,52 @@ body {
     }
 
     .channel-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 boxes per row on mobile */
-        gap: 15px;  /* Reduced gap */
+        grid-template-columns: 1fr; /* 1 box per row on mobile */
+        gap: 20px;  /* Increased gap for a more spacious layout */
+        padding: 10px; /* Small padding inside the grid */
     }
 
     .channel-box {
         width: 100%;  /* Full width of the container */
         height: auto;  /* Dynamically adjust height */
-        padding: 15px;  /* Reduced padding */
-        box-shadow: 0 10px 20px rgba(0, 255, 255, 0.4), 0 0 15px rgba(255, 0, 128, 0.4); /* Lighter glow */
+        padding: 20px;  /* Slightly more padding for a fuller look */
+        box-shadow: 0 12px 30px rgba(0, 255, 255, 0.6), 0 0 25px rgba(255, 0, 128, 0.6); /* Stronger glow */
+        transition: transform 0.3s ease, box-shadow 0.4s ease, background-color 0.4s ease; /* Smoother transitions */
     }
 
     .channel-box:hover {
-        transform: scale(1.02); /* Reduced scale */
-        box-shadow: 0 15px 40px rgba(0, 255, 255, 0.5), 0 0 25px rgba(255, 0, 128, 0.5); /* Adjusted hover effect */
+        transform: scale(1.05); /* Slightly bigger scale for emphasis */
+        box-shadow: 0 20px 50px rgba(0, 255, 255, 0.7), 0 0 30px rgba(255, 0, 128, 0.7); /* Stronger hover effect */
+        background-color: #222; /* Darker background color on hover */
+    }
+
+    .channel-box .channel-name {
+        font-size: 1.3rem; /* Increased font size for better readability */
+        text-shadow: 0 0 10px #ff0080, 0 0 20px #00ffff, 0 0 30px #ffbf00, 0 0 40px #00ff00; /* Enhanced neon glow */
+        transition: text-shadow 0.3s ease; /* Smooth text-shadow transition */
+    }
+
+    .channel-box .channel-name:hover {
+        text-shadow: 0 0 15px #ff0080, 0 0 25px #00ffff, 0 0 35px #ffbf00, 0 0 45px #00ff00; /* Glowing effect on hover */
     }
 
     .form-input {
         width: 80%; /* Increased width */
         font-size: 14px; /* Slightly smaller font for inputs */
+        padding: 14px; /* Increased padding for comfort */
     }
 
     .submit-btn {
         width: 80%; /* Full width for button */
-        padding: 12px;  /* Reduced padding */
+        padding: 14px 20px;  /* More padding for button */
         font-size: 16px;  /* Adjusted font size */
+        border-radius: 10px; /* Rounded corners */
+        transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition on hover */
+    }
+
+    .submit-btn:hover {
+        background-color: #1abc9c;
+        box-shadow: 0 0 20px #ff0080, 0 0 30px #00ffff; /* Neon glow effect on hover */
     }
 
     .footer {
@@ -426,6 +448,8 @@ body {
 
 /* ====================================================================== */
 /* End of Mobile Responsiveness */
+/* ====================================================================== */
+
 /* ====================================================================== */
 
 /* ====================================================================== */
