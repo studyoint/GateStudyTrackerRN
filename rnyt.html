@@ -371,6 +371,9 @@ body {
 /* ====================================================================== */
 /* Mobile Responsiveness for Screens Smaller Than 768px */
 /* ====================================================================== */
+/* ====================================================================== */
+/* Mobile Responsiveness for Screens Smaller Than 768px */
+/* ====================================================================== */
 
 @media (max-width: 768px) {
     body {
@@ -398,11 +401,13 @@ body {
     }
 
     .channel-box {
-        width: 100%;  /* Full width of the container */
+        width: 95%;  /* Increased width of the channel box */
         height: auto;  /* Dynamically adjust height */
         padding: 20px;  /* Slightly more padding for a fuller look */
         box-shadow: 0 12px 30px rgba(0, 255, 255, 0.6), 0 0 25px rgba(255, 0, 128, 0.6); /* Stronger glow */
         transition: transform 0.3s ease, box-shadow 0.4s ease, background-color 0.4s ease; /* Smoother transitions */
+        margin: 0 auto; /* Center the box */
+        font-size: 1.1rem; /* Slightly larger text for better readability */
     }
 
     .channel-box:hover {
@@ -412,9 +417,11 @@ body {
     }
 
     .channel-box .channel-name {
-        font-size: 1.3rem; /* Increased font size for better readability */
+        font-size: 1.4rem; /* Increased font size for better visibility */
         text-shadow: 0 0 10px #ff0080, 0 0 20px #00ffff, 0 0 30px #ffbf00, 0 0 40px #00ff00; /* Enhanced neon glow */
         transition: text-shadow 0.3s ease; /* Smooth text-shadow transition */
+        white-space: normal;  /* Allow the name to break into new lines if too long */
+        word-wrap: break-word;  /* Word wrapping to prevent overflow */
     }
 
     .channel-box .channel-name:hover {
@@ -445,6 +452,11 @@ body {
         padding: 15px;  /* Reduced padding */
     }
 }
+
+/* ====================================================================== */
+/* End of Mobile Responsiveness */
+/* ====================================================================== */
+
 
 /* ====================================================================== */
 /* End of Mobile Responsiveness */
