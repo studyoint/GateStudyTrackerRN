@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Study Sprint Tracker</title>
     <!-- <link rel="stylesheet" href="style3.css"/> -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
+       <!-- <link rel="stylesheet" href="rn.css"/> -->
+        <style>
+          
       /* ==================================================================
  /* ==================================================================
    [Section 01] → Import Google Fonts 
@@ -271,7 +269,7 @@
    ================================================================== */
 
       #pause-message {
-        font-size: 3.4rem;
+        font-size: 3rem;
         color: #ff4d4d;
         margin-bottom: 24px;
         text-align: center;
@@ -513,6 +511,7 @@
         transition: all 0.25s ease;
         text-transform: uppercase;
         letter-spacing: 1px;
+        z-index: 1000000;
       }
 
       .sprint-setup button:hover {
@@ -951,7 +950,10 @@
 
       /* ==================================================================
    
-/* [Section 24] → Sprint Toast
+/* ==================================================================
+ /* ==================================================================
+/* ==================================================================
+  /* [Section 24] → Sprint Toast
    ================================================================== */
 #sprint-toast {
   position: fixed;
@@ -964,10 +966,10 @@
   border-radius: 12px;
   font-size: 0.9rem;
   font-weight: 600;
-  z-index: 9999;
+  z-index: -1; /* Initially behind other elements */
   box-shadow: inset 0 0 8px rgba(0, 255, 255, 0.08), 0 0 18px rgba(0, 255, 255, 0.25);
   opacity: 0;
-  display: flex;
+  visibility: hidden; /* Hide toast initially */
   flex-direction: column;
   max-width: 95vw;
   width: 430px;
@@ -980,12 +982,17 @@
   white-space: normal;
   transform: scale(0.96);
   border: 1px solid rgba(0, 255, 255, 0.15);
+  pointer-events: none; /* Disable interaction when hidden */
 }
 
 #sprint-toast.show {
   opacity: 1;
+  visibility: visible; /* Make the toast visible when it's shown */
   bottom: 30px;
   transform: scale(1);
+  z-index: 9999; /* Bring to front when visible */
+  pointer-events: auto; /* Enable interaction when visible */
+  display: flex; /* Display as flex when shown */
   transition: opacity 0.4s ease, bottom 0.4s ease, transform 0.4s ease;
 }
 
@@ -1003,6 +1010,7 @@
   z-index: 10001;
   transition: color 0.3s ease;
 }
+
 #sprint-toast-close:hover {
   color: #ff69b4;
   text-shadow: 0 0 6px #ff69b4;
@@ -1036,18 +1044,19 @@
     right: auto;
     transform: translateX(-50%) scale(0.96);
     width: 94%;
-    /* height: 95vh; */
     max-height: 37vh;
     padding: 14px 12px;
     font-size: 0.75rem;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* keep this to prevent full screen overflow */
+    overflow: hidden; /* Prevent full screen overflow */
+    pointer-events: none; /* Disable interaction when not visible */
   }
 
   #sprint-toast.show {
     bottom: 12px;
     transform: translateX(-50%) scale(1);
+    pointer-events: auto; /* Enable interaction when visible */
   }
 
   #sprint-toast-message {
@@ -1057,7 +1066,7 @@
     font-size: 0.75rem;
     line-height: 1.45;
     padding-right: 4px;
-    pointer-events: auto;
+    pointer-events: auto; /* Ensure scrolling works */
   }
 
   #sprint-toast-close {
@@ -1067,8 +1076,6 @@
     right: 8px;
   }
 }
-
-
 
 /* 🌟 Toast Inner Styling Classes */
 .toast-title {
@@ -1113,6 +1120,10 @@
   font-family: 'Orbitron', sans-serif;
   margin-top: 6px;
 }
+
+/* ================================================================== */
+
+
 
 
 /* ================================================================== */
@@ -1369,7 +1380,14 @@ html.fullscreen-mode {
 }
 
 
-    </style>
+
+        </style>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
   </head>
   <body>
     <!-- Fullscreen Button -->
@@ -1473,9 +1491,10 @@ html.fullscreen-mode {
 
 
     <!-- <script src="script.js"></script> -->
-<script>
-
-  let elapsedSeconds = 0;
+<script >
+  // ===================== Part 1: Variable Initialization =====================
+// Initialize global variables related to time, sprint, and UI elements.
+let elapsedSeconds = 0;
 let sprintGoalSeconds = 0;
 let sprintSet = false;
 let sprintCompleted = false; // ✅ NEW
@@ -1487,6 +1506,7 @@ let sprintEndTime = null;
 let startedAs = "timer";
 let sprintBreaks = [];
 
+// DOM references for UI elements
 const elapsedTimeDisplay = document.querySelector("#elapsed-time span");
 const remainingTimeDisplay = document.querySelector("#remaining-time span");
 const progressBar = document.getElementById("progress-bar");
@@ -1516,6 +1536,12 @@ const studyMusic = document.getElementById("study-music");
 let fsControlsTimeout = null;
 let isMusicPlaying = false;
 
+
+
+
+
+// ===================== Part 2: Window Event Listeners =====================
+// Load saved data from localStorage when the page loads
 window.addEventListener("DOMContentLoaded", () => {
   loadFromLocal();
   updateDisplay();
@@ -1524,6 +1550,14 @@ window.addEventListener("DOMContentLoaded", () => {
   modeStatus.textContent = "Current Mode: Focus";
 });
 
+
+
+
+
+
+// ===================== Part 3: Timer Functions =====================
+
+// Start the timer
 function startTimer() {
   if (timerInterval) return;
 
@@ -1533,14 +1567,12 @@ function startTimer() {
 
   startedAs = sprintSet ? "sprint" : "timer";
   sprintCompleted = false; // ✅ reset
-  // Close last break if it was ongoing
+  
   if (sprintSet && sprintBreaks.length > 0) {
     const last = sprintBreaks[sprintBreaks.length - 1];
     if (last && !last.end) {
       last.end = getCurrentTime();
-      const totalBefore = sprintBreaks
-        .slice(0, -1)
-        .reduce((s, b) => s + b.duration, 0);
+      const totalBefore = sprintBreaks.slice(0, -1).reduce((s, b) => s + b.duration, 0);
       last.duration = elapsedSeconds - totalBefore;
     }
   }
@@ -1556,13 +1588,10 @@ function startTimer() {
       saveSprintHistory();
       renderSprintHistory();
       showSprintToast(
-        `✅ Sprint "${customTitle || "Untitled"}" complete! ⏱️ ${formatTime(
-          sprintGoalSeconds
-        )}`
+        `✅ Sprint "${customTitle || "Untitled"}" complete! ⏱️ ${formatTime(sprintGoalSeconds)}`
       );
       if (pauseMessage) {
-        pauseMessage.textContent =
-          " 🎉 Target hit! 🎯  Be proud. 💪  Keep moving. ✨";
+        pauseMessage.textContent = "🎉 Target hit! 🎯 Be proud. 💪 Keep moving. ✨";
         pauseMessage.style.display = "block";
       }
     }
@@ -1574,6 +1603,12 @@ function startTimer() {
   saveTimerSessionBtn.classList.add("hidden");
 }
 
+
+
+
+// ===================== Part 4: Pause and Reset Functions =====================
+
+// Pause the timer
 function pauseTimer() {
   clearInterval(timerInterval);
   timerInterval = null;
@@ -1581,18 +1616,14 @@ function pauseTimer() {
 
   if (sprintSet && !sprintCompleted) {
     const now = getCurrentTime();
-
-    // ✅ If last break is open (not ended), end it and calculate the duration
     const last = sprintBreaks[sprintBreaks.length - 1];
     if (last && !last.end) {
       last.end = now;
-      const totalBefore = sprintBreaks
-        .slice(0, -1)
-        .reduce((s, b) => s + b.duration, 0);
+      const totalBefore = sprintBreaks.slice(0, -1).reduce((s, b) => s + b.duration, 0);
       last.duration = elapsedSeconds - totalBefore;
     }
 
-    // ✅ Start a new break
+    // Start a new break
     sprintBreaks.push({ start: now, end: null, duration: 0 });
   }
 
@@ -1609,6 +1640,7 @@ function pauseTimer() {
   }
 }
 
+// Reset the timer
 function resetTimer() {
   pauseTimer();
   elapsedSeconds = 0;
@@ -1625,6 +1657,10 @@ function resetTimer() {
   if (pauseMessage) pauseMessage.style.display = "none"; // ✅ hide on reset
 }
 
+
+// ===================== Part 5: Display and Time Formatting Functions =====================
+
+// Update the display of elapsed and remaining time
 function updateDisplay() {
   elapsedTimeDisplay.textContent = formatTime(elapsedSeconds);
   if (sprintSet) {
@@ -1641,24 +1677,34 @@ function updateDisplay() {
   }
 }
 
+// Calculate the progress of the sprint timer
 function calculateProgress() {
   return Math.min(100, (elapsedSeconds / sprintGoalSeconds) * 100).toFixed(1);
 }
 
+// Format time in HH:MM:SS format
 function formatTime(sec) {
   const h = String(Math.floor(sec / 3600)).padStart(2, "0");
   const m = String(Math.floor((sec % 3600) / 60)).padStart(2, "0");
   const s = String(sec % 60).padStart(2, "0");
   return `${h}:${m}:${s}`;
 }
+
+
+
+// ===================== Part 6: Helper Functions =====================
+
+// Calculate total break time
 function totalBreakSeconds() {
   return sprintBreaks.reduce((sum, b) => sum + b.duration, 0);
 }
 
+// Get current date in IST format
 function getISTDate() {
   return new Date().toLocaleDateString("en-GB", { timeZone: "Asia/Kolkata" });
 }
 
+// Get current time in IST format
 function getCurrentTime() {
   return new Date().toLocaleTimeString("en-IN", {
     hour: "2-digit",
@@ -1669,6 +1715,11 @@ function getCurrentTime() {
   });
 }
 
+
+
+// ===================== Part 7: Sprint History Functions =====================
+
+// Save sprint history to localStorage
 function saveSprintHistory() {
   const history = JSON.parse(localStorage.getItem("sprint_history") || "[]");
   history.push({
@@ -1682,6 +1733,7 @@ function saveSprintHistory() {
   localStorage.setItem("sprint_history", JSON.stringify(history));
 }
 
+// Render sprint history from localStorage
 function renderSprintHistory() {
   if (!sprintHistoryList) return;
   sprintHistoryList.innerHTML = "";
@@ -1694,6 +1746,8 @@ function renderSprintHistory() {
   for (let date in grouped) {
     const dateHeader = document.createElement("li");
     dateHeader.classList.add("date-header");
+    date
+
     dateHeader.innerHTML = `📅 ${date}`;
     sprintHistoryList.appendChild(dateHeader);
     grouped[date].forEach((entry, index, arr) => {
@@ -1705,6 +1759,12 @@ function renderSprintHistory() {
   }
 }
 
+
+
+
+// ===================== Part 8: Auto Reset and Save Functions =====================
+
+// Automatically reset data at the start of a new day
 function autoResetDaily() {
   const today = getISTDate();
   if (today !== lastDate) {
@@ -1716,6 +1776,7 @@ function autoResetDaily() {
   }
 }
 
+// Save current session data to localStorage
 function saveToLocal() {
   localStorage.setItem(
     "study_data",
@@ -1729,6 +1790,7 @@ function saveToLocal() {
   );
 }
 
+// Load saved session data from localStorage
 function loadFromLocal() {
   const saved = JSON.parse(localStorage.getItem("study_data") || "{}");
   if (saved.date === getISTDate()) {
@@ -1741,26 +1803,39 @@ function loadFromLocal() {
   }
 }
 
+
+
+// ===================== Part 9: Button Flashing Function =====================
+
+// Flash button when clicked
 function flashButton(button) {
   button.classList.add("active-button");
   setTimeout(() => button.classList.remove("active-button"), 500);
 }
 
+
+
+// ===================== Part 10: Event Listeners for Buttons =====================
+
+// Start button click event
 startBtn.addEventListener("click", () => {
   flashButton(startBtn);
   startTimer();
 });
 
+// Pause button click event
 pauseBtn.addEventListener("click", () => {
   flashButton(pauseBtn);
   pauseTimer();
 });
 
+// Reset button click event
 resetBtn.addEventListener("click", () => {
   flashButton(resetBtn);
   resetTimer();
 });
 
+// Set sprint button click event
 setSprintBtn.addEventListener("click", () => {
   flashButton(setSprintBtn);
   sprintBreaks = []; // ✅ Reset breaks for new sprint
@@ -1779,6 +1854,7 @@ setSprintBtn.addEventListener("click", () => {
   saveToLocal();
 });
 
+// Save title button click event
 saveTitleBtn.addEventListener("click", () => {
   const title = titleInput.value.trim();
   if (!title) return alert("❌ Enter a title.");
@@ -1788,6 +1864,7 @@ saveTitleBtn.addEventListener("click", () => {
   flashButton(saveTitleBtn);
 });
 
+// Save session button click event
 saveTimerSessionBtn.addEventListener("click", () => {
   saveSprintHistory();
   renderSprintHistory();
@@ -1795,6 +1872,39 @@ saveTimerSessionBtn.addEventListener("click", () => {
   saveTimerSessionBtn.classList.add("hidden");
 });
 
+// ===================== Toast Close Button Functionality =====================
+/// Function to show the toast after the timer completes
+function showToast() {
+  const sprintToast = document.getElementById('sprint-toast');
+  
+  // Reset the display style before showing the toast again
+  sprintToast.style.display = 'flex';  // Show the toast (flex)
+  
+  // Add the "show" class to trigger the animation
+  sprintToast.classList.add('show');
+  
+  // Disable buttons or other elements if needed
+  const buttons = [startBtn, pauseBtn, resetBtn, setSprintBtn, saveTitleBtn, saveTimerSessionBtn];
+  buttons.forEach(button => {
+    button.style.pointerEvents = 'none'; // Disable buttons during toast visibility
+  });
+}
+
+// Timer complete function to show the toast every time
+function timerComplete() {
+  const sprintToast = document.getElementById('sprint-toast');
+  
+  // Ensure it's hidden first before showing again
+  sprintToast.style.visibility = 'hidden'; // Initially hide the toast before showing it again
+  sprintToast.style.opacity = '0';  // Initially invisible
+
+  // Call showToast() to display the toast after timer completion
+  showToast();  // Show the toast when the timer completes
+}
+
+// ===================== Part 11: Fullscreen Functionality =====================
+
+// Fullscreen button click event
 fullscreenBtn.addEventListener("click", () => {
   if (!document.fullscreenElement) {
     document.documentElement.requestFullscreen().then(() => {
@@ -1820,6 +1930,7 @@ fullscreenBtn.addEventListener("click", () => {
   }
 });
 
+// Toggle fullscreen controls
 fsToggleBtn.addEventListener("click", () => {
   if (timerInterval) {
     pauseTimer();
@@ -1830,6 +1941,7 @@ fsToggleBtn.addEventListener("click", () => {
   }
 });
 
+// Show and hide fullscreen controls after timeout
 function showAndHideFullscreenControls() {
   fullscreenBtn.classList.remove("hidden");
   fsControls.classList.remove("hidden");
@@ -1842,9 +1954,15 @@ function showAndHideFullscreenControls() {
   }, 3000);
 }
 
+// Event listeners to show/hide fullscreen controls on user interaction
 document.addEventListener("mousemove", showAndHideFullscreenControls);
 document.addEventListener("touchstart", showAndHideFullscreenControls);
 
+
+
+// ===================== Part 12: Sprint Toast Function =====================
+
+// Show sprint completion toast with detailed information
 function showSprintToast(message) {
   if (!sprintToast || !sprintToastMessage) return;
 
@@ -1852,56 +1970,28 @@ function showSprintToast(message) {
     const total = sprintGoalSeconds || elapsedSeconds;
     const totalFormatted = formatTime(total);
 
-    // Display breaks taken and calculate total break time
+    // Display breaks taken
     const breakInfo =
       sprintBreaks.length === 0
-        ? `<br><br><span class="toast-success">🚫 No Breaks Taken. Great Focus!</span>`
+        ? "" // If no breaks, do not display the breaks section
         : sprintBreaks
             .map(
               (b, i) =>
-                `<br><span class="toast-break">${i + 1}\u20E3 Break ${
-                  i + 1
-                } — ${formatTime(
-                  b.duration
-                )}</span> <span class="toast-time">🕒 ${b.start} → ${
-                  b.end
-                }</span>`
+                `<br><span class="toast-break">${i + 1}\u20E3 Break ${i + 1} — ${b.start} → ${b.end}</span>`
             )
             .join("");
 
-    const focusPercent = Math.round(
-      ((total - totalBreakSeconds()) / total) * 100
-    );
-    const bar = "█".repeat(Math.floor(focusPercent / 10)).padEnd(10, "░");
-
     message = `
-        <div class="toast-title">✅ Sprint: "${
-          customTitle || "Untitled"
-        }"</div><br>
+        <div class="toast-title">✅ Sprint: "${customTitle || "Untitled"}"</div><br>
 
         <div><span class="toast-label">⏱️ Duration:</span> <span class="toast-time">${totalFormatted}</span></div><br>
 
-        <div><span class="toast-label">🟢 Start Time:</span> <span class="toast-time">${
-          sprintStartTime || "--"
-        }</span></div>
-        <div><span class="toast-label">🔴 End Time:</span> <span class="toast-time">${
-          sprintEndTime || getCurrentTime()
-        }</span></div><br>
+        <div><span class="toast-label">🟢 Start Time:</span> <span class="toast-time">${sprintStartTime || "--"}</span></div>
+        <div><span class="toast-label">🔴 End Time:</span> <span class="toast-time">${sprintEndTime || getCurrentTime()}</span></div><br>
 
-        <div><span class="toast-label">☕ Breaks Taken:</span> <span class="toast-break">${
-          sprintBreaks.length
-        }</span></div>
-        ${breakInfo}<br><br>
-
-        <div><span class="toast-label">⏱️ Total Break Time:</span> <span class="toast-time">${formatTime(
-          totalBreakSeconds()
-        )}</span></div>
-
-        <div><span class="toast-label">📊 Focus Ratio:</span></div>
-        <div class="toast-focus">${bar} ${focusPercent}%</div><br>
-
-        <div class="toast-success">🚀 Time well spent! Let’s keep the streak alive!</div>
-        `;
+        <div><span class="toast-label">☕ Breaks Taken:</span> <span class="toast-break">${sprintBreaks.length}</span></div>
+        ${breakInfo}<br>
+    `;
   }
 
   sprintToastMessage.innerHTML = message;
@@ -1909,10 +1999,17 @@ function showSprintToast(message) {
   sprintToast.classList.remove("hidden");
 }
 
+
+// Close the sprint toast
 sprintToastClose.addEventListener("click", () => {
   sprintToast.classList.remove("show");
 });
 
+
+
+// ===================== Part 13: Music Functionality =====================
+
+// Toggle study music playback
 musicToggleBtn.addEventListener("click", () => {
   if (!isMusicPlaying) {
     studyMusic
@@ -1931,6 +2028,11 @@ musicToggleBtn.addEventListener("click", () => {
     isMusicPlaying = false;
   }
 });
+
+
+
+
+
 
 </script>
 
