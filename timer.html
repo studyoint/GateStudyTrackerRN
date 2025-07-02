@@ -1538,6 +1538,23 @@ let isMusicPlaying = false;
 
 
 
+// ========== Wake Lock Setup ==========
+let wakeLock = null;
+
+async function requestWakeLock() {
+  try {
+    if ('wakeLock' in navigator) {
+      wakeLock = await navigator.wakeLock.request('screen');
+      console.log("✅ Wake Lock active");
+
+      wakeLock.addEventListener('release', () => {
+        console.log("🔓 Wake Lock released");
+      });
+    }
+  } catch (err) {
+    console.error("⚠️ Wake Lock error:", err.name, err.message);
+  }
+}
 
 
 // ===================== Part 2: Window Event Listeners =====================
@@ -1548,6 +1565,7 @@ window.addEventListener("DOMContentLoaded", () => {
   renderSprintHistory();
   setInterval(autoResetDaily, 60 * 1000);
   modeStatus.textContent = "Current Mode: Focus";
+  requestWakeLock(); // ✅ Added to prevent screen lock
 });
 
 
@@ -2030,6 +2048,11 @@ musicToggleBtn.addEventListener("click", () => {
 });
 
 
+// =================================================
+// screen on 
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") requestWakeLock();
+});
 
 
 
