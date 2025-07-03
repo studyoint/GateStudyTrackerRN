@@ -1903,13 +1903,16 @@ saveTimerSessionBtn.addEventListener("click", () => {
   showSprintToast("💾 Timer session saved!");
   saveTimerSessionBtn.classList.add("hidden");
 });
-
-// ✅ LOG BUTTON CLICK EVENT
 logToggleBtn.addEventListener("click", () => {
-  flashButton(logToggleBtn); // Optional visual feedback
-  showSprintToast(`✅ Sprint "${customTitle || "Untitled"}" complete! ⏱️ ${formatTime(sprintSet ? sprintGoalSeconds : elapsedSeconds)}`);
-});
+  flashButton(logToggleBtn);
 
+  // ✅ Toggle toast logic
+  if (sprintToast.classList.contains("show")) {
+    sprintToast.classList.remove("show");
+  } else {
+    showSprintToast(`✅ Sprint "${customTitle || "Untitled"}" complete! ⏱️ ${formatTime(sprintSet ? sprintGoalSeconds : elapsedSeconds)}`);
+  }
+});
 
 // ===================== Toast Close Button Functionality =====================
 /// Function to show the toast after the timer completes
