@@ -1652,8 +1652,8 @@
           const endSound = document.getElementById("end-sound");
 
           if (startSound && endSound) {
-            startSound.volume = 0.7;
-            endSound.volume = 0.7;
+ startSound.muted = true;
+      endSound.muted = true;
 
             // Try playing and pausing to unlock
             startSound
@@ -1661,6 +1661,8 @@
               .then(() => {
                 startSound.pause();
                 startSound.currentTime = 0;
+                        startSound.muted = false; // ✅ Unmute after unlocking
+
               })
               .catch((err) => console.log("Start sound unlock error:", err));
 
@@ -1669,6 +1671,8 @@
               .then(() => {
                 endSound.pause();
                 endSound.currentTime = 0;
+                        endSound.muted = false; // ✅ Unmute after unlocking
+
               })
               .catch((err) => console.log("End sound unlock error:", err));
           }
@@ -1726,6 +1730,8 @@
 
             sprintCompleted = true; // ✅ prevent duplicate
             pauseTimer();
+            sprintEndTime = getCurrentTime(); // ✅ YAHI PE SET KARO
+
             saveSprintHistory();
             renderSprintHistory();
             showSprintToast(
@@ -1753,7 +1759,6 @@
       function pauseTimer() {
         clearInterval(timerInterval);
         timerInterval = null;
-        sprintEndTime = getCurrentTime();
 
         if (sprintSet && !sprintCompleted) {
           const now = getCurrentTime();
@@ -1930,6 +1935,9 @@
             sprintSet,
             date: getISTDate(),
             customTitle,
+            sprintStartTime, // ✅ add this
+            sprintEndTime, // ✅ Add this
+            sprintBreaks, // ✅ NEW ADD THIS LINE
           })
         );
       }
@@ -1942,6 +1950,11 @@
           sprintGoalSeconds = saved.sprintGoalSeconds || 0;
           sprintSet = saved.sprintSet || false;
           customTitle = saved.customTitle || "";
+          sprintStartTime = saved.sprintStartTime || null; // ✅ add this
+          sprintEndTime = saved.sprintEndTime || null; // ✅ Add this
+          sprintBreaks = saved.sprintBreaks || []; // ✅ NEW LINE
+
+
           titleInput.value = customTitle;
           fullscreenTitle.textContent = customTitle || "Study Sprint";
         }
@@ -2006,11 +2019,19 @@
 
       // Save session button click event
       saveTimerSessionBtn.addEventListener("click", () => {
-        saveSprintHistory();
+        // ✅ Fix for Bug 2:
+        if (!timerInterval) {
+          sprintEndTime = getCurrentTime(); // Timer paused → safe to record end time
+        } else {
+          sprintEndTime = null; // Timer running → don't assign fake end time
+        }
+
+        saveSprintHistory(); // Will now use sprintEndTime only if it's valid
         renderSprintHistory();
         showSprintToast("💾 Timer session saved!");
         saveTimerSessionBtn.classList.add("hidden");
       });
+
       logToggleBtn.addEventListener("click", () => {
         flashButton(logToggleBtn);
 
@@ -2152,9 +2173,10 @@
         <div><span class="toast-label">🟢 Start Time:</span> <span class="toast-time">${
           sprintStartTime || "--"
         }</span></div>
-        <div><span class="toast-label">🔴 End Time:</span> <span class="toast-time">${
-          sprintEndTime || getCurrentTime()
-        }</span></div><br>
+  <div><span class="toast-label">🔴 End Time:</span> <span class="toast-time">${
+    sprintCompleted && sprintEndTime ? sprintEndTime : "--"
+  }</span></div>
+<br>
 
         <div><span class="toast-label">☕ Breaks Taken:</span> <span class="toast-break">${
           sprintBreaks.length
