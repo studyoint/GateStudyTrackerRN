@@ -1431,6 +1431,47 @@
           border-radius: 10px;
         }
       }
+
+      /* ==================================================================
+   [Section 27] → copy log button
+   ================================================================== */
+     .copy-log-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background-color: #1f1f1f;
+  border: 1px solid #444;
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  width: 38px;
+  height: 38px;
+  text-align: center;
+  line-height: 38px;
+  padding: 0;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  z-index: 99;
+}
+
+.copy-log-btn:hover {
+  background-color: #333;
+  transform: scale(1.1);
+}
+
+/* ✅ Mobile-Friendly */
+@media (max-width: 768px) {
+  .copy-log-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+    line-height: 34px;
+    bottom: 10px;
+    right: 10px;
+  }
+}
+
     </style>
 
     <link
@@ -1544,6 +1585,7 @@
     <div id="sprint-toast">
       <button id="sprint-toast-close">✖</button>
       <div id="sprint-toast-message"></div>
+      <!-- <button id="copy-log-btn" class="copy-log-btn">📋 Copy Log</button> -->
     </div>
 
     <!-- <script src="script.js"></script> -->
@@ -1652,8 +1694,8 @@
           const endSound = document.getElementById("end-sound");
 
           if (startSound && endSound) {
- startSound.muted = true;
-      endSound.muted = true;
+            startSound.muted = true;
+            endSound.muted = true;
 
             // Try playing and pausing to unlock
             startSound
@@ -1661,8 +1703,7 @@
               .then(() => {
                 startSound.pause();
                 startSound.currentTime = 0;
-                        startSound.muted = false; // ✅ Unmute after unlocking
-
+                startSound.muted = false; // ✅ Unmute after unlocking
               })
               .catch((err) => console.log("Start sound unlock error:", err));
 
@@ -1671,8 +1712,7 @@
               .then(() => {
                 endSound.pause();
                 endSound.currentTime = 0;
-                        endSound.muted = false; // ✅ Unmute after unlocking
-
+                endSound.muted = false; // ✅ Unmute after unlocking
               })
               .catch((err) => console.log("End sound unlock error:", err));
           }
@@ -1700,6 +1740,7 @@
         startedAs = sprintSet ? "sprint" : "timer";
         sprintCompleted = false; // ✅ reset
 
+        // ✅ Close ongoing break if restarting
         if (sprintSet && sprintBreaks.length > 0) {
           const last = sprintBreaks[sprintBreaks.length - 1];
           if (last && !last.end) {
@@ -1721,16 +1762,29 @@
             elapsedSeconds >= sprintGoalSeconds &&
             !sprintCompleted
           ) {
+            // ✅ End sound
             endSound.currentTime = 0;
             endSound.volume = 0.1;
-
             endSound.play().catch((err) => {
               console.log("🔇 End sound error:", err.message);
             });
 
-            sprintCompleted = true; // ✅ prevent duplicate
+            sprintCompleted = true;
+
+            // ✅ Close ongoing break at the moment of completion
+            if (sprintBreaks.length > 0) {
+              const last = sprintBreaks[sprintBreaks.length - 1];
+              if (last && !last.end) {
+                last.end = getCurrentTime();
+                const totalBefore = sprintBreaks
+                  .slice(0, -1)
+                  .reduce((s, b) => s + b.duration, 0);
+                last.duration = elapsedSeconds - totalBefore;
+              }
+            }
+
             pauseTimer();
-            sprintEndTime = getCurrentTime(); // ✅ YAHI PE SET KARO
+            sprintEndTime = getCurrentTime(); // ✅ Mark end time
 
             saveSprintHistory();
             renderSprintHistory();
@@ -1739,6 +1793,7 @@
                 customTitle || "Untitled"
               }" complete! ⏱️ ${formatTime(sprintGoalSeconds)}`
             );
+
             if (pauseMessage) {
               pauseMessage.textContent =
                 "🎉 Target hit! 🎯 Be proud. 💪 Keep moving. ✨";
@@ -1747,9 +1802,10 @@
           }
         }, 1000);
 
-        if (pauseMessage) pauseMessage.style.display = "none"; // ✅ hide pause msg
+        if (pauseMessage) pauseMessage.style.display = "none";
         if (runningMessage && document.fullscreenElement)
           runningMessage.style.display = "block";
+
         saveTimerSessionBtn.classList.add("hidden");
       }
 
@@ -1834,17 +1890,26 @@
 
       // Format time in HH:MM:SS format
       function formatTime(sec) {
+        const isNegative = sec < 0;
+        sec = Math.abs(sec); // ✅ always work with +ve
+
         const h = String(Math.floor(sec / 3600)).padStart(2, "0");
         const m = String(Math.floor((sec % 3600) / 60)).padStart(2, "0");
         const s = String(sec % 60).padStart(2, "0");
-        return `${h}:${m}:${s}`;
+
+        return `${isNegative ? "-" : ""}${h}:${m}:${s}`;
       }
 
       // ===================== Part 6: Helper Functions =====================
 
       // Calculate total break time
       function totalBreakSeconds() {
-        return sprintBreaks.reduce((sum, b) => sum + b.duration, 0);
+        return sprintBreaks.reduce((sum, b) => {
+          if (b.start && b.end && b.duration && b.duration > 0) {
+            return sum + b.duration;
+          }
+          return sum;
+        }, 0);
       }
 
       // Get current date in IST format
@@ -1953,7 +2018,6 @@
           sprintStartTime = saved.sprintStartTime || null; // ✅ add this
           sprintEndTime = saved.sprintEndTime || null; // ✅ Add this
           sprintBreaks = saved.sprintBreaks || []; // ✅ NEW LINE
-
 
           titleInput.value = customTitle;
           fullscreenTitle.textContent = customTitle || "Study Sprint";
@@ -2148,12 +2212,48 @@
 
         if (message.startsWith("✅ Sprint")) {
           const total = sprintGoalSeconds || elapsedSeconds;
+
+          // ✅ Break Time
+          let breakSeconds = 0;
+          sprintBreaks.forEach((b) => {
+            if (b.start && b.end) {
+              const start = new Date(`${getISTDate()} ${b.start}`);
+              const end = new Date(`${getISTDate()} ${b.end}`);
+              const diff = Math.round((end - start) / 1000);
+              breakSeconds += Math.max(0, diff);
+            }
+          });
+
+          // ✅ Focus Time
+          const focusSeconds = total - breakSeconds;
+          const focusFormatted = formatTime(focusSeconds);
+          const breakFormatted = formatTime(breakSeconds);
           const totalFormatted = formatTime(total);
 
-          // Display breaks taken
-          const breakInfo =
+          // ✅ Productivity
+          let focusPercent = (focusSeconds / total) * 100;
+          let productivity = "";
+          if (focusPercent >= 99.9) productivity = "💯 Beast Mode";
+          else if (focusPercent >= 80) productivity = "😎 Solid Focus";
+          else if (focusPercent >= 50) productivity = "🔁 Good Try";
+          else productivity = "😴 Breaky Break";
+
+          // ✅ Logged Time
+          const logTime = new Date()
+            .toLocaleTimeString("en-IN", {
+              timeZone: "Asia/Kolkata",
+              hour: "2-digit",
+              minute: "2-digit",
+              second: "2-digit",
+              hour12: true,
+            })
+            .replace("am", "AM")
+            .replace("pm", "PM");
+
+          // ✅ Break Info (HTML)
+          const breakInfoHTML =
             sprintBreaks.length === 0
-              ? "" // If no breaks, do not display the breaks section
+              ? ""
               : sprintBreaks
                   .map(
                     (b, i) =>
@@ -2163,29 +2263,66 @@
                   )
                   .join("");
 
+          // ✅ Break Info (Plain Text)
+          const breakInfoText =
+            sprintBreaks.length === 0
+              ? "No Breaks"
+              : sprintBreaks
+                  .map(
+                    (b, i) => `${i + 1}⃣ Break ${i + 1}: ${b.start} → ${b.end}`
+                  )
+                  .join("\n");
+
+          // ✅ Final Plain Text for Clipboard
+          const messageText = `✅ Sprint: "${customTitle || "Untitled"}"
+⏱️ Duration: ${totalFormatted}
+🟢 Start Time: ${sprintStartTime || "--"}
+🔴 End Time: ${sprintCompleted && sprintEndTime ? sprintEndTime : "--"}
+☕ Breaks Taken: ${sprintBreaks.length}
+🧠 Focus Time: ${focusFormatted} | ☕ Break Time: ${breakFormatted}
+📊 Productivity: ${productivity}
+🧭 Logged at: ${logTime}
+${breakInfoText}`;
+
+          // ✅ Final HTML message (with button)
           message = `
-        <div class="toast-title">✅ Sprint: "${
-          customTitle || "Untitled"
-        }"</div><br>
-
-        <div><span class="toast-label">⏱️ Duration:</span> <span class="toast-time">${totalFormatted}</span></div><br>
-
-        <div><span class="toast-label">🟢 Start Time:</span> <span class="toast-time">${
-          sprintStartTime || "--"
-        }</span></div>
-  <div><span class="toast-label">🔴 End Time:</span> <span class="toast-time">${
-    sprintCompleted && sprintEndTime ? sprintEndTime : "--"
-  }</span></div>
-<br>
-
-        <div><span class="toast-label">☕ Breaks Taken:</span> <span class="toast-break">${
-          sprintBreaks.length
-        }</span></div>
-        ${breakInfo}<br>
+      <div class="toast-title">✅ Sprint: "${
+        customTitle || "Untitled"
+      }"</div><br>
+      <div><span class="toast-label">⏱️ Duration:</span> ${totalFormatted}</div><br>
+      <div><span class="toast-label">🟢 Start Time:</span> ${
+        sprintStartTime || "--"
+      }</div>
+      <div><span class="toast-label">🔴 End Time:</span> ${
+        sprintCompleted && sprintEndTime ? sprintEndTime : "--"
+      }</div><br>
+      <div><span class="toast-label">☕ Breaks Taken:</span> ${
+        sprintBreaks.length
+      }</div>
+      <div><span class="toast-label">🧠 Focus Time:</span> ${focusFormatted} | <span class="toast-label">☕ Break Time:</span> ${breakFormatted}</div><br>
+      <div><span class="toast-label">📊 Productivity:</span> ${productivity}</div><br>
+      ${breakInfoHTML}<br>
+      <div><span class="toast-label">🧭 Logged at:</span> ${logTime}</div><br><br>
+      <button id="copy-log-btn" class="copy-log-btn">📋 Copy Log</button>
     `;
+
+          // ✅ Attach message to DOM
+          sprintToastMessage.innerHTML = message;
+
+          // ✅ After toast is shown, attach event listener to copy button
+          setTimeout(() => {
+            const copyBtn = document.getElementById("copy-log-btn");
+            if (copyBtn) {
+              copyBtn.addEventListener("click", () => {
+                navigator.clipboard.writeText(messageText).then(() => {
+                  copyBtn.textContent = "✅ Copied!";
+                  setTimeout(() => (copyBtn.textContent = "📋 Copy Log"), 2000);
+                });
+              });
+            }
+          }, 0);
         }
 
-        sprintToastMessage.innerHTML = message;
         sprintToast.classList.add("show");
         sprintToast.classList.remove("hidden");
       }
