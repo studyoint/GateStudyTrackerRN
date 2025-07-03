@@ -1378,61 +1378,59 @@
   /* [Section 26] → Fullscreen Clock
    ================================================================== */
 
-/* [Section 26] → Fullscreen Clock - Final Premium Design
+      /* [Section 26] → Fullscreen Clock - Final Premium Design
    ================================================================== */
 
-#fullscreen-clock {
-  position: absolute;
-  bottom: 16px;
-  right: 20px;
-  font-size: 15px;
-  font-weight: 600;
-  font-family: 'JetBrains Mono', 'Courier New', monospace;
-  color: #ffffffee; /* soft white with slight glow */
-  padding: 8px 14px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.05); /* ultra-thin glass effect */
-  backdrop-filter: blur(8px) saturate(180%);
-  -webkit-backdrop-filter: blur(8px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3),
-              inset 0 0 10px rgba(255, 255, 255, 0.05);
-  z-index: 9999;
-  transition: all 0.4s ease;
-  display: none;
-  letter-spacing: 0.5px;
-}
+      #fullscreen-clock {
+        position: absolute;
+        bottom: 16px;
+        right: 20px;
+        font-size: 15px;
+        font-weight: 600;
+        font-family: "JetBrains Mono", "Courier New", monospace;
+        color: #ffffffee; /* soft white with slight glow */
+        padding: 8px 14px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.05); /* ultra-thin glass effect */
+        backdrop-filter: blur(8px) saturate(180%);
+        -webkit-backdrop-filter: blur(8px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3),
+          inset 0 0 10px rgba(255, 255, 255, 0.05);
+        z-index: 9999;
+        transition: all 0.4s ease;
+        display: none;
+        letter-spacing: 0.5px;
+      }
 
-/* ✅ Show clock only in fullscreen */
-#fullscreen-overlay.show #fullscreen-clock {
-  display: block;
-  animation: slideFadeIn 0.6s ease-out forwards;
-}
+      /* ✅ Show clock only in fullscreen */
+      #fullscreen-overlay.show #fullscreen-clock {
+        display: block;
+        animation: slideFadeIn 0.6s ease-out forwards;
+      }
 
-/* ✅ Slide & Fade Animation */
-@keyframes slideFadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(20px) scale(0.95);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
+      /* ✅ Slide & Fade Animation */
+      @keyframes slideFadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(20px) scale(0.95);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
 
-/* ✅ Mobile Friendly Tweak */
-@media (max-width: 600px) {
-  #fullscreen-clock {
-    font-size: 13px;
-    padding: 6px 10px;
-    bottom: 12px;
-    right: 14px;
-    border-radius: 10px;
-  }
-}
-
-
+      /* ✅ Mobile Friendly Tweak */
+      @media (max-width: 600px) {
+        #fullscreen-clock {
+          font-size: 13px;
+          padding: 6px 10px;
+          bottom: 12px;
+          right: 14px;
+          border-radius: 10px;
+        }
+      }
     </style>
 
     <link
@@ -1514,6 +1512,9 @@
         <button id="fs-toggle-btn">▶️</button>
         <button id="music-toggle-btn">🎵</button>
         <audio id="study-music" src="got_rn.mp3" preload="auto" loop></audio>
+        <audio id="start-sound" src="start_timer.mp3" preload="auto"></audio>
+        <audio id="end-sound" src="end_timer.mp3" preload="auto"></audio>
+
         <!-- ✅ NEW LOG BUTTON -->
         <button id="log-toggle-btn" class="fullscreen-btn hidden">📋</button>
       </div>
@@ -1593,6 +1594,12 @@
       );
       const musicToggleBtn = document.getElementById("music-toggle-btn");
       const studyMusic = document.getElementById("study-music");
+      const startSound = document.getElementById("start-sound");
+      const endSound = document.getElementById("end-sound");
+
+      // ✅ Volume control
+      startSound.volume = 0.1;
+      endSound.volume = 0.1;
 
       let fsControlsTimeout = null;
       let isMusicPlaying = false;
@@ -1637,11 +1644,50 @@
         requestWakeLock();
       });
 
+      // ✅ Step 3: Unlock audio on first click
+      window.addEventListener(
+        "click",
+        () => {
+          const startSound = document.getElementById("start-sound");
+          const endSound = document.getElementById("end-sound");
+
+          if (startSound && endSound) {
+            startSound.volume = 0.7;
+            endSound.volume = 0.7;
+
+            // Try playing and pausing to unlock
+            startSound
+              .play()
+              .then(() => {
+                startSound.pause();
+                startSound.currentTime = 0;
+              })
+              .catch((err) => console.log("Start sound unlock error:", err));
+
+            endSound
+              .play()
+              .then(() => {
+                endSound.pause();
+                endSound.currentTime = 0;
+              })
+              .catch((err) => console.log("End sound unlock error:", err));
+          }
+        },
+        { once: true }
+      ); // ✅ Only runs once
+
       // ===================== Part 3: Timer Functions =====================
 
       // Start the timer
       function startTimer() {
         if (timerInterval) return;
+
+        // ✅ Play Start Sound
+        startSound.currentTime = 0;
+        startSound.volume = 0.7;
+        startSound.play().catch((err) => {
+          console.log("🔇 Start sound error:", err.message);
+        });
 
         if (!sprintStartTime) {
           sprintStartTime = getCurrentTime();
@@ -1671,6 +1717,13 @@
             elapsedSeconds >= sprintGoalSeconds &&
             !sprintCompleted
           ) {
+            endSound.currentTime = 0;
+            endSound.volume = 0.1;
+
+            endSound.play().catch((err) => {
+              console.log("🔇 End sound error:", err.message);
+            });
+
             sprintCompleted = true; // ✅ prevent duplicate
             pauseTimer();
             saveSprintHistory();
@@ -2144,25 +2197,25 @@
 
       // ===================== Part 14: Fullscreen Clock =====================
       // ✅ Live Indian Clock for Fullscreen (with AM/PM)
-function updateFullscreenClock() {
-  const clockElem = document.getElementById("fullscreen-clock");
-  if (!clockElem) return;
+      function updateFullscreenClock() {
+        const clockElem = document.getElementById("fullscreen-clock");
+        if (!clockElem) return;
 
-  let now = new Date().toLocaleTimeString("en-IN", {
-    timeZone: "Asia/Kolkata",
-    hour12: true,
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit"
-  });
+        let now = new Date().toLocaleTimeString("en-IN", {
+          timeZone: "Asia/Kolkata",
+          hour12: true,
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        });
 
-  // ✅ Convert am/pm to AM/PM (uppercase)
-  now = now.replace("am", "AM").replace("pm", "PM");
+        // ✅ Convert am/pm to AM/PM (uppercase)
+        now = now.replace("am", "AM").replace("pm", "PM");
 
-  clockElem.textContent = "🕒 " + now;
-}
+        clockElem.textContent = "🕒 " + now;
+      }
 
-setInterval(updateFullscreenClock, 1000);
+      setInterval(updateFullscreenClock, 1000);
 
       // =================================================
       // screen on
