@@ -5,604 +5,629 @@
     <title>🎓 RN Video Player</title>
 
     <!-- <link rel="stylesheet" href="player.css" /> -->
+
     <style>
       /* ==================================================
    🌌 SECTION 1: Base Layout and Theme
 ================================================== */
-      body {
-        margin: 0;
-        background: #0d1117;
-        color: #ffffff;
-        font-family: "Segoe UI", sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        height: 100vh;
-      }
-      /* ==================================================
+body {
+  margin: 0;
+  background: #0d1117;
+  color: #ffffff;
+  font-family: "Segoe UI", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+}
+/* ==================================================
    🧱 SECTION 2: Container Box & Title
 ================================================== */
-      .container {
-        margin-top: 30px;
-        width: 90%;
-        max-width: 960px;
-        background: #161b22;
-        border-radius: 10px;
-        padding: 20px;
-        box-shadow: 0 0 20px #58a6ff;
-      }
-      .title {
-        text-align: center;
-        font-size: 2em;
-        color: #58a6ff;
-        text-shadow: 0 0 10px #58a6ff;
-      }
-      /* ==================================================
+.container {
+  margin-top: 30px;
+  width: 90%;
+  max-width: 960px;
+  background: #161b22;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 20px #58a6ff;
+}
+.title {
+  text-align: center;
+  font-size: 2em;
+  color: #58a6ff;
+  text-shadow: 0 0 10px #58a6ff;
+}
+/* ==================================================
    🎬 SECTION 3: Video Wrapper and Video Tag
 ================================================== */
-      .video-wrapper {
-        position: relative;
-      }
-      video {
-        width: 100%;
-        border-radius: 10px;
-        background: black;
-        display: block;
-      }
-      /* ==================================================
+.video-wrapper {
+  position: relative;
+}
+video {
+  width: 100%;
+  border-radius: 10px;
+  background: black;
+  display: block;
+}
+/* ==================================================
    ⚡ SECTION 4: Speed Overlay
 ================================================== */
-      #speedOverlay {
-        position: absolute;
-        top: 10px;
-        right: 15px;
-        background: rgba(0, 0, 0, 0.7);
-        color: #58a6ff;
-        padding: 6px 12px;
-        border-radius: 6px;
-        font-size: 15px;
-        font-weight: bold;
-        display: none;
-        z-index: 10;
-        pointer-events: none;
-      }
-      /* ==================================================
+#speedOverlay {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #58a6ff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  display: none;
+  z-index: 10;
+  pointer-events: none;
+}
+/* ==================================================
    🎛️ SECTION 5: Controls Row
 ================================================== */
-      .controls {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 15px;
-        gap: 10px;
-      }
-      /* ==================================================
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  gap: 10px;
+}
+/* ==================================================
    🔘 SECTION 6: Button, Select, Range Styling
 ================================================== */
-      button,
-      select,
-      input[type="range"] {
-        padding: 4px 8px;
-        font-size: 12px;
-        border-radius: 4px;
-        background-color: #1f1f1f;
-        color: #58a6ff;
-        border: 1px solid #58a6ff;
-        transition: all 0.2s ease;
-      }
-      button {
-        background-color: #58a6ff;
-        color: #000;
-        cursor: pointer;
-      }
-      button:hover {
-        background-color: #58a6ff;
-        color: #000;
-      }
-      /* ==================================================
+button,
+select,
+input[type="range"] {
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  background-color: #1f1f1f;
+  color: #58a6ff;
+  border: 1px solid #58a6ff;
+  transition: all 0.2s ease;
+}
+button {
+  background-color: #58a6ff;
+  color: #000;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #58a6ff;
+  color: #000;
+}
+/* ==================================================
    🗂️ SECTION 7: File Input + Playlist + Timer
 ================================================== */
-      input[type="file"] {
-        margin-top: 10px;
-        color: #58a6ff;
-        background-color: #0d1117;
-        border: 1px solid #58a6ff;
-        border-radius: 6px;
-      }
-      #playlist {
-        margin-top: 15px;
-        color: #58a6ff;
-      }
-      .watch-timer {
-        color: #00ff88;
-        font-family: monospace;
-      }
-      /* ==================================================
+input[type="file"] {
+  margin-top: 10px;
+  color: #58a6ff;
+  background-color: #0d1117;
+  border: 1px solid #58a6ff;
+  border-radius: 6px;
+}
+#playlist {
+  margin-top: 15px;
+  color: #58a6ff;
+}
+.watch-timer {
+  color: #00ff88;
+  font-family: monospace;
+}
+/* ==================================================
    📝 SECTION 8: Log and Todo Wrapper
 ================================================== */
-      .log-todo-wrapper {
-        display: flex;
-        justify-content: space-between;
-        gap: 20px;
-        margin-top: 30px;
-        flex-wrap: wrap;
-      }
-      .log-box,
-      .todo-box {
-        background: #111827;
-        border: 1px solid #2d3748;
-        border-radius: 12px;
-        padding: 20px;
-        color: #cbd5e0;
-        font-family: "Segoe UI", sans-serif;
-        box-shadow: 0 0 15px rgba(88, 166, 255, 0.3);
-        transition: 0.3s ease;
-      }
-      .log-box:hover,
-      .todo-box:hover {
-        box-shadow: 0 0 25px rgba(88, 166, 255, 0.5);
-        transform: translateY(-2px);
-      }
-      .log-box h3,
-      .todo-box h3 {
-        color: #58a6ff;
-        font-size: 1.4em;
-        text-shadow: 0 0 8px #58a6ff;
-        margin-bottom: 15px;
-      }
-      /* ==================================================
+.log-todo-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+.log-box,
+.todo-box {
+  background: #111827;
+  border: 1px solid #2d3748;
+  border-radius: 12px;
+  padding: 20px;
+  color: #cbd5e0;
+  font-family: "Segoe UI", sans-serif;
+  box-shadow: 0 0 15px rgba(88, 166, 255, 0.3);
+  transition: 0.3s ease;
+}
+.log-box:hover,
+.todo-box:hover {
+  box-shadow: 0 0 25px rgba(88, 166, 255, 0.5);
+  transform: translateY(-2px);
+}
+.log-box h3,
+.todo-box h3 {
+  color: #58a6ff;
+  font-size: 1.4em;
+  text-shadow: 0 0 8px #58a6ff;
+  margin-bottom: 15px;
+}
+/* ==================================================
    ✅ SECTION 9: To-do List & Checkbox UI
 ================================================== */
-      .todo-box label {
-        font-weight: 600;
-        color: #00ff88;
-        display: block;
-        margin-bottom: 15px;
-        font-size: 1em;
-      }
-      #lectureCountInput {
-        width: 60px;
-        padding: 4px;
-        border-radius: 4px;
-        border: none;
-        background: #161b22;
-        color: #58a6ff;
-      }
-      #todoList {
-        list-style: none;
-        padding-left: 0;
-      }
-      #todoList li {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 5px 0;
-        font-size: 1em;
-        color: #e2e8f0;
-      }
-      #todoList input[type="checkbox"] {
-        width: 18px;
-        height: 18px;
-        accent-color: #58a6ff;
-        cursor: pointer;
-        border-radius: 4px;
-      }
-      .done-time {
-        color: white;
-        font-weight: bold;
-        font-size: 0.85em;
-        margin-left: 6px;
-        margin-bottom: 15px;
-      }
-      /* ==================================================
+.todo-box label {
+  font-weight: 600;
+  color: #00ff88;
+  display: block;
+  margin-bottom: 15px;
+  font-size: 1em;
+}
+#lectureCountInput {
+  width: 60px;
+  padding: 4px;
+  border-radius: 4px;
+  border: none;
+  background: #161b22;
+  color: #58a6ff;
+}
+#todoList {
+  list-style: none;
+  padding-left: 0;
+}
+#todoList li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+  font-size: 1em;
+  color: #e2e8f0;
+}
+#todoList input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #58a6ff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.done-time {
+  color: white;
+  font-weight: bold;
+  font-size: 0.85em;
+  margin-left: 6px;
+  margin-bottom: 15px;
+}
+/* ==================================================
    📦 SECTION 10: Minimal Mode Hider Classes
 ================================================== */
-      .minimal-mode .controls,
-      .minimal-mode #playlist,
-      .minimal-mode .log-todo-wrapper,
-      .minimal-mode #watchTimer,
-      .minimal-mode .title {
-        display: none !important;
-      }
-      /* ==================================================
+.minimal-mode .controls,
+.minimal-mode #playlist,
+.minimal-mode .log-todo-wrapper,
+.minimal-mode #watchTimer,
+.minimal-mode .title {
+  display: none !important;
+}
+/* ==================================================
    📱 SECTION 11: Mobile Responsive Layout
 ================================================== */
-      @media (max-width: 600px) {
-        .controls {
-          flex-direction: column;
-          align-items: stretch;
-        }
+@media (max-width: 600px) {
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-        .log-todo-wrapper {
-          flex-direction: column;
-        }
+  .log-todo-wrapper {
+    flex-direction: column;
+  }
 
-        .log-box,
-        .todo-box {
-          width: 100%;
-        }
-      }
+  .log-box,
+  .todo-box {
+    width: 100%;
+  }
+}
 
-      /* ==================================================
+
+
+
+/* ==================================================
    🕶️ SECTION 12: Auto-Hide Controls (Minimal Mode)
 ================================================== */
-      .hide-controls .controls {
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s ease;
-      }
+.hide-controls .controls {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
 
-      .container .controls {
-        transition: opacity 0.3s ease;
-      }
-      /* ==================================================
+.container .controls {
+  transition: opacity 0.3s ease;
+}
+/* ==================================================
    🎥 SECTION 13: Fullscreen Styling for Video
 ================================================== */
-      .video-wrapper:fullscreen {
-        position: relative;
-        width: 100vw;
-        height: 100vh;
-        background: black;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
+.video-wrapper:fullscreen {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-      .video-wrapper:fullscreen video {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
+.video-wrapper:fullscreen video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 
-      .video-wrapper:fullscreen .controls {
-        bottom: 10px;
-        padding: 4px 8px;
-        gap: 4px;
-        font-size: 13px;
-        background: rgba(0, 0, 0, 0.5);
-        border-radius: 8px;
-      }
+.video-wrapper:fullscreen .controls {
+  bottom: 10px;
+  padding: 4px 8px;
+  gap: 4px;
+  font-size: 13px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+}
 
-      .video-wrapper:fullscreen #speedOverlay {
-        position: absolute;
-        top: 15px;
-        right: 20px;
-        z-index: 11;
-      }
-      /* ==================================================
+.video-wrapper:fullscreen #speedOverlay {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  z-index: 11;
+}
+/* ==================================================
    🎬 SECTION 14: YouTube-style Controls Bar
 ================================================== */
-      .yt-controls-bar {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        padding: 8px 12px;
-        z-index: 20;
-        box-sizing: border-box;
-        transition: opacity 0.4s ease;
-      }
+.yt-controls-bar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 12px;
+  z-index: 20;
+  box-sizing: border-box;
+  transition: opacity 0.4s ease;
+}
 
-      .yt-controls-bar.hidden {
-        opacity: 0;
-        pointer-events: none;
-      }
-      /* ==================================================
+.yt-controls-bar.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+/* ==================================================
    ⏱️ SECTION 15: Time Display + Progress Row
 ================================================== */
-      .time-controls-row {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
+.time-controls-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-      #timeDisplay {
-        font-size: 14px;
-        font-family: "Courier New", monospace;
-        color: #fff;
-        background: linear-gradient(135deg, #2c2c2c, #1e1e1e);
-        padding: 4px 10px;
-        border-radius: 8px;
-        box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
-        letter-spacing: 0.8px;
-        transition: all 0.3s ease;
-        user-select: none;
-        display: inline-block;
-      }
-      #timeDisplay:hover {
-        background: linear-gradient(135deg, #444, #2a2a2a);
-        color: #fff;
-        box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
-      }
+#timeDisplay {
+  font-size: 14px;
+  font-family: 'Courier New', monospace;
+  color: #fff;
+  background: linear-gradient(135deg, #2c2c2c, #1e1e1e);
+  padding: 4px 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+  letter-spacing: 0.8px;
+  transition: all 0.3s ease;
+  user-select: none;
+  display: inline-block;
+}
+#timeDisplay:hover {
+  background: linear-gradient(135deg, #444, #2a2a2a);
+  color: #fff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+}
 
-      /* ==================================================
+/* ==================================================
    📊 SECTION 16: Progress Bar Custom Styling
 ================================================== */
-      .progress-bar-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        padding: 6px 0;
-        position: relative;
-        z-index: 5;
-      }
+.progress-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 6px 0;
+  position: relative;
+  z-index: 5;
+}
 
-      #progressBar {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 180%;
-        /* max-width: 800px; */
-        height: 4px;
-        background: linear-gradient(to right, #58a6ff 0%, #444 0%);
-        border-radius: 4px;
-        cursor: pointer;
-        overflow: hidden;
-        transition: background 0.3s ease;
-        margin: 0 auto;
-      }
+#progressBar {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 180%;
+  /* max-width: 800px; */
+  height: 4px;
+  background: linear-gradient(to right, #58a6ff 0%, #444 0%);
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background 0.3s ease;
+  margin: 0 auto;
+}
 
-      #progressBar::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        height: 12px;
-        width: 12px;
-        background: #58a6ff;
-        border-radius: 25%;
-        border: none;
-        margin-top: -2px;
-      }
+#progressBar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 12px;
+  width: 12px;
+  background: #58a6ff;
+  border-radius: 25%;
+  border: none;
+  margin-top: -2px;
+}
 
-      #progressBar::-moz-range-thumb {
-        height: 12px;
-        width: 12px;
-        background: #58a6ff;
-        border-radius: 50%;
-        border: none;
-      }
+#progressBar::-moz-range-thumb {
+  height: 12px;
+  width: 12px;
+  background: #58a6ff;
+  border-radius: 50%;
+  border: none;
+}
 
-      /* 📱 Responsive on small devices */
-      @media (max-width: 600px) {
-        #progressBar {
-          height: 6px;
-          max-width: 95vw;
-        }
-      }
+/* 📱 Responsive on small devices */
+@media (max-width: 600px) {
+  #progressBar {
+    height: 6px;
+    max-width: 95vw;
+  }
+}
 
-      /* ==================================================
+/* ==================================================
    🎚️ SECTION 17: Right Controls UI (Compact & Lifted)
 ================================================== */
-      .right-controls {
-        position: absolute;
-        right: 10px;
+.right-controls {
+  position: absolute;
+  right: 10px;
 
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 6px;
-        background: rgba(20, 20, 20, 0.75);
-        padding: 4px 8px;
-        border-radius: 10px;
-        box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
-        z-index: 10;
-        backdrop-filter: blur(5px);
-        max-width: 85vw;
-      }
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  background: rgba(20, 20, 20, 0.75);
+  padding: 4px 8px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  backdrop-filter: blur(5px);
+  max-width: 85vw;
+}
 
-      .right-controls button,
-      .right-controls select,
-      .right-controls input[type="range"],
-      .right-controls input[type="number"] {
-        font-size: 11px;
-        background-color: #0d1117;
-        color: #58a6ff;
-        border: 1px solid #58a6ff;
-        border-radius: 5px;
-        padding: 2px 5px;
-        max-width: 55px;
-        min-width: 40px;
-        flex: 1 1 auto;
-        transition: 0.3s ease;
-        outline: none;
-        box-shadow: inset 0 0 2px rgba(88, 166, 255, 0.3);
-      }
+.right-controls button,
+.right-controls select,
+.right-controls input[type="range"],
+.right-controls input[type="number"] {
+  font-size: 11px;
+  background-color: #0d1117;
+  color: #58a6ff;
+  border: 1px solid #58a6ff;
+  border-radius: 5px;
+  padding: 2px 5px;
+  max-width: 55px;
+  min-width: 40px;
+  flex: 1 1 auto;
+  transition: 0.3s ease;
+  outline: none;
+  box-shadow: inset 0 0 2px rgba(88, 166, 255, 0.3);
+}
 
-      .right-controls button:hover,
-      .right-controls select:hover,
-      .right-controls input[type="number"]:hover {
-        background-color: #0a0f1a;
-        box-shadow: 0 0 4px rgba(88, 166, 255, 0.5);
-        cursor: pointer;
-      }
+.right-controls button:hover,
+.right-controls select:hover,
+.right-controls input[type="number"]:hover {
+  background-color: #0a0f1a;
+  box-shadow: 0 0 4px rgba(88, 166, 255, 0.5);
+  cursor: pointer;
+}
 
-      .right-controls input[type="range"] {
-        -webkit-appearance: none;
-        height: 4px;
-        background: #2c2f36;
-        border-radius: 4px;
-        width: 55px;
-      }
+.right-controls input[type="range"] {
+  -webkit-appearance: none;
+  height: 4px;
+  background: #2c2f36;
+  border-radius: 4px;
+  width: 55px;
+}
 
-      .right-controls input[type="range"]::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 10px;
-        height: 10px;
-        background: #58a6ff;
-        border-radius: 50%;
-        cursor: pointer;
-        transition: 0.3s ease;
-        box-shadow: 0 0 4px rgba(88, 166, 255, 0.6);
-      }
+.right-controls input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+  background: #58a6ff;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 0 4px rgba(88, 166, 255, 0.6);
+}
 
-      .right-controls input[type="range"]::-webkit-slider-thumb:hover {
-        background: #7abfff;
-      }
+.right-controls input[type="range"]::-webkit-slider-thumb:hover {
+  background: #7abfff;
+}
 
-      /* 📱 Mobile Adjustments */
-      @media (max-width: 600px) {
-        .right-controls {
-          bottom: 65px; /* Extra lift for mobile progress bars */
-          gap: 5px;
-          padding: 3px 6px;
-          border-radius: 8px;
-        }
+/* 📱 Mobile Adjustments */
+@media (max-width: 600px) {
+  .right-controls {
+    bottom: 65px; /* Extra lift for mobile progress bars */
+    gap: 5px;
+    padding: 3px 6px;
+    border-radius: 8px;
+  }
 
-        .right-controls button,
-        .right-controls select,
-        .right-controls input[type="range"],
-        .right-controls input[type="number"] {
-          font-size: 10px;
-          padding: 2px 4px;
-          max-width: 50px;
-          min-width: 35px;
-        }
+  .right-controls button,
+  .right-controls select,
+  .right-controls input[type="range"],
+  .right-controls input[type="number"] {
+    font-size: 10px;
+    padding: 2px 4px;
+    max-width: 50px;
+    min-width: 35px;
+  }
 
-        .right-controls input[type="range"] {
-          width: 50px;
-        }
-      }
+  .right-controls input[type="range"] {
+    width: 50px;
+  }
+}
 
-      /* ==================================================
+/* ==================================================
    ⏯️ SECTION 18: Ultra-Compact Center Play/Pause Button
 ================================================== */
-      #centerPlayPause {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: clamp(1.6rem, 4vw, 2.4rem); /* 🪄 Smaller & responsive */
-        color: #fff;
-        background-color: rgba(0, 0, 0, 0.6); /* ⚫ Glassy dark bg */
-        padding: 6px; /* 🔽 Smaller padding */
-        border-radius: 50%;
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
-        text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
-        opacity: 0;
-        transition: opacity 0.2s ease, transform 0.2s ease;
-        z-index: 99;
-        pointer-events: none;
-      }
+#centerPlayPause {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(1.6rem, 4vw, 2.4rem); /* 🪄 Smaller & responsive */
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6);   /* ⚫ Glassy dark bg */
+  padding: 6px;                          /* 🔽 Smaller padding */
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 99;
+  pointer-events: none;
+}
 
-      #centerPlayPause.show {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1.05);
-      }
+#centerPlayPause.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.05);
+}
 
-      /* ==================================================
+
+
+/* ==================================================
    📱 SECTION 19: Responsive Styles (Mobile)
 ================================================== */
-      @media (max-width: 600px) {
-        .yt-controls-bar {
-          padding: 8px 6px;
-        }
+@media (max-width: 600px) {
+  .yt-controls-bar {
+    padding: 8px 6px;
+  }
 
-        .right-controls {
-          flex-direction: column;
-          align-items: stretch;
-        }
+  .right-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-        .right-controls button,
-        .right-controls select,
-        .right-controls input[type="range"],
-        .right-controls input[type="number"] {
-          width: 100%;
-          font-size: 12px;
-        }
+  .right-controls button,
+  .right-controls select,
+  .right-controls input[type="range"],
+  .right-controls input[type="number"] {
+    width: 100%;
+    font-size: 12px;
+  }
 
-        #progressBar {
-          height: 5px;
-        }
-      }
-      /* ==================================================
+  #progressBar {
+    height: 5px;
+  }
+}
+/* ==================================================
    🖥️ SECTION 20: Fullscreen Button Styling
 ================================================== */
-      #fullscreenBtn {
-        width: 32px;
-        height: 32px;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 18px;
-        border-radius: 4px;
-        background-color: #0d1117;
-        border: 1px solid #58a6ff;
-        color: #58a6ff;
-        transition: background 0.2s ease, transform 0.2s ease;
-      }
+#fullscreenBtn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  border-radius: 4px;
+  background-color: #0d1117;
+  border: 1px solid #58a6ff;
+  color: #58a6ff;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
 
-      #fullscreenBtn:hover {
-        background-color: #58a6ff;
-        color: black;
-        transform: scale(1.1);
-      }
+#fullscreenBtn:hover {
+  background-color: #58a6ff;
+  color: black;
+  transform: scale(1.1);
+}
 
-      /* ==================================================
+
+
+
+
+/* ==================================================
       🖥️ SECTION 21: ✋ Tap Zones for Forward/Backward Gestures
 ================================================== */
 
-      /* ======= Tap Zones ======= */
-      .tap-zone {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 50%;
-        z-index: 3;
-      }
-      .left-zone {
-        left: 0;
-      }
-      .right-zone {
-        right: 0;
-      }
+/* ======= Tap Zones ======= */
+.tap-zone {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  z-index: 3;
+}
+.left-zone {
+  left: 0;
+}
+.right-zone {
+  right: 0;
+}
 
-      /* ======= Seek Tooltip (optional) ======= */
-      #seekTooltip {
-        position: absolute;
-        bottom: 40px;
-        color: #fff;
-        font-size: 13px;
-        background-color: rgba(0, 0, 0, 0.6);
-        padding: 3px 6px;
-        border-radius: 4px;
-        display: none;
-        pointer-events: none;
-        transform: translateX(-50%);
-        z-index: 5;
-      }
+/* ======= Seek Tooltip (optional) ======= */
+#seekTooltip {
+  position: absolute;
+  bottom: 40px;
+  color: #fff;
+  font-size: 13px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 3px 6px;
+  border-radius: 4px;
+  display: none;
+  pointer-events: none;
+  transform: translateX(-50%);
+  z-index: 5;
+}
 
-      /* ======= Double Tap Feedback Text ======= */
-      .tap-feedback {
-        position: absolute;
-        top: 45%;
-        font-size: 2rem;
-        color: white;
-        opacity: 0;
-        transform: scale(0.9);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-        pointer-events: none;
-        z-index: 999;
-      }
+/* ======= Double Tap Feedback Text ======= */
+.tap-feedback {
+  position: absolute;
+  top: 45%;
+  font-size: 2rem;
+  color: white;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  z-index: 999;
+}
 
-      .tap-feedback.show {
-        opacity: 1;
-        transform: scale(1.2);
-      }
+.tap-feedback.show {
+  opacity: 1;
+  transform: scale(1.2);
+}
 
-      /* Positioning left & right feedback */
-      #tapLeftFeedback {
-        left: 10%;
-      }
-      #tapRightFeedback {
-        right: 10%;
-      }
+/* Positioning left & right feedback */
+#tapLeftFeedback {
+  left: 10%;
+}
+#tapRightFeedback {
+  right: 10%;
+}
 
-      /* ==================================================
+
+/* ==================================================
+      🖥️ SECTION 22: hide controls
+================================================== */
+
+.hide-controls {
+  cursor: none; /* 🧠 Hide the cursor */
+}
+
+.container {
+  transition: cursor 0.3s ease;
+}
+
+
+/* ==================================================
    ✅ END OF CSS FILE
 ================================================== */
+
     </style>
   </head>
   <body>
@@ -699,751 +724,738 @@
     </div>
 
     <!-- <script src="player.js"></script> -->
-    <script>
-      // =========================== Section 1: DOM Elements ===========================
-      const video = document.getElementById("video");
-      const fileInput = document.getElementById("fileInput");
-      const speed = document.getElementById("speed");
-      const customSpeedInput = document.getElementById("customSpeed");
-      const volume = document.getElementById("volume");
-      const playPauseBtn = document.getElementById("playPauseBtn");
-      const speedOverlay = document.getElementById("speedOverlay");
-      const playlistDisplay = document.getElementById("playlist");
-      const watchTimer = document.getElementById("watchTimer");
-      const watchLogSheet = document.getElementById("watchLogSheet");
-      const todoList = document.getElementById("todoList");
-      const lectureCountInput = document.getElementById("lectureCountInput");
-      const container = document.querySelector(".container");
-      const progressBar = document.getElementById("progressBar");
-      const timeDisplay = document.getElementById("timeDisplay");
-      const centerPlayPause = document.getElementById("centerPlayPause");
+ <script>
+  // =========================== Section 1: DOM Elements ===========================
+const video = document.getElementById("video");
+const fileInput = document.getElementById("fileInput");
+const speed = document.getElementById("speed");
+const customSpeedInput = document.getElementById("customSpeed");
+const volume = document.getElementById("volume");
+const playPauseBtn = document.getElementById("playPauseBtn");
+const speedOverlay = document.getElementById("speedOverlay");
+const playlistDisplay = document.getElementById("playlist");
+const watchTimer = document.getElementById("watchTimer");
+const watchLogSheet = document.getElementById("watchLogSheet");
+const todoList = document.getElementById("todoList");
+const lectureCountInput = document.getElementById("lectureCountInput");
+const container = document.querySelector(".container");
+const progressBar = document.getElementById("progressBar");
+const timeDisplay = document.getElementById("timeDisplay");
+const centerPlayPause = document.getElementById("centerPlayPause");
 
-      // =========================== End of Section 1 ===========================
+// =========================== End of Section 1 ===========================
 
-      // =========================== Section 2: Global Variables ===========================
-      let playlist = [],
-        currentIndex = 0,
-        askResume = false;
-      let videoStartTime = null,
-        watchInterval = null,
-        sessionWatchTime = 0;
+// =========================== Section 2: Global Variables ===========================
+let playlist = [],
+  currentIndex = 0,
+  askResume = false;
+let videoStartTime = null,
+  watchInterval = null,
+  sessionWatchTime = 0;
 
-      let wasInFullscreen = false; // ✅ Track fullscreen state across tab switch
+let wasInFullscreen = false; // ✅ Track fullscreen state across tab switch
 
-      // =========================== End of Section 2 ===========================
+// =========================== End of Section 2 ===========================
 
-      // =========================== Section 3: Date & Time Helpers ===========================
-      function getIndianDateKey() {
-        const now = new Date();
-        const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-        const ist = new Date(utc + 5.5 * 3600000);
-        return ist.toISOString().split("T")[0];
+// =========================== Section 3: Date & Time Helpers ===========================
+function getIndianDateKey() {
+  const now = new Date();
+  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+  const ist = new Date(utc + 5.5 * 3600000);
+  return ist.toISOString().split("T")[0];
+}
+
+function formatTime(ms) {
+  const sec = Math.floor(ms / 1000);
+  const h = Math.floor(sec / 3600);
+  const m = Math.floor((sec % 3600) / 60);
+  const s = sec % 60;
+  return h > 0 ? `${h}h ${m}m ${s}s` : `${m} min`;
+}
+
+function getIndianTimeNow() {
+  const now = new Date();
+  return now.toLocaleTimeString("en-IN", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+    timeZone: "Asia/Kolkata",
+  });
+}
+// =========================== End of Section 3 ===========================
+
+// =========================== Section 4: To-do Helpers ===========================
+function getTodoKey() {
+  return `rn_todo_${getIndianDateKey()}`;
+}
+
+function saveTodoState() {
+  const checkboxes = todoList.querySelectorAll("input[type='checkbox']");
+  const states = Array.from(checkboxes).map((c) => c.checked);
+  localStorage.setItem(getTodoKey(), JSON.stringify(states));
+}
+
+function loadTodoState() {
+  const data = JSON.parse(localStorage.getItem(getTodoKey()) || "[]");
+  return data;
+}
+// =========================== End of Section 4 ===========================
+
+// =========================== Section 5: Watch Log System ===========================
+function updateWatchLogSheet(msWatched) {
+  const key = getIndianDateKey();
+  const log = JSON.parse(localStorage.getItem("rn_watch_log") || "{}");
+  const prev = log[key] || { ms: 0, lectures: 0 };
+  const doneLectures = todoList.querySelectorAll(
+    "input[type='checkbox']:checked"
+  ).length;
+
+  log[key] = {
+    ms: prev.ms + msWatched,
+    lectures: doneLectures,
+  };
+
+  localStorage.setItem("rn_watch_log", JSON.stringify(log));
+  renderWatchLogSheet();
+}
+
+function renderWatchLogSheet() {
+  const log = JSON.parse(localStorage.getItem("rn_watch_log") || "{}");
+
+  const lines = Object.entries(log).map(([date, entry]) => {
+    let ms = 0;
+    let lectures = 0;
+
+    if (typeof entry === "number") {
+      ms = entry;
+      lectures = 0;
+    } else if (typeof entry === "object") {
+      ms = entry.ms || 0;
+      lectures = entry.lectures || 0;
+    }
+
+    return `<div><b>${date}</b>: ${formatTime(ms)}  L${lectures}</div>`;
+  });
+
+  watchLogSheet.innerHTML = `<h3>📘 Daily Watch Log</h3>${lines.join("")}`;
+}
+// =========================== End of Section 5 ===========================
+
+// =========================== Section 6: Render Todo Checklist ===========================
+function renderTodoList() {
+  const count = parseInt(lectureCountInput.value) || 10;
+  const savedStates = loadTodoState();
+
+  todoList.innerHTML = "";
+  for (let i = 1; i <= count; i++) {
+    const li = document.createElement("li");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.id = `lecture_${i}`;
+    checkbox.checked = savedStates[i - 1] || false;
+
+    const label = document.createElement("label");
+    label.setAttribute("for", `lecture_${i}`);
+    label.textContent = ` Lecture ${i}`;
+
+    if (checkbox.checked) {
+      const span = document.createElement("span");
+      span.className = "done-time";
+      span.textContent = ` - ${getIndianTimeNow()}`;
+      li.appendChild(span);
+    }
+
+    checkbox.addEventListener("change", function () {
+      const oldTime = li.querySelector(".done-time");
+      if (oldTime) oldTime.remove();
+
+      if (this.checked) {
+        const span = document.createElement("span");
+        span.className = "done-time";
+        span.textContent = ` - ${getIndianTimeNow()}`;
+        li.appendChild(span);
       }
+      saveTodoState();
+      updateWatchLogSheet(0);
+    });
 
-      function formatTime(ms) {
-        const sec = Math.floor(ms / 1000);
-        const h = Math.floor(sec / 3600);
-        const m = Math.floor((sec % 3600) / 60);
-        const s = sec % 60;
-        return h > 0 ? `${h}h ${m}m ${s}s` : `${m} min`;
+    li.appendChild(checkbox);
+    li.appendChild(label);
+    todoList.appendChild(li);
+  }
+
+  saveTodoState();
+}
+// =========================== End of Section 6 ===========================
+
+// =========================== Section 7: Video Progress UI ===========================
+// video.addEventListener("timeupdate", () => {
+//   const current = video.currentTime;
+//   const total = video.duration;
+//   progressBar.value = (current / total) * 100;
+
+//   timeDisplay.textContent = `${format(current)} / ${format(total)}`;
+// });
+
+video.addEventListener("timeupdate", () => {
+  const current = video.currentTime;
+  const total = video.duration;
+  const percent = (current / total) * 100;
+
+  progressBar.value = percent;
+  updateProgressBarColor(percent); // ✅ ADD THIS LINE
+
+  timeDisplay.textContent = `${format(current)} / ${format(total)}`;
+
+  // ✅ Save current time to localStorage
+  const lastVideo = localStorage.getItem("lastPlayedVideoName");
+  if (lastVideo) {
+    localStorage.setItem(`rnVideoTime_${lastVideo}`, current);
+  }
+});
+
+// progressBar.addEventListener("input", () => {
+//   video.currentTime = (progressBar.value / 100) * video.duration;
+// });
+
+progressBar.addEventListener("input", () => {
+  video.currentTime = (progressBar.value / 100) * video.duration;
+  updateProgressBarColor(progressBar.value); // ✅ ADD THIS LINE
+});
+
+function format(sec) {
+  sec = Math.floor(sec);
+  const h = Math.floor(sec / 3600);
+  const m = Math.floor((sec % 3600) / 60);
+  const s = Math.floor(sec % 60);
+
+  const hours = h > 0 ? `${h}:` : "";
+  const minutes = h > 0 ? String(m).padStart(2, "0") : m;
+  const seconds = String(s).padStart(2, "0");
+
+  return `${hours}${minutes}:${seconds}`;
+}
+
+function updateProgressBarColor(value) {
+  const percentage = value;
+  progressBar.style.background = `linear-gradient(to right, #58a6ff ${percentage}%, #444 ${percentage}%)`;
+}
+
+// =========================== End of Section 7 ===========================
+
+// =========================== Section 8: Checklist Reset on New Day ===========================
+function midnightResetCheck() {
+  const lastDate = localStorage.getItem("rn_lastChecklistDate");
+  const today = getIndianDateKey();
+
+  if (lastDate !== today) {
+    localStorage.setItem("rn_lastChecklistDate", today);
+    localStorage.removeItem(getTodoKey());
+    renderTodoList();
+  }
+}
+// =========================== End of Section 8 ===========================
+
+// // =========================== Section 9: On Page Load ===========================
+// window.addEventListener("DOMContentLoaded", () => {
+//   renderWatchLogSheet();
+//   renderTodoList();
+//   midnightResetCheck();
+
+//   speed.value = "custom";
+//   customSpeedInput.value = "1.7";
+//   video.playbackRate = 1.7;
+//   customSpeedInput.style.display = "inline-block";
+//   showSpeedOverlay();
+
+//   const lastVideoName = localStorage.getItem("lastPlayedVideoName");
+//   const lastVideoTime = localStorage.getItem(`rnVideoTime_${lastVideoName}`);
+//   if (lastVideoName && lastVideoTime) {
+//     const confirmResume = confirm(
+//       `Resume last played video:\n${lastVideoName}?`
+//     );
+//     if (confirmResume) {
+//       askResume = true;
+//     }
+//   }
+
+//   let controlsTimeout;
+
+//   function showControls() {
+//     container.classList.remove("hide-controls");
+//     clearTimeout(controlsTimeout);
+//     controlsTimeout = setTimeout(() => {
+//       if (!video.paused) {
+//         container.classList.add("hide-controls");
+//       }
+//     }, 2500);
+//   }
+
+//   container.addEventListener("mousemove", showControls);
+//   video.addEventListener("play", showControls);
+//   video.addEventListener("pause", () => {
+//     container.classList.remove("hide-controls");
+//   });
+
+//   video.addEventListener("click", () => {
+//     if (video.paused) {
+//       video.play();
+//     } else {
+//       video.pause();
+//     }
+//   });
+// });
+// // =========================== End of Section 9 ===========================
+
+// =========================== Section 9: On Page Load ===========================
+// =========================== Section 9: On Page Load ===========================
+window.addEventListener("DOMContentLoaded", () => {
+  renderWatchLogSheet();
+  renderTodoList();
+  midnightResetCheck();
+
+  speed.value = "custom";
+  customSpeedInput.value = "1.7";
+  video.playbackRate = 1.7;
+  customSpeedInput.style.display = "inline-block";
+  showSpeedOverlay();
+
+  const lastVideoName = localStorage.getItem("lastPlayedVideoName");
+  const lastVideoTime = localStorage.getItem(`rnVideoTime_${lastVideoName}`);
+  const lastVideoDuration = localStorage.getItem(`rnVideoDuration_${lastVideoName}`);
+
+  // ✅ Show Resume Prompt on Page Load (even before file select)
+  if (lastVideoName && lastVideoTime && lastVideoDuration) {
+    const resumeTimeFormatted = format(parseFloat(lastVideoTime));
+    const durationFormatted = format(parseFloat(lastVideoDuration));
+
+    const confirmResume = confirm(
+      `⏯️ Resume "${lastVideoName}" at ${resumeTimeFormatted} / ${durationFormatted}?`
+    );
+    if (confirmResume) {
+      askResume = true;
+    }
+  }
+
+  // ✅ Playlist load after file selection
+  fileInput.addEventListener("change", (e) => {
+    playlist = Array.from(e.target.files).map((file) => ({
+      name: file.name,
+      file,
+    }));
+
+    const i = playlist.findIndex((v) => v.name === lastVideoName);
+    currentIndex = i !== -1 ? i : 0;
+    loadVideo(currentIndex, askResume);
+  });
+
+  // 🖱️ Mouse Controls
+  let controlsTimeout;
+  function showControls() {
+    container.classList.remove("hide-controls");
+    clearTimeout(controlsTimeout);
+    controlsTimeout = setTimeout(() => {
+      if (!video.paused) {
+        container.classList.add("hide-controls");
       }
+    }, 2500);
+  }
 
-      function getIndianTimeNow() {
-        const now = new Date();
-        return now.toLocaleTimeString("en-IN", {
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: true,
-          timeZone: "Asia/Kolkata",
-        });
+  container.addEventListener("mousemove", showControls);
+  video.addEventListener("play", showControls);
+  video.addEventListener("pause", () => {
+    container.classList.remove("hide-controls");
+  });
+
+  video.addEventListener("click", () => {
+    video.paused ? video.play() : video.pause();
+  });
+});
+// =========================== End of Section 9 ===========================
+
+// =========================== End of Section 9 ===========================
+
+
+
+// =========================== Section 10: Video Key & Timer ===========================
+function getVideoKey(name) {
+  return `rnVideoTime_${name}`;
+}
+
+function startWatchTimer() {
+  if (videoStartTime === null) {
+    videoStartTime = Date.now();
+    watchInterval = setInterval(() => {
+      const elapsed = Date.now() - videoStartTime;
+      sessionWatchTime = elapsed;
+      watchTimer.innerText = `⏱️ Actual Watch Time: ${formatTime(elapsed)}`;
+    }, 1000);
+  }
+}
+
+function stopWatchTimer() {
+  if (videoStartTime !== null) {
+    const elapsed = Date.now() - videoStartTime;
+    updateWatchLogSheet(elapsed);
+  }
+  clearInterval(watchInterval);
+  watchInterval = null;
+  videoStartTime = null;
+}
+// =========================== End of Section 10 ===========================
+
+// =========================== Section 11: Video Load + Resume ===========================
+function loadVideo(index, resume = true) {
+  const file = playlist[index];
+  if (!file) return;
+  video.src = URL.createObjectURL(file.file);
+
+video.addEventListener(
+  "loadedmetadata",
+  () => {
+    // ✅ Save duration in localStorage for later popup
+    localStorage.setItem(`rnVideoDuration_${file.name}`, video.duration);
+
+    if (resume && askResume) {
+      const t = parseFloat(localStorage.getItem(getVideoKey(file.name)) || "0");
+      if (t > 0 && t < video.duration) video.currentTime = t;
+      askResume = false;
+    }
+    video.play();
+    startWatchTimer();
+  },
+  { once: true }
+);
+
+
+  video.playbackRate = getCurrentSpeed();
+  video.volume = parseFloat(volume.value);
+  playlistDisplay.innerHTML = `<b>Now Playing:</b> ${file.name}`;
+  localStorage.setItem("lastPlayedVideoName", file.name);
+}
+// =========================== End of Section 11 ===========================
+
+// // =========================== Section 12: Playlist Load & Auto Next ===========================
+// fileInput.addEventListener("change", (e) => {
+//   playlist = Array.from(e.target.files).map((file) => ({
+//     name: file.name,
+//     file,
+//   }));
+//   const lastVideoName = localStorage.getItem("lastPlayedVideoName");
+//   const i = playlist.findIndex((v) => v.name === lastVideoName);
+//   currentIndex = i !== -1 && askResume ? i : 0;
+//   loadVideo(currentIndex, askResume);
+// });
+
+// video.addEventListener("ended", () => {
+//   stopWatchTimer();
+//   alert(
+//     `✅ Video Complete!\nActual Watch Time: ${formatTime(sessionWatchTime)}`
+//   );
+//   sessionWatchTime = 0;
+//   currentIndex++;
+//   currentIndex < playlist.length
+//     ? loadVideo(currentIndex)
+//     : ((playlistDisplay.innerHTML = "<i>Playlist finished.</i>"),
+//       localStorage.removeItem("lastPlayedVideoName"));
+// });
+
+
+// =========================== Section 12: Playlist Load & Auto Next ===========================
+// ✅ Already handled fileInput in Section 9, so skip it here
+
+video.addEventListener("ended", () => {
+  stopWatchTimer();
+
+  const total = format(video.duration);
+  alert(
+    `✅ Video Complete!\n📈 Watch Time: ${formatTime(sessionWatchTime)}\n🎬 Duration: ${total}`
+  );
+
+  sessionWatchTime = 0;
+  currentIndex++;
+
+  if (currentIndex < playlist.length) {
+    loadVideo(currentIndex);
+  } else {
+    playlistDisplay.innerHTML = "<i>Playlist finished.</i>";
+    localStorage.removeItem("lastPlayedVideoName");
+  }
+});
+// =========================== End of Section 12 ===========================
+
+// =========================== End of Section 12 ===========================
+
+// =========================== Section 13: Center Button + Watch Timer ===========================
+video.addEventListener("play", () => {
+  centerPlayPause.innerText = "⏸️ Pause";
+  showCenterIcon("⏸️");
+
+  startWatchTimer();
+});
+video.addEventListener("pause", () => {
+  centerPlayPause.innerText = "▶️ Play";
+  showCenterIcon("▶️");
+});
+// =========================== End of Section 13 ===========================
+
+// =========================== Section 14: Speed Controls ===========================
+speed.addEventListener("change", () => {
+  if (speed.value === "custom") {
+    customSpeedInput.style.display = "inline-block";
+    customSpeedInput.focus();
+  } else {
+    customSpeedInput.style.display = "none";
+    video.playbackRate = parseFloat(speed.value);
+    showSpeedOverlay();
+  }
+});
+
+customSpeedInput.addEventListener("change", () => {
+  const val = parseFloat(customSpeedInput.value);
+  if (val >= 0.1 && val <= 4) {
+    video.playbackRate = val;
+    showSpeedOverlay();
+  } else alert("Enter value between 0.1 and 4");
+});
+
+function getCurrentSpeed() {
+  return speed.value === "custom"
+    ? parseFloat(customSpeedInput.value) || 1
+    : parseFloat(speed.value);
+}
+// =========================== End of Section 14 ===========================
+
+// =========================== Section 15: Volume & Center Play ===========================
+volume.addEventListener(
+  "input",
+  () => (video.volume = parseFloat(volume.value))
+);
+centerPlayPause.addEventListener("click", () =>
+  video.paused ? video.play() : video.pause()
+);
+// =========================== End of Section 15 ===========================
+
+// =========================== Section 16: Seek & Fullscreen ===========================
+function seek(sec) {
+  video.currentTime += sec;
+}
+function toggleFullscreen() {
+  const wrapper = document.querySelector(".video-wrapper");
+  if (!document.fullscreenElement) {
+    wrapper.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+}
+// =========================== End of Section 16 ===========================
+
+// =========================== Section 17: Speed Overlay & Center Icon ===========================
+function showSpeedOverlay() {
+  speedOverlay.innerText = video.playbackRate.toFixed(2) + "x";
+  speedOverlay.style.display = "block";
+  clearTimeout(speedOverlay.timeout);
+  speedOverlay.timeout = setTimeout(
+    () => (speedOverlay.style.display = "none"),
+    2000
+  );
+}
+
+function showCenterIcon(icon) {
+  centerPlayPause.innerText = icon;
+  centerPlayPause.classList.add("show");
+  clearTimeout(centerPlayPause.timeout);
+  centerPlayPause.timeout = setTimeout(() => {
+    centerPlayPause.classList.remove("show");
+  }, 700);
+}
+// =========================== End of Section 17 ===========================
+
+// =========================== Section 18: Keyboard Shortcuts ===========================
+document.addEventListener("keydown", (e) => {
+  if (e.target.tagName.toLowerCase() === "input") return;
+  switch (e.key.toLowerCase()) {
+    case "s":
+      captureScreenshotToClipboard();
+      break;
+
+    case "w":
+      container.classList.toggle("minimal-mode");
+      break;
+    case " ":
+      e.preventDefault();
+      if (video.paused) {
+        video.play();
+        showControls();
+      } else {
+        video.pause();
+        container.classList.remove("hide-controls");
       }
-      // =========================== End of Section 3 ===========================
+      break;
 
-      // =========================== Section 4: To-do Helpers ===========================
-      function getTodoKey() {
-        return `rn_todo_${getIndianDateKey()}`;
-      }
+    case "[":
+      seek(-10);
+      break;
+    case "]":
+      seek(10);
+      break;
+    case "f":
+      toggleFullscreen();
+      break;
+    case "+":
+      video.playbackRate = Math.min(video.playbackRate + 0.1, 4);
+      updateSpeedUI();
+      showSpeedOverlay();
+      break;
+    case "-":
+      video.playbackRate = Math.max(video.playbackRate - 0.1, 0.1);
+      updateSpeedUI();
+      showSpeedOverlay();
+      break;
+    case "r":
+      video.playbackRate = 1;
+      speed.value = 1;
+      customSpeedInput.value = "";
+      customSpeedInput.style.display = "none";
+      showSpeedOverlay();
+      break;
+  }
+});
 
-      function saveTodoState() {
-        const checkboxes = todoList.querySelectorAll("input[type='checkbox']");
-        const states = Array.from(checkboxes).map((c) => c.checked);
-        localStorage.setItem(getTodoKey(), JSON.stringify(states));
-      }
+function updateSpeedUI() {
+  const r = video.playbackRate.toFixed(2);
+  const exists = Array.from(speed.options).some(
+    (opt) => parseFloat(opt.value).toFixed(2) === r
+  );
+  if (exists) {
+    speed.value = r;
+    customSpeedInput.style.display = "none";
+  } else {
+    speed.value = "custom";
+    customSpeedInput.style.display = "inline-block";
+    customSpeedInput.value = r;
+  }
+}
+// =========================== End of Section 18 ===========================
 
-      function loadTodoState() {
-        const data = JSON.parse(localStorage.getItem(getTodoKey()) || "[]");
-        return data;
-      }
-      // =========================== End of Section 4 ===========================
+// =========================== Section 19: Checklist Change Listener ===========================
+lectureCountInput.addEventListener("change", renderTodoList);
+// =========================== End of Section 19 ===========================
 
-      // =========================== Section 5: Watch Log System ===========================
-      function updateWatchLogSheet(msWatched) {
-        const key = getIndianDateKey();
-        const log = JSON.parse(localStorage.getItem("rn_watch_log") || "{}");
-        const prev = log[key] || { ms: 0, lectures: 0 };
-        const doneLectures = todoList.querySelectorAll(
-          "input[type='checkbox']:checked"
-        ).length;
+// =========================== Section 20: Controls Bar Visibility ===========================
+let hideControlsTimeout;
+const controlsBar = document.querySelector(".yt-controls-bar");
+const videoWrapper = document.querySelector(".video-wrapper");
 
-        log[key] = {
-          ms: prev.ms + msWatched,
-          lectures: doneLectures,
-        };
+function showControls() {
+  controlsBar.classList.remove("hidden");
+  clearTimeout(hideControlsTimeout);
+  hideControlsTimeout = setTimeout(() => {
+    controlsBar.classList.add("hidden");
+  }, 2500);
+}
 
-        localStorage.setItem("rn_watch_log", JSON.stringify(log));
-        renderWatchLogSheet();
-      }
+// videoWrapper listeners
+videoWrapper.addEventListener("mousemove", showControls);
+videoWrapper.addEventListener("click", showControls);
+videoWrapper.addEventListener("touchstart", showControls);
+// =========================== End of Section 20 ===========================
 
-      function renderWatchLogSheet() {
-        const log = JSON.parse(localStorage.getItem("rn_watch_log") || "{}");
-
-        const lines = Object.entries(log).map(([date, entry]) => {
-          let ms = 0;
-          let lectures = 0;
-
-          if (typeof entry === "number") {
-            ms = entry;
-            lectures = 0;
-          } else if (typeof entry === "object") {
-            ms = entry.ms || 0;
-            lectures = entry.lectures || 0;
-          }
-
-          return `<div><b>${date}</b>: ${formatTime(ms)}  L${lectures}</div>`;
-        });
-
-        watchLogSheet.innerHTML = `<h3>📘 Daily Watch Log</h3>${lines.join(
-          ""
-        )}`;
-      }
-      // =========================== End of Section 5 ===========================
-
-      // =========================== Section 6: Render Todo Checklist ===========================
-      function renderTodoList() {
-        const count = parseInt(lectureCountInput.value) || 10;
-        const savedStates = loadTodoState();
-
-        todoList.innerHTML = "";
-        for (let i = 1; i <= count; i++) {
-          const li = document.createElement("li");
-          const checkbox = document.createElement("input");
-          checkbox.type = "checkbox";
-          checkbox.id = `lecture_${i}`;
-          checkbox.checked = savedStates[i - 1] || false;
-
-          const label = document.createElement("label");
-          label.setAttribute("for", `lecture_${i}`);
-          label.textContent = ` Lecture ${i}`;
-
-          if (checkbox.checked) {
-            const span = document.createElement("span");
-            span.className = "done-time";
-            span.textContent = ` - ${getIndianTimeNow()}`;
-            li.appendChild(span);
-          }
-
-          checkbox.addEventListener("change", function () {
-            const oldTime = li.querySelector(".done-time");
-            if (oldTime) oldTime.remove();
-
-            if (this.checked) {
-              const span = document.createElement("span");
-              span.className = "done-time";
-              span.textContent = ` - ${getIndianTimeNow()}`;
-              li.appendChild(span);
-            }
-            saveTodoState();
-            updateWatchLogSheet(0);
-          });
-
-          li.appendChild(checkbox);
-          li.appendChild(label);
-          todoList.appendChild(li);
-        }
-
-        saveTodoState();
-      }
-      // =========================== End of Section 6 ===========================
-
-      // =========================== Section 7: Video Progress UI ===========================
-      // video.addEventListener("timeupdate", () => {
-      //   const current = video.currentTime;
-      //   const total = video.duration;
-      //   progressBar.value = (current / total) * 100;
-
-      //   timeDisplay.textContent = `${format(current)} / ${format(total)}`;
-      // });
-
-      video.addEventListener("timeupdate", () => {
-        const current = video.currentTime;
-        const total = video.duration;
-        const percent = (current / total) * 100;
-
-        progressBar.value = percent;
-        updateProgressBarColor(percent); // ✅ ADD THIS LINE
-
-        timeDisplay.textContent = `${format(current)} / ${format(total)}`;
-
-        // ✅ Save current time to localStorage
-        const lastVideo = localStorage.getItem("lastPlayedVideoName");
-        if (lastVideo) {
-          localStorage.setItem(`rnVideoTime_${lastVideo}`, current);
-        }
+// =========================== Section 21: Auto Fullscreen Restore ===========================
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "hidden") {
+    // 💤 User tab chhod ke gaya — save current fullscreen state
+    wasInFullscreen = !!document.fullscreenElement;
+  } else if (document.visibilityState === "visible") {
+    // 👀 Wapas aaya — restore fullscreen if it was on before
+    if (wasInFullscreen && !document.fullscreenElement) {
+      const wrapper = document.querySelector(".video-wrapper") || video;
+      wrapper.requestFullscreen().catch((err) => {
+        console.warn("⚠️ Fullscreen auto-restore blocked by browser:", err);
       });
+    }
+  }
+});
 
-      // progressBar.addEventListener("input", () => {
-      //   video.currentTime = (progressBar.value / 100) * video.duration;
-      // });
+// =========================== Section 22: Double Tap & Seek Tooltip ===========================
+function handleTap(zone, direction) {
+  let lastTap = 0;
+  let tapTimer = null;
 
-      progressBar.addEventListener("input", () => {
-        video.currentTime = (progressBar.value / 100) * video.duration;
-        updateProgressBarColor(progressBar.value); // ✅ ADD THIS LINE
-      });
+  zone.addEventListener("click", (e) => {
+    const now = Date.now();
+    const timeDiff = now - lastTap;
 
-      function format(sec) {
-        sec = Math.floor(sec);
-        const h = Math.floor(sec / 3600);
-        const m = Math.floor((sec % 3600) / 60);
-        const s = Math.floor(sec % 60);
-
-        const hours = h > 0 ? `${h}:` : "";
-        const minutes = h > 0 ? String(m).padStart(2, "0") : m;
-        const seconds = String(s).padStart(2, "0");
-
-        return `${hours}${minutes}:${seconds}`;
+    if (timeDiff < 300) {
+      // ✅ Double Tap Detected
+      clearTimeout(tapTimer); // Cancel single tap
+      if (direction === "left") {
+        seek(-10);
+        showTapFeedback("left");
+      } else {
+        seek(10);
+        showTapFeedback("right");
       }
-
-      function updateProgressBarColor(value) {
-        const percentage = value;
-        progressBar.style.background = `linear-gradient(to right, #58a6ff ${percentage}%, #444 ${percentage}%)`;
-      }
-
-      // =========================== End of Section 7 ===========================
-
-      // =========================== Section 8: Checklist Reset on New Day ===========================
-      function midnightResetCheck() {
-        const lastDate = localStorage.getItem("rn_lastChecklistDate");
-        const today = getIndianDateKey();
-
-        if (lastDate !== today) {
-          localStorage.setItem("rn_lastChecklistDate", today);
-          localStorage.removeItem(getTodoKey());
-          renderTodoList();
-        }
-      }
-      // =========================== End of Section 8 ===========================
-
-      // // =========================== Section 9: On Page Load ===========================
-      // window.addEventListener("DOMContentLoaded", () => {
-      //   renderWatchLogSheet();
-      //   renderTodoList();
-      //   midnightResetCheck();
-
-      //   speed.value = "custom";
-      //   customSpeedInput.value = "1.7";
-      //   video.playbackRate = 1.7;
-      //   customSpeedInput.style.display = "inline-block";
-      //   showSpeedOverlay();
-
-      //   const lastVideoName = localStorage.getItem("lastPlayedVideoName");
-      //   const lastVideoTime = localStorage.getItem(`rnVideoTime_${lastVideoName}`);
-      //   if (lastVideoName && lastVideoTime) {
-      //     const confirmResume = confirm(
-      //       `Resume last played video:\n${lastVideoName}?`
-      //     );
-      //     if (confirmResume) {
-      //       askResume = true;
-      //     }
-      //   }
-
-      //   let controlsTimeout;
-
-      //   function showControls() {
-      //     container.classList.remove("hide-controls");
-      //     clearTimeout(controlsTimeout);
-      //     controlsTimeout = setTimeout(() => {
-      //       if (!video.paused) {
-      //         container.classList.add("hide-controls");
-      //       }
-      //     }, 2500);
-      //   }
-
-      //   container.addEventListener("mousemove", showControls);
-      //   video.addEventListener("play", showControls);
-      //   video.addEventListener("pause", () => {
-      //     container.classList.remove("hide-controls");
-      //   });
-
-      //   video.addEventListener("click", () => {
-      //     if (video.paused) {
-      //       video.play();
-      //     } else {
-      //       video.pause();
-      //     }
-      //   });
-      // });
-      // // =========================== End of Section 9 ===========================
-
-      // =========================== Section 9: On Page Load ===========================
-      // =========================== Section 9: On Page Load ===========================
-      window.addEventListener("DOMContentLoaded", () => {
-        renderWatchLogSheet();
-        renderTodoList();
-        midnightResetCheck();
-
-        speed.value = "custom";
-        customSpeedInput.value = "1.7";
-        video.playbackRate = 1.7;
-        customSpeedInput.style.display = "inline-block";
-        showSpeedOverlay();
-
-        const lastVideoName = localStorage.getItem("lastPlayedVideoName");
-        const lastVideoTime = localStorage.getItem(
-          `rnVideoTime_${lastVideoName}`
-        );
-        const lastVideoDuration = localStorage.getItem(
-          `rnVideoDuration_${lastVideoName}`
-        );
-
-        // ✅ Show Resume Prompt on Page Load (even before file select)
-        if (lastVideoName && lastVideoTime && lastVideoDuration) {
-          const resumeTimeFormatted = format(parseFloat(lastVideoTime));
-          const durationFormatted = format(parseFloat(lastVideoDuration));
-
-          const confirmResume = confirm(
-            `⏯️ Resume "${lastVideoName}" at ${resumeTimeFormatted} / ${durationFormatted}?`
-          );
-          if (confirmResume) {
-            askResume = true;
-          }
-        }
-
-        // ✅ Playlist load after file selection
-        fileInput.addEventListener("change", (e) => {
-          playlist = Array.from(e.target.files).map((file) => ({
-            name: file.name,
-            file,
-          }));
-
-          const i = playlist.findIndex((v) => v.name === lastVideoName);
-          currentIndex = i !== -1 ? i : 0;
-          loadVideo(currentIndex, askResume);
-        });
-
-        // 🖱️ Mouse Controls
-        let controlsTimeout;
-        function showControls() {
-          container.classList.remove("hide-controls");
-          clearTimeout(controlsTimeout);
-          controlsTimeout = setTimeout(() => {
-            if (!video.paused) {
-              container.classList.add("hide-controls");
-            }
-          }, 2500);
-        }
-
-        container.addEventListener("mousemove", showControls);
-        video.addEventListener("play", showControls);
-        video.addEventListener("pause", () => {
-          container.classList.remove("hide-controls");
-        });
-
-        video.addEventListener("click", () => {
-          video.paused ? video.play() : video.pause();
-        });
-      });
-      // =========================== End of Section 9 ===========================
-
-      // =========================== End of Section 9 ===========================
-
-      // =========================== Section 10: Video Key & Timer ===========================
-      function getVideoKey(name) {
-        return `rnVideoTime_${name}`;
-      }
-
-      function startWatchTimer() {
-        if (videoStartTime === null) {
-          videoStartTime = Date.now();
-          watchInterval = setInterval(() => {
-            const elapsed = Date.now() - videoStartTime;
-            sessionWatchTime = elapsed;
-            watchTimer.innerText = `⏱️ Actual Watch Time: ${formatTime(
-              elapsed
-            )}`;
-          }, 1000);
-        }
-      }
-
-      function stopWatchTimer() {
-        if (videoStartTime !== null) {
-          const elapsed = Date.now() - videoStartTime;
-          updateWatchLogSheet(elapsed);
-        }
-        clearInterval(watchInterval);
-        watchInterval = null;
-        videoStartTime = null;
-      }
-      // =========================== End of Section 10 ===========================
-
-      // =========================== Section 11: Video Load + Resume ===========================
-      function loadVideo(index, resume = true) {
-        const file = playlist[index];
-        if (!file) return;
-        video.src = URL.createObjectURL(file.file);
-
-        video.addEventListener(
-          "loadedmetadata",
-          () => {
-            // ✅ Save duration in localStorage for later popup
-            localStorage.setItem(
-              `rnVideoDuration_${file.name}`,
-              video.duration
-            );
-
-            if (resume && askResume) {
-              const t = parseFloat(
-                localStorage.getItem(getVideoKey(file.name)) || "0"
-              );
-              if (t > 0 && t < video.duration) video.currentTime = t;
-              askResume = false;
-            }
-            video.play();
-            startWatchTimer();
-          },
-          { once: true }
-        );
-
-        video.playbackRate = getCurrentSpeed();
-        video.volume = parseFloat(volume.value);
-        playlistDisplay.innerHTML = `<b>Now Playing:</b> ${file.name}`;
-        localStorage.setItem("lastPlayedVideoName", file.name);
-      }
-      // =========================== End of Section 11 ===========================
-
-      // // =========================== Section 12: Playlist Load & Auto Next ===========================
-      // fileInput.addEventListener("change", (e) => {
-      //   playlist = Array.from(e.target.files).map((file) => ({
-      //     name: file.name,
-      //     file,
-      //   }));
-      //   const lastVideoName = localStorage.getItem("lastPlayedVideoName");
-      //   const i = playlist.findIndex((v) => v.name === lastVideoName);
-      //   currentIndex = i !== -1 && askResume ? i : 0;
-      //   loadVideo(currentIndex, askResume);
-      // });
-
-      // video.addEventListener("ended", () => {
-      //   stopWatchTimer();
-      //   alert(
-      //     `✅ Video Complete!\nActual Watch Time: ${formatTime(sessionWatchTime)}`
-      //   );
-      //   sessionWatchTime = 0;
-      //   currentIndex++;
-      //   currentIndex < playlist.length
-      //     ? loadVideo(currentIndex)
-      //     : ((playlistDisplay.innerHTML = "<i>Playlist finished.</i>"),
-      //       localStorage.removeItem("lastPlayedVideoName"));
-      // });
-
-      // =========================== Section 12: Playlist Load & Auto Next ===========================
-      // ✅ Already handled fileInput in Section 9, so skip it here
-
-      video.addEventListener("ended", () => {
-        stopWatchTimer();
-
-        const total = format(video.duration);
-        alert(
-          `✅ Video Complete!\n📈 Watch Time: ${formatTime(
-            sessionWatchTime
-          )}\n🎬 Duration: ${total}`
-        );
-
-        sessionWatchTime = 0;
-        currentIndex++;
-
-        if (currentIndex < playlist.length) {
-          loadVideo(currentIndex);
+    } else {
+      // ⏸️ Wait to confirm if it's single tap or double
+      tapTimer = setTimeout(() => {
+        if (video.paused) {
+          video.play();
         } else {
-          playlistDisplay.innerHTML = "<i>Playlist finished.</i>";
-          localStorage.removeItem("lastPlayedVideoName");
+          video.pause();
         }
-      });
-      // =========================== End of Section 12 ===========================
+      }, 300); // Delay to detect if double-tap follows
+    }
 
-      // =========================== End of Section 12 ===========================
+    lastTap = now;
+  });
+}
 
-      // =========================== Section 13: Center Button + Watch Timer ===========================
-      video.addEventListener("play", () => {
-        centerPlayPause.innerText = "⏸️ Pause";
-        showCenterIcon("⏸️");
+function showTapFeedback(direction) {
+  const el =
+    direction === "left"
+      ? document.getElementById("tapLeftFeedback")
+      : document.getElementById("tapRightFeedback");
 
-        startWatchTimer();
-      });
-      video.addEventListener("pause", () => {
-        centerPlayPause.innerText = "▶️ Play";
-        showCenterIcon("▶️");
-      });
-      // =========================== End of Section 13 ===========================
+  if (!el) return;
 
-      // =========================== Section 14: Speed Controls ===========================
-      speed.addEventListener("change", () => {
-        if (speed.value === "custom") {
-          customSpeedInput.style.display = "inline-block";
-          customSpeedInput.focus();
-        } else {
-          customSpeedInput.style.display = "none";
-          video.playbackRate = parseFloat(speed.value);
-          showSpeedOverlay();
-        }
-      });
+  el.classList.add("show");
+  clearTimeout(el.timeout);
+  el.timeout = setTimeout(() => {
+    el.classList.remove("show");
+  }, 500); // Hide after 500ms
+}
 
-      customSpeedInput.addEventListener("change", () => {
-        const val = parseFloat(customSpeedInput.value);
-        if (val >= 0.1 && val <= 4) {
-          video.playbackRate = val;
-          showSpeedOverlay();
-        } else alert("Enter value between 0.1 and 4");
-      });
+// 🚀 Activate for both left & right zones
+handleTap(document.getElementById("leftZone"), "left");
+handleTap(document.getElementById("rightZone"), "right");
 
-      function getCurrentSpeed() {
-        return speed.value === "custom"
-          ? parseFloat(customSpeedInput.value) || 1
-          : parseFloat(speed.value);
-      }
-      // =========================== End of Section 14 ===========================
+// =========================== Section 23: Screenshot to Clipboard ===========================
+function captureScreenshotToClipboard() {
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
 
-      // =========================== Section 15: Volume & Center Play ===========================
-      volume.addEventListener(
-        "input",
-        () => (video.volume = parseFloat(volume.value))
-      );
-      centerPlayPause.addEventListener("click", () =>
-        video.paused ? video.play() : video.pause()
-      );
-      // =========================== End of Section 15 ===========================
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
 
-      // =========================== Section 16: Seek & Fullscreen ===========================
-      function seek(sec) {
-        video.currentTime += sec;
-      }
-      function toggleFullscreen() {
-        const wrapper = document.querySelector(".video-wrapper");
-        if (!document.fullscreenElement) {
-          wrapper.requestFullscreen();
-        } else {
-          document.exitFullscreen();
-        }
-      }
-      // =========================== End of Section 16 ===========================
+  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-      // =========================== Section 17: Speed Overlay & Center Icon ===========================
-      function showSpeedOverlay() {
-        speedOverlay.innerText = video.playbackRate.toFixed(2) + "x";
-        speedOverlay.style.display = "block";
-        clearTimeout(speedOverlay.timeout);
-        speedOverlay.timeout = setTimeout(
-          () => (speedOverlay.style.display = "none"),
-          2000
-        );
-      }
+  canvas.toBlob(async (blob) => {
+    try {
+      await navigator.clipboard.write([
+        new ClipboardItem({
+          "image/png": blob,
+        }),
+      ]);
+      showCenterIcon("📸"); // Optional icon feedback in center
+      console.log("✅ Screenshot copied to clipboard");
+    } catch (err) {
+      console.error("❌ Failed to copy screenshot:", err);
+      alert("❌ Screenshot copy failed! Try in HTTPS or localhost.");
+    }
+  }, "image/png");
+}
 
-      function showCenterIcon(icon) {
-        centerPlayPause.innerText = icon;
-        centerPlayPause.classList.add("show");
-        clearTimeout(centerPlayPause.timeout);
-        centerPlayPause.timeout = setTimeout(() => {
-          centerPlayPause.classList.remove("show");
-        }, 700);
-      }
-      // =========================== End of Section 17 ===========================
-
-      // =========================== Section 18: Keyboard Shortcuts ===========================
-      document.addEventListener("keydown", (e) => {
-        if (e.target.tagName.toLowerCase() === "input") return;
-        switch (e.key.toLowerCase()) {
-          case "s":
-            captureScreenshotToClipboard();
-            break;
-
-          case "w":
-            container.classList.toggle("minimal-mode");
-            break;
-          case " ":
-            e.preventDefault();
-            if (video.paused) {
-              video.play();
-              showControls();
-            } else {
-              video.pause();
-              container.classList.remove("hide-controls");
-            }
-            break;
-
-          case "[":
-            seek(-10);
-            break;
-          case "]":
-            seek(10);
-            break;
-          case "f":
-            toggleFullscreen();
-            break;
-          case "+":
-            video.playbackRate = Math.min(video.playbackRate + 0.1, 4);
-            updateSpeedUI();
-            showSpeedOverlay();
-            break;
-          case "-":
-            video.playbackRate = Math.max(video.playbackRate - 0.1, 0.1);
-            updateSpeedUI();
-            showSpeedOverlay();
-            break;
-          case "r":
-            video.playbackRate = 1;
-            speed.value = 1;
-            customSpeedInput.value = "";
-            customSpeedInput.style.display = "none";
-            showSpeedOverlay();
-            break;
-        }
-      });
-
-      function updateSpeedUI() {
-        const r = video.playbackRate.toFixed(2);
-        const exists = Array.from(speed.options).some(
-          (opt) => parseFloat(opt.value).toFixed(2) === r
-        );
-        if (exists) {
-          speed.value = r;
-          customSpeedInput.style.display = "none";
-        } else {
-          speed.value = "custom";
-          customSpeedInput.style.display = "inline-block";
-          customSpeedInput.value = r;
-        }
-      }
-      // =========================== End of Section 18 ===========================
-
-      // =========================== Section 19: Checklist Change Listener ===========================
-      lectureCountInput.addEventListener("change", renderTodoList);
-      // =========================== End of Section 19 ===========================
-
-      // =========================== Section 20: Controls Bar Visibility ===========================
-      let hideControlsTimeout;
-      const controlsBar = document.querySelector(".yt-controls-bar");
-      const videoWrapper = document.querySelector(".video-wrapper");
-
-      function showControls() {
-        controlsBar.classList.remove("hidden");
-        clearTimeout(hideControlsTimeout);
-        hideControlsTimeout = setTimeout(() => {
-          controlsBar.classList.add("hidden");
-        }, 2500);
-      }
-
-      // videoWrapper listeners
-      videoWrapper.addEventListener("mousemove", showControls);
-      videoWrapper.addEventListener("click", showControls);
-      videoWrapper.addEventListener("touchstart", showControls);
-      // =========================== End of Section 20 ===========================
-
-      // =========================== Section 21: Auto Fullscreen Restore ===========================
-      document.addEventListener("visibilitychange", () => {
-        if (document.visibilityState === "hidden") {
-          // 💤 User tab chhod ke gaya — save current fullscreen state
-          wasInFullscreen = !!document.fullscreenElement;
-        } else if (document.visibilityState === "visible") {
-          // 👀 Wapas aaya — restore fullscreen if it was on before
-          if (wasInFullscreen && !document.fullscreenElement) {
-            const wrapper = document.querySelector(".video-wrapper") || video;
-            wrapper.requestFullscreen().catch((err) => {
-              console.warn(
-                "⚠️ Fullscreen auto-restore blocked by browser:",
-                err
-              );
-            });
-          }
-        }
-      });
-
-      // =========================== Section 22: Double Tap & Seek Tooltip ===========================
-      function handleTap(zone, direction) {
-        let lastTap = 0;
-        let tapTimer = null;
-
-        zone.addEventListener("click", (e) => {
-          const now = Date.now();
-          const timeDiff = now - lastTap;
-
-          if (timeDiff < 300) {
-            // ✅ Double Tap Detected
-            clearTimeout(tapTimer); // Cancel single tap
-            if (direction === "left") {
-              seek(-10);
-              showTapFeedback("left");
-            } else {
-              seek(10);
-              showTapFeedback("right");
-            }
-          } else {
-            // ⏸️ Wait to confirm if it's single tap or double
-            tapTimer = setTimeout(() => {
-              if (video.paused) {
-                video.play();
-              } else {
-                video.pause();
-              }
-            }, 300); // Delay to detect if double-tap follows
-          }
-
-          lastTap = now;
-        });
-      }
-
-      function showTapFeedback(direction) {
-        const el =
-          direction === "left"
-            ? document.getElementById("tapLeftFeedback")
-            : document.getElementById("tapRightFeedback");
-
-        if (!el) return;
-
-        el.classList.add("show");
-        clearTimeout(el.timeout);
-        el.timeout = setTimeout(() => {
-          el.classList.remove("show");
-        }, 500); // Hide after 500ms
-      }
-
-      // 🚀 Activate for both left & right zones
-      handleTap(document.getElementById("leftZone"), "left");
-      handleTap(document.getElementById("rightZone"), "right");
-
-      // =========================== Section 23: Screenshot to Clipboard ===========================
-      function captureScreenshotToClipboard() {
-        const canvas = document.createElement("canvas");
-        const ctx = canvas.getContext("2d");
-
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-        canvas.toBlob(async (blob) => {
-          try {
-            await navigator.clipboard.write([
-              new ClipboardItem({
-                "image/png": blob,
-              }),
-            ]);
-            showCenterIcon("📸"); // Optional icon feedback in center
-            console.log("✅ Screenshot copied to clipboard");
-          } catch (err) {
-            console.error("❌ Failed to copy screenshot:", err);
-            alert("❌ Screenshot copy failed! Try in HTTPS or localhost.");
-          }
-        }, "image/png");
-      }
-    </script>
+ </script>
   </body>
 </html>
