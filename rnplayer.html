@@ -6,8 +6,8 @@
 
     <!-- <link rel="stylesheet" href="player.css" /> -->
 
-    <style>
-      /* ==================================================
+<style>
+  /* ==================================================
    🌌 SECTION 1: Base Layout and Theme
 ================================================== */
 body {
@@ -240,6 +240,29 @@ input[type="file"] {
 .container .controls {
   transition: opacity 0.3s ease;
 }
+
+/* ================= Hide Controls + Cursor ================= */
+/* ================================
+   🧠 FINAL Cursor Hide Fix
+================================ */
+
+/* Target everything inside .container */
+.container.hide-controls,
+.container.hide-controls * {
+  cursor: none !important;
+}
+
+/* Specifically video pe bhi force */
+.container.hide-controls video {
+  cursor: none !important;
+}
+
+/* Controls bar opacity */
+.container.hide-controls .yt-controls-bar {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
 /* ==================================================
    🎥 SECTION 13: Fullscreen Styling for Video
 ================================================== */
@@ -612,23 +635,32 @@ input[type="file"] {
 
 
 /* ==================================================
-      🖥️ SECTION 22: hide controls
+      🖥️ SECTION 22: hide controls and cursor
 ================================================== */
-
-.hide-controls {
-  cursor: none; /* 🧠 Hide the cursor */
-}
 
 .container {
   transition: cursor 0.3s ease;
 }
 
+/* 👇 Ye main logic hai */
+.container.hide-controls,
+.container.hide-controls *,
+.container.hide-controls video {
+  cursor: none !important;
+}
+
+/* 👇 Controls bar hide karna */
+.container.hide-controls .yt-controls-bar {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
 
 /* ==================================================
    ✅ END OF CSS FILE
 ================================================== */
 
-    </style>
+</style>
+
   </head>
   <body>
     <div class="container">
@@ -724,7 +756,7 @@ input[type="file"] {
     </div>
 
     <!-- <script src="player.js"></script> -->
- <script>
+<script>
   // =========================== Section 1: DOM Elements ===========================
 const video = document.getElementById("video");
 const fileInput = document.getElementById("fileInput");
@@ -1050,16 +1082,30 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   // 🖱️ Mouse Controls
-  let controlsTimeout;
-  function showControls() {
-    container.classList.remove("hide-controls");
-    clearTimeout(controlsTimeout);
-    controlsTimeout = setTimeout(() => {
-      if (!video.paused) {
-        container.classList.add("hide-controls");
-      }
-    }, 2500);
-  }
+function showControls() {
+  console.log("🖱️ Mouse moved - showControls() called");
+
+  // ✅ Step 1: Controls bar dikhado
+  controlsBar.classList.remove("hidden");
+  container.classList.remove("hide-controls");
+  document.querySelector("video").style.cursor = "default";
+
+  // ✅ Step 2: Clear previous timeout
+  clearTimeout(hideControlsTimeout);
+
+  // ✅ Step 3: Set timeout to hide again
+  hideControlsTimeout = setTimeout(() => {
+    if (!video.paused) {
+      controlsBar.classList.add("hidden");
+      container.classList.add("hide-controls");
+      document.querySelector("video").style.cursor = "none";
+      console.log("⌛ Timeout completed - hide-controls class LAG GAYI ✅");
+    } else {
+      console.log("⏸️ Video paused - controls not hidden");
+    }
+  }, 2500);
+}
+
 
   container.addEventListener("mousemove", showControls);
   video.addEventListener("play", showControls);
@@ -1456,6 +1502,9 @@ function captureScreenshotToClipboard() {
   }, "image/png");
 }
 
- </script>
+
+console.log("👀 Container Classes:", container.classList.value);
+
+</script>
   </body>
 </html>
