@@ -6,7 +6,7 @@
   <title>GATE CSE Study Tracker - RN</title>
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="style15.css" />
+  <link rel="stylesheet" href="style15_normal.css" />
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet" />
@@ -36,7 +36,6 @@
       <span id="countdown">Loading...</span>
     </div>
   </header>
-
   <!-- 🔍 Search Bar -->
   <section class="search-section">
     <input type="text" id="searchInput" class="search-bar" placeholder="🔍 Search ..." />
@@ -49,9 +48,8 @@
     <button class="filter-btn" data-filter="pendingPYQs">❓ Pending PYQs</button>
     <button class="filter-btn" data-filter="pendingMockTests">🧪 Pending Mock Test</button>
     <button class="filter-btn" data-filter="completed">🔰 Fully Completed Subjects</button>
-    <a href="Lecture Tracker Sheet.html">
-      <button class="filter-btn">📓 Lecture Tracker</button>
-    </a>
+<button class="filter-btn" onclick="openProtectedPage()">📓 Lecture Tracker</button>
+
     <a href="ppt_summary_note.html">
       <button class="filter-btn">📙 PPT Summary Note</button>   
     </a>  
@@ -107,8 +105,64 @@
     <span class="tag mern">MERN Developer <span class="emoji">🚀</span></span>
   </footer>
 
+
+
+  <!-- 🔐 Password Modal -->
+<div id="passwordModal" class="hidden">
+  <div class="modal-box">
+    <h2>🔒 Protected Access</h2>
+    <p>Enter password to open Lecture Tracker</p>
+    <input id="passwordInput" type="password" placeholder="Enter password" />
+    <div class="btn-group">
+      <button onclick="checkPassword()">Unlock</button>
+      <button onclick="closeModal()">Cancel</button>
+    </div>
+    <p id="errorText">❌ Incorrect Password!</p>
+  </div>
+</div>
+
   <!-- 📜 Main Script File -->
-  <script type="module" src="script30.js"></script>
+  <script type="module" src="script30_normal.js"></script>
+
+
+<script>
+  // 🔓 Open modal
+  function openProtectedPage() {
+    document.getElementById("passwordModal").classList.remove("hidden");
+    document.getElementById("passwordInput").value = "";
+    document.getElementById("errorText").classList.add("hidden");
+    setTimeout(() => {
+      document.getElementById("passwordInput").focus();
+    }, 100);
+  }
+
+  // ✅ Check password
+  function checkPassword() {
+    const input = document.getElementById("passwordInput").value;
+    if (input === "1312") {
+      window.location.href = "Lecture Tracker Sheet.html";
+    } else {
+      document.getElementById("errorText").classList.remove("hidden");
+    }
+  }
+
+  // ❌ Close modal
+  function closeModal() {
+    document.getElementById("passwordModal").classList.add("hidden");
+  }
+
+  // 🛑 ESC key closes modal
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeModal();
+  });
+
+  // 🔁 ENTER key triggers login
+  document.getElementById("passwordInput").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      checkPassword();
+    }
+  });
+</script>
 
 </body>
 </html>
