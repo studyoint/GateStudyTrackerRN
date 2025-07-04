@@ -1435,43 +1435,42 @@
       /* ==================================================================
    [Section 27] → copy log button
    ================================================================== */
-     .copy-log-btn {
-  position: absolute;
-  bottom: 12px;
-  right: 12px;
-  background-color: #1f1f1f;
-  border: 1px solid #444;
-  color: #fff;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 16px;
-  width: 38px;
-  height: 38px;
-  text-align: center;
-  line-height: 38px;
-  padding: 0;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-  z-index: 99;
-}
+      .copy-log-btn {
+        position: absolute;
+        bottom: 12px;
+        right: 12px;
+        background-color: #1f1f1f;
+        border: 1px solid #444;
+        color: #fff;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 16px;
+        width: 38px;
+        height: 38px;
+        text-align: center;
+        line-height: 38px;
+        padding: 0;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        z-index: 99;
+      }
 
-.copy-log-btn:hover {
-  background-color: #333;
-  transform: scale(1.1);
-}
+      .copy-log-btn:hover {
+        background-color: #333;
+        transform: scale(1.1);
+      }
 
-/* ✅ Mobile-Friendly */
-@media (max-width: 768px) {
-  .copy-log-btn {
-    width: 34px;
-    height: 34px;
-    font-size: 14px;
-    line-height: 34px;
-    bottom: 10px;
-    right: 10px;
-  }
-}
-
+      /* ✅ Mobile-Friendly */
+      @media (max-width: 768px) {
+        .copy-log-btn {
+          width: 34px;
+          height: 34px;
+          font-size: 14px;
+          line-height: 34px;
+          bottom: 10px;
+          right: 10px;
+        }
+      }
     </style>
 
     <link
@@ -1603,6 +1602,7 @@
       let sprintEndTime = null;
       let startedAs = "timer";
       let sprintBreaks = [];
+      let timerRunning = false; // ✅ NEW: track if timer was running
 
       // DOM references for UI elements
       const elapsedTimeDisplay = document.querySelector("#elapsed-time span");
@@ -1734,6 +1734,11 @@
         });
 
         if (!sprintStartTime) {
+          sprintStartTime = Date.now(); // ✅ Save actual system timestamp
+        }
+        timerRunning = true; // ✅ Mark as running
+
+        if (!sprintStartTime) {
           sprintStartTime = getCurrentTime();
         }
 
@@ -1807,6 +1812,7 @@
           runningMessage.style.display = "block";
 
         saveTimerSessionBtn.classList.add("hidden");
+        saveToLocal(); // ✅ Add this if not already saving
       }
 
       // ===================== Part 4: Pause and Reset Functions =====================
@@ -1830,6 +1836,8 @@
           // Start a new break
           sprintBreaks.push({ start: now, end: null, duration: 0 });
         }
+
+        timerRunning = false; // ✅ Mark as paused
 
         saveToLocal();
 
@@ -2003,6 +2011,7 @@
             sprintStartTime, // ✅ add this
             sprintEndTime, // ✅ Add this
             sprintBreaks, // ✅ NEW ADD THIS LINE
+            timerRunning, // ✅ NEW LINE
           })
         );
       }
@@ -2021,6 +2030,16 @@
 
           titleInput.value = customTitle;
           fullscreenTitle.textContent = customTitle || "Study Sprint";
+        }
+
+        timerRunning = saved.timerRunning || false;
+
+        // ✅ Recalculate elapsed time if running
+        if (timerRunning && saved.sprintStartTime) {
+          const now = Date.now();
+          const diffSeconds = Math.floor((now - saved.sprintStartTime) / 1000);
+          elapsedSeconds = diffSeconds;
+          startTimer(); // ✅ Auto resume
         }
       }
 
