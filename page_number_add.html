@@ -1,0 +1,807 @@
+<!-- ================================================== -->
+<!-- 📁 SECTION 1: Basic HTML Setup -->
+<!-- ================================================== -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🕸️_add_page_number</title>
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <style>
+      /* ==================================================
+📁 SECTION 1: Body & Background
+================================================== */
+      /* ✅ GLOBAL FIX */
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", monospace;
+        background: radial-gradient(
+          ellipse at center,
+          #000000 0%,
+          #0a0a0a 100%
+        );
+        color: #00ffff;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 40px;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
+      /* ================================================== */
+
+      /* ==================================================
+📁 SECTION 2: Main Container
+================================================== */
+      .container {
+        background: linear-gradient(135deg, #121212, #1a1a1a);
+        border: 2px solid #00ffffcc;
+        border-radius: 20px;
+        padding: 40px;
+        width: 90%;
+        max-width: 650px;
+        box-shadow: 0 0 40px #00ffff88;
+        text-align: center;
+        transition: all 0.3s ease-in-out;
+        backdrop-filter: blur(4px);
+      }
+      /* ================================================== */
+
+      /* ==================================================
+📁 SECTION 3: Headings
+================================================== */
+      h1 {
+        margin-bottom: 25px;
+        font-size: 32px;
+        color: #00ffff;
+        text-shadow: 0 0 12px #00ffffaa, 0 0 20px #00ffff88;
+      }
+
+      h2 {
+        color: #00ccff;
+        margin-bottom: 10px;
+        font-size: 20px;
+      }
+      /* ================================================== */
+
+      /* ==================================================
+📁 SECTION 4: Inputs, Buttons, Links
+================================================== */
+      input[type="file"],
+      button,
+      a {
+        display: block;
+        width: fit-content;
+        margin: 15px auto;
+        padding: 12px 28px;
+        font-size: 17px;
+        background: #1f1f1f;
+        color: #00ffff;
+        border: 2px solid #00ffff;
+        border-radius: 12px;
+        cursor: pointer;
+        box-shadow: 0 0 14px #00ffff99;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      button:hover,
+      a:hover,
+      input[type="file"]:hover {
+        background-color: #00ffff;
+        color: #000000;
+        box-shadow: 0 0 25px #00ffff;
+      }
+      /* ================================================== */
+
+      /* ==================================================
+📁 SECTION 5: Preview Box
+================================================== */
+      .preview-box {
+        margin: 40px auto;
+        width: 95%;
+        max-width: 900px;
+        padding: 25px;
+        background: #1a1a1a;
+        border-radius: 20px;
+        box-shadow: 0 0 30px #00ffff66;
+        display: none;
+        text-align: center;
+      }
+
+      .preview-container canvas {
+        width: 100% !important;
+        height: auto !important;
+        margin: 30px 0;
+        box-shadow: 0 0 20px #00ffff44;
+        border: 1px solid #333;
+        border-radius: 8px;
+      }
+      /* ================================================== */
+      /* ==================================================
+📁 SECTION 6: Responsive Fixes - Mobile Friendly
+================================================== */
+      @media screen and (max-width: 768px) {
+        h1 {
+          font-size: 24px;
+          line-height: 1.4;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+
+        .container {
+          width: 92%;
+          max-width: 95vw;
+          margin: 0 auto;
+
+          padding: 22px 18px;
+          border-radius: 16px;
+          box-shadow: 0 0 20px #00ffff88;
+        }
+
+        input[type="file"],
+        button,
+        a {
+          font-size: 15px;
+          padding: 12px 22px;
+          width: 100%;
+          max-width: 280px;
+          text-align: center;
+        }
+
+        .preview-box {
+          padding: 18px;
+          box-shadow: 0 0 18px #00ffff55;
+          border-radius: 14px;
+          margin-top: 25px;
+        }
+
+        .preview-container canvas {
+          width: 100% !important;
+          margin: 20px 0;
+          box-shadow: 0 0 10px #00ffff33;
+          border-radius: 6px;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        h1 {
+          font-size: 20px;
+          letter-spacing: 0.5px;
+        }
+
+        .container {
+          padding: 18px 14px;
+          border-radius: 16px;
+        }
+
+        input[type="file"],
+        button,
+        a {
+          font-size: 14px;
+          padding: 10px 18px;
+          width: 100%;
+          max-width: 260px;
+        }
+
+        .preview-box {
+          padding: 16px;
+          margin-top: 20px;
+        }
+
+        #scrollTopBtn,
+        #scrollBottomBtn {
+          bottom: 20px;
+          right: 20px;
+          font-size: 18px;
+          padding: 10px 14px;
+        }
+      }
+      /* ================================================== */
+
+      /* ==================================================
+📁 SECTION 7: Scroll To Top Button (Improved)
+================================================== */
+      #scrollTopBtn {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        background-color: #00ffff;
+        color: #000;
+        border: none;
+        border-radius: 50%;
+        padding: 10px 14px;
+        font-size: 18px;
+        box-shadow: 0 0 18px #00ffffaa;
+        cursor: pointer;
+        z-index: 9999;
+        display: none;
+        transition: all 0.3s ease;
+      }
+
+      #scrollTopBtn:hover {
+        background-color: #00cccc;
+        box-shadow: 0 0 24px #00ffff;
+      }
+      /* ================================================== */
+
+      /* ==================================================
+📁 SECTION 8: Scroll To Bottom Button (Improved)
+================================================== */
+      #scrollBottomBtn {
+        position: fixed;
+        bottom: 75px;
+        right: 25px;
+        background-color: #00ffff;
+        color: #000;
+        border: none;
+        border-radius: 50%;
+        padding: 10px 14px;
+        font-size: 18px;
+        box-shadow: 0 0 18px #00ffffaa;
+        cursor: pointer;
+        z-index: 9999;
+        display: none;
+        transition: all 0.3s ease;
+      }
+
+      #scrollBottomBtn:hover {
+        background-color: #00cccc;
+        box-shadow: 0 0 24px #00ffff;
+      }
+      /* ================================================== */
+
+      /* ==================================================
+/* ==================================================
+📱 Responsive: Scroll Buttons on Mobile (Ultra Compact)
+================================================== */
+      @media screen and (max-width: 480px) {
+        #scrollTopBtn,
+        #scrollBottomBtn {
+          width: 42px;
+          height: 42px;
+          padding: 0;
+          font-size: 20px;
+          border-radius: 50%;
+          right: 12px;
+          box-shadow: 0 0 10px #00ffff88;
+          line-height: 42px;
+          text-align: center;
+        }
+
+        #scrollTopBtn {
+          bottom: 16px;
+        }
+
+        #scrollBottomBtn {
+          bottom: 62px;
+        }
+      }
+
+      /* ================================================== */
+
+      /* ==================================================
+📁 SECTION 9: List Hover Effect
+================================================== */
+      #pdfList li:hover {
+        background-color: #00ffff22;
+        color: #00ffff;
+      }
+      /* ================================================== */
+    </style>
+  </head>
+  <!-- ================================================== -->
+
+  <!-- ================================================== -->
+  <!-- 📁 SECTION 2: Body UI -->
+  <!-- ================================================== -->
+  <body>
+    <div class="container">
+      <h1>🕸️ Add Page Number</h1>
+
+      <!-- Upload Input -->
+      <input type="file" id="pdfInput" accept="application/pdf" multiple />
+
+      <!-- Action Buttons -->
+      <button id="processBtn">Add Page Numbers</button>
+      <button id="previewBtn" style="display: none">🔍 Show Preview</button>
+
+      <!-- Download -->
+      <a id="downloadLink" style="display: none">📥 Download Numbered PDF</a>
+    </div>
+
+    <!-- Scrollable Preview Box -->
+    <div id="previewBox" class="preview-box" style="display: none">
+      <h2>📄 PDF Preview:</h2>
+      <div id="preview" class="preview-container"></div>
+    </div>
+
+    <!-- ================================================== -->
+    <!-- 🔽 PDF Selection List (Only if multiple files uploaded) -->
+    <!-- ================================================== -->
+    <div id="pdfListBox" class="container" style="display: none">
+      <h2>Select a PDF to Preview</h2>
+      <ul id="pdfList" style="list-style: none; padding: 0"></ul>
+    </div>
+
+    <!-- ================================================== -->
+    <!-- ⏫ Scroll to Top Button -->
+    <!-- ================================================== -->
+    <button id="scrollTopBtn" title="Scroll to Top">⏫</button>
+
+    <!-- ⏬ Scroll to Bottom Button -->
+    <button id="scrollBottomBtn" title="Scroll to Bottom">⏬</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+    <!-- Libraries -->
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <script>
+      // ==================================================
+      // 📁 SECTION 1: DOM Elements
+      // ==================================================
+      const pdfInput = document.getElementById("pdfInput");
+      const processBtn = document.getElementById("processBtn");
+      const downloadLink = document.getElementById("downloadLink");
+      const previewContainer = document.getElementById("preview");
+      const previewBox = document.getElementById("previewBox");
+      const previewBtn = document.getElementById("previewBtn");
+      const pdfListBox = document.getElementById("pdfListBox");
+      const pdfList = document.getElementById("pdfList");
+
+      let currentPDFBytes = null; // 🧠 Store processed PDF to re-render preview
+      let isPreviewVisible = false; // 🧠 Track preview state
+      let uploadedFiles = []; // 🧠 Store all uploaded files
+      let processedPDFMap = new Map(); // 🧠 Stores: file.name → numbered PDF bytes
+
+      // ==================================================
+
+      // ==================================================
+      // 📁 SECTION 2: On Process Button Click
+      // ==================================================
+      processBtn.addEventListener("click", async () => {
+        const files = pdfInput.files;
+        uploadedFiles = Array.from(files); // store all uploaded files
+
+        if (!files.length) {
+          alert("Please upload at least one PDF!");
+          return;
+        }
+
+        // 🧠 If only one file → process and download directly
+        if (files.length === 1) {
+          const file = files[0];
+          const arrayBuffer = await file.arrayBuffer();
+          const typedArray = new Uint8Array(arrayBuffer);
+          const outputBytes = await addPageNumbers(typedArray);
+          processedPDFMap.set(file.name, outputBytes); // ✅ Save
+
+          const blob = new Blob([outputBytes], { type: "application/pdf" });
+          const url = URL.createObjectURL(blob);
+
+          downloadLink.href = url;
+          downloadLink.download = `${file.name}`;
+          downloadLink.textContent = "📥 Download Numbered PDF";
+          downloadLink.style.display = "inline-block";
+
+          previewBtn.style.display = "inline-block";
+          return;
+        }
+
+        const zip = new JSZip();
+
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          const arrayBuffer = await file.arrayBuffer();
+          const typedArray = new Uint8Array(arrayBuffer);
+          const outputBytes = await addPageNumbers(typedArray);
+          processedPDFMap.set(file.name, outputBytes); // ✅ Save numbered version
+
+          zip.file(`${file.name}`, outputBytes);
+        }
+
+        const zipBlob = await zip.generateAsync({ type: "blob" });
+        const url = URL.createObjectURL(zipBlob);
+
+        downloadLink.href = url;
+        downloadLink.download = "pdfs.zip";
+        downloadLink.textContent = "📦 Download All PDFs (ZIP)";
+        downloadLink.style.display = "inline-block";
+
+        previewBtn.style.display = "inline-block"; // ✅ Always show preview button
+      });
+      // ==================================================
+
+      // ==================================================
+      // 📁 SECTION 3: Add Page Numbers to PDF
+      // ==================================================
+      async function addPageNumbers(pdfBytes) {
+        const pdfDoc = await PDFLib.PDFDocument.load(pdfBytes);
+        const pages = pdfDoc.getPages();
+        const font = await pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold);
+
+        pages.forEach((page, index) => {
+          const fontSize = 12;
+          const text = `[${index + 1}/${pages.length}]`;
+
+          page.drawText(text, {
+            x: 20, // Left padding
+            y: 20, // Bottom padding
+            size: fontSize,
+            font: font,
+            color: PDFLib.rgb(0, 1, 1), // Neon cyan (only for PDF)
+          });
+        });
+
+        return await pdfDoc.save();
+      }
+      // ==================================================
+
+      // ==================================================
+      // 📁 SECTION 4: Setup Download Link
+      // ==================================================
+      function prepareDownload(pdfBytes) {
+        const blob = new Blob([pdfBytes], { type: "application/pdf" });
+        const url = URL.createObjectURL(blob);
+
+        downloadLink.href = url;
+        downloadLink.download = "output.pdf";
+        downloadLink.style.display = "inline-block";
+        downloadLink.textContent = "📥 Download Numbered PDF";
+      }
+      // ==================================================
+
+      // ==================================================
+      // 📁 SECTION 5: Show PDF Preview Using pdf.js
+      // ==================================================
+      async function showPreview(pdfBytes) {
+        previewContainer.innerHTML = "";
+
+        const blob = new Blob([pdfBytes], { type: "application/pdf" });
+        const url = URL.createObjectURL(blob);
+
+        const loadingTask = pdfjsLib.getDocument(url);
+        const pdf = await loadingTask.promise;
+
+        for (let i = 1; i <= pdf.numPages; i++) {
+          const page = await pdf.getPage(i);
+          const viewport = page.getViewport({ scale: 1.0 });
+
+          const canvas = document.createElement("canvas");
+          const context = canvas.getContext("2d");
+          canvas.height = viewport.height;
+          canvas.width = viewport.width;
+
+          await page.render({ canvasContext: context, viewport }).promise;
+          previewContainer.appendChild(canvas);
+        }
+      }
+
+      // ==================================================
+
+      // ==================================================
+      // 📁 SECTION 6: Show Preview Button Smart Logic
+      // ==================================================
+      // ==================================================
+      // 📁 SECTION 6: Show/Hide Preview Toggle Button Logic
+      // ==================================================
+      previewBtn.onclick = () => {
+        if (isPreviewVisible) {
+          // Hide preview
+          previewBox.style.display = "none";
+          pdfListBox.style.display = "none";
+          previewBtn.textContent = "👁️ Show Preview";
+          isPreviewVisible = false;
+          return;
+        }
+
+        if (uploadedFiles.length === 0) {
+          alert("Please upload a PDF first.");
+          return;
+        }
+
+        if (uploadedFiles.length === 1) {
+          previewBox.style.display = "block";
+          pdfListBox.style.display = "none";
+          previewBtn.textContent = "🙈 Hide Preview";
+          isPreviewVisible = true;
+          showPreviewFromFile(uploadedFiles[0]);
+          return;
+        }
+
+        // Multiple PDFs → show list to choose
+        pdfListBox.style.display = "block";
+        previewBox.style.display = "none";
+        previewBtn.textContent = "🙈 Hide Preview";
+        isPreviewVisible = true;
+        renderPDFList(uploadedFiles);
+      };
+      // ==================================================
+
+      // ==================================================
+
+      // ==================================================
+      // 📁 SECTION 7: Render PDF List UI
+      // ==================================================
+      function renderPDFList(files) {
+        pdfList.innerHTML = "";
+
+        files.forEach((file, index) => {
+          const li = document.createElement("li");
+          li.textContent = `📄 ${file.name}`;
+          li.style.cursor = "pointer";
+          li.style.margin = "10px 0";
+          li.style.padding = "8px 12px";
+          li.style.border = "1px solid #00ffff";
+          li.style.borderRadius = "10px";
+          li.style.boxShadow = "0 0 10px #00ffff55";
+          li.addEventListener("click", () => {
+            pdfListBox.style.display = "none";
+            previewBox.style.display = "block";
+            previewBtn.textContent = "🙈 Hide Preview";
+            isPreviewVisible = true;
+            showPreviewFromFile(file);
+          });
+
+          pdfList.appendChild(li);
+        });
+      }
+      // ==================================================
+
+      // ==================================================
+      // 📁 SECTION 8: Preview Helper Function for Single File
+      // ==================================================
+      // ==================================================
+      // 📁 SECTION 8: Preview Helper Function for Single File
+      // ==================================================
+      async function showPreviewFromFile(file) {
+        const processedBytes = processedPDFMap.get(file.name);
+
+        if (processedBytes) {
+          currentPDFBytes = processedBytes;
+          previewBox.style.display = "block"; // ensure it's visible
+          showPreview(processedBytes); // ✅ Show numbered version
+        } else {
+          const arrayBuffer = await file.arrayBuffer();
+          const typedArray = new Uint8Array(arrayBuffer);
+          currentPDFBytes = typedArray;
+          previewBox.style.display = "block"; // ensure it's visible
+          showPreview(typedArray); // fallback if missing
+        }
+      }
+      // ==================================================
+
+      // ==================================================
+
+      // ==================================================
+      // 📁 SECTION 9: Scroll to Top Button Logic
+      // ==================================================
+      const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+      window.onscroll = () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight;
+        const winHeight = window.innerHeight;
+
+        scrollTopBtn.style.display = scrollTop > 200 ? "block" : "none";
+        scrollBottomBtn.style.display =
+          scrollTop + winHeight < docHeight - 200 ? "block" : "none";
+      };
+
+      scrollTopBtn.onclick = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      };
+      // ==================================================
+
+      // ==================================================
+      // 📁 SECTION 10: Scroll to Bottom Button Logic
+      // ==================================================
+      const scrollBottomBtn = document.getElementById("scrollBottomBtn");
+
+      scrollBottomBtn.onclick = () => {
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: "smooth",
+        });
+      };
+      // ==================================================
+    </script>
+
+
+    <!-- stylish RN footer  start   -->
+
+    <script>
+      (function () {
+        // ===== FOOTER CSS =====
+        const css = `
+  .footer_style {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 14px 24px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-align: center;
+    background: rgba(10, 10, 20, 0.6);
+    backdrop-filter: blur(12px);
+    z-index: 9999;
+    box-shadow: 0 -3px 25px rgba(0, 255, 255, 0.2);
+    text-shadow:
+      0 0 5px #ffdd00,
+      0 0 10px #ffd700,
+      0 0 20px #ffbf00,
+      0 0 30px #ffbf00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+
+  .footer-divider {
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 2px;
+    width: 80%;
+    z-index: 9998;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    margin-bottom: 13px; 
+      }
+
+  .footer-divider::before,
+  .footer-divider::after {
+    content: '';
+    flex: 1;
+    height: 100%;
+    background: linear-gradient(to right, transparent, #00ffffaa);
+    animation: growLeft 2.5s ease-in-out infinite;
+  }
+
+  .footer-divider::after {
+    background: linear-gradient(to left, transparent, #00ffffaa);
+    animation: growRight 2.5s ease-in-out infinite;
+  }
+
+  @keyframes growLeft {
+    0% { transform: scaleX(0); opacity: 0; }
+    50% { transform: scaleX(1); opacity: 1; }
+    100% { transform: scaleX(0); opacity: 0; }
+  }
+
+  @keyframes growRight {
+    0% { transform: scaleX(0); opacity: 0; }
+    50% { transform: scaleX(1); opacity: 1; }
+    100% { transform: scaleX(0); opacity: 0; }
+  }
+
+  .footer_style .tag {
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 8px;
+    animation: flickerGlow 4s infinite ease-in-out alternate;
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+  }
+
+  .footer_style .emoji {
+    display: inline-block;
+    animation: bounceUpDown 1.8s ease-in-out infinite;
+    transform-origin: center bottom;
+    font-size: 1.3rem;
+    margin-left: 4px;
+  }
+
+  @keyframes rnColor {
+    0% { color: #00fff7; text-shadow: 0 0 10px #00fff7; }
+    25% { color: #33f0ff; text-shadow: 0 0 12px #33f0ff; }
+    50% { color: #00ffcc; text-shadow: 0 0 14px #00ffcc; }
+    75% { color: #66ffea; text-shadow: 0 0 16px #66ffea; }
+    100% { color: #00fff7; text-shadow: 0 0 18px #00fff7; }
+  }
+
+  @keyframes gateColor {
+    0% { color: #ff00c8; text-shadow: 0 0 10px #ff00c8; }
+    25% { color: #ff33dd; text-shadow: 0 0 12px #ff33dd; }
+    50% { color: #ff66e0; text-shadow: 0 0 14px #ff66e0; }
+    75% { color: #ff99f2; text-shadow: 0 0 16px #ff99f2; }
+    100% { color: #ff00c8; text-shadow: 0 0 18px #ff00c8; }
+  }
+
+  @keyframes mernColor {
+    0% { color: #ffd700; text-shadow: 0 0 10px #ffd700; }
+    25% { color: #ffbf00; text-shadow: 0 0 12px #ffbf00; }
+    50% { color: #ff9900; text-shadow: 0 0 14px #ff9900; }
+    75% { color: #ffaa33; text-shadow: 0 0 16px #ffaa33; }
+    100% { color: #ffd700; text-shadow: 0 0 18px #ffd700; }
+  }
+
+  @keyframes flickerGlow {
+    0%,18%,22%,25%,53%,57%,100% {
+      opacity: 1;
+      text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+    }
+    20%,24%,55% {
+      opacity: 0.75;
+      text-shadow: none;
+    }
+  }
+
+  @keyframes bounceUpDown {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  .footer_style .rn   { animation: rnColor 6s linear infinite, flickerGlow 4s infinite ease-in-out alternate; }
+  .footer_style .gate { animation: gateColor 6s linear infinite, flickerGlow 4s infinite ease-in-out alternate; }
+  .footer_style .mern { animation: mernColor 6s linear infinite, flickerGlow 4s infinite ease-in-out alternate; }
+
+  @media (max-width: 480px) {
+    .footer_style {
+      font-size: 0.72rem;
+      padding: 10px 10px;
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .footer_style .tag {
+      font-size: 0.72rem;
+      padding: 3px 6px;
+    }
+    .footer_style .emoji {
+      font-size: 1rem;
+      animation: bounceUpDown 1.6s ease-in-out infinite;
+    }
+
+    .footer-divider {
+
+    margin-bottom: 0px; 
+      }
+  }`;
+
+        const styleTag = document.createElement("style");
+        styleTag.textContent = css;
+        document.head.appendChild(styleTag);
+
+        // ===== FOOTER HTML =====
+        const footer = document.createElement("footer");
+        footer.className = "footer_style";
+        footer.innerHTML = `
+    <span class="tag rn">Made by RN <span class="emoji">👨‍🎓</span></span> |
+    <span class="tag gate">GATE Aspirant <span class="emoji">🎓</span></span> |
+    <span class="tag mern">MERN Developer <span class="emoji">🚀</span></span>
+  `;
+
+        const divider = document.createElement("div");
+        divider.className = "footer-divider";
+
+        document.addEventListener("DOMContentLoaded", () => {
+          document.body.appendChild(divider);
+          document.body.appendChild(footer);
+
+          // === OPTIONAL: YEAR future use ===
+          // const yearSpan = document.createElement('span');
+          // yearSpan.style.margin = '0 6px';
+          // yearSpan.textContent = new Date().getFullYear();
+          // footer.insertBefore(yearSpan, footer.querySelector('.rn'));
+        });
+      })();
+    </script>
+
+        <!-- stylish RN footer  end   -->
+
+  </body>
+  <!-- ================================================== -->
+</html>
