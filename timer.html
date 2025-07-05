@@ -1435,42 +1435,43 @@
       /* ==================================================================
    [Section 27] → copy log button
    ================================================================== */
-      .copy-log-btn {
-        position: absolute;
-        bottom: 12px;
-        right: 12px;
-        background-color: #1f1f1f;
-        border: 1px solid #444;
-        color: #fff;
-        border-radius: 50%;
-        cursor: pointer;
-        font-size: 16px;
-        width: 38px;
-        height: 38px;
-        text-align: center;
-        line-height: 38px;
-        padding: 0;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-        z-index: 99;
-      }
+     .copy-log-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background-color: #1f1f1f;
+  border: 1px solid #444;
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  width: 38px;
+  height: 38px;
+  text-align: center;
+  line-height: 38px;
+  padding: 0;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  z-index: 99;
+}
 
-      .copy-log-btn:hover {
-        background-color: #333;
-        transform: scale(1.1);
-      }
+.copy-log-btn:hover {
+  background-color: #333;
+  transform: scale(1.1);
+}
 
-      /* ✅ Mobile-Friendly */
-      @media (max-width: 768px) {
-        .copy-log-btn {
-          width: 34px;
-          height: 34px;
-          font-size: 14px;
-          line-height: 34px;
-          bottom: 10px;
-          right: 10px;
-        }
-      }
+/* ✅ Mobile-Friendly */
+@media (max-width: 768px) {
+  .copy-log-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+    line-height: 34px;
+    bottom: 10px;
+    right: 10px;
+  }
+}
+
     </style>
 
     <link
@@ -1587,8 +1588,6 @@
       <!-- <button id="copy-log-btn" class="copy-log-btn">📋 Copy Log</button> -->
     </div>
 
-
-
     <!-- <script src="script.js"></script> -->
     <script>
       // ===================== Part 1: Variable Initialization =====================
@@ -1650,37 +1649,27 @@
 
       // ========== Wake Lock Setup ==========
       // ========== Wake Lock Setup ==========
-// ===================== 🔒 Wake Lock Setup (Always ON) =====================
-// ===================== 🔒 Wake Lock Setup (Permanent) =====================
-let wakeLock = null;
+      let wakeLock = null;
 
-async function requestWakeLock() {
-  try {
-    wakeLock = await navigator.wakeLock.request("screen");
-    console.log("✅ Wake Lock active");
+      async function requestWakeLock() {
+        try {
+          if ("wakeLock" in navigator) {
+            wakeLock = await navigator.wakeLock.request("screen");
+            console.log("✅ Wake Lock active");
 
-    wakeLock.addEventListener("release", () => {
-      console.warn("❌ Wake Lock released. Trying again...");
-      requestWakeLock(); // Auto retry
-    });
-  } catch (err) {
-    console.error("⚠️ Wake Lock error:", err.name, err.message);
-  }
-}
+            wakeLock.addEventListener("release", () => {
+              console.log("🔓 Wake Lock released");
+            });
+          }
+        } catch (err) {
+          console.error("⚠️ Wake Lock error:", err.name, err.message);
+        }
+      }
 
-// WakeLock har baar tab active hone pe request kare
-document.addEventListener("visibilitychange", () => {
-  if (document.visibilityState === "visible") {
-    requestWakeLock();
-  }
-});
-
-// Page load par request karo
-window.addEventListener("DOMContentLoaded", () => {
-  requestWakeLock();
-});
-
-
+      // Try again when tab becomes visible
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") requestWakeLock();
+      });
 
       // ===================== Part 2: Window Event Listeners =====================
       // Load saved data from localStorage when the page loads
@@ -1689,13 +1678,12 @@ window.addEventListener("DOMContentLoaded", () => {
         updateDisplay();
         renderSprintHistory();
         setInterval(autoResetDaily, 60 * 1000);
-        requestWakeLock();
-
 
         // ✅ Only set text if modeStatus element exists
         if (typeof modeStatus !== "undefined" && modeStatus)
           modeStatus.textContent = "Current Mode: Focus";
 
+        requestWakeLock();
       });
 
       // ✅ Step 3: Unlock audio on first click
@@ -1819,7 +1807,6 @@ window.addEventListener("DOMContentLoaded", () => {
           runningMessage.style.display = "block";
 
         saveTimerSessionBtn.classList.add("hidden");
-
       }
 
       // ===================== Part 4: Pause and Reset Functions =====================
@@ -2390,10 +2377,10 @@ ${breakInfoText}`;
       setInterval(updateFullscreenClock, 1000);
 
       // =================================================
-  
+      // screen on
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") requestWakeLock();
+      });
     </script>
-    
-
-    
   </body>
 </html>
