@@ -2602,9 +2602,18 @@ document.addEventListener("fullscreenchange", () => {
           // footer.insertBefore(yearSpan, footer.querySelector('.rn'));
         });
       })();
+
+
+
+          // screen on
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") requestWakeLock();
+      });
+
     </script>
 
         <!-- stylish RN footer  end   -->
+    
     
   </body>
 </html>
