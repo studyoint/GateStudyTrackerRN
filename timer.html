@@ -2402,22 +2402,14 @@ ${breakInfoText}`;
       });
 
 
-    //   footer hide section ================================
+          // screen on
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") requestWakeLock();
+      });
 
-    // ================= FULLSCREEN FOOTER LOGIC =================
-document.addEventListener("fullscreenchange", () => {
-  const footer = document.querySelector(".footer_style"); // footer div
-  if (!footer) return;
 
-  if (document.fullscreenElement) {
-    // User has entered fullscreen
-    footer.style.display = "none";
-  } else {
-    // User exited fullscreen
-    footer.style.display = "block";
-  }
-});
 
+      
     </script>
         <!-- stylish RN footer  start   -->
 
@@ -2603,12 +2595,19 @@ document.addEventListener("fullscreenchange", () => {
         });
       })();
 
+    // ================= FULLSCREEN FOOTER LOGIC =================
+document.addEventListener("fullscreenchange", () => {
+  const footer = document.querySelector(".footer_style"); // footer div
+  if (!footer) return;
 
-
-          // screen on
-      document.addEventListener("visibilitychange", () => {
-        if (document.visibilityState === "visible") requestWakeLock();
-      });
+  if (document.fullscreenElement) {
+    // User has entered fullscreen
+    footer.style.display = "none";
+  } else {
+    // User exited fullscreen
+    footer.style.display = "block";
+  }
+});
 
     </script>
 
