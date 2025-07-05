@@ -1651,36 +1651,35 @@
       // ========== Wake Lock Setup ==========
       // ========== Wake Lock Setup ==========
 // ===================== 🔒 Wake Lock Setup (Always ON) =====================
+// ===================== 🔒 Wake Lock Setup (Permanent) =====================
 let wakeLock = null;
 
-// Request wake lock (keeps screen ON)
 async function requestWakeLock() {
   try {
-    if ('wakeLock' in navigator) {
-      wakeLock = await navigator.wakeLock.request('screen');
-      console.log('✅ Wake Lock active');
+    wakeLock = await navigator.wakeLock.request("screen");
+    console.log("✅ Wake Lock active");
 
-      wakeLock.addEventListener('release', () => {
-        console.warn('❌ Wake Lock released. Reacquiring...');
-        requestWakeLock(); // Try again automatically
-      });
-    }
+    wakeLock.addEventListener("release", () => {
+      console.warn("❌ Wake Lock released. Trying again...");
+      requestWakeLock(); // Auto retry
+    });
   } catch (err) {
-    console.error('⚠️ Wake Lock error:', err.name, err.message);
+    console.error("⚠️ Wake Lock error:", err.name, err.message);
   }
 }
 
-// Reacquire if tab becomes visible again
-document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'visible') {
+// WakeLock har baar tab active hone pe request kare
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") {
     requestWakeLock();
   }
 });
 
-// Retry periodically every 15 sec if wakelock lost
-setInterval(() => {
-  if (!wakeLock) requestWakeLock();
-}, 15000);
+// Page load par request karo
+window.addEventListener("DOMContentLoaded", () => {
+  requestWakeLock();
+});
+
 
 
       // ===================== Part 2: Window Event Listeners =====================
@@ -1690,13 +1689,13 @@ setInterval(() => {
         updateDisplay();
         renderSprintHistory();
         setInterval(autoResetDaily, 60 * 1000);
+        requestWakeLock();
 
 
         // ✅ Only set text if modeStatus element exists
         if (typeof modeStatus !== "undefined" && modeStatus)
           modeStatus.textContent = "Current Mode: Focus";
 
-        requestWakeLock();
       });
 
       // ✅ Step 3: Unlock audio on first click
