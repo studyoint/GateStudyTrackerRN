@@ -2400,6 +2400,24 @@ ${breakInfoText}`;
       document.addEventListener("visibilitychange", () => {
         if (document.visibilityState === "visible") requestWakeLock();
       });
+
+
+    //   footer hide section ================================
+
+    // ================= FULLSCREEN FOOTER LOGIC =================
+document.addEventListener("fullscreenchange", () => {
+  const footer = document.querySelector(".footer_style"); // footer div
+  if (!footer) return;
+
+  if (document.fullscreenElement) {
+    // User has entered fullscreen
+    footer.style.display = "none";
+  } else {
+    // User exited fullscreen
+    footer.style.display = "block";
+  }
+});
+
     </script>
         <!-- stylish RN footer  start   -->
 
@@ -2539,7 +2557,8 @@ ${breakInfoText}`;
       flex-direction: row;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 4px;
+    //   gap: 4px;
+    //   max-height:60px;
     }
     .footer_style .tag {
       font-size: 0.72rem;
