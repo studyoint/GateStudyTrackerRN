@@ -1650,27 +1650,38 @@
 
       // ========== Wake Lock Setup ==========
       // ========== Wake Lock Setup ==========
-      let wakeLock = null;
+// ===================== 🔒 Wake Lock Setup (Always ON) =====================
+let wakeLock = null;
 
-      async function requestWakeLock() {
-        try {
-          if ("wakeLock" in navigator) {
-            wakeLock = await navigator.wakeLock.request("screen");
-            console.log("✅ Wake Lock active");
+// Request wake lock (keeps screen ON)
+async function requestWakeLock() {
+  try {
+    if ('wakeLock' in navigator) {
+      wakeLock = await navigator.wakeLock.request('screen');
+      console.log('✅ Wake Lock active');
 
-            wakeLock.addEventListener("release", () => {
-              console.log("🔓 Wake Lock released");
-            });
-          }
-        } catch (err) {
-          console.error("⚠️ Wake Lock error:", err.name, err.message);
-        }
-      }
-
-      // Try again when tab becomes visible
-      document.addEventListener("visibilitychange", () => {
-        if (document.visibilityState === "visible") requestWakeLock();
+      wakeLock.addEventListener('release', () => {
+        console.warn('❌ Wake Lock released. Reacquiring...');
+        requestWakeLock(); // Try again automatically
       });
+    }
+  } catch (err) {
+    console.error('⚠️ Wake Lock error:', err.name, err.message);
+  }
+}
+
+// Reacquire if tab becomes visible again
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') {
+    requestWakeLock();
+  }
+});
+
+// Retry periodically every 15 sec if wakelock lost
+setInterval(() => {
+  if (!wakeLock) requestWakeLock();
+}, 15000);
+
 
       // ===================== Part 2: Window Event Listeners =====================
       // Load saved data from localStorage when the page loads
@@ -1679,6 +1690,7 @@
         updateDisplay();
         renderSprintHistory();
         setInterval(autoResetDaily, 60 * 1000);
+
 
         // ✅ Only set text if modeStatus element exists
         if (typeof modeStatus !== "undefined" && modeStatus)
@@ -1808,6 +1820,7 @@
           runningMessage.style.display = "block";
 
         saveTimerSessionBtn.classList.add("hidden");
+
       }
 
       // ===================== Part 4: Pause and Reset Functions =====================
@@ -2378,10 +2391,7 @@ ${breakInfoText}`;
       setInterval(updateFullscreenClock, 1000);
 
       // =================================================
-      // screen on
-      document.addEventListener("visibilitychange", () => {
-        if (document.visibilityState === "visible") requestWakeLock();
-      });
+  
     </script>
     
 
