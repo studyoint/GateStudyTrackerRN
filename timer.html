@@ -8,8 +8,7 @@
     <!-- <link rel="stylesheet" href="rn.css"/> -->
 
     <!-- <link rel="stylesheet" href="a.css" /> -->
-        <style>
-        
+    <style>
       /* ==================================================================
  /* ==================================================================
    [Section 01] → Import Google Fonts 
@@ -1474,11 +1473,7 @@
           right: 10px;
         }
       }
-   
-
-      
     </style>
-
 
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
@@ -1594,8 +1589,7 @@
       <!-- <button id="copy-log-btn" class="copy-log-btn">📋 Copy Log</button> -->
     </div>
 
-
-        <!-- stylish RN footer  start   -->
+    <!-- stylish RN footer  start   -->
 
     <script>
       (function () {
@@ -1796,9 +1790,6 @@
 
     <!-- stylish RN footer  end   -->
 
-
-
-
     <!-- <script src="script.js"></script> -->
     <script>
       // ===================== Part 1: Variable Initialization =====================
@@ -1818,6 +1809,7 @@
       let sprintStartTimeMillis = null; // ✅ Used for real-time elapsed
       let totalPausedMillis = 0; // ✅ Total time timer was paused
       let pauseStartMillis = null; // ✅ When the pause started
+      let sprintBreakReasons = []; // ✅ Store reasons for each break
 
       // DOM references for UI elements
       const elapsedTimeDisplay = document.querySelector("#elapsed-time span");
@@ -1992,6 +1984,7 @@
         sprintCompleted = false; // ✅ reset
 
         // ✅ Close ongoing break if restarting
+
         if (sprintSet && sprintBreaks.length > 0) {
           const last = sprintBreaks[sprintBreaks.length - 1];
           if (last && !last.end) {
@@ -2000,6 +1993,11 @@
               .slice(0, -1)
               .reduce((s, b) => s + b.duration, 0);
             last.duration = elapsedSeconds - totalBefore;
+
+            // ✅ Ask reason after break ends
+            let reason = prompt("Break over! 🧠 Why was this break taken?");
+            if (!reason) reason = "Not Provided";
+            sprintBreakReasons.push(reason);
           }
         }
 
@@ -2090,8 +2088,12 @@
             last.duration = elapsedSeconds - totalBefore;
           }
 
-          // Start a new break
-          sprintBreaks.push({ start: now, end: null, duration: 0 });
+          // ✅ Prompt for reason
+          //   let reason = prompt("🤔 Why are you taking this break?");
+          //   if (!reason) reason = "Not Provided"; // fallback
+
+          //   sprintBreakReasons.push(reason); // ✅ Store reason
+          sprintBreaks.push({ start: now, end: null, duration: 0 }); // ✅ Break log
         }
 
         saveToLocal();
@@ -2277,6 +2279,7 @@
             totalPausedMillis,
             pauseStartMillis,
             sprintStartTimeMillis,
+            sprintBreakReasons, // ✅ Save reasons
           })
         );
       }
@@ -2301,6 +2304,7 @@
           totalPausedMillis = saved.totalPausedMillis || 0;
           pauseStartMillis = saved.pauseStartMillis || null;
           sprintStartTimeMillis = saved.sprintStartTimeMillis || null;
+          sprintBreakReasons = saved.sprintBreakReasons || []; // ✅ Load back
         }
       }
 
@@ -2336,6 +2340,7 @@
       setSprintBtn.addEventListener("click", () => {
         flashButton(setSprintBtn);
         sprintBreaks = []; // ✅ Reset breaks for new sprint
+        sprintBreakReasons = []; // ✅ Also reset reasons
 
         const h = parseInt(document.getElementById("hours").value) || 0;
         const m = parseInt(document.getElementById("minutes").value) || 0;
@@ -2539,7 +2544,9 @@
                     (b, i) =>
                       `<br><span class="toast-break">${i + 1}\u20E3 Break ${
                         i + 1
-                      } — ${b.start} → ${b.end}</span>`
+                      } — ${b.start} → ${b.end}<br>📝 Reason: ${
+                        sprintBreakReasons[i] || "Not Provided"
+                      }</span>`
                   )
                   .join("");
 
@@ -2549,7 +2556,10 @@
               ? "No Breaks"
               : sprintBreaks
                   .map(
-                    (b, i) => `${i + 1}⃣ Break ${i + 1}: ${b.start} → ${b.end}`
+                    (b, i) =>
+                      `${i + 1}⃣ Break ${i + 1}: ${b.start} → ${
+                        b.end
+                      }\n📝 Reason: ${sprintBreakReasons[i] || "Not Provided"}`
                   )
                   .join("\n");
 
