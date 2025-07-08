@@ -6,7 +6,9 @@
     <title>Study Sprint Tracker</title>
     <!-- <link rel="stylesheet" href="style3.css"/> -->
     <!-- <link rel="stylesheet" href="rn.css"/> -->
+  
     <style>
+        
       /* ==================================================================
  /* ==================================================================
    [Section 01] → Import Google Fonts 
@@ -1471,7 +1473,11 @@
           right: 10px;
         }
       }
+   
+
+      
     </style>
+
 
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
@@ -1587,9 +1593,8 @@
       <!-- <button id="copy-log-btn" class="copy-log-btn">📋 Copy Log</button> -->
     </div>
 
-
-
-        <!-- stylish RN footer  start   -->
+    
+    <!-- stylish RN footer  start   -->
 
     <script>
       (function () {
@@ -1773,24 +1778,22 @@
         });
       })();
 
-    // ================= FULLSCREEN FOOTER LOGIC =================
-document.addEventListener("fullscreenchange", () => {
-  const footer = document.querySelector(".footer_style"); // footer div
-  if (!footer) return;
+      // ================= FULLSCREEN FOOTER LOGIC =================
+      document.addEventListener("fullscreenchange", () => {
+        const footer = document.querySelector(".footer_style"); // footer div
+        if (!footer) return;
 
-  if (document.fullscreenElement) {
-    // User has entered fullscreen
-    footer.style.display = "none";
-  } else {
-    // User exited fullscreen
-    footer.style.display = "block";
-  }
-});
-
+        if (document.fullscreenElement) {
+          // User has entered fullscreen
+          footer.style.display = "none";
+        } else {
+          // User exited fullscreen
+          footer.style.display = "block";
+        }
+      });
     </script>
 
-        <!-- stylish RN footer  end   -->
-    
+    <!-- stylish RN footer  end   -->
 
 
 
@@ -1809,6 +1812,7 @@ document.addEventListener("fullscreenchange", () => {
       let sprintEndTime = null;
       let startedAs = "timer";
       let sprintBreaks = [];
+      let timerRunning = false; // ✅ Global flag
 
       // DOM references for UI elements
       const elapsedTimeDisplay = document.querySelector("#elapsed-time span");
@@ -1898,11 +1902,21 @@ document.addEventListener("fullscreenchange", () => {
         renderSprintHistory();
         setInterval(autoResetDaily, 60 * 1000);
 
+        if (timerRunning) {
+          startTimer(); // ✅ Start again after refresh
+        }
+
         // ✅ Only set text if modeStatus element exists
         if (typeof modeStatus !== "undefined" && modeStatus)
           modeStatus.textContent = "Current Mode: Focus";
 
         requestWakeLock();
+
+        // ✅ Auto-restart timer if it was running before refresh
+        const saved = JSON.parse(localStorage.getItem("study_data") || "{}");
+        if (saved.timerRunning) {
+          startTimer(); // ✅ Restart timer
+        }
       });
 
       // ✅ Step 3: Unlock audio on first click
@@ -1944,6 +1958,9 @@ document.addEventListener("fullscreenchange", () => {
       // Start the timer
       function startTimer() {
         if (timerInterval) return;
+
+        timerRunning = true; // ✅ Timer is now running
+        saveToLocal(); // ✅ Save this updated status
 
         // ✅ Play Start Sound
         startSound.currentTime = 0;
@@ -2034,6 +2051,9 @@ document.addEventListener("fullscreenchange", () => {
       function pauseTimer() {
         clearInterval(timerInterval);
         timerInterval = null;
+
+        timerRunning = false; // ✅ Timer is now not running
+        saveToLocal(); // ✅ Save status
 
         if (sprintSet && !sprintCompleted) {
           const now = getCurrentTime();
@@ -2222,6 +2242,8 @@ document.addEventListener("fullscreenchange", () => {
             sprintStartTime, // ✅ add this
             sprintEndTime, // ✅ Add this
             sprintBreaks, // ✅ NEW ADD THIS LINE
+            timerRunning: !!timerInterval, // ✅ NEW LINE
+            timerRunning, // ✅ Save actual global value
           })
         );
       }
@@ -2237,6 +2259,7 @@ document.addEventListener("fullscreenchange", () => {
           sprintStartTime = saved.sprintStartTime || null; // ✅ add this
           sprintEndTime = saved.sprintEndTime || null; // ✅ Add this
           sprintBreaks = saved.sprintBreaks || []; // ✅ NEW LINE
+          timerRunning = saved.timerRunning || false; // ✅ add this
 
           titleInput.value = customTitle;
           fullscreenTitle.textContent = customTitle || "Study Sprint";
