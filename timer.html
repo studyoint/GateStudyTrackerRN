@@ -6,8 +6,9 @@
     <title>Study Sprint Tracker</title>
     <!-- <link rel="stylesheet" href="style3.css"/> -->
     <!-- <link rel="stylesheet" href="rn.css"/> -->
-  
-    <style>
+
+    <!-- <link rel="stylesheet" href="a.css" /> -->
+        <style>
         
       /* ==================================================================
  /* ==================================================================
@@ -1593,8 +1594,8 @@
       <!-- <button id="copy-log-btn" class="copy-log-btn">📋 Copy Log</button> -->
     </div>
 
-    
-    <!-- stylish RN footer  start   -->
+
+        <!-- stylish RN footer  start   -->
 
     <script>
       (function () {
@@ -1797,6 +1798,7 @@
 
 
 
+
     <!-- <script src="script.js"></script> -->
     <script>
       // ===================== Part 1: Variable Initialization =====================
@@ -1813,6 +1815,9 @@
       let startedAs = "timer";
       let sprintBreaks = [];
       let timerRunning = false; // ✅ Global flag
+      let sprintStartTimeMillis = null; // ✅ Used for real-time elapsed
+      let totalPausedMillis = 0; // ✅ Total time timer was paused
+      let pauseStartMillis = null; // ✅ When the pause started
 
       // DOM references for UI elements
       const elapsedTimeDisplay = document.querySelector("#elapsed-time span");
@@ -1902,9 +1907,9 @@
         renderSprintHistory();
         setInterval(autoResetDaily, 60 * 1000);
 
-        if (timerRunning) {
-          startTimer(); // ✅ Start again after refresh
-        }
+        // if (timerRunning) {
+        //   startTimer(); // ✅ Start again after refresh
+        // }
 
         // ✅ Only set text if modeStatus element exists
         if (typeof modeStatus !== "undefined" && modeStatus)
@@ -1957,6 +1962,16 @@
 
       // Start the timer
       function startTimer() {
+        if (timerInterval) {
+          console.warn("⏱️ Already running");
+          return;
+        }
+
+        if (pauseStartMillis) {
+          totalPausedMillis += Date.now() - pauseStartMillis; // ✅ Add this pause duration
+          pauseStartMillis = null; // Reset
+        }
+
         if (timerInterval) return;
 
         timerRunning = true; // ✅ Timer is now running
@@ -1988,8 +2003,15 @@
           }
         }
 
+        if (!sprintStartTimeMillis) {
+          sprintStartTimeMillis = Date.now(); // ✅ Store actual start time
+        }
+
         timerInterval = setInterval(() => {
-          elapsedSeconds++;
+          elapsedSeconds = Math.floor(
+            (Date.now() - sprintStartTimeMillis - totalPausedMillis) / 1000
+          );
+
           updateDisplay();
           saveToLocal();
 
@@ -2049,6 +2071,8 @@
 
       // Pause the timer
       function pauseTimer() {
+        pauseStartMillis = Date.now(); // ✅ Save pause start time
+
         clearInterval(timerInterval);
         timerInterval = null;
 
@@ -2093,6 +2117,12 @@
         sprintStartTime = null;
         sprintEndTime = null;
         sprintBreaks = [];
+
+        // ✅ FIX: Also clear sprint-related millis
+        sprintStartTimeMillis = null;
+        pauseStartMillis = null;
+        totalPausedMillis = 0;
+
         saveTimerSessionBtn.classList.add("hidden");
         saveToLocal();
         updateDisplay();
@@ -2223,8 +2253,8 @@
         if (today !== lastDate) {
           elapsedSeconds = 0;
           lastDate = today;
-          saveToLocal();
-          renderSprintHistory();
+          sprintStartTimeMillis, // ✅ Save millis for persistence
+            renderSprintHistory();
           updateDisplay();
         }
       }
@@ -2244,6 +2274,9 @@
             sprintBreaks, // ✅ NEW ADD THIS LINE
             timerRunning: !!timerInterval, // ✅ NEW LINE
             timerRunning, // ✅ Save actual global value
+            totalPausedMillis,
+            pauseStartMillis,
+            sprintStartTimeMillis,
           })
         );
       }
@@ -2258,11 +2291,16 @@
           customTitle = saved.customTitle || "";
           sprintStartTime = saved.sprintStartTime || null; // ✅ add this
           sprintEndTime = saved.sprintEndTime || null; // ✅ Add this
+          sprintStartTimeMillis = null; // ✅ Reset the millis
+
           sprintBreaks = saved.sprintBreaks || []; // ✅ NEW LINE
           timerRunning = saved.timerRunning || false; // ✅ add this
 
           titleInput.value = customTitle;
           fullscreenTitle.textContent = customTitle || "Study Sprint";
+          totalPausedMillis = saved.totalPausedMillis || 0;
+          pauseStartMillis = saved.pauseStartMillis || null;
+          sprintStartTimeMillis = saved.sprintStartTimeMillis || null;
         }
       }
 
