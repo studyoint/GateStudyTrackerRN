@@ -1810,6 +1810,7 @@
       let totalPausedMillis = 0; // ✅ Total time timer was paused
       let pauseStartMillis = null; // ✅ When the pause started
       let sprintBreakReasons = []; // ✅ Store reasons for each break
+      let sprintEndTimeMillis = null;
 
       // DOM references for UI elements
       const elapsedTimeDisplay = document.querySelector("#elapsed-time span");
@@ -2040,7 +2041,8 @@
             }
 
             pauseTimer();
-            sprintEndTime = getCurrentTime(); // ✅ Mark end time
+            sprintEndTime = getCurrentTime();
+            sprintEndTimeMillis = Date.now(); // ✅ Real end millis
 
             saveSprintHistory();
             renderSprintHistory();
@@ -2280,6 +2282,7 @@
             pauseStartMillis,
             sprintStartTimeMillis,
             sprintBreakReasons, // ✅ Save reasons
+            sprintEndTimeMillis,
           })
         );
       }
@@ -2305,6 +2308,7 @@
           pauseStartMillis = saved.pauseStartMillis || null;
           sprintStartTimeMillis = saved.sprintStartTimeMillis || null;
           sprintBreakReasons = saved.sprintBreakReasons || []; // ✅ Load back
+          sprintEndTimeMillis = saved.sprintEndTimeMillis || null;
         }
       }
 
@@ -2371,8 +2375,10 @@
         // ✅ Fix for Bug 2:
         if (!timerInterval) {
           sprintEndTime = getCurrentTime(); // Timer paused → safe to record end time
+          sprintEndTimeMillis = Date.now(); // ✅ ✅ ✅ Add this line
         } else {
           sprintEndTime = null; // Timer running → don't assign fake end time
+          sprintEndTimeMillis = null; // ✅ Also reset if timer running
         }
 
         saveSprintHistory(); // Will now use sprintEndTime only if it's valid
@@ -2423,11 +2429,17 @@
 
       // Timer complete function to show the toast every time
       function timerComplete() {
+        if (sprintCompleted) return;
+
+        sprintCompleted = true;
+
         const sprintToast = document.getElementById("sprint-toast");
 
-        // Ensure it's hidden first before showing again
-        sprintToast.style.visibility = "hidden"; // Initially hide the toast before showing it again
-        sprintToast.style.opacity = "0"; // Initially invisible
+        sprintToast.style.visibility = "hidden";
+        sprintToast.style.opacity = "0";
+
+        // ✅ Hide running message on completion
+        if (runningMessage) runningMessage.style.display = "none";
 
         // Call showToast() to display the toast after timer completion
         showToast(); // Show the toast when the timer completes
@@ -2521,22 +2533,17 @@
           // ✅ Advanced Productivity Logic
           let productivityPercent;
 
-          if (sprintCompleted && sprintStartTimeMillis && sprintEndTime) {
-            const actualDurationMillis =
-              new Date(`${getISTDate()} ${sprintEndTime}`).getTime() -
-              sprintStartTimeMillis;
+          if (sprintCompleted && sprintStartTimeMillis && sprintEndTimeMillis) {
             const actualDurationSeconds = Math.max(
               1,
-              Math.floor(actualDurationMillis / 1000)
+              Math.floor((sprintEndTimeMillis - sprintStartTimeMillis) / 1000)
             );
             productivityPercent = (focusSeconds / actualDurationSeconds) * 100;
           } else {
             const nowMillis = Date.now();
             const realElapsedSeconds = Math.max(
               1,
-              Math.floor(
-                (nowMillis - sprintStartTimeMillis) / 1000
-              )
+              Math.floor((nowMillis - sprintStartTimeMillis) / 1000)
             );
             productivityPercent = (focusSeconds / realElapsedSeconds) * 100;
           }
