@@ -2518,13 +2518,51 @@
           const breakFormatted = formatTime(breakSeconds);
           const totalFormatted = formatTime(total);
 
-          // ✅ Productivity
-          let focusPercent = (focusSeconds / total) * 100;
+          // ✅ Advanced Productivity Logic
+          let productivityPercent;
+
+          if (sprintCompleted && sprintStartTimeMillis && sprintEndTime) {
+            const actualDurationMillis =
+              new Date(`${getISTDate()} ${sprintEndTime}`).getTime() -
+              sprintStartTimeMillis;
+            const actualDurationSeconds = Math.max(
+              1,
+              Math.floor(actualDurationMillis / 1000)
+            );
+            productivityPercent = (focusSeconds / actualDurationSeconds) * 100;
+          } else {
+            const nowMillis = Date.now();
+            const realElapsedSeconds = Math.max(
+              1,
+              Math.floor(
+                (nowMillis - sprintStartTimeMillis - totalPausedMillis) / 1000
+              )
+            );
+            productivityPercent = (focusSeconds / realElapsedSeconds) * 100;
+          }
+
           let productivity = "";
-          if (focusPercent >= 99.9) productivity = "💯 Beast Mode";
-          else if (focusPercent >= 80) productivity = "😎 Solid Focus";
-          else if (focusPercent >= 50) productivity = "🔁 Good Try";
-          else productivity = "😴 Breaky Break";
+          let prodMessage = "";
+
+          if (productivityPercent >= 95) {
+            productivity = "💯 Beast Mode";
+            prodMessage = "🏆 You crushed it!";
+          } else if (productivityPercent >= 75) {
+            productivity = "😎 Solid Focus";
+            prodMessage = "💪 Keep it up!";
+          } else if (productivityPercent >= 50) {
+            productivity = "🔁 Good Try";
+            prodMessage = "✨ Almost there!";
+          } else if (productivityPercent >= 30) {
+            productivity = "⚠️ Lost Focus";
+            prodMessage = "😬 Regroup next time!";
+          } else {
+            productivity = "😴 Breaky Break";
+            prodMessage = "❌ Focus needed, bro!";
+          }
+
+          // 🧠 Include % in label
+          productivity += ` (${productivityPercent.toFixed(1)}%)`;
 
           // ✅ Logged Time
           const logTime = new Date()
@@ -2574,6 +2612,7 @@
 ☕ Breaks Taken: ${sprintBreaks.length}
 🧠 Focus Time: ${focusFormatted} | ☕ Break Time: ${breakFormatted}
 📊 Productivity: ${productivity}
+🗣️ Message: ${prodMessage}
 🧭 Logged at: ${logTime}
 ${breakInfoText}`;
 
@@ -2594,6 +2633,8 @@ ${breakInfoText}`;
       }</div>
       <div><span class="toast-label">🧠 Focus Time:</span> ${focusFormatted} | <span class="toast-label">☕ Break Time:</span> ${breakFormatted}</div><br>
       <div><span class="toast-label">📊 Productivity:</span> ${productivity}</div><br>
+      <div><span class="toast-label">🗣️ Message:</span> ${prodMessage}</div><br>
+
       ${breakInfoHTML}<br>
       <div><span class="toast-label">🧭 Logged at:</span> ${logTime}</div><br><br>
       <button id="copy-log-btn" class="copy-log-btn">📋 Copy Log</button>
