@@ -2535,7 +2535,7 @@
             const realElapsedSeconds = Math.max(
               1,
               Math.floor(
-                (nowMillis - sprintStartTimeMillis - totalPausedMillis) / 1000
+                (nowMillis - sprintStartTimeMillis) / 1000
               )
             );
             productivityPercent = (focusSeconds / realElapsedSeconds) * 100;
