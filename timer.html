@@ -2510,7 +2510,10 @@
           });
 
           // ✅ Focus Time
-          const focusSeconds = total - breakSeconds;
+          //   const focusSeconds = total - breakSeconds;
+          const focusSeconds =
+            sprintGoalSeconds - Math.max(0, sprintGoalSeconds - elapsedSeconds);
+
           const focusFormatted = formatTime(focusSeconds);
           const breakFormatted = formatTime(breakSeconds);
           const totalFormatted = formatTime(total);
