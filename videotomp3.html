@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MP4 to MP3 Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      text-align: center;
+    }
+    input, button {
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    #status {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .progress-container {
+      width: 80%;
+      margin: 20px auto;
+      height: 20px;
+      background-color: #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      display: none;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background-color: #4caf50;
+      transition: width 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <h2>🎵 MP4 to MP3 Converter (Offline)</h2>
+  <input type="file" id="uploader" accept="video/mp4"><br>
+  <button id="convertBtn" disabled>🎬 Convert to MP3</button>
+  <div id="status">⏳ Loading FFmpeg...</div>
+  <div class="progress-container" id="progressContainer">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  <a id="downloadLink" style="display:none;" download="output.mp3">⬇️ Download MP3</a>
+
+  <script>
+    const progressContainer = document.getElementById("progressContainer");
+    const progressBar = document.getElementById("progressBar");
+    const status = document.getElementById("status");
+    const convertBtn = document.getElementById("convertBtn");
+    const uploader = document.getElementById("uploader");
+    const downloadLink = document.getElementById("downloadLink");
+
+    // Dynamically load FFmpeg
+    const script = document.createElement("script");
+    script.src = "https://unpkg.com/@ffmpeg/ffmpeg@0.12.2/dist/ffmpeg.min.js";
+    script.onload = async () => {
+      const { createFFmpeg, fetchFile } = FFmpeg;
+      const ffmpeg = createFFmpeg({
+        log: true,
+        progress: ({ ratio }) => {
+          progressBar.style.width = Math.min(100, ratio * 100) + "%";
+        }
+      });
+
+      status.innerText = "⏳ Initializing FFmpeg...";
+      progressContainer.style.display = "block";
+      await ffmpeg.load();
+
+      status.innerText = "✅ Ready to Convert";
+      convertBtn.disabled = false;
+      progressContainer.style.display = "none";
+
+      convertBtn.onclick = async () => {
+        if (!uploader.files.length) {
+          status.innerText = "❌ Please select an MP4 file!";
+          return;
+        }
+
+        const file = uploader.files[0];
+        status.innerText = "🎬 Converting to MP3...";
+        progressBar.style.width = "0%";
+        progressContainer.style.display = "block";
+        convertBtn.disabled = true;
+
+        try {
+          ffmpeg.FS("writeFile", "input.mp4", await fetchFile(file));
+          await ffmpeg.run("-i", "input.mp4", "-q:a", "0", "-map", "a", "output.mp3");
+
+          const data = ffmpeg.FS("readFile", "output.mp3");
+          const mp3Blob = new Blob([data.buffer], { type: "audio/mp3" });
+
+          downloadLink.href = URL.createObjectURL(mp3Blob);
+          downloadLink.style.display = "inline-block";
+          status.innerText = "✅ Conversion Complete!";
+        } catch (err) {
+          console.error("Error during conversion:", err);
+          status.innerText = "❌ Conversion failed.";
+        } finally {
+          convertBtn.disabled = false;
+          progressContainer.style.display = "none";
+        }
+      };
+    };
+    document.body.appendChild(script);
+  </script>
+</body>
+</html>
