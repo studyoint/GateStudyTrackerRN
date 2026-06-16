@@ -559,71 +559,87 @@ async function renderPage(
     pageContainer.dataset.page =
     pageNum;
 
-    /* -----------------------------------
-       CANVAS
-    ----------------------------------- */
+/* -----------------------------------
+   CANVAS
+----------------------------------- */
 
-    const canvas =
-    document.createElement(
-        "canvas"
-    );
+const canvas =
+document.createElement(
+    "canvas"
+);
 
-    const ctx =
-    canvas.getContext(
-        "2d"
-    );
+const ctx =
+canvas.getContext(
+    "2d"
+);
 
-    canvas.width =
-    viewport.width;
+canvas.width =
+viewport.width;
 
-    canvas.height =
-    viewport.height;
+canvas.height =
+viewport.height;
 
-    /* -----------------------------------
-       ANNOTATION LAYER
-    ----------------------------------- */
+/* -----------------------------------
+   ANNOTATION LAYER
+----------------------------------- */
 
-    const annotationLayer =
-    document.createElement(
-        "div"
-    );
+const annotationLayer =
+document.createElement(
+    "div"
+);
 
-    annotationLayer.className =
-    "annotationLayer";
+annotationLayer.className =
+"annotationLayer";
 
-    annotationLayer.style.width =
-    viewport.width + "px";
+annotationLayer.style.width =
+viewport.width + "px";
 
-    annotationLayer.style.height =
-    viewport.height + "px";
+annotationLayer.style.height =
+viewport.height + "px";
 
-    /* -----------------------------------
-       APPEND
-    ----------------------------------- */
+/* -----------------------------------
+   SAVE PDF + RENDER DIMENSIONS
+----------------------------------- */
 
-    pageContainer.appendChild(
-        canvas
-    );
+annotationLayer.dataset.renderWidth =
+viewport.width;
 
-    pageContainer.appendChild(
-        annotationLayer
-    );
+annotationLayer.dataset.renderHeight =
+viewport.height;
 
-    pagesContainer.appendChild(
-        pageContainer
-    );
+annotationLayer.dataset.pdfWidth =
+originalViewport.width;
 
-    /* -----------------------------------
-       PDF RENDER
-    ----------------------------------- */
+annotationLayer.dataset.pdfHeight =
+originalViewport.height;
 
-    await page.render({
+/* -----------------------------------
+   APPEND
+----------------------------------- */
 
-        canvasContext:ctx,
+pageContainer.appendChild(
+    canvas
+);
 
-        viewport:viewport
+pageContainer.appendChild(
+    annotationLayer
+);
 
-    }).promise;
+pagesContainer.appendChild(
+    pageContainer
+);
+
+/* -----------------------------------
+   PDF RENDER
+----------------------------------- */
+
+await page.render({
+
+    canvasContext:ctx,
+
+    viewport:viewport
+
+}).promise;
 
     /* -----------------------------------
        ENABLE COMMENTS
@@ -716,18 +732,59 @@ function setupAnnotationLayer(
                 return;
             }
 
-            const commentData = {
+            /* -----------------------------------
+               SCREEN → PDF COORDINATE CONVERSION
+            ----------------------------------- */
 
-                page:pageNum,
+            const renderWidth =
+            Number(
+                annotationLayer.dataset.renderWidth
+            );
 
-                x:e.offsetX,
+            const renderHeight =
+            Number(
+                annotationLayer.dataset.renderHeight
+            );
 
-                y:e.offsetY,
+            const pdfWidth =
+            Number(
+                annotationLayer.dataset.pdfWidth
+            );
 
-                text:""
+            const pdfHeight =
+            Number(
+                annotationLayer.dataset.pdfHeight
+            );
 
-            };
+            const pdfX =
+            (
+                e.offsetX /
+                renderWidth
+            ) * pdfWidth;
 
+            const pdfY =
+            (
+                e.offsetY /
+                renderHeight
+            ) * pdfHeight;
+
+        const commentData = {
+
+    page:pageNum,
+
+    x:pdfX,
+
+    y:pdfY,
+
+    text:"",
+
+    color:selectedColor,
+
+    size:selectedFontSize,
+
+    weight:700
+
+};
             comments.push(
                 commentData
             );
@@ -784,6 +841,10 @@ function setupAnnotationLayer(
     );
 
 }
+
+/* ===================================================================
+   END OF COMMENT SYSTEM
+=================================================================== */
 
 /* ===================================================================
    END OF COMMENT SYSTEM
@@ -868,57 +929,89 @@ if(addPageNumbers){
 
 }
 
-        /* -----------------------------------
-           DRAW COMMENTS
-        ----------------------------------- */
+/* -----------------------------------
+   DRAW COMMENTS
+----------------------------------- */
 
-        for(
-            const comment
-            of comments
-        ){
+for(
+    const comment
+    of comments
+){
 
-            const page =
-            pages[
-                comment.page - 1
-            ];
+    const page =
+    pages[
+        comment.page - 1
+    ];
 
-            if(!page)
-                continue;
+    if(!page)
+        continue;
 
-            const pageHeight =
-            page.getHeight();
+    const pageHeight =
+    page.getHeight();
 
-            page.drawText(
+    /* -----------------------------------
+       HEX → PDFLIB RGB
+    ----------------------------------- */
 
-                comment.text || "",
+    const hex =
+    comment.color || "#ff7a00";
 
-                {
+    const r =
+    parseInt(
+        hex.slice(1,3),
+        16
+    ) / 255;
 
-                    x:Number(
-                        comment.x
-                    ),
+    const g =
+    parseInt(
+        hex.slice(3,5),
+        16
+    ) / 255;
 
-                    y:
-                    pageHeight -
-                    Number(
-                        comment.y
-                    ),
+    const b =
+    parseInt(
+        hex.slice(5,7),
+        16
+    ) / 255;
 
-                    size:18,
+    const fontSize =
+    Number(
+        comment.size
+    ) || 18;
 
-                    color:
-                    PDFLib.rgb(
-                        1,
-                        0.5,
-                        0
-                    )
+    page.drawText(
 
-                }
+        comment.text || "",
 
-            );
+        {
+
+            x:
+            Number(
+                comment.x
+            ),
+
+            y:
+            pageHeight -
+            Number(
+                comment.y
+            ) -
+            fontSize,
+
+            size:
+            fontSize,
+
+            color:
+            PDFLib.rgb(
+                r,
+                g,
+                b
+            )
 
         }
 
+    );
+
+}
         /* -----------------------------------
            SAVE PDF
         ----------------------------------- */
