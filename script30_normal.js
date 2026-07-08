@@ -678,76 +678,51 @@ function startTyping(text) {
 startTyping(todayQuote);
 
 
-// 🔓 Open modal
-  function openProtectedPage() {
-    document.getElementById("passwordModal").classList.remove("hidden");
-    document.getElementById("passwordInput").value = "";
-    document.getElementById("errorText").classList.add("hidden");
-    setTimeout(() => {
-      document.getElementById("passwordInput").focus();
-    }, 100);
-  }
-
-  // ✅ Check password
-  function checkPassword() {
-    const input = document.getElementById("passwordInput").value;
-    if (input === "1312") {
-      window.location.href = "lecture_tracker.html";
-    } else {
-      document.getElementById("errorText").classList.remove("hidden");
-    }
-  }
-
-  // ❌ Close modal
-  function closeModal() {
-    document.getElementById("passwordModal").classList.add("hidden");
-  }
-
-  // 🛑 ESC key closes modal
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") closeModal();
-  });
 
   // ================= PASSWORD LOCK =================
 
+
+
+
+
+
+
+
+
+// ================= PASSWORD LOCK =================
+
 window.unlockSite = function(){
 
-const pass = document.getElementById("sitePassword").value;
+    const pass = document.getElementById("sitePassword").value;
 
+    if(pass === "1312"){
 
-if(pass === "1312"){
+        document.getElementById("passwordPopup").style.display="none";
 
-document.getElementById("passwordPopup").style.display="none";
+        localStorage.setItem(
+            "gateTrackerUnlocked",
+            "true"
+        );
 
-localStorage.setItem(
-"gateTrackerUnlocked",
-"true"
-);
+    }
+    else{
 
-}
-else{
+        document.getElementById("passwordError").innerHTML =
+        "❌ Wrong Password";
 
-document.getElementById("passwordError").innerHTML =
-"❌ Wrong Password";
-
-}
+    }
 
 };
-
-
-
-
-
 
 
 // Check already unlocked
 
 window.addEventListener("load",()=>{
 
-if(localStorage.getItem("gateTrackerUnlocked")=="true"){
+    if(localStorage.getItem("gateTrackerUnlocked") === "true"){
 
-document.getElementById("passwordPopup").style.display="none";
+        document.getElementById("passwordPopup").style.display="none";
 
-}
+    }
 
 });
