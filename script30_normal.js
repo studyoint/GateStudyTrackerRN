@@ -679,30 +679,19 @@ startTyping(todayQuote);
 
 
 
-  // ================= PASSWORD LOCK =================
+ // ================= PASSWORD POPUP =================
 
+const unlockBtn = document.getElementById("unlockBtn");
 
+unlockBtn.addEventListener("click", () => {
 
+    const password = document.getElementById("sitePassword").value;
 
+    if(password === "1312"){
 
+        document.getElementById("passwordPopup").style.display = "none";
 
-
-
-
-// ================= PASSWORD LOCK =================
-
-window.unlockSite = function(){
-
-    const pass = document.getElementById("sitePassword").value;
-
-    if(pass === "1312"){
-
-        document.getElementById("passwordPopup").style.display="none";
-
-        localStorage.setItem(
-            "gateTrackerUnlocked",
-            "true"
-        );
+        localStorage.setItem("gateTrackerUnlocked","true");
 
     }
     else{
@@ -712,17 +701,13 @@ window.unlockSite = function(){
 
     }
 
-};
-
-
-// Check already unlocked
-
-window.addEventListener("load",()=>{
-
-    if(localStorage.getItem("gateTrackerUnlocked") === "true"){
-
-        document.getElementById("passwordPopup").style.display="none";
-
-    }
-
 });
+
+
+// Already unlocked check
+
+if(localStorage.getItem("gateTrackerUnlocked") === "true"){
+
+    document.getElementById("passwordPopup").style.display="none";
+
+}
