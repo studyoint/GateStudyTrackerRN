@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -148,13 +148,18 @@
         cursor: pointer;
         z-index: 1001;
         box-shadow: 0 0 8px #00ffff;
-        transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
       }
       #fullscreen-btn:hover {
         background-color: #00ffff;
         color: #121212;
         transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 0 12px #00ffff, 0 0 24px #00ffff;
+        box-shadow:
+          0 0 12px #00ffff,
+          0 0 24px #00ffff;
       }
       #fullscreen-btn.hidden {
         opacity: 0;
@@ -209,7 +214,9 @@
         font-family: "Orbitron", sans-serif;
         font-weight: 700;
         letter-spacing: 1.2px;
-        text-shadow: 0 0 12px #00ffff, 0 0 24px #00ffff33;
+        text-shadow:
+          0 0 12px #00ffff,
+          0 0 24px #00ffff33;
       }
 
       #fullscreen-timer {
@@ -217,7 +224,9 @@
         font-size: 3.8rem;
         font-weight: 800;
         letter-spacing: 2.5px;
-        text-shadow: 0 0 15px #ffffff, 0 0 25px #ffffff55;
+        text-shadow:
+          0 0 15px #ffffff,
+          0 0 25px #ffffff55;
       }
       /* ================================================================== */
 
@@ -250,7 +259,9 @@
         background-color: rgba(0, 188, 212, 0.9);
         color: #ffffff;
         cursor: pointer;
-        box-shadow: 0 0 12px #00ffff99, 0 0 20px rgba(0, 255, 255, 0.2);
+        box-shadow:
+          0 0 12px #00ffff99,
+          0 0 20px rgba(0, 255, 255, 0.2);
         transition: all 0.3s ease;
         backdrop-filter: blur(4px);
         text-shadow: 0 0 6px #00ffffaa;
@@ -260,7 +271,9 @@
         background-color: #00ffff;
         color: #121212;
         transform: scale(1.05);
-        box-shadow: 0 0 18px #00ffff, 0 0 36px #00ffff66;
+        box-shadow:
+          0 0 18px #00ffff,
+          0 0 36px #00ffff66;
       }
       /* ================================================================== */
 
@@ -278,8 +291,12 @@
         animation: blinkPause 1.2s infinite ease-in-out;
         font-weight: 800;
         letter-spacing: 2px;
-        text-shadow: 0 0 6px #ff4d4d, 0 0 12px #ff4d4d, 0 0 24px #ff0000,
-          0 0 40px #ff1a1a, 0 0 60px #ff1a1a;
+        text-shadow:
+          0 0 6px #ff4d4d,
+          0 0 12px #ff4d4d,
+          0 0 24px #ff0000,
+          0 0 40px #ff1a1a,
+          0 0 60px #ff1a1a;
         user-select: none;
         max-width: 90vw;
         margin-left: auto;
@@ -312,7 +329,8 @@
         border-radius: 18px;
 
         /* Outer Glow + Inner Edge */
-        box-shadow: 0 0 20px rgba(0, 255, 255, 0.15),
+        box-shadow:
+          0 0 20px rgba(0, 255, 255, 0.15),
           inset 0 0 4px rgba(0, 255, 255, 0.2);
 
         border: 1px solid rgba(0, 255, 255, 0.25);
@@ -343,7 +361,9 @@
         color: #00e0e0;
         letter-spacing: 1px;
         margin-bottom: 20px;
-        text-shadow: 0 0 2px #00e0e0, 0 0 4px rgba(0, 255, 255, 0.4);
+        text-shadow:
+          0 0 2px #00e0e0,
+          0 0 4px rgba(0, 255, 255, 0.4);
       }
 
       /* 🔷 h1 - Section Title */
@@ -357,7 +377,9 @@
         font-size: 1.6rem;
         font-weight: 500;
         color: #66ffff;
-        text-shadow: 0 0 1px #66ffff, 0 0 3px rgba(102, 255, 255, 0.3);
+        text-shadow:
+          0 0 1px #66ffff,
+          0 0 3px rgba(102, 255, 255, 0.3);
       }
 
       /* 📱 Mobile responsiveness */
@@ -393,17 +415,21 @@
         border-radius: 12px;
         background: linear-gradient(135deg, #222, #2c2c2c);
         border: 1px solid rgba(0, 255, 255, 0.15);
-        box-shadow: inset 0 0 4px rgba(0, 255, 255, 0.1),
+        box-shadow:
+          inset 0 0 4px rgba(0, 255, 255, 0.1),
           0 0 8px rgba(0, 255, 255, 0.1);
         font-size: 1.6rem;
         color: #e0f7fa;
-        transition: transform 0.2s ease, box-shadow 0.3s ease;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.3s ease;
       }
 
       /* ✨ On hover – minor lift */
       .time-block:hover {
         transform: scale(1.02);
-        box-shadow: inset 0 0 6px rgba(0, 255, 255, 0.2),
+        box-shadow:
+          inset 0 0 6px rgba(0, 255, 255, 0.2),
           0 0 12px rgba(0, 255, 255, 0.2);
       }
 
@@ -486,7 +512,8 @@
         color: #ffffff;
         background: rgba(0, 255, 255, 0.06);
         backdrop-filter: blur(4px);
-        box-shadow: inset 0 0 6px rgba(0, 255, 255, 0.2),
+        box-shadow:
+          inset 0 0 6px rgba(0, 255, 255, 0.2),
           0 0 4px rgba(0, 255, 255, 0.15);
         transition: 0.3s ease all;
       }
@@ -494,7 +521,9 @@
       .sprint-setup input:focus {
         outline: none;
         background-color: rgba(0, 255, 255, 0.1);
-        box-shadow: 0 0 10px #00ffff, inset 0 0 10px #00ffff;
+        box-shadow:
+          0 0 10px #00ffff,
+          inset 0 0 10px #00ffff;
         border: 1px solid #00ffff;
       }
 
@@ -507,7 +536,9 @@
         border-radius: 12px;
         color: #121212;
         background: linear-gradient(135deg, #00e5ff, #00ffb3);
-        box-shadow: 0 0 10px #00ffff99, 0 0 18px #00ffff33;
+        box-shadow:
+          0 0 10px #00ffff99,
+          0 0 18px #00ffff33;
         cursor: pointer;
         transition: all 0.25s ease;
         text-transform: uppercase;
@@ -517,7 +548,9 @@
 
       .sprint-setup button:hover {
         transform: translateY(-2px) scale(1.05);
-        box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffcc66;
+        box-shadow:
+          0 0 20px #00ffff,
+          0 0 40px #00ffcc66;
         background: linear-gradient(135deg, #00ffff, #00e5ff);
         color: #121212;
       }
@@ -550,8 +583,10 @@
         backdrop-filter: blur(10px);
         color: #e0ffff;
         border: 1px solid rgba(0, 255, 204, 0.3);
-        box-shadow: 0 0 6px rgba(0, 255, 255, 0.3),
-          inset 0 0 4px rgba(0, 255, 255, 0.1), 0 0 20px rgba(0, 255, 255, 0.05);
+        box-shadow:
+          0 0 6px rgba(0, 255, 255, 0.3),
+          inset 0 0 4px rgba(0, 255, 255, 0.1),
+          0 0 20px rgba(0, 255, 255, 0.05);
         transition: all 0.3s ease;
         position: relative;
         text-transform: uppercase;
@@ -564,7 +599,9 @@
         background: rgba(0, 255, 204, 0.15);
         color: #ff69b4; /* Hot Pink */
         transform: translateY(-2px) scale(1.07);
-        box-shadow: 0 0 12px #ff69b4, 0 0 24px rgba(255, 105, 180, 0.4),
+        box-shadow:
+          0 0 12px #ff69b4,
+          0 0 24px rgba(255, 105, 180, 0.4),
           0 0 32px rgba(255, 105, 180, 0.1);
       }
 
@@ -572,7 +609,9 @@
       .active-button {
         background: linear-gradient(to right, #00fff0, #00c9ff);
         color: #121212 !important;
-        box-shadow: 0 0 18px #00fff0, 0 0 28px rgba(0, 255, 255, 0.5);
+        box-shadow:
+          0 0 18px #00fff0,
+          0 0 28px rgba(0, 255, 255, 0.5);
         transform: scale(1.1);
         border: none !important;
       }
@@ -688,7 +727,9 @@
         color: #e0e0e0;
         font-family: "Inter", sans-serif;
         letter-spacing: 0.4px;
-        transition: background 0.3s ease, transform 0.2s ease;
+        transition:
+          background 0.3s ease,
+          transform 0.2s ease;
       }
 
       #log-list li:hover {
@@ -740,7 +781,9 @@
         background: rgba(30, 30, 30, 0.95);
         padding: 25px 22px;
         border-radius: 16px;
-        box-shadow: 0 0 25px #00ffff, 0 0 10px #00ffff inset;
+        box-shadow:
+          0 0 25px #00ffff,
+          0 0 10px #00ffff inset;
         z-index: 10000;
         width: 90%;
         max-width: 420px;
@@ -787,7 +830,9 @@
       .popup button:hover {
         background: linear-gradient(to right, #ff66cc, #ff99ff);
         color: #ffffff;
-        box-shadow: 0 0 15px #ff66cc, 0 0 25px #ff99ff;
+        box-shadow:
+          0 0 15px #ff66cc,
+          0 0 25px #ff99ff;
       }
       /* ================================================================== */
 
@@ -845,7 +890,9 @@
         background: linear-gradient(to right, #ff66cc, #ff99ff);
         color: #ffffff;
         transform: scale(1.06);
-        box-shadow: 0 0 15px #ff66cc, 0 0 25px #ff99ff;
+        box-shadow:
+          0 0 15px #ff66cc,
+          0 0 25px #ff99ff;
       }
       /* ================================================================== */
 
@@ -931,7 +978,10 @@
         text-align: center;
         display: none;
         font-family: "Orbitron", sans-serif;
-        text-shadow: 0 0 5px #ff69b4, 0 0 10px #ff69b4, 0 0 15px #ff1493;
+        text-shadow:
+          0 0 5px #ff69b4,
+          0 0 10px #ff69b4,
+          0 0 15px #ff1493;
         animation: pulseRunning 2s infinite;
         letter-spacing: 1px;
         user-select: none;
@@ -968,7 +1018,8 @@
         font-size: 0.9rem;
         font-weight: 600;
         z-index: -1; /* Initially behind other elements */
-        box-shadow: inset 0 0 8px rgba(0, 255, 255, 0.08),
+        box-shadow:
+          inset 0 0 8px rgba(0, 255, 255, 0.08),
           0 0 18px rgba(0, 255, 255, 0.25);
         opacity: 0;
         visibility: hidden; /* Hide toast initially */
@@ -995,7 +1046,10 @@
         z-index: 9999; /* Bring to front when visible */
         pointer-events: auto; /* Enable interaction when visible */
         display: flex; /* Display as flex when shown */
-        transition: opacity 0.4s ease, bottom 0.4s ease, transform 0.4s ease;
+        transition:
+          opacity 0.4s ease,
+          bottom 0.4s ease,
+          transform 0.4s ease;
       }
 
       /* ✅ Sticky Close Button */
@@ -1084,7 +1138,9 @@
         color: #ffffff;
         font-size: 1.05rem;
         font-weight: 700;
-        text-shadow: 0 0 6px #ffffffaa, 0 0 12px #00ffff;
+        text-shadow:
+          0 0 6px #ffffffaa,
+          0 0 12px #00ffff;
         margin-bottom: 6px;
       }
 
@@ -1135,7 +1191,8 @@
         padding: 24px 28px;
         background: rgba(0, 255, 255, 0.05);
         border-radius: 20px;
-        box-shadow: 0 0 25px rgba(0, 255, 255, 0.15),
+        box-shadow:
+          0 0 25px rgba(0, 255, 255, 0.15),
           0 8px 30px rgba(0, 0, 0, 0.5);
         backdrop-filter: blur(14px);
         border: 1px solid rgba(0, 255, 255, 0.2);
@@ -1146,7 +1203,8 @@
       }
 
       .sprint-history:hover {
-        box-shadow: 0 0 40px rgba(0, 255, 255, 0.3),
+        box-shadow:
+          0 0 40px rgba(0, 255, 255, 0.3),
           0 12px 35px rgba(0, 0, 0, 0.6);
         transform: translateY(-4px);
       }
@@ -1155,7 +1213,9 @@
         margin-bottom: 18px;
         font-size: 1.8rem;
         color: #00ffff;
-        text-shadow: 0 0 8px #00e5ff, 0 0 15px rgba(0, 255, 255, 0.3);
+        text-shadow:
+          0 0 8px #00e5ff,
+          0 0 15px rgba(0, 255, 255, 0.3);
         border-bottom: 1px solid rgba(0, 255, 255, 0.2);
         padding-bottom: 6px;
         font-family: "Orbitron", sans-serif;
@@ -1222,7 +1282,8 @@
         color: #00e5ff;
         text-shadow: 0 0 6px rgba(0, 229, 255, 0.5);
         font-size: 1.1rem;
-        box-shadow: inset 0 0 8px rgba(0, 229, 255, 0.1),
+        box-shadow:
+          inset 0 0 8px rgba(0, 229, 255, 0.1),
           0 0 8px rgba(0, 229, 255, 0.1);
         letter-spacing: 0.5px;
         backdrop-filter: blur(2px);
@@ -1244,9 +1305,12 @@
         border: 1px solid rgba(0, 229, 255, 0.12);
         color: #e0f7fa;
         backdrop-filter: blur(6px);
-        box-shadow: inset 0 0 4px rgba(0, 229, 255, 0.05),
+        box-shadow:
+          inset 0 0 4px rgba(0, 229, 255, 0.05),
           0 0 8px rgba(0, 229, 255, 0.08);
-        transition: transform 0.3s ease, box-shadow 0.3s ease,
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
           background 0.3s ease;
         position: relative;
         font-size: 0.98rem;
@@ -1257,7 +1321,8 @@
       #sprint-history-list li:hover {
         transform: translateY(-3px) scale(1.02);
         background: rgba(0, 229, 255, 0.06);
-        box-shadow: 0 0 14px rgba(0, 229, 255, 0.3),
+        box-shadow:
+          0 0 14px rgba(0, 229, 255, 0.3),
           0 0 4px rgba(0, 229, 255, 0.15);
         border-color: #00e5ff66;
       }
@@ -1397,7 +1462,8 @@
         backdrop-filter: blur(8px) saturate(180%);
         -webkit-backdrop-filter: blur(8px) saturate(180%);
         border: 1px solid rgba(255, 255, 255, 0.15);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3),
+        box-shadow:
+          0 6px 12px rgba(0, 0, 0, 0.3),
           inset 0 0 10px rgba(255, 255, 255, 0.05);
         z-index: 9999;
         transition: all 0.4s ease;
@@ -1452,7 +1518,9 @@
         text-align: center;
         line-height: 38px;
         padding: 0;
-        transition: background-color 0.3s ease, transform 0.2s ease;
+        transition:
+          background-color 0.3s ease,
+          transform 0.2s ease;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         z-index: 99;
       }
@@ -1479,6 +1547,40 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
       rel="stylesheet"
     />
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        set,
+        get,
+        push,
+        onValue,
+      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+      const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_PROJECT.firebaseapp.com",
+        databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_PROJECT.appspot.com",
+        messagingSenderId: "XXXX",
+        appId: "XXXX",
+      };
+
+      const app = initializeApp(firebaseConfig);
+
+      window.db = getDatabase(app);
+
+      window.firebaseRef = ref;
+      window.firebaseSet = set;
+      window.firebaseGet = get;
+      window.firebasePush = push;
+      window.firebaseOnValue = onValue;
+
+      console.log("Firebase Timer Connected ✅");
+    </script>
   </head>
   <body>
     <!-- Fullscreen Button -->
@@ -1553,7 +1655,12 @@
       <div id="fullscreen-controls" class="hidden">
         <button id="fs-toggle-btn">▶️</button>
         <button id="music-toggle-btn">🎵</button>
-        <audio id="study-music" src="shiv_stotram.mp3" preload="auto" loop></audio>
+        <audio
+          id="study-music"
+          src="shiv_stotram.mp3"
+          preload="auto"
+          loop
+        ></audio>
         <audio id="start-sound" src="start_timer.mp3" preload="auto"></audio>
         <audio id="end-sound" src="end_timer.mp3" preload="auto"></audio>
 
@@ -1562,7 +1669,7 @@
       </div>
 
       <!-- ✅ Funny pause message -->
-      <div id="pause-message" class="hidden">⏱️⏸ </div>
+      <div id="pause-message" class="hidden">⏱️⏸</div>
 
       <!-- ✅ Motivational running message -->
       <div id="running-message" class="hidden">
@@ -1815,7 +1922,7 @@
       // DOM references for UI elements
       const elapsedTimeDisplay = document.querySelector("#elapsed-time span");
       const remainingTimeDisplay = document.querySelector(
-        "#remaining-time span"
+        "#remaining-time span",
       );
       const progressBar = document.getElementById("progress-bar");
       const startBtn = document.getElementById("start-btn");
@@ -1833,14 +1940,14 @@
       const runningMessage = document.getElementById("running-message");
       const sprintToast = document.getElementById("sprint-toast");
       const sprintToastMessage = document.getElementById(
-        "sprint-toast-message"
+        "sprint-toast-message",
       );
       const sprintToastClose = document.getElementById("sprint-toast-close");
       const fsControls = document.getElementById("fullscreen-controls");
       const fsToggleBtn = document.getElementById("fs-toggle-btn");
       const sprintHistoryList = document.getElementById("sprint-history-list");
       const saveTimerSessionBtn = document.getElementById(
-        "save-timer-session-btn"
+        "save-timer-session-btn",
       );
       const musicToggleBtn = document.getElementById("music-toggle-btn");
       const studyMusic = document.getElementById("study-music");
@@ -1948,7 +2055,7 @@
               .catch((err) => console.log("End sound unlock error:", err));
           }
         },
-        { once: true }
+        { once: true },
       ); // ✅ Only runs once
 
       // ===================== Part 3: Timer Functions =====================
@@ -2008,7 +2115,7 @@
 
         timerInterval = setInterval(() => {
           elapsedSeconds = Math.floor(
-            (Date.now() - sprintStartTimeMillis - totalPausedMillis) / 1000
+            (Date.now() - sprintStartTimeMillis - totalPausedMillis) / 1000,
           );
 
           updateDisplay();
@@ -2049,7 +2156,7 @@
             showSprintToast(
               `✅ Sprint "${
                 customTitle || "Untitled"
-              }" complete! ⏱️ ${formatTime(sprintGoalSeconds)}`
+              }" complete! ⏱️ ${formatTime(sprintGoalSeconds)}`,
             );
 
             if (pauseMessage) {
@@ -2157,7 +2264,7 @@
       function calculateProgress() {
         return Math.min(
           100,
-          (elapsedSeconds / sprintGoalSeconds) * 100
+          (elapsedSeconds / sprintGoalSeconds) * 100,
         ).toFixed(1);
       }
 
@@ -2208,7 +2315,7 @@
       // Save sprint history to localStorage
       function saveSprintHistory() {
         const history = JSON.parse(
-          localStorage.getItem("sprint_history") || "[]"
+          localStorage.getItem("sprint_history") || "[]",
         );
         history.push({
           title: customTitle || "Untitled",
@@ -2226,7 +2333,7 @@
         if (!sprintHistoryList) return;
         sprintHistoryList.innerHTML = "";
         const history = JSON.parse(
-          localStorage.getItem("sprint_history") || "[]"
+          localStorage.getItem("sprint_history") || "[]",
         );
         const grouped = {};
         history.reverse().forEach((entry) => {
@@ -2251,67 +2358,133 @@
 
       // ===================== Part 8: Auto Reset and Save Functions =====================
 
-      // Automatically reset data at the start of a new day
+      // ===================== Part 8: Auto Reset and Save Functions =====================
+
+      // Automatically reset data at start of new day
       function autoResetDaily() {
         const today = getISTDate();
+
         if (today !== lastDate) {
           elapsedSeconds = 0;
           lastDate = today;
-          sprintStartTimeMillis, // ✅ Save millis for persistence
-            renderSprintHistory();
+
+          renderSprintHistory();
           updateDisplay();
         }
       }
 
-      // Save current session data to localStorage
-      function saveToLocal() {
-        localStorage.setItem(
-          "study_data",
-          JSON.stringify({
-            elapsedSeconds,
-            sprintGoalSeconds,
-            sprintSet,
-            date: getISTDate(),
-            customTitle,
-            sprintStartTime, // ✅ add this
-            sprintEndTime, // ✅ Add this
-            sprintBreaks, // ✅ NEW ADD THIS LINE
-            timerRunning: !!timerInterval, // ✅ NEW LINE
-            timerRunning, // ✅ Save actual global value
-            totalPausedMillis,
-            pauseStartMillis,
-            sprintStartTimeMillis,
-            sprintBreakReasons, // ✅ Save reasons
-            sprintEndTimeMillis,
-          })
-        );
-      }
+      // ================= SAVE DATA =================
 
-      // Load saved session data from localStorage
-      function loadFromLocal() {
-        const saved = JSON.parse(localStorage.getItem("study_data") || "{}");
-        if (saved.date === getISTDate()) {
-          elapsedSeconds = saved.elapsedSeconds || 0;
-          sprintGoalSeconds = saved.sprintGoalSeconds || 0;
-          sprintSet = saved.sprintSet || false;
-          customTitle = saved.customTitle || "";
-          sprintStartTime = saved.sprintStartTime || null; // ✅ add this
-          sprintEndTime = saved.sprintEndTime || null; // ✅ Add this
-          sprintStartTimeMillis = null; // ✅ Reset the millis
+      async function saveToLocal() {
+        const timerData = {
+          elapsedSeconds,
+          sprintGoalSeconds,
+          sprintSet,
+          date: getISTDate(),
 
-          sprintBreaks = saved.sprintBreaks || []; // ✅ NEW LINE
-          timerRunning = saved.timerRunning || false; // ✅ add this
+          customTitle,
 
-          titleInput.value = customTitle;
-          fullscreenTitle.textContent = customTitle || "Study Sprint";
-          totalPausedMillis = saved.totalPausedMillis || 0;
-          pauseStartMillis = saved.pauseStartMillis || null;
-          sprintStartTimeMillis = saved.sprintStartTimeMillis || null;
-          sprintBreakReasons = saved.sprintBreakReasons || []; // ✅ Load back
-          sprintEndTimeMillis = saved.sprintEndTimeMillis || null;
+          sprintStartTime,
+          sprintEndTime,
+
+          sprintBreaks,
+
+          timerRunning,
+
+          totalPausedMillis,
+
+          pauseStartMillis,
+
+          sprintStartTimeMillis,
+
+          sprintBreakReasons,
+
+          sprintEndTimeMillis,
+        };
+
+        // local backup
+        localStorage.setItem("study_data", JSON.stringify(timerData));
+
+        // Firebase save
+
+        try {
+          if (window.firebaseSet) {
+            await firebaseSet(
+              firebaseRef(window.firebaseDB, "timerData"),
+
+              timerData,
+            );
+
+            console.log("Firebase Timer Saved ✅");
+          }
+        } catch (error) {
+          console.log("Firebase Save Error:", error);
         }
       }
 
+      // ================= LOAD DATA =================
+
+      async function loadFromLocal() {
+        try {
+          let saved;
+
+          // Firebase first
+
+          if (window.firebaseGet) {
+            const snapshot = await firebaseGet(
+              firebaseRef(window.firebaseDB, "timerData"),
+            );
+
+            if (snapshot.exists()) {
+              saved = snapshot.val();
+
+              console.log("Loaded Timer From Firebase ✅");
+            }
+          }
+
+          // fallback localStorage
+
+          if (!saved) {
+            saved = JSON.parse(localStorage.getItem("study_data") || "{}");
+
+            console.log("Loaded Timer From LocalStorage");
+          }
+
+          if (saved.date === getISTDate()) {
+            elapsedSeconds = saved.elapsedSeconds || 0;
+
+            sprintGoalSeconds = saved.sprintGoalSeconds || 0;
+
+            sprintSet = saved.sprintSet || false;
+
+            customTitle = saved.customTitle || "";
+
+            sprintStartTime = saved.sprintStartTime || null;
+
+            sprintEndTime = saved.sprintEndTime || null;
+
+            sprintBreaks = saved.sprintBreaks || [];
+
+            timerRunning = saved.timerRunning || false;
+
+            titleInput.value = customTitle;
+
+            fullscreenTitle.textContent = customTitle || "Study Sprint";
+
+            totalPausedMillis = saved.totalPausedMillis || 0;
+
+            pauseStartMillis = saved.pauseStartMillis || null;
+
+            sprintStartTimeMillis = saved.sprintStartTimeMillis || null;
+
+            sprintBreakReasons = saved.sprintBreakReasons || [];
+
+            sprintEndTimeMillis = saved.sprintEndTimeMillis || null;
+          }
+        } catch (error) {
+          console.log("Load Error:", error);
+        }
+      }
       // ===================== Part 9: Button Flashing Function =====================
 
       // Flash button when clicked
@@ -2396,8 +2569,8 @@
         } else {
           showSprintToast(
             `✅ Sprint "${customTitle || "Untitled"}" complete! ⏱️ ${formatTime(
-              sprintSet ? sprintGoalSeconds : elapsedSeconds
-            )}`
+              sprintSet ? sprintGoalSeconds : elapsedSeconds,
+            )}`,
           );
         }
       });
@@ -2536,14 +2709,14 @@
           if (sprintCompleted && sprintStartTimeMillis && sprintEndTimeMillis) {
             const actualDurationSeconds = Math.max(
               1,
-              Math.floor((sprintEndTimeMillis - sprintStartTimeMillis) / 1000)
+              Math.floor((sprintEndTimeMillis - sprintStartTimeMillis) / 1000),
             );
             productivityPercent = (focusSeconds / actualDurationSeconds) * 100;
           } else {
             const nowMillis = Date.now();
             const realElapsedSeconds = Math.max(
               1,
-              Math.floor((nowMillis - sprintStartTimeMillis) / 1000)
+              Math.floor((nowMillis - sprintStartTimeMillis) / 1000),
             );
             productivityPercent = (focusSeconds / realElapsedSeconds) * 100;
           }
@@ -2594,7 +2767,7 @@
                         i + 1
                       } — ${b.start} → ${b.end}<br>📝 Reason: ${
                         sprintBreakReasons[i] || "Not Provided"
-                      }</span>`
+                      }</span>`,
                   )
                   .join("");
 
@@ -2607,7 +2780,7 @@
                     (b, i) =>
                       `${i + 1}⃣ Break ${i + 1}: ${b.start} → ${
                         b.end
-                      }\n📝 Reason: ${sprintBreakReasons[i] || "Not Provided"}`
+                      }\n📝 Reason: ${sprintBreakReasons[i] || "Not Provided"}`,
                   )
                   .join("\n");
 
@@ -2725,5 +2898,3 @@ ${breakInfoText}`;
     </script>
   </body>
 </html>
-
-
