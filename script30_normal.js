@@ -1,3 +1,34 @@
+// Firebase Imports
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { getDatabase } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+// Firebase Config
+const firebaseConfig = {
+  apiKey: "AIzaSyBB1wGVfVr8m12-dJ5w6U_iT7z0TRR-kak",
+  authDomain: "gatestudytracker-c2089.firebaseapp.com",
+  databaseURL: "https://gatestudytracker-c2089-default-rtdb.firebaseio.com",
+  projectId: "gatestudytracker-c2089",
+  storageBucket: "gatestudytracker-c2089.firebasestorage.app",
+  messagingSenderId: "1007190529322",
+  appId: "1:1007190529322:web:f559add6300dc0c5193a53"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+// Realtime Database
+const db = getDatabase(app);
+
+// Authentication
+const auth = getAuth(app);
+
+// Anonymous Login
+signInAnonymously(auth)
+  .then(() => console.log("Firebase Connected ✅"))
+  .catch(err => console.error(err));
+
+
 // ===================== SUBJECT AND TASK DATA =====================
 const subjects = [
   { id: 1, name: "C PROGRAMMING (Pankaj Sir)", icon: "💻", totalLectures: 50 ,
