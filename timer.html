@@ -1547,6 +1547,9 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
       rel="stylesheet"
     />
+
+    
+   
   </head>
   <body>
     <!-- Fullscreen Button -->
@@ -2374,7 +2377,7 @@
         // Firebase save
 
         try {
-          if (window.firebaseSet && window.firebaseRef && window.firebaseDB) {
+          if (window.firebaseSet) {
             await firebaseSet(
               firebaseRef(window.firebaseDB, "timerData"),
 
@@ -2383,6 +2386,7 @@
 
             console.log("Firebase Timer Saved ✅");
           }
+          
         } catch (error) {
           console.log("Firebase Save Error:", error);
         }
@@ -2396,7 +2400,7 @@
 
           // Firebase first
 
-          if (window.firebaseGet && window.firebaseRef && window.firebaseDB) {
+          if (window.firebaseGet) {
             const snapshot = await firebaseGet(
               firebaseRef(window.firebaseDB, "timerData"),
             );
@@ -2863,42 +2867,98 @@ ${breakInfoText}`;
       });
     </script>
 
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-      import {
-        getDatabase,
-        ref,
-        set,
-        get,
-      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+ <script type="module">
 
-      // apna Firebase config yaha paste karo
-      const firebaseConfig = {
-        apiKey: "YOUR_API_KEY",
-        authDomain: "YOUR_AUTH_DOMAIN",
-        databaseURL: "YOUR_DATABASE_URL",
-        projectId: "YOUR_PROJECT_ID",
-        storageBucket: "YOUR_STORAGE_BUCKET",
-        messagingSenderId: "YOUR_SENDER_ID",
-        appId: "YOUR_APP_ID",
-      };
+import { initializeApp } 
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-      const app = initializeApp(firebaseConfig);
+import {
+getDatabase,
+ref,
+set,
+get
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-      const database = getDatabase(app);
 
-      // global bana rahe hai
+// Firebase Config
 
-      window.firebaseDB = database;
-      window.firebaseRef = ref;
-      window.firebaseSet = set;
-      window.firebaseGet = get;
+const firebaseConfig = {
 
-      console.log("Firebase Timer Connected ✅");
-    </script>
-    setTimeout(()=>{ window.firebaseSet( window.firebaseRef( window.firebaseDB,
-    "test" ), { message:"Hello Firebase", time:new Date().toString() } );
-    console.log("Test Data Sent"); },3000);
+apiKey: "YOUR_API_KEY",
+authDomain: "YOUR_AUTH_DOMAIN",
+databaseURL: "YOUR_DATABASE_URL",
+projectId: "YOUR_PROJECT_ID",
+storageBucket: "YOUR_STORAGE_BUCKET",
+messagingSenderId: "YOUR_SENDER_ID",
+appId: "YOUR_APP_ID"
+
+};
+
+
+
+const app = initializeApp(firebaseConfig);
+
+
+const database = getDatabase(app);
+
+
+// global access
+
+window.firebaseDB = database;
+window.firebaseRef = ref;
+window.firebaseSet = set;
+window.firebaseGet = get;
+
+
+
+console.log("Firebase Timer Connected ✅");
+
+
+
+
+// TEST WRITE
+
+setTimeout(()=>{
+
+
+window.firebaseSet(
+
+window.firebaseRef(
+window.firebaseDB,
+"test"
+),
+
+
+{
+message:"Hello Firebase",
+time:new Date().toString()
+}
+
+
+)
+.then(()=>{
+
+console.log("Test Data Sent ✅");
+
+})
+.catch((error)=>{
+
+console.log(
+"Firebase Error:",
+error
+);
+
+});
+
+
+},3000);
+
+
+
+</script>
   </body>
+
+
 </html>
