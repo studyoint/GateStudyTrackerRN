@@ -107,8 +107,23 @@ async function saveProgress(data) {
     console.error(err);
   }
 }
+async function loadProgressFromFirebase() {
+  const snapshot = await get(ref(db, "gateCSEProgress"));
 
-let progressData = loadProgress();
+  if (snapshot.exists()) {
+    progressData = snapshot.val();
+    console.log("Loaded from Firebase ✅");
+  } else {
+    progressData = loadProgress();   // Default data
+    await saveProgress(progressData);
+    console.log("Created default data ✅");
+  }
+
+// ===================== INIT =====================
+loadProgressFromFirebase();
+}
+
+let progressData = {};
 
 // ===================== DOM REFERENCES =====================
 const subjectsContainer = document.getElementById("subjectsContainer");
