@@ -710,7 +710,7 @@ startTyping(todayQuote);
 
   // ================= PASSWORD LOCK =================
 
-function unlockSite(){
+window.unlockSite = function(){
 
 const pass = document.getElementById("sitePassword").value;
 
@@ -725,15 +725,19 @@ localStorage.setItem(
 );
 
 }
-
 else{
 
-document.getElementById("passwordError").innerHTML=
+document.getElementById("passwordError").innerHTML =
 "❌ Wrong Password";
 
 }
 
-}
+};
+
+
+
+
+
 
 
 // Check already unlocked
