@@ -10,7 +10,6 @@ import {
 
 import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
-
 // Firebase Config
 const firebaseConfig = {
   apiKey: "AIzaSyBB1wGVfVr8m12-dJ5w6U_iT7z0TRR-kak",
@@ -96,8 +95,17 @@ function loadProgress() {
   return data;
 }
 
-function saveProgress(data) {
-  localStorage.setItem("gateCSEProgress", JSON.stringify(data));
+async function saveProgress(data) {
+  try {
+    await set(ref(db, "gateCSEProgress"), data);
+
+    // Backup bhi rakho
+    localStorage.setItem("gateCSEProgress", JSON.stringify(data));
+
+    console.log("Saved to Firebase ✅");
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 let progressData = loadProgress();
