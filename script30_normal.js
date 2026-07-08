@@ -94,8 +94,8 @@ function loadProgress() {
   });
   return data;
 }
-
 async function saveProgress(data) {
+    console.log("saveProgress called");
   try {
     await set(ref(db, "gateCSEProgress"), data);
 
