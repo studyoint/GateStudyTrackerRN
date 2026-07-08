@@ -18,6 +18,29 @@
 
 <body>
 
+  <!-- 🔐 Password Popup -->
+
+<div id="passwordPopup" class="password-overlay">
+
+<div class="password-box">
+
+<h2>🔐 Enter Password</h2>
+
+<input 
+type="password" 
+id="sitePassword"
+placeholder="Enter Password">
+
+<button onclick="unlockSite()">
+Unlock
+</button>
+
+<p id="passwordError"></p>
+
+</div>
+
+</div>
+
   <!-- 🔰 Header -->
   <header>
     <h1 id="mainHeading"><span>GATE CSE Study Tracker</span> <span class="by-rn">[ Raut N ]</span></h1>
@@ -108,7 +131,7 @@
   </footer>
 
   <!-- 📜 Main Script File -->
-  <script type="module" src="script30_normal.js"></script>
+  <script type="module" src="script30.js"></script>
 
 </body>
 </html>
