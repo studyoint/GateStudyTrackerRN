@@ -707,3 +707,43 @@ startTyping(todayQuote);
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") closeModal();
   });
+
+  // ================= PASSWORD LOCK =================
+
+function unlockSite(){
+
+const pass = document.getElementById("sitePassword").value;
+
+
+if(pass === "1312"){
+
+document.getElementById("passwordPopup").style.display="none";
+
+localStorage.setItem(
+"gateTrackerUnlocked",
+"true"
+);
+
+}
+
+else{
+
+document.getElementById("passwordError").innerHTML=
+"❌ Wrong Password";
+
+}
+
+}
+
+
+// Check already unlocked
+
+window.addEventListener("load",()=>{
+
+if(localStorage.getItem("gateTrackerUnlocked")=="true"){
+
+document.getElementById("passwordPopup").style.display="none";
+
+}
+
+});
