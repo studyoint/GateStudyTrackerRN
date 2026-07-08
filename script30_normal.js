@@ -1,7 +1,15 @@
 // Firebase Imports
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import { getDatabase } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+import {
+  getDatabase,
+  ref,
+  get,
+  set,
+  onValue
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+
 import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
 
 // Firebase Config
 const firebaseConfig = {
