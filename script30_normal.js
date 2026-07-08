@@ -94,37 +94,50 @@ function loadProgress() {
   });
   return data;
 }
+
+
 async function saveProgress(data) {
-    console.log("saveProgress called");
+  console.log("saveProgress called");
+
   try {
     await set(ref(db, "gateCSEProgress"), data);
 
-    // Backup bhi rakho
+    // Local backup
     localStorage.setItem("gateCSEProgress", JSON.stringify(data));
 
     console.log("Saved to Firebase ✅");
   } catch (err) {
-    console.error(err);
+    console.error("Save Error:", err);
   }
 }
-async function loadProgressFromFirebase() {
-  const snapshot = await get(ref(db, "gateCSEProgress"));
 
-  if (snapshot.exists()) {
-    progressData = snapshot.val();
-    console.log("Loaded from Firebase ✅");
-  } else {
-    progressData = loadProgress();   // Default data
-    await saveProgress(progressData);
-    console.log("Created default data ✅");
+async function loadProgressFromFirebase() {
+  try {
+    const snapshot = await get(ref(db, "gateCSEProgress"));
+
+    if (snapshot.exists()) {
+      progressData = snapshot.val();
+      console.log("Loaded from Firebase ✅");
+    } else {
+      progressData = loadProgress(); // Create default data
+      await saveProgress(progressData);
+      console.log("Created default data ✅");
+    }
+
+    // Render UI after data is loaded
+    renderSubjects();
+    renderOverallProgressChart();
+
+  } catch (err) {
+    console.error("Load Error:", err);
   }
+}
+
+// Global progress object
+let progressData = {};
 
 // ===================== INIT =====================
 loadProgressFromFirebase();
-}
-
-let progressData = {};
-
 // ===================== DOM REFERENCES =====================
 const subjectsContainer = document.getElementById("subjectsContainer");
 const filterButtons = document.querySelectorAll(".filter-btn");
@@ -514,8 +527,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ===================== INIT =====================
-renderSubjects();
-renderOverallProgressChart();
+loadProgressFromFirebase();
 
 
 // motivation quotes 
