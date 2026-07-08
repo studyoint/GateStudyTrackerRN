@@ -1548,39 +1548,76 @@
       rel="stylesheet"
     />
 
+    
     <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-      import {
-        getDatabase,
-        ref,
-        set,
-        get,
-        push,
-        onValue,
-      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-      const firebaseConfig = {
-        apiKey: "YOUR_API_KEY",
-        authDomain: "YOUR_PROJECT.firebaseapp.com",
-        databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
-        projectId: "YOUR_PROJECT_ID",
-        storageBucket: "YOUR_PROJECT.appspot.com",
-        messagingSenderId: "XXXX",
-        appId: "XXXX",
-      };
+import { initializeApp } 
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-      const app = initializeApp(firebaseConfig);
+import { 
+getDatabase,
+ref,
+set,
+get
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-      window.db = getDatabase(app);
 
-      window.firebaseRef = ref;
-      window.firebaseSet = set;
-      window.firebaseGet = get;
-      window.firebasePush = push;
-      window.firebaseOnValue = onValue;
+// apna Firebase config yaha paste karo
+const firebaseConfig = {
 
-      console.log("Firebase Timer Connected ✅");
-    </script>
+apiKey: "YOUR_API_KEY",
+authDomain: "YOUR_AUTH_DOMAIN",
+databaseURL: "YOUR_DATABASE_URL",
+projectId: "YOUR_PROJECT_ID",
+storageBucket: "YOUR_STORAGE_BUCKET",
+messagingSenderId: "YOUR_SENDER_ID",
+appId: "YOUR_APP_ID"
+
+};
+
+
+
+const app = initializeApp(firebaseConfig);
+
+
+const database = getDatabase(app);
+
+
+// global bana rahe hai
+
+window.firebaseDB = database;
+window.firebaseRef = ref;
+window.firebaseSet = set;
+window.firebaseGet = get;
+
+
+console.log("Firebase Timer Connected ✅");
+
+
+</script>
+setTimeout(()=>{
+
+
+window.firebaseSet(
+
+window.firebaseRef(
+window.firebaseDB,
+"test"
+),
+
+{
+message:"Hello Firebase",
+time:new Date().toString()
+}
+
+);
+
+
+console.log("Test Data Sent");
+
+
+},3000);
   </head>
   <body>
     <!-- Fullscreen Button -->
