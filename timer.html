@@ -1944,6 +1944,36 @@
       // END OF STEP 02
       // ============================================================================
 
+
+
+      // ============================================================================
+// STEP 03 : FIREBASE READ TEST
+// Purpose:
+// Verify that timer.html can successfully read data from Firebase Realtime
+// Database.
+//
+// Expected Console:
+// 🔄 STEP 03 : Reading data...
+// ✅ STEP 03 : Data Read Successfully
+// 📦 STEP 03 : { test: "Hello Firebase", timestamp: ... }
+//
+// ============================================================================
+
+console.log("🔄 STEP 03 : Reading data...");
+
+timerRef
+  .once("value")
+  .then((snapshot) => {
+    console.log("✅ STEP 03 : Data Read Successfully");
+    console.log("📦 STEP 03 :", snapshot.val());
+  })
+  .catch((error) => {
+    console.error("❌ STEP 03 :", error);
+  });
+
+// ============================================================================
+// END OF STEP 03
+// ============================================================================
       // ===================== Part 1: Variable Initialization =====================
       // Initialize global variables related to time, sprint, and UI elements.
 
