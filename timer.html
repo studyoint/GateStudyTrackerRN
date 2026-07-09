@@ -1867,7 +1867,19 @@
     <!-- stylish RN footer  end   -->
 
     <script>
-      // Firebase Initialize
+      // ============================================================================
+      // STEP 01 : FIREBASE INITIALIZATION
+      // Purpose:
+      // Connect timer.html with Firebase Realtime Database.
+      //
+      // Expected Console:
+      // ✅ STEP 01 : Firebase Connected Successfully
+      //
+      // Note:
+      // - This step only establishes the Firebase connection.
+      // - No timer data is read or written yet.
+      // ============================================================================
+
       const firebaseConfig = {
         apiKey: "AIzaSyBB1wGVfVr8m12-dJ5w6U_iT7z0TRR-kak",
         authDomain: "gatestudytracker-c2089.firebaseapp.com",
@@ -1879,15 +1891,64 @@
         appId: "1:1007190529322:web:f559add6300dc0c5193a53",
       };
 
+      // Initialize Firebase App
       firebase.initializeApp(firebaseConfig);
 
+      // Get Realtime Database Instance
       const db = firebase.database();
 
-      console.log("Firebase Connected");
+      // Console Log (Testing)
+      console.log("✅ STEP 01 : Firebase Connected Successfully");
+
+      // ============================================================================
+      // END OF STEP 01
+      // ============================================================================
+
+      // ============================================================================
+      // STEP 02 : FIREBASE WRITE TEST
+      // Purpose:
+      // Verify that timer.html can successfully write data to Firebase Realtime
+      // Database.
+      //
+      // Expected Console:
+      // 🔄 STEP 02 : Writing test data...
+      // ✅ STEP 02 : Test data written successfully.
+      //
+      // Expected Firebase Database:
+      //
+      // studyTimer
+      //      ├── test : "Hello Firebase"
+      //      └── timestamp : 1752........
+      //
+      // ============================================================================
+
+      // Create Reference
+      const timerRef = db.ref("studyTimer");
+
+      console.log("🔄 STEP 02 : Writing test data...");
+
+      // Write Test Data
+      timerRef
+        .set({
+          test: "Hello Firebase",
+          timestamp: Date.now(),
+        })
+        .then(() => {
+          console.log("✅ STEP 02 : Test data written successfully.");
+        })
+        .catch((error) => {
+          console.error("❌ STEP 02 :", error);
+        });
+
+      // ============================================================================
+      // END OF STEP 02
+      // ============================================================================
 
       // ===================== Part 1: Variable Initialization =====================
       // Initialize global variables related to time, sprint, and UI elements.
+
       let elapsedSeconds = 0;
+
       let sprintGoalSeconds = 0;
       let sprintSet = false;
       let sprintCompleted = false; // ✅ NEW
