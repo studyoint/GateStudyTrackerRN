@@ -1897,6 +1897,29 @@
       // Get Realtime Database Instance
       const db = firebase.database();
 
+      // ============================================================================
+      // STEP 04 : FIREBASE TIMER REFERENCE
+      // Purpose:
+      // Create a permanent Firebase reference for the Study Timer.
+      //
+      // Database Path:
+      // Root
+      // └── studyTimer
+      //
+      // This reference will be reused throughout the project.
+      //
+      // Expected Console:
+      // ✅ STEP 04 : Timer Reference Created
+      // ============================================================================
+
+      const timerRef = db.ref("studyTimer");
+
+      console.log("✅ STEP 04 : Timer Reference Created");
+
+      // ============================================================================
+      // END OF STEP 04
+      // ============================================================================
+
       // Console Log (Testing)
       console.log("✅ STEP 01 : Firebase Connected Successfully");
 
@@ -1905,75 +1928,9 @@
       // ============================================================================
 
       // ============================================================================
-      // STEP 02 : FIREBASE WRITE TEST
-      // Purpose:
-      // Verify that timer.html can successfully write data to Firebase Realtime
-      // Database.
-      //
-      // Expected Console:
-      // 🔄 STEP 02 : Writing test data...
-      // ✅ STEP 02 : Test data written successfully.
-      //
-      // Expected Firebase Database:
-      //
-      // studyTimer
-      //      ├── test : "Hello Firebase"
-      //      └── timestamp : 1752........
-      //
-      // ============================================================================
-
-      // Create Reference
-      const timerRef = db.ref("studyTimer");
-
-      console.log("🔄 STEP 02 : Writing test data...");
-
-      // Write Test Data
-      timerRef
-        .set({
-          test: "Hello Firebase",
-          timestamp: Date.now(),
-        })
-        .then(() => {
-          console.log("✅ STEP 02 : Test data written successfully.");
-        })
-        .catch((error) => {
-          console.error("❌ STEP 02 :", error);
-        });
 
       // ============================================================================
-      // END OF STEP 02
-      // ============================================================================
 
-
-
-      // ============================================================================
-// STEP 03 : FIREBASE READ TEST
-// Purpose:
-// Verify that timer.html can successfully read data from Firebase Realtime
-// Database.
-//
-// Expected Console:
-// 🔄 STEP 03 : Reading data...
-// ✅ STEP 03 : Data Read Successfully
-// 📦 STEP 03 : { test: "Hello Firebase", timestamp: ... }
-//
-// ============================================================================
-
-console.log("🔄 STEP 03 : Reading data...");
-
-timerRef
-  .once("value")
-  .then((snapshot) => {
-    console.log("✅ STEP 03 : Data Read Successfully");
-    console.log("📦 STEP 03 :", snapshot.val());
-  })
-  .catch((error) => {
-    console.error("❌ STEP 03 :", error);
-  });
-
-// ============================================================================
-// END OF STEP 03
-// ============================================================================
       // ===================== Part 1: Variable Initialization =====================
       // Initialize global variables related to time, sprint, and UI elements.
 
@@ -2450,7 +2407,8 @@ timerRef
         }
       }
 
-      // ================= SAVE DATA =================
+      // ===================== SAVE DATA =====================
+      // Save timer state to LocalStorage + Firebase
 
       async function saveToLocal() {
         const timerData = {
@@ -2479,54 +2437,53 @@ timerRef
           sprintEndTimeMillis,
         };
 
-        // local backup
+        // ---------------------
+        // Local Backup
+        // ---------------------
         localStorage.setItem("study_data", JSON.stringify(timerData));
+        console.log("💾 LocalStorage Saved");
 
-        // Firebase save
-
+        // ---------------------
+        // Firebase Backup
+        // ---------------------
         try {
-          if (window.firebaseSet) {
-            await firebaseSet(
-              firebaseRef(window.firebaseDB, "timerData"),
+          await timerRef.set(timerData);
 
-              timerData,
-            );
-
-            console.log("Firebase Timer Saved ✅");
-          }
+          console.log("☁️ Firebase Saved Successfully");
         } catch (error) {
-          console.log("Firebase Save Error:", error);
+          console.error("❌ Firebase Save Error:", error);
         }
       }
 
-      // ================= LOAD DATA =================
+      // ===================== LOAD DATA =====================
+      // Load timer state from Firebase first.
+      // If Firebase has no data, fall back to LocalStorage.
 
       async function loadFromLocal() {
         try {
-          let saved;
+          let saved = null;
 
-          // Firebase first
+          // ---------------------
+          // Load From Firebase
+          // ---------------------
+          const snapshot = await timerRef.get();
 
-          if (window.firebaseGet) {
-            const snapshot = await firebaseGet(
-              firebaseRef(window.firebaseDB, "timerData"),
-            );
-
-            if (snapshot.exists()) {
-              saved = snapshot.val();
-
-              console.log("Loaded Timer From Firebase ✅");
-            }
+          if (snapshot.exists()) {
+            saved = snapshot.val();
+            console.log("☁️ Loaded From Firebase");
           }
 
-          // fallback localStorage
-
+          // ---------------------
+          // Fallback : LocalStorage
+          // ---------------------
           if (!saved) {
             saved = JSON.parse(localStorage.getItem("study_data") || "{}");
-
-            console.log("Loaded Timer From LocalStorage");
+            console.log("💾 Loaded From LocalStorage");
           }
 
+          // ---------------------
+          // Restore Timer State
+          // ---------------------
           if (saved.date === getISTDate()) {
             elapsedSeconds = saved.elapsedSeconds || 0;
 
@@ -2557,9 +2514,13 @@ timerRef
             sprintBreakReasons = saved.sprintBreakReasons || [];
 
             sprintEndTimeMillis = saved.sprintEndTimeMillis || null;
+
+            console.log("✅ Timer State Restored");
+          } else {
+            console.log("ℹ️ No valid timer found for today.");
           }
         } catch (error) {
-          console.log("Load Error:", error);
+          console.error("❌ Load Error:", error);
         }
       }
       // ===================== Part 9: Button Flashing Function =====================
