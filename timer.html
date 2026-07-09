@@ -2426,6 +2426,40 @@
         }
       }
 
+      // ============================================================================
+      // STEP 05 : FIREBASE SAVE FUNCTION
+      // Purpose:
+      // Save timer data to Firebase only.
+      //
+      // This function should NOT be called every second.
+      // It will be called only when required.
+      //
+      // Events:
+      // ✅ Start
+      // ✅ Pause
+      // ✅ Resume
+      // ✅ Reset
+      // ✅ Goal Change
+      // ✅ Title Change
+      // ============================================================================
+
+      async function saveToFirebase(timerData) {
+        try {
+          timerData.deviceId = DEVICE_ID;
+          timerData.lastUpdated = Date.now();
+
+          await timerRef.set(timerData);
+
+          console.log("☁️ STEP 05 : Firebase Saved");
+        } catch (error) {
+          console.error("❌ STEP 05 :", error);
+        }
+      }
+
+      // ============================================================================
+      // END OF STEP 05
+      // ============================================================================
+
       // ===================== SAVE DATA =====================
       // Save timer state to LocalStorage + Firebase
 
@@ -2466,9 +2500,7 @@
         // Firebase Backup
         // ---------------------
         try {
-          await timerRef.set(timerData);
-
-          console.log("☁️ Firebase Saved Successfully");
+          await saveToFirebase(timerData);
         } catch (error) {
           console.error("❌ Firebase Save Error:", error);
         }
