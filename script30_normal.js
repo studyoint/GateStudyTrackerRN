@@ -484,7 +484,7 @@ searchInput.addEventListener("input", () => {
 // ===================== COUNTDOWN TIMER =====================
 function updateCountdown() {
   const countdownElement = document.getElementById("countdown");
-  const targetDate = new Date("2026-01-01T00:00:00");
+  const targetDate = new Date("2027-01-01T00:00:00");
   const now = new Date();
   const diff = targetDate - now;
 
