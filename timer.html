@@ -1868,7 +1868,7 @@
 
     <script>
       // ============================================================================
-      console.log( "test=01");
+      console.log("test=01");
       // STEP 01 : FIREBASE INITIALIZATION
       // Purpose:
       // Connect timer.html with Firebase Realtime Database.
@@ -2462,28 +2462,57 @@
       // ============================================================================
 
       // ============================================================================
+      // TEST 02
       // STEP 06 : FIREBASE REALTIME LISTENER
-      // Purpose:
-      // Listen for any timer changes from Firebase.
       //
-      // Whenever another device updates the timer,
-      // this listener will automatically receive the latest data.
+      // Purpose:
+      // Listen for realtime updates from Firebase.
+      // If another device updates the timer,
+      // automatically update this device.
       //
       // Expected Console:
       // 👂 STEP 06 : Firebase Listener Started
-      // 📥 STEP 06 : Update Received
+      // 📥 STEP 06 : Firebase Update Received
+      // 🔄 STEP 06 : Timer Updated From Firebase
       // ============================================================================
 
-      console.log("👂 STEP 06 : Firebase Listener Started");
+      console.log("[TEST 02] 👂 STEP 06 : Firebase Listener Started");
 
       timerRef.on("value", (snapshot) => {
         if (!snapshot.exists()) return;
 
         const data = snapshot.val();
 
-        console.log("📥 STEP 06 : Update Received", data);
+        console.log("[TEST 02] 📥 STEP 06 : Firebase Update Received", data);
+
+        // Ignore our own update
+        if (data.deviceId === DEVICE_ID) {
+          console.log("[TEST 02] ⏩ Own Device Update Ignored");
+          return;
+        }
+
+        elapsedSeconds = data.elapsedSeconds || 0;
+
+        sprintGoalSeconds = data.sprintGoalSeconds || 0;
+
+        sprintSet = data.sprintSet || false;
+
+        timerRunning = data.timerRunning || false;
+
+        customTitle = data.customTitle || "";
+
+        titleInput.value = customTitle;
+
+        fullscreenTitle.textContent = customTitle || "Study Sprint";
+
+        updateDisplay();
+
+        console.log("[TEST 02] 🔄 STEP 06 : Timer Updated From Firebase");
       });
 
+      // ============================================================================
+      // END OF TEST 02
+      // ============================================================================
       // ============================================================================
       // END OF STEP 06
       // ============================================================================
