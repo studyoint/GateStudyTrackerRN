@@ -1547,9 +1547,6 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
       rel="stylesheet"
     />
-
-    
-   
   </head>
   <body>
     <!-- Fullscreen Button -->
@@ -1664,6 +1661,9 @@
       <div id="sprint-toast-message"></div>
       <!-- <button id="copy-log-btn" class="copy-log-btn">📋 Copy Log</button> -->
     </div>
+
+    <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-database-compat.js"></script>
 
     <!-- stylish RN footer  start   -->
 
@@ -1866,8 +1866,25 @@
 
     <!-- stylish RN footer  end   -->
 
-    <!-- <script src="script.js"></script> -->
     <script>
+      // Firebase Initialize
+      const firebaseConfig = {
+        apiKey: "AIzaSyBB1wGVfVr8m12-dJ5w6U_iT7z0TRR-kak",
+        authDomain: "gatestudytracker-c2089.firebaseapp.com",
+        databaseURL:
+          "https://gatestudytracker-c2089-default-rtdb.firebaseio.com",
+        projectId: "gatestudytracker-c2089",
+        storageBucket: "gatestudytracker-c2089.firebasestorage.app",
+        messagingSenderId: "1007190529322",
+        appId: "1:1007190529322:web:f559add6300dc0c5193a53",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+
+      const db = firebase.database();
+
+      console.log("Firebase Connected");
+
       // ===================== Part 1: Variable Initialization =====================
       // Initialize global variables related to time, sprint, and UI elements.
       let elapsedSeconds = 0;
@@ -2386,7 +2403,6 @@
 
             console.log("Firebase Timer Saved ✅");
           }
-          
         } catch (error) {
           console.log("Firebase Save Error:", error);
         }
@@ -2866,99 +2882,5 @@ ${breakInfoText}`;
         if (document.visibilityState === "visible") requestWakeLock();
       });
     </script>
-
-
- <script type="module">
-
-import { initializeApp } 
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-getDatabase,
-ref,
-set,
-get
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
-
-// Firebase Config
-
-const firebaseConfig = {
-
-apiKey: "YOUR_API_KEY",
-authDomain: "YOUR_AUTH_DOMAIN",
-databaseURL: "YOUR_DATABASE_URL",
-projectId: "YOUR_PROJECT_ID",
-storageBucket: "YOUR_STORAGE_BUCKET",
-messagingSenderId: "YOUR_SENDER_ID",
-appId: "YOUR_APP_ID"
-
-};
-
-
-
-const app = initializeApp(firebaseConfig);
-
-
-const database = getDatabase(app);
-
-
-// global access
-
-window.firebaseDB = database;
-window.firebaseRef = ref;
-window.firebaseSet = set;
-window.firebaseGet = get;
-
-
-
-console.log("Firebase Timer Connected ✅");
-
-
-
-
-// TEST WRITE
-
-setTimeout(()=>{
-
-
-window.firebaseSet(
-
-window.firebaseRef(
-window.firebaseDB,
-"test"
-),
-
-
-{
-message:"Hello Firebase",
-time:new Date().toString()
-}
-
-
-)
-.then(()=>{
-
-console.log("Test Data Sent ✅");
-
-})
-.catch((error)=>{
-
-console.log(
-"Firebase Error:",
-error
-);
-
-});
-
-
-},3000);
-
-
-
-</script>
   </body>
-
-
 </html>
