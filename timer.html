@@ -2460,6 +2460,32 @@
       // END OF STEP 05
       // ============================================================================
 
+      // ============================================================================
+      // STEP 06 : FIREBASE REALTIME LISTENER
+      // Purpose:
+      // Listen for any timer changes from Firebase.
+      //
+      // Whenever another device updates the timer,
+      // this listener will automatically receive the latest data.
+      //
+      // Expected Console:
+      // 👂 STEP 06 : Firebase Listener Started
+      // 📥 STEP 06 : Update Received
+      // ============================================================================
+
+      console.log("👂 STEP 06 : Firebase Listener Started");
+
+      timerRef.on("value", (snapshot) => {
+        if (!snapshot.exists()) return;
+
+        const data = snapshot.val();
+
+        console.log("📥 STEP 06 : Update Received", data);
+      });
+
+      // ============================================================================
+      // END OF STEP 06
+      // ============================================================================
       // ===================== SAVE DATA =====================
       // Save timer state to LocalStorage + Firebase
 
