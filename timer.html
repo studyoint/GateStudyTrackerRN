@@ -1928,7 +1928,26 @@
       // ============================================================================
 
       // ============================================================================
+      // ============================================================================
+      // STEP 04 : DEVICE IDENTIFICATION
+      // Purpose:
+      // Generate a unique ID for every browser/device.
+      // This ID is stored permanently in LocalStorage.
+      // It will later help us avoid Firebase sync loops.
+      // ============================================================================
 
+      let DEVICE_ID = localStorage.getItem("study_timer_device_id");
+
+      if (!DEVICE_ID) {
+        DEVICE_ID = crypto.randomUUID();
+        localStorage.setItem("study_timer_device_id", DEVICE_ID);
+      }
+
+      console.log("✅ STEP 04 : Device ID =", DEVICE_ID);
+
+      // ============================================================================
+      // END OF STEP 04
+      // ============================================================================
       // ============================================================================
 
       // ===================== Part 1: Variable Initialization =====================
