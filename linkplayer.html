@@ -1,0 +1,5126 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <!-- ====================================================== -->
+    <!-- [01] START : DOCUMENT -->
+    <!-- ====================================================== -->
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Professional Responsive Video Player">
+
+    <meta
+        name="theme-color"
+        content="#050816">
+
+    <title>
+
+        RN Professional Video Player
+
+    </title>
+
+    <!-- ====================================================== -->
+    <!-- [01] END : DOCUMENT -->
+    <!-- ====================================================== -->
+
+
+
+
+
+    <!-- ====================================================== -->
+    <!-- [02] START : FONT -->
+    <!-- ====================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- ====================================================== -->
+    <!-- [02] END : FONT -->
+    <!-- ====================================================== -->
+
+
+
+
+
+    <!-- ====================================================== -->
+    <!-- [03] START : ICON -->
+    <!-- ====================================================== -->
+
+    <link
+        rel="icon"
+        href="data:,">
+
+    <!-- ====================================================== -->
+    <!-- [03] END : ICON -->
+    <!-- ====================================================== -->
+
+
+
+
+
+    <!-- ====================================================== -->
+    <!-- [04] START : CSS -->
+    <!-- ====================================================== -->
+
+    <style>
+
+        /* CSS WILL BE ADDED HERE */
+  
+  /* ====================================================== */
+/* [01] START : IMPORT */
+/* ====================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ====================================================== */
+/* [01] END : IMPORT */
+/* ====================================================== */
+
+
+
+
+
+/* ====================================================== */
+/* [02] START : ROOT VARIABLES */
+/* ====================================================== */
+
+:root{
+
+    /* Brand */
+
+    --primary:#5B5DF0;
+    --primary-light:#7275FF;
+    --secondary:#8B5CF6;
+
+    --success:#22C55E;
+    --danger:#EF4444;
+    --warning:#F59E0B;
+
+
+
+
+
+    /* Background */
+
+    --bg:#050816;
+    --bg-2:#0B1020;
+    --bg-3:#121B33;
+
+
+
+
+
+    /* Glass */
+
+    --glass:rgba(255,255,255,.06);
+    --glass-2:rgba(255,255,255,.08);
+
+
+
+
+
+    /* Border */
+
+    --border:rgba(255,255,255,.10);
+
+
+
+
+
+    /* Text */
+
+    --white:#FFFFFF;
+    --text:#E8ECF7;
+    --text-light:#AAB4C8;
+
+
+
+
+
+    /* Radius */
+
+    --radius-sm:10px;
+    --radius:18px;
+    --radius-lg:28px;
+
+
+
+
+
+    /* Shadow */
+
+    --shadow-sm:
+
+        0 5px 15px rgba(0,0,0,.25);
+
+    --shadow:
+
+        0 15px 35px rgba(0,0,0,.35);
+
+    --shadow-lg:
+
+        0 25px 60px rgba(0,0,0,.45);
+
+
+
+
+
+    /* Transition */
+
+    --transition:.35s ease;
+
+}
+
+/* ====================================================== */
+/* [02] END : ROOT VARIABLES */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [03] START : RESET */
+/* ====================================================== */
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    min-height:100vh;
+
+}
+
+/* ====================================================== */
+/* [03] END : RESET */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [04] START : BODY */
+/* ====================================================== */
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:
+
+    radial-gradient(circle at top left,#233876 0%,transparent 30%),
+
+    radial-gradient(circle at bottom right,#7C3AED 0%,transparent 35%),
+
+    linear-gradient(135deg,#050816,#091121,#050816);
+
+    color:var(--text);
+
+    overflow-x:hidden;
+
+    position:relative;
+
+}
+
+/* ====================================================== */
+/* [04] END : BODY */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [05] START : SCROLLBAR */
+/* ====================================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#091121;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:
+
+    linear-gradient(
+
+    var(--primary),
+
+    var(--secondary));
+
+    border-radius:50px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:var(--primary-light);
+
+}
+
+/* ====================================================== */
+/* [05] END : SCROLLBAR */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [06] START : GLOBAL */
+/* ====================================================== */
+
+button{
+
+    border:none;
+
+    outline:none;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    transition:var(--transition);
+
+}
+
+input{
+
+    outline:none;
+
+    border:none;
+
+    font-family:inherit;
+
+}
+
+select{
+
+    outline:none;
+
+    font-family:inherit;
+
+}
+
+video{
+
+    width:100%;
+
+    display:block;
+
+}
+
+img{
+
+    max-width:100%;
+
+}
+
+a{
+
+    color:inherit;
+
+    text-decoration:none;
+
+}
+
+ul{
+
+    list-style:none;
+
+}
+
+/* ====================================================== */
+/* [06] END : GLOBAL */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [07] START : BACKGROUND */
+/* ====================================================== */
+
+.background{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-100;
+
+    overflow:hidden;
+
+}
+
+.background-grid{
+
+    position:absolute;
+
+    inset:0;
+
+    background-image:
+
+    linear-gradient(
+
+    rgba(255,255,255,.03) 1px,
+
+    transparent 1px),
+
+    linear-gradient(
+
+    90deg,
+
+    rgba(255,255,255,.03) 1px,
+
+    transparent 1px);
+
+    background-size:45px 45px;
+
+    opacity:.35;
+
+}
+
+.background-gradient{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    radial-gradient(circle,#5B5DF022,transparent 60%);
+
+}
+
+/* ====================================================== */
+/* [07] END : BACKGROUND */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [08] START : GLOW */
+/* ====================================================== */
+
+.background-glow{
+
+    position:absolute;
+
+    width:500px;
+
+    height:500px;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    opacity:.30;
+
+}
+
+.glow-left{
+
+    top:-180px;
+
+    left:-180px;
+
+    background:#5B5DF0;
+
+}
+
+.glow-right{
+
+    right:-180px;
+
+    bottom:-180px;
+
+    background:#8B5CF6;
+
+}
+
+/* ====================================================== */
+/* [08] END : GLOW */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [09] START : BLUR */
+/* ====================================================== */
+
+.background-blur{
+
+    position:absolute;
+
+    width:380px;
+
+    height:380px;
+
+    border-radius:50%;
+
+    filter:blur(90px);
+
+    opacity:.15;
+
+}
+
+.blur-top{
+
+    top:15%;
+
+    right:8%;
+
+    background:#3B82F6;
+
+}
+
+.blur-bottom{
+
+    bottom:5%;
+
+    left:5%;
+
+    background:#A855F7;
+
+}
+
+/* ====================================================== */
+/* [09] END : BLUR */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [10] START : APPLICATION */
+/* ====================================================== */
+
+.app{
+
+    width:min(1450px,94%);
+
+    margin:auto;
+
+    padding:35px 0 80px;
+
+    position:relative;
+
+    z-index:5;
+
+}
+
+/* ====================================================== */
+/* [10] END : APPLICATION */
+/* ====================================================== */
+  /* ====================================================== */
+/* [11] START : HEADER */
+/* ====================================================== */
+
+.header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:25px;
+
+    margin-bottom:35px;
+
+}
+
+.header-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.header-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+/* ====================================================== */
+/* [11] END : HEADER */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [12] START : LOGO */
+/* ====================================================== */
+
+.logo{
+
+    width:72px;
+
+    height:72px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:50%;
+
+    font-size:30px;
+
+    font-weight:700;
+
+    color:var(--white);
+
+    background:
+
+    linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary));
+
+    box-shadow:
+
+    0 0 35px rgba(91,93,240,.40);
+
+}
+
+.title-box h1{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:var(--white);
+
+}
+
+.title-box p{
+
+    margin-top:6px;
+
+    color:var(--text-light);
+
+    font-size:15px;
+
+}
+
+/* ====================================================== */
+/* [12] END : LOGO */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [13] START : BUTTON */
+/* ====================================================== */
+
+button{
+
+    height:55px;
+
+    padding:0 22px;
+
+    border-radius:14px;
+
+    background:
+
+    linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary));
+
+    color:var(--white);
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+}
+
+button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+
+    0 15px 30px rgba(91,93,240,.35);
+
+}
+
+button:active{
+
+    transform:scale(.97);
+
+}
+
+/* ====================================================== */
+/* [13] END : BUTTON */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [14] START : GLASS CARD */
+/* ====================================================== */
+
+.url-card,
+
+.player-card,
+
+.playback-card,
+
+.action-card,
+
+.info-card,
+
+.shortcut-card,
+
+.modal-box{
+
+    background:var(--glass);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    box-shadow:var(--shadow);
+
+}
+
+/* ====================================================== */
+/* [14] END : GLASS CARD */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [15] START : URL SECTION */
+/* ====================================================== */
+
+.url-section{
+
+    margin-top:28px;
+
+}
+
+.url-card{
+
+    padding:22px;
+
+}
+
+.input-group{
+
+    display:flex;
+
+    gap:18px;
+
+}
+
+/* ====================================================== */
+/* [15] END : URL SECTION */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [16] START : URL INPUT */
+/* ====================================================== */
+
+.video-url{
+
+    flex:1;
+
+    height:60px;
+
+    padding:0 22px;
+
+    border-radius:14px;
+
+    border:1px solid var(--border);
+
+    background:rgba(255,255,255,.04);
+
+    color:var(--white);
+
+    font-size:16px;
+
+}
+
+.video-url::placeholder{
+
+    color:var(--text-light);
+
+}
+
+.video-url:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:
+
+    0 0 0 4px rgba(91,93,240,.15);
+
+}
+
+/* ====================================================== */
+/* [16] END : URL INPUT */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [17] START : PLAY BUTTON */
+/* ====================================================== */
+
+.play-button{
+
+    min-width:180px;
+
+}
+
+/* ====================================================== */
+/* [17] END : PLAY BUTTON */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [18] START : PLAYER */
+/* ====================================================== */
+
+.player-section{
+
+    margin-top:30px;
+
+}
+
+.player-card{
+
+    padding:22px;
+
+}
+
+.player-wrapper{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:20px;
+
+    background:#000;
+
+}
+
+.video-player{
+
+    width:100%;
+
+    aspect-ratio:16/9;
+
+    display:block;
+
+    background:#000;
+
+    object-fit:contain;
+
+}
+
+/* ====================================================== */
+/* [18] END : PLAYER */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [19] START : POSTER */
+/* ====================================================== */
+
+.poster-layer{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    background:
+
+    linear-gradient(
+
+    rgba(5,8,22,.75),
+
+    rgba(5,8,22,.92));
+
+}
+
+.poster-content{
+
+    padding:30px;
+
+}
+
+.poster-icon{
+
+    width:90px;
+
+    height:90px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:38px;
+
+    background:
+
+    linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary));
+
+    color:var(--white);
+
+}
+
+.poster-content h2{
+
+    margin-top:20px;
+
+    color:var(--white);
+
+}
+
+.poster-content p{
+
+    margin-top:10px;
+
+    color:var(--text-light);
+
+}
+
+/* ====================================================== */
+/* [19] END : POSTER */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [20] START : PLAYER OVERLAY */
+/* ====================================================== */
+
+.loading-layer,
+
+.error-layer{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:18px;
+
+    text-align:center;
+
+    background:rgba(5,8,22,.92);
+
+    color:var(--white);
+
+    display:none;
+
+}
+
+.error-icon{
+
+    font-size:60px;
+
+}
+
+/* ====================================================== */
+/* [20] END : PLAYER OVERLAY */
+/* ====================================================== */
+  
+  /* ====================================================== */
+/* [21] START : CUSTOM CONTROLS */
+/* ====================================================== */
+
+.custom-controls{
+
+    display:grid;
+
+    grid-template-columns:repeat(6,1fr);
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+.custom-controls button{
+
+    height:56px;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid var(--border);
+
+    color:var(--white);
+
+    font-size:18px;
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+}
+
+.custom-controls button:hover{
+
+    background:
+
+    linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary));
+
+}
+
+/* ====================================================== */
+/* [21] END : CUSTOM CONTROLS */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [22] START : PLAYBACK PANEL */
+/* ====================================================== */
+
+.playback-panel{
+
+    margin-top:30px;
+
+}
+
+.playback-card{
+
+    padding:22px;
+
+}
+
+/* ====================================================== */
+/* [22] END : PLAYBACK PANEL */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [23] START : SEEK BAR */
+/* ====================================================== */
+
+.progress-wrapper{
+
+    margin-bottom:22px;
+
+}
+
+.seek-bar{
+
+    width:100%;
+
+    height:8px;
+
+    appearance:none;
+
+    border-radius:50px;
+
+    background:#273347;
+
+    cursor:pointer;
+
+}
+
+.seek-bar::-webkit-slider-thumb{
+
+    appearance:none;
+
+    width:18px;
+
+    height:18px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+}
+
+.seek-bar::-moz-range-thumb{
+
+    width:18px;
+
+    height:18px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+}
+
+/* ====================================================== */
+/* [23] END : SEEK BAR */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [24] START : TIME */
+/* ====================================================== */
+
+.time-wrapper{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:25px;
+
+    color:var(--text-light);
+
+}
+
+.time-divider{
+
+    color:var(--white);
+
+}
+
+/* ====================================================== */
+/* [24] END : TIME */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [25] START : SETTINGS */
+/* ====================================================== */
+
+.settings-wrapper{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:25px;
+
+}
+
+.setting-item{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.setting-item label{
+
+    color:var(--white);
+
+    font-weight:600;
+
+}
+
+#volumeSlider{
+
+    width:100%;
+
+    height:8px;
+
+    appearance:none;
+
+    border-radius:50px;
+
+    background:#273347;
+
+}
+
+#volumeSlider::-webkit-slider-thumb{
+
+    appearance:none;
+
+    width:18px;
+
+    height:18px;
+
+    border-radius:50%;
+
+    background:var(--success);
+
+}
+
+#speedControl{
+
+    height:50px;
+
+    border-radius:12px;
+
+    border:1px solid var(--border);
+
+    background:rgba(255,255,255,.05);
+
+    color:var(--white);
+
+    padding:0 15px;
+
+}
+
+/* ====================================================== */
+/* [25] END : SETTINGS */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [26] START : ACTION PANEL */
+/* ====================================================== */
+
+.action-panel{
+
+    margin-top:30px;
+
+}
+
+.action-card{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:18px;
+
+    padding:22px;
+
+}
+
+/* ====================================================== */
+/* [26] END : ACTION PANEL */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [27] START : INFORMATION */
+/* ====================================================== */
+
+.information-section{
+
+    margin-top:30px;
+
+}
+
+.information-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:25px;
+
+}
+
+.info-card,
+
+.shortcut-card{
+
+    padding:25px;
+
+}
+
+.info-card h2,
+
+.shortcut-card h2{
+
+    margin-bottom:20px;
+
+    color:var(--white);
+
+}
+
+.info-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.info-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    border-bottom:1px solid rgba(255,255,255,.06);
+
+    padding-bottom:10px;
+
+}
+
+.info-item span{
+
+    color:var(--text-light);
+
+}
+
+.info-item strong{
+
+    color:var(--white);
+
+}
+
+.shortcut-card ul{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.shortcut-card li{
+
+    color:var(--text-light);
+
+}
+
+/* ====================================================== */
+/* [27] END : INFORMATION */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [28] START : RESPONSIVE */
+/* ====================================================== */
+
+@media(max-width:992px){
+
+    .custom-controls{
+
+        grid-template-columns:repeat(3,1fr);
+
+    }
+
+    .action-card{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .information-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .input-group{
+
+        flex-direction:column;
+
+    }
+
+    .play-button{
+
+        width:100%;
+
+    }
+
+    .settings-wrapper{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .custom-controls{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .action-card{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .title-box h1{
+
+        font-size:24px;
+
+    }
+
+    .logo{
+
+        width:60px;
+
+        height:60px;
+
+        font-size:24px;
+
+    }
+
+}
+
+/* ====================================================== */
+/* [28] END : RESPONSIVE */
+/* ====================================================== */
+  
+  /* ====================================================== */
+/* [29] START : TOAST */
+/* ====================================================== */
+
+.toast{
+
+    position:fixed;
+
+    top:25px;
+
+    right:25px;
+
+    width:360px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:18px;
+
+    background:rgba(15,23,42,.92);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:var(--shadow-lg);
+
+    transform:translateX(450px);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:var(--transition);
+
+    z-index:9999;
+
+}
+
+.toast.show{
+
+    transform:translateX(0);
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+.toast-icon{
+
+    width:55px;
+
+    height:55px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:50%;
+
+    color:var(--white);
+
+    font-weight:700;
+
+    background:
+
+    linear-gradient(
+    135deg,
+    var(--success),
+    #16A34A);
+
+}
+
+.toast-content{
+
+    flex:1;
+
+}
+
+.toast-content h4{
+
+    color:var(--white);
+
+    margin-bottom:5px;
+
+}
+
+.toast-content p{
+
+    color:var(--text-light);
+
+    font-size:14px;
+
+}
+
+/* ====================================================== */
+/* [29] END : TOAST */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [30] START : PAGE LOADER */
+/* ====================================================== */
+
+.page-loader{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:25px;
+
+    background:#050816;
+
+    z-index:99999;
+
+}
+
+.loader-ring{
+
+    width:80px;
+
+    height:80px;
+
+    border-radius:50%;
+
+    border:6px solid rgba(255,255,255,.12);
+
+    border-top-color:var(--primary);
+
+    animation:loaderRotate 1s linear infinite;
+
+}
+
+.loader-text{
+
+    color:var(--white);
+
+    font-size:18px;
+
+    font-weight:600;
+
+}
+
+/* ====================================================== */
+/* [30] END : PAGE LOADER */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [31] START : MODAL */
+/* ====================================================== */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+    background:rgba(0,0,0,.65);
+
+    backdrop-filter:blur(8px);
+
+    z-index:9998;
+
+}
+
+.modal-box{
+
+    width:min(650px,100%);
+
+    overflow:hidden;
+
+}
+
+.modal-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px 25px;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.modal-header h2{
+
+    color:var(--white);
+
+}
+
+.modal-body{
+
+    padding:25px;
+
+    color:var(--text-light);
+
+    line-height:1.8;
+
+}
+
+/* ====================================================== */
+/* [31] END : MODAL */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [32] START : SCROLL BUTTON */
+/* ====================================================== */
+
+.scroll-top-button{
+
+    position:fixed;
+
+    right:25px;
+
+    bottom:25px;
+
+    width:58px;
+
+    height:58px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:22px;
+
+    color:var(--white);
+
+    background:
+
+    linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary));
+
+    box-shadow:
+
+    0 15px 35px rgba(91,93,240,.35);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    z-index:999;
+
+}
+
+.scroll-top-button.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+/* ====================================================== */
+/* [32] END : SCROLL BUTTON */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [33] START : FOOTER */
+/* ====================================================== */
+
+.footer{
+
+    margin-top:50px;
+
+    padding:35px 20px;
+
+    text-align:center;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+.footer h3{
+
+    color:var(--white);
+
+    margin-bottom:10px;
+
+}
+
+.footer p{
+
+    color:var(--text-light);
+
+}
+
+/* ====================================================== */
+/* [33] END : FOOTER */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [34] START : HOVER EFFECTS */
+/* ====================================================== */
+
+.player-card:hover,
+
+.url-card:hover,
+
+.playback-card:hover,
+
+.action-card:hover,
+
+.info-card:hover,
+
+.shortcut-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+
+    0 25px 60px rgba(0,0,0,.45);
+
+}
+
+.logo:hover,
+
+.scroll-top-button:hover{
+
+    transform:scale(1.08);
+
+}
+
+.video-player{
+
+    transition:var(--transition);
+
+}
+
+.video-player:hover{
+
+    filter:brightness(1.03);
+
+}
+
+/* ====================================================== */
+/* [34] END : HOVER EFFECTS */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [35] START : ANIMATIONS */
+/* ====================================================== */
+
+@keyframes loaderRotate{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+@keyframes floatingGlow{
+
+    0%{
+
+        transform:translateY(0px);
+
+    }
+
+    50%{
+
+        transform:translateY(-25px);
+
+    }
+
+    100%{
+
+        transform:translateY(0px);
+
+    }
+
+}
+
+@keyframes pulseGlow{
+
+    0%{
+
+        opacity:.20;
+
+    }
+
+    50%{
+
+        opacity:.45;
+
+    }
+
+    100%{
+
+        opacity:.20;
+
+    }
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.glow-left{
+
+    animation:
+
+    floatingGlow 8s ease-in-out infinite,
+
+    pulseGlow 6s ease-in-out infinite;
+
+}
+
+.glow-right{
+
+    animation:
+
+    floatingGlow 10s ease-in-out infinite reverse,
+
+    pulseGlow 8s ease-in-out infinite;
+
+}
+
+.header,
+
+.url-section,
+
+.player-section,
+
+.playback-panel,
+
+.action-panel,
+
+.information-section,
+
+.footer{
+
+    animation:fadeUp .8s ease both;
+
+}
+
+/* ====================================================== */
+/* [35] END : ANIMATIONS */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [36] START : MOBILE */
+/* ====================================================== */
+
+@media (max-width:768px){
+
+    .toast{
+
+        width:calc(100% - 30px);
+
+        right:15px;
+
+        left:15px;
+
+    }
+
+    .modal-box{
+
+        width:100%;
+
+    }
+
+    .footer{
+
+        padding:30px 15px;
+
+    }
+
+    .scroll-top-button{
+
+        width:50px;
+
+        height:50px;
+
+        right:18px;
+
+        bottom:18px;
+
+    }
+
+}
+
+/* ====================================================== */
+/* [36] END : MOBILE */
+/* ====================================================== */
+/* ====================================================== */
+/* [37] START : MOBILE RESPONSIVE */
+/* ====================================================== */
+
+@media screen and (max-width:768px){
+
+    .app{
+
+        width:96%;
+
+        padding:18px 0 40px;
+
+    }
+
+
+
+
+
+
+    /* ---------------- HEADER ---------------- */
+
+    .header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:18px;
+
+        margin-bottom:25px;
+
+    }
+
+    .header-left{
+
+        width:100%;
+
+        align-items:center;
+
+    }
+
+    .header-right{
+
+        width:100%;
+
+    }
+
+
+
+
+
+
+    /* ---------------- LOGO ---------------- */
+
+    .logo{
+
+        width:55px;
+
+        height:55px;
+
+        font-size:22px;
+
+        flex-shrink:0;
+
+    }
+
+
+
+
+
+
+    /* ---------------- TITLE ---------------- */
+
+    .title-box{
+
+        flex:1;
+
+    }
+
+    .title-box h1{
+
+        font-size:30px;
+
+        line-height:1.2;
+
+    }
+
+    .title-box p{
+
+        font-size:14px;
+
+        margin-top:5px;
+
+    }
+
+
+
+
+
+
+    /* ---------------- BUTTON ---------------- */
+
+    #themeButton{
+
+        width:100%;
+
+        height:48px;
+
+        font-size:15px;
+
+    }
+
+
+
+
+
+
+    /* ---------------- CARD ---------------- */
+
+    .url-card,
+
+    .player-card,
+
+    .playback-card,
+
+    .action-card,
+
+    .info-card,
+
+    .shortcut-card{
+
+        padding:15px;
+
+        border-radius:18px;
+
+    }
+
+
+
+
+
+
+    /* ---------------- INPUT ---------------- */
+
+    .input-group{
+
+        flex-direction:column;
+
+        gap:12px;
+
+    }
+
+    .video-url{
+
+        width:100%;
+
+        height:48px;
+
+        font-size:15px;
+
+        padding:0 15px;
+
+    }
+
+    .play-button{
+
+        width:100%;
+
+        min-width:100%;
+
+        height:50px;
+
+    }
+
+
+
+
+
+
+    /* ---------------- VIDEO ---------------- */
+
+    .player-wrapper{
+
+        border-radius:15px;
+
+    }
+
+    .video-player{
+
+        border-radius:15px;
+
+    }
+
+
+
+
+
+
+    /* ---------------- CONTROLS ---------------- */
+
+    .custom-controls{
+
+        grid-template-columns:repeat(3,1fr);
+
+        gap:10px;
+
+        margin-top:15px;
+
+    }
+
+    .custom-controls button{
+
+        height:48px;
+
+        font-size:17px;
+
+        border-radius:12px;
+
+    }
+
+
+
+
+
+
+    /* ---------------- PLAYBACK ---------------- */
+
+    .playback-card{
+
+        padding:16px;
+
+    }
+
+    .time-wrapper{
+
+        font-size:14px;
+
+        margin:15px 0;
+
+    }
+
+
+
+
+
+
+    /* ---------------- SETTINGS ---------------- */
+
+    .settings-wrapper{
+
+        grid-template-columns:1fr;
+
+        gap:18px;
+
+    }
+
+    .setting-item{
+
+        gap:8px;
+
+    }
+
+    .setting-item label{
+
+        font-size:14px;
+
+    }
+
+    #speedControl{
+
+        width:100%;
+
+        height:45px;
+
+    }
+
+
+
+
+
+
+    /* ---------------- ACTION ---------------- */
+
+    .action-card{
+
+        grid-template-columns:repeat(2,1fr);
+
+        gap:10px;
+
+    }
+
+    .action-card button{
+
+        height:48px;
+
+        font-size:14px;
+
+    }
+
+
+
+
+
+
+    /* ---------------- INFO ---------------- */
+
+    .information-grid{
+
+        grid-template-columns:1fr;
+
+        gap:15px;
+
+    }
+
+    .info-card h2,
+
+    .shortcut-card h2{
+
+        font-size:19px;
+
+        margin-bottom:18px;
+
+    }
+
+    .info-item{
+
+        font-size:14px;
+
+    }
+
+    .shortcut-card li{
+
+        font-size:14px;
+
+        line-height:1.5;
+
+    }
+
+
+
+
+
+
+    /* ---------------- TOAST ---------------- */
+
+    .toast{
+
+        width:calc(100% - 20px);
+
+        right:10px;
+
+        left:10px;
+
+        top:12px;
+
+        padding:15px;
+
+    }
+
+
+
+
+
+
+    /* ---------------- MODAL ---------------- */
+
+    .modal{
+
+        padding:15px;
+
+    }
+
+    .modal-header{
+
+        padding:18px;
+
+    }
+
+    .modal-body{
+
+        padding:18px;
+
+    }
+
+
+
+
+
+
+    /* ---------------- FOOTER ---------------- */
+
+    .footer{
+
+        margin-top:30px;
+
+        padding:25px 10px;
+
+    }
+
+    .footer h3{
+
+        font-size:20px;
+
+    }
+
+    .footer p{
+
+        font-size:13px;
+
+    }
+
+
+
+
+
+
+    /* ---------------- SCROLL BUTTON ---------------- */
+
+    .scroll-top-button{
+
+        width:48px;
+
+        height:48px;
+
+        right:15px;
+
+        bottom:15px;
+
+    }
+
+}
+
+/* ====================================================== */
+/* [37] END : MOBILE RESPONSIVE */
+/* ====================================================== */
+
+
+
+
+
+/* ====================================================== */
+/* [38] START : SMALL MOBILE */
+/* ====================================================== */
+
+@media screen and (max-width:480px){
+
+    .title-box h1{
+
+        font-size:24px;
+
+    }
+
+    .logo{
+
+        width:48px;
+
+        height:48px;
+
+        font-size:20px;
+
+    }
+
+    .custom-controls{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .action-card{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+/* ====================================================== */
+/* [38] END : SMALL MOBILE */
+/* ====================================================== */
+    </style>
+
+    <!-- ====================================================== -->
+    <!-- [04] END : CSS -->
+    <!-- ====================================================== -->
+
+</head>
+
+<body>
+
+
+
+
+
+    <!-- ====================================================== -->
+    <!-- [05] START : BACKGROUND -->
+    <!-- ====================================================== -->
+
+    <div class="background">
+
+        <div class="background-grid"></div>
+
+        <div class="background-gradient"></div>
+
+        <div class="background-glow glow-left"></div>
+
+        <div class="background-glow glow-right"></div>
+
+        <div class="background-blur blur-top"></div>
+
+        <div class="background-blur blur-bottom"></div>
+
+        <div class="background-particles"></div>
+
+    </div>
+
+    <!-- ====================================================== -->
+    <!-- [05] END : BACKGROUND -->
+    <!-- ====================================================== -->
+
+
+
+
+
+
+
+    <!-- ====================================================== -->
+    <!-- [06] START : APPLICATION -->
+    <!-- ====================================================== -->
+
+    <main class="app">
+
+
+
+
+
+        <!-- ================================================== -->
+        <!-- [07] START : HEADER -->
+        <!-- ================================================== -->
+
+        <header class="header">
+
+            <div class="header-left">
+
+                <div class="logo">
+
+                    ▶
+
+                </div>
+
+                <div class="title-box">
+
+                    <h1>
+
+                        RN Professional Video Player
+
+                    </h1>
+
+                    <p>
+
+                        Premium Responsive Web Video Player
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+
+
+            <div class="header-right">
+
+                <button
+                    id="themeButton">
+
+                    Theme
+
+                </button>
+
+            </div>
+
+        </header>
+
+        <!-- ================================================== -->
+        <!-- [07] END : HEADER -->
+        <!-- ================================================== -->
+
+
+
+
+
+        <!-- ================================================== -->
+        <!-- [08] START : MAIN CONTENT -->
+        <!-- ================================================== -->
+
+        <section class="main-content">
+          
+                  <!-- ================================================== -->
+        <!-- [09] START : URL SECTION -->
+        <!-- ================================================== -->
+
+        <section class="url-section">
+
+            <div class="url-card">
+
+                <div class="input-group">
+
+                    <input
+                        type="text"
+                        id="videoURL"
+                        class="video-url"
+                        placeholder="Paste Direct Video URL">
+
+                    <button
+                        id="playButton"
+                        class="play-button">
+
+                        Play
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================================================== -->
+        <!-- [09] END : URL SECTION -->
+        <!-- ================================================== -->
+
+
+
+
+
+        <!-- ================================================== -->
+        <!-- [10] START : PLAYER SECTION -->
+        <!-- ================================================== -->
+
+        <section class="player-section">
+
+            <div class="player-card">
+
+
+
+
+
+                <!-- ========================================== -->
+                <!-- [11] START : PLAYER WRAPPER -->
+                <!-- ========================================== -->
+
+                <div class="player-wrapper">
+
+
+
+
+
+                    <!-- ====================================== -->
+                    <!-- [12] START : VIDEO -->
+                    <!-- ====================================== -->
+
+                    <video
+                        id="videoPlayer"
+                        class="video-player"
+                        preload="metadata">
+
+                    </video>
+
+                    <!-- ====================================== -->
+                    <!-- [12] END : VIDEO -->
+                    <!-- ====================================== -->
+
+
+
+
+
+                    <!-- ====================================== -->
+                    <!-- [13] START : POSTER -->
+                    <!-- ====================================== -->
+
+                    <div class="poster-layer">
+
+                        <div class="poster-content">
+
+                            <div class="poster-icon">
+
+                                ▶
+
+                            </div>
+
+                            <h2>
+
+                                Professional Video Player
+
+                            </h2>
+
+                            <p>
+
+                                Paste URL and press Play
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ====================================== -->
+                    <!-- [13] END : POSTER -->
+                    <!-- ====================================== -->
+
+
+
+
+
+                    <!-- ====================================== -->
+                    <!-- [14] START : LOADING -->
+                    <!-- ====================================== -->
+
+                    <div class="loading-layer">
+
+                        <div class="loader"></div>
+
+                        <p>
+
+                            Loading Video...
+
+                        </p>
+
+                    </div>
+
+                    <!-- ====================================== -->
+                    <!-- [14] END : LOADING -->
+                    <!-- ====================================== -->
+
+
+
+
+
+                    <!-- ====================================== -->
+                    <!-- [15] START : ERROR -->
+                    <!-- ====================================== -->
+
+                    <div class="error-layer">
+
+                        <div class="error-icon">
+
+                            ⚠
+
+                        </div>
+
+                        <h3>
+
+                            Unable to Play Video
+
+                        </h3>
+
+                        <p>
+
+                            Please enter a valid direct video link.
+
+                        </p>
+
+                    </div>
+
+                    <!-- ====================================== -->
+                    <!-- [15] END : ERROR -->
+                    <!-- ====================================== -->
+
+                </div>
+
+                <!-- ========================================== -->
+                <!-- [11] END : PLAYER WRAPPER -->
+                <!-- ========================================== -->
+
+
+
+
+
+                <!-- ========================================== -->
+                <!-- [16] START : CUSTOM CONTROLS -->
+                <!-- ========================================== -->
+
+                <div class="custom-controls">
+
+                    <button id="rewindButton">
+
+                        ⏪
+
+                    </button>
+
+                    <button id="playPauseButton">
+
+                        ▶
+
+                    </button>
+
+                    <button id="forwardButton">
+
+                        ⏩
+
+                    </button>
+
+                    <button id="muteButton">
+
+                        🔊
+
+                    </button>
+
+                    <button id="fullscreenButton">
+
+                        ⛶
+
+                    </button>
+
+                    <button id="pipButton">
+
+                        PiP
+
+                    </button>
+
+                </div>
+
+                <!-- ========================================== -->
+                <!-- [16] END : CUSTOM CONTROLS -->
+                <!-- ========================================== -->
+
+            </div>
+
+        </section>
+
+        <!-- ================================================== -->
+        <!-- [10] END : PLAYER SECTION -->
+        <!-- ================================================== -->
+          
+                  <!-- ================================================== -->
+        <!-- [17] START : PLAYBACK PANEL -->
+        <!-- ================================================== -->
+
+        <section class="playback-panel">
+
+            <div class="playback-card">
+
+                <!-- ========================================== -->
+                <!-- [18] START : PROGRESS -->
+                <!-- ========================================== -->
+
+                <div class="progress-wrapper">
+
+                    <input
+                        type="range"
+                        id="seekBar"
+                        class="seek-bar"
+                        min="0"
+                        max="100"
+                        value="0">
+
+                </div>
+
+                <!-- ========================================== -->
+                <!-- [18] END : PROGRESS -->
+                <!-- ========================================== -->
+
+
+
+
+
+                <!-- ========================================== -->
+                <!-- [19] START : TIME -->
+                <!-- ========================================== -->
+
+                <div class="time-wrapper">
+
+                    <span id="currentTime">
+
+                        00:00
+
+                    </span>
+
+                    <span class="time-divider">
+
+                        /
+
+                    </span>
+
+                    <span id="totalTime">
+
+                        00:00
+
+                    </span>
+
+                </div>
+
+                <!-- ========================================== -->
+                <!-- [19] END : TIME -->
+                <!-- ========================================== -->
+
+
+
+
+
+                <!-- ========================================== -->
+                <!-- [20] START : SETTINGS -->
+                <!-- ========================================== -->
+
+                <div class="settings-wrapper">
+
+                    <div class="setting-item">
+
+                        <label for="volumeSlider">
+
+                            Volume
+
+                        </label>
+
+                        <input
+                            type="range"
+                            id="volumeSlider"
+                            min="0"
+                            max="100"
+                            value="100">
+
+                    </div>
+
+
+
+
+
+                    <div class="setting-item">
+
+                        <label for="speedControl">
+
+                            Speed
+
+                        </label>
+
+                        <select id="speedControl">
+
+                            <option value="0.25">0.25x</option>
+
+                            <option value="0.50">0.50x</option>
+
+                            <option value="0.75">0.75x</option>
+
+                            <option
+                                value="1"
+                                selected>
+
+                                1x
+
+                            </option>
+
+                            <option value="1.25">1.25x</option>
+
+                            <option value="1.50">1.50x</option>
+
+                            <option value="1.75">1.75x</option>
+
+                            <option value="2">2x</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <!-- ========================================== -->
+                <!-- [20] END : SETTINGS -->
+                <!-- ========================================== -->
+
+            </div>
+
+        </section>
+
+        <!-- ================================================== -->
+        <!-- [17] END : PLAYBACK PANEL -->
+        <!-- ================================================== -->
+
+
+
+
+
+
+
+
+
+        <!-- ================================================== -->
+        <!-- [21] START : ACTION PANEL -->
+        <!-- ================================================== -->
+
+        <section class="action-panel">
+
+            <div class="action-card">
+
+                <button id="copyButton">
+
+                    Copy URL
+
+                </button>
+
+                <button id="reloadButton">
+
+                    Reload
+
+                </button>
+
+                <button id="clearButton">
+
+                    Clear
+
+                </button>
+
+                <button id="screenshotButton">
+
+                    Screenshot
+
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- ================================================== -->
+        <!-- [21] END : ACTION PANEL -->
+        <!-- ================================================== -->
+
+
+
+
+
+
+
+
+
+        <!-- ================================================== -->
+        <!-- [22] START : INFORMATION -->
+        <!-- ================================================== -->
+
+        <section class="information-section">
+
+            <div class="information-grid">
+
+
+
+
+
+                <!-- ====================================== -->
+                <!-- [23] START : VIDEO INFO -->
+                <!-- ====================================== -->
+
+                <div class="info-card">
+
+                    <h2>
+
+                        Video Information
+
+                    </h2>
+
+                    <div class="info-list">
+
+                        <div class="info-item">
+
+                            <span>
+
+                                Status
+
+                            </span>
+
+                            <strong id="videoStatus">
+
+                                Waiting...
+
+                            </strong>
+
+                        </div>
+
+                        <div class="info-item">
+
+                            <span>
+
+                                Resolution
+
+                            </span>
+
+                            <strong id="videoResolution">
+
+                                --
+
+                            </strong>
+
+                        </div>
+
+                        <div class="info-item">
+
+                            <span>
+
+                                Duration
+
+                            </span>
+
+                            <strong id="videoDuration">
+
+                                --
+
+                            </strong>
+
+                        </div>
+
+                        <div class="info-item">
+
+                            <span>
+
+                                Playback
+
+                            </span>
+
+                            <strong id="playbackStatus">
+
+                                Stopped
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ====================================== -->
+                <!-- [23] END : VIDEO INFO -->
+                <!-- ====================================== -->
+
+
+
+
+
+
+
+                <!-- ====================================== -->
+                <!-- [24] START : SHORTCUTS -->
+                <!-- ====================================== -->
+
+                <div class="shortcut-card">
+
+                    <h2>
+
+                        Keyboard Shortcuts
+
+                    </h2>
+
+                    <ul>
+
+                        <li>
+
+                            Space → Play / Pause
+
+                        </li>
+
+                        <li>
+
+                            ← → Seek
+
+                        </li>
+
+                        <li>
+
+                            ↑ ↓ Volume
+
+                        </li>
+
+                        <li>
+
+                            F → Fullscreen
+
+                        </li>
+
+                        <li>
+
+                            M → Mute
+
+                        </li>
+
+                        <li>
+
+                            P → Picture in Picture
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <!-- ====================================== -->
+                <!-- [24] END : SHORTCUTS -->
+                <!-- ====================================== -->
+
+            </div>
+
+        </section>
+
+        <!-- ================================================== -->
+        <!-- [22] END : INFORMATION -->
+        <!-- ================================================== -->
+          
+                  <!-- ================================================== -->
+        <!-- [25] START : TOAST -->
+        <!-- ================================================== -->
+
+        <div
+            id="toast"
+            class="toast">
+
+            <div class="toast-icon">
+
+                ✓
+
+            </div>
+
+            <div class="toast-content">
+
+                <h4 id="toastTitle">
+
+                    Success
+
+                </h4>
+
+                <p id="toastMessage">
+
+                    Action completed successfully.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- ================================================== -->
+        <!-- [25] END : TOAST -->
+        <!-- ================================================== -->
+
+
+
+
+
+
+
+        <!-- ================================================== -->
+        <!-- [26] START : LOADER -->
+        <!-- ================================================== -->
+
+        <div
+            id="pageLoader"
+            class="page-loader">
+
+            <div class="loader-ring"></div>
+
+            <div class="loader-text">
+
+                Loading...
+
+            </div>
+
+        </div>
+
+        <!-- ================================================== -->
+        <!-- [26] END : LOADER -->
+        <!-- ================================================== -->
+
+
+
+
+
+
+
+        <!-- ================================================== -->
+        <!-- [27] START : MODAL -->
+        <!-- ================================================== -->
+
+        <div
+            id="modal"
+            class="modal">
+
+            <div class="modal-box">
+
+                <div class="modal-header">
+
+                    <h2 id="modalTitle">
+
+                        Information
+
+                    </h2>
+
+                    <button id="closeModal">
+
+                        ✕
+
+                    </button>
+
+                </div>
+
+                <div
+                    id="modalBody"
+                    class="modal-body">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================================================== -->
+        <!-- [27] END : MODAL -->
+        <!-- ================================================== -->
+
+
+
+
+
+
+
+        <!-- ================================================== -->
+        <!-- [28] START : FLOATING ACTION -->
+        <!-- ================================================== -->
+
+        <button
+            id="scrollTopButton"
+            class="scroll-top-button">
+
+            ↑
+
+        </button>
+
+        <!-- ================================================== -->
+        <!-- [28] END : FLOATING ACTION -->
+        <!-- ================================================== -->
+
+
+
+
+
+
+
+        <!-- ================================================== -->
+        <!-- [29] START : FOOTER -->
+        <!-- ================================================== -->
+
+        <footer class="footer">
+
+            <div class="footer-content">
+
+                <h3>
+
+                    RN Professional Video Player
+
+                </h3>
+
+                <p>
+
+                    Responsive HTML • CSS • JavaScript Video Player
+
+                </p>
+
+            </div>
+
+        </footer>
+
+        <!-- ================================================== -->
+        <!-- [29] END : FOOTER -->
+        <!-- ================================================== -->
+
+
+
+        <!-- ================================================== -->
+        <!-- [08] END : MAIN CONTENT -->
+        <!-- ================================================== -->
+
+        </section>
+
+    </main>
+
+    <!-- ====================================================== -->
+    <!-- [06] END : APPLICATION -->
+    <!-- ====================================================== -->
+
+
+
+
+
+    <!-- ====================================================== -->
+    <!-- [30] START : JAVASCRIPT -->
+    <!-- ====================================================== -->
+
+    <script>
+
+        /* JAVASCRIPT WILL BE ADDED HERE */
+  
+  /* ====================================================== */
+/* [01] START : DOM ELEMENTS */
+/* ====================================================== */
+
+const videoPlayer =
+document.getElementById("videoPlayer");
+
+const videoURL =
+document.getElementById("videoURL");
+
+const playButton =
+document.getElementById("playButton");
+
+const playPauseButton =
+document.getElementById("playPauseButton");
+
+const rewindButton =
+document.getElementById("rewindButton");
+
+const forwardButton =
+document.getElementById("forwardButton");
+
+const muteButton =
+document.getElementById("muteButton");
+
+const fullscreenButton =
+document.getElementById("fullscreenButton");
+
+const pipButton =
+document.getElementById("pipButton");
+
+const seekBar =
+document.getElementById("seekBar");
+
+const volumeSlider =
+document.getElementById("volumeSlider");
+
+const speedControl =
+document.getElementById("speedControl");
+
+const currentTime =
+document.getElementById("currentTime");
+
+const totalTime =
+document.getElementById("totalTime");
+
+const posterLayer =
+document.querySelector(".poster-layer");
+
+const loadingLayer =
+document.querySelector(".loading-layer");
+
+const errorLayer =
+document.querySelector(".error-layer");
+
+const pageLoader =
+document.getElementById("pageLoader");
+
+const toast =
+document.getElementById("toast");
+
+const toastTitle =
+document.getElementById("toastTitle");
+
+const toastMessage =
+document.getElementById("toastMessage");
+
+const videoStatus =
+document.getElementById("videoStatus");
+
+const videoResolution =
+document.getElementById("videoResolution");
+
+const videoDuration =
+document.getElementById("videoDuration");
+
+const playbackStatus =
+document.getElementById("playbackStatus");
+
+/* ====================================================== */
+/* [01] END : DOM ELEMENTS */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [02] START : GLOBAL VARIABLES */
+/* ====================================================== */
+
+let videoLoaded=false;
+
+let videoPlaying=false;
+
+let currentVideoURL="";
+
+/* ====================================================== */
+/* [02] END : GLOBAL VARIABLES */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [03] START : PAGE LOADER */
+/* ====================================================== */
+
+window.addEventListener(
+
+"load",
+
+()=>{
+
+setTimeout(()=>{
+
+pageLoader.style.display="none";
+
+},700);
+
+});
+
+/* ====================================================== */
+/* [03] END : PAGE LOADER */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [04] START : TOAST */
+/* ====================================================== */
+
+function showToast(
+
+title,
+
+message
+
+){
+
+toastTitle.textContent=title;
+
+toastMessage.textContent=message;
+
+toast.classList.add("show");
+
+setTimeout(()=>{
+
+toast.classList.remove("show");
+
+},3000);
+
+}
+
+/* ====================================================== */
+/* [04] END : TOAST */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [05] START : FORMAT TIME */
+/* ====================================================== */
+
+function formatTime(seconds){
+
+const min=
+
+Math.floor(seconds/60);
+
+const sec=
+
+Math.floor(seconds%60);
+
+return
+
+`${String(min).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
+
+}
+
+/* ====================================================== */
+/* [05] END : FORMAT TIME */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [06] START : URL VALIDATION */
+/* ====================================================== */
+
+function validateURL(url){
+
+if(url.trim()==="")
+
+return false;
+
+return /\.(mp4|webm|ogg|m3u8)(\?.*)?$/i.test(url);
+
+}
+
+/* ====================================================== */
+/* [06] END : URL VALIDATION */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [07] START : LOAD VIDEO */
+/* ====================================================== */
+
+function loadVideo(){
+
+const url=
+
+videoURL.value.trim();
+
+errorLayer.style.display="none";
+
+if(!validateURL(url)){
+
+showToast(
+
+"Invalid URL",
+
+"Please enter a valid video URL."
+
+);
+
+errorLayer.style.display="flex";
+
+return;
+
+}
+
+currentVideoURL=url;
+
+loadingLayer.style.display="flex";
+
+posterLayer.style.display="none";
+
+videoPlayer.src=url;
+
+videoPlayer.load();
+
+}
+
+/* ====================================================== */
+/* [07] END : LOAD VIDEO */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [08] START : VIDEO EVENTS */
+/* ====================================================== */
+
+videoPlayer.addEventListener(
+
+"loadedmetadata",
+
+()=>{
+
+loadingLayer.style.display="none";
+
+videoLoaded=true;
+
+videoStatus.textContent="Ready";
+
+videoResolution.textContent=
+
+`${videoPlayer.videoWidth} × ${videoPlayer.videoHeight}`;
+
+videoDuration.textContent=
+
+formatTime(videoPlayer.duration);
+
+totalTime.textContent=
+
+formatTime(videoPlayer.duration);
+
+showToast(
+
+"Success",
+
+"Video Loaded Successfully."
+
+);
+
+});
+
+videoPlayer.addEventListener(
+
+"error",
+
+()=>{
+
+loadingLayer.style.display="none";
+
+errorLayer.style.display="flex";
+
+showToast(
+
+"Error",
+
+"Unable to load video."
+
+);
+
+});
+
+/* ====================================================== */
+/* [08] END : VIDEO EVENTS */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [09] START : PLAY BUTTON */
+/* ====================================================== */
+
+playButton.addEventListener(
+
+"click",
+
+loadVideo
+
+);
+
+/* ====================================================== */
+/* [09] END : PLAY BUTTON */
+/* ====================================================== */
+  
+  /* ====================================================== */
+/* [10] START : PLAY / PAUSE */
+/* ====================================================== */
+
+playPauseButton.addEventListener(
+
+"click",
+
+()=>{
+
+if(!videoLoaded) return;
+
+if(videoPlayer.paused){
+
+videoPlayer.play();
+
+}else{
+
+videoPlayer.pause();
+
+}
+
+}
+
+);
+
+videoPlayer.addEventListener(
+
+"play",
+
+()=>{
+
+videoPlaying=true;
+
+playPauseButton.textContent="⏸";
+
+playbackStatus.textContent="Playing";
+
+}
+
+);
+
+videoPlayer.addEventListener(
+
+"pause",
+
+()=>{
+
+videoPlaying=false;
+
+playPauseButton.textContent="▶";
+
+playbackStatus.textContent="Paused";
+
+}
+
+);
+
+/* ====================================================== */
+/* [10] END : PLAY / PAUSE */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [11] START : SEEK BAR */
+/* ====================================================== */
+
+videoPlayer.addEventListener(
+
+"timeupdate",
+
+()=>{
+
+if(!videoLoaded) return;
+
+const progress=
+
+(videoPlayer.currentTime/videoPlayer.duration)*100;
+
+seekBar.value=progress;
+
+currentTime.textContent=
+
+formatTime(videoPlayer.currentTime);
+
+}
+
+);
+
+seekBar.addEventListener(
+
+"input",
+
+()=>{
+
+if(!videoLoaded) return;
+
+videoPlayer.currentTime=
+
+(seekBar.value/100)*videoPlayer.duration;
+
+}
+
+);
+
+/* ====================================================== */
+/* [11] END : SEEK BAR */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [12] START : REWIND */
+/* ====================================================== */
+
+rewindButton.addEventListener(
+
+"click",
+
+()=>{
+
+if(!videoLoaded) return;
+
+videoPlayer.currentTime-=10;
+
+}
+
+);
+
+/* ====================================================== */
+/* [12] END : REWIND */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [13] START : FORWARD */
+/* ====================================================== */
+
+forwardButton.addEventListener(
+
+"click",
+
+()=>{
+
+if(!videoLoaded) return;
+
+videoPlayer.currentTime+=10;
+
+}
+
+);
+
+/* ====================================================== */
+/* [13] END : FORWARD */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [14] START : VOLUME */
+/* ====================================================== */
+
+volumeSlider.addEventListener(
+
+"input",
+
+()=>{
+
+videoPlayer.volume=
+
+volumeSlider.value/100;
+
+}
+
+);
+
+/* ====================================================== */
+/* [14] END : VOLUME */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [15] START : MUTE */
+/* ====================================================== */
+
+muteButton.addEventListener(
+
+"click",
+
+()=>{
+
+videoPlayer.muted=
+
+!videoPlayer.muted;
+
+muteButton.textContent=
+
+videoPlayer.muted ? "🔇" : "🔊";
+
+}
+
+);
+
+/* ====================================================== */
+/* [15] END : MUTE */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [16] START : PLAYBACK SPEED */
+/* ====================================================== */
+
+speedControl.addEventListener(
+
+"change",
+
+()=>{
+
+videoPlayer.playbackRate=
+
+parseFloat(speedControl.value);
+
+}
+
+);
+
+/* ====================================================== */
+/* [16] END : PLAYBACK SPEED */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [17] START : FULLSCREEN */
+/* ====================================================== */
+
+fullscreenButton.addEventListener(
+
+"click",
+
+()=>{
+
+if(!document.fullscreenElement){
+
+videoPlayer.requestFullscreen();
+
+}else{
+
+document.exitFullscreen();
+
+}
+
+}
+
+);
+
+/* ====================================================== */
+/* [17] END : FULLSCREEN */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [18] START : PICTURE IN PICTURE */
+/* ====================================================== */
+
+pipButton.addEventListener(
+
+"click",
+
+async()=>{
+
+try{
+
+if(document.pictureInPictureElement){
+
+await document.exitPictureInPicture();
+
+}else{
+
+await videoPlayer.requestPictureInPicture();
+
+}
+
+}
+
+catch(error){
+
+showToast(
+
+"PiP",
+
+"Picture in Picture not supported."
+
+);
+
+}
+
+}
+
+);
+
+/* ====================================================== */
+/* [18] END : PICTURE IN PICTURE */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [19] START : VIDEO END */
+/* ====================================================== */
+
+videoPlayer.addEventListener(
+
+"ended",
+
+()=>{
+
+playPauseButton.textContent="▶";
+
+playbackStatus.textContent="Completed";
+
+showToast(
+
+"Completed",
+
+"Video playback finished."
+
+);
+
+}
+
+);
+
+/* ====================================================== */
+/* [19] END : VIDEO END */
+/* ====================================================== */
+  
+  /* ====================================================== */
+/* [20] START : COPY URL */
+/* ====================================================== */
+
+copyButton.addEventListener(
+
+"click",
+
+async()=>{
+
+if(videoURL.value.trim()===""){
+
+showToast(
+
+"Empty",
+
+"No URL Available."
+
+);
+
+return;
+
+}
+
+try{
+
+await navigator.clipboard.writeText(
+
+videoURL.value
+
+);
+
+showToast(
+
+"Copied",
+
+"URL copied successfully."
+
+);
+
+}
+
+catch{
+
+showToast(
+
+"Failed",
+
+"Unable to copy URL."
+
+);
+
+}
+
+});
+
+/* ====================================================== */
+/* [20] END : COPY URL */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [21] START : CLEAR */
+/* ====================================================== */
+
+clearButton.addEventListener(
+
+"click",
+
+()=>{
+
+videoPlayer.pause();
+
+videoPlayer.removeAttribute("src");
+
+videoPlayer.load();
+
+videoURL.value="";
+
+videoLoaded=false;
+
+posterLayer.style.display="flex";
+
+loadingLayer.style.display="none";
+
+errorLayer.style.display="none";
+
+videoStatus.textContent="Waiting...";
+
+videoResolution.textContent="--";
+
+videoDuration.textContent="--";
+
+currentTime.textContent="00:00";
+
+totalTime.textContent="00:00";
+
+seekBar.value=0;
+
+showToast(
+
+"Cleared",
+
+"Video removed."
+
+);
+
+});
+
+/* ====================================================== */
+/* [21] END : CLEAR */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [22] START : RELOAD */
+/* ====================================================== */
+
+reloadButton.addEventListener(
+
+"click",
+
+()=>{
+
+if(!videoLoaded) return;
+
+videoPlayer.load();
+
+videoPlayer.play();
+
+showToast(
+
+"Reload",
+
+"Video reloaded."
+
+);
+
+});
+
+/* ====================================================== */
+/* [22] END : RELOAD */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [23] START : SCREENSHOT */
+/* ====================================================== */
+
+screenshotButton.addEventListener(
+
+"click",
+
+()=>{
+
+if(!videoLoaded) return;
+
+const canvas=
+
+document.createElement("canvas");
+
+canvas.width=
+
+videoPlayer.videoWidth;
+
+canvas.height=
+
+videoPlayer.videoHeight;
+
+const ctx=
+
+canvas.getContext("2d");
+
+ctx.drawImage(
+
+videoPlayer,
+
+0,
+
+0,
+
+canvas.width,
+
+canvas.height
+
+);
+
+const link=
+
+document.createElement("a");
+
+link.download=
+
+"screenshot.png";
+
+link.href=
+
+canvas.toDataURL("image/png");
+
+link.click();
+
+showToast(
+
+"Screenshot",
+
+"Image saved."
+
+);
+
+});
+
+/* ====================================================== */
+/* [23] END : SCREENSHOT */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [24] START : LOCAL STORAGE */
+/* ====================================================== */
+
+videoPlayer.addEventListener(
+
+"timeupdate",
+
+()=>{
+
+if(!currentVideoURL) return;
+
+localStorage.setItem(
+
+"lastVideoURL",
+
+currentVideoURL
+
+);
+
+localStorage.setItem(
+
+"lastVideoTime",
+
+videoPlayer.currentTime
+
+);
+
+});
+
+videoPlayer.addEventListener(
+
+"loadedmetadata",
+
+()=>{
+
+const lastURL=
+
+localStorage.getItem(
+
+"lastVideoURL"
+
+);
+
+const lastTime=
+
+localStorage.getItem(
+
+"lastVideoTime"
+
+);
+
+if(
+
+lastURL===currentVideoURL &&
+
+lastTime
+
+){
+
+videoPlayer.currentTime=
+
+Number(lastTime);
+
+}
+
+});
+
+/* ====================================================== */
+/* [24] END : LOCAL STORAGE */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [25] START : KEYBOARD */
+/* ====================================================== */
+
+document.addEventListener(
+
+"keydown",
+
+(event)=>{
+
+if(event.target.tagName==="INPUT")
+
+return;
+
+switch(event.key){
+
+case " ":
+
+event.preventDefault();
+
+playPauseButton.click();
+
+break;
+
+case "ArrowRight":
+
+forwardButton.click();
+
+break;
+
+case "ArrowLeft":
+
+rewindButton.click();
+
+break;
+
+case "ArrowUp":
+
+videoPlayer.volume=
+
+Math.min(
+
+1,
+
+videoPlayer.volume+.05
+
+);
+
+volumeSlider.value=
+
+videoPlayer.volume*100;
+
+break;
+
+case "ArrowDown":
+
+videoPlayer.volume=
+
+Math.max(
+
+0,
+
+videoPlayer.volume-.05
+
+);
+
+volumeSlider.value=
+
+videoPlayer.volume*100;
+
+break;
+
+case "m":
+
+case "M":
+
+muteButton.click();
+
+break;
+
+case "f":
+
+case "F":
+
+fullscreenButton.click();
+
+break;
+
+case "p":
+
+case "P":
+
+pipButton.click();
+
+break;
+
+}
+
+});
+
+/* ====================================================== */
+/* [25] END : KEYBOARD */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [26] START : AUTO LOAD LAST URL */
+/* ====================================================== */
+
+window.addEventListener(
+
+"load",
+
+()=>{
+
+const lastURL=
+
+localStorage.getItem(
+
+"lastVideoURL"
+
+);
+
+if(lastURL){
+
+videoURL.value=
+
+lastURL;
+
+}
+
+});
+
+/* ====================================================== */
+/* [26] END : AUTO LOAD LAST URL */
+/* ====================================================== */
+  
+  
+  /* ====================================================== */
+/* [27] START : THEME BUTTON */
+/* ====================================================== */
+
+const themeButton =
+document.getElementById("themeButton");
+
+if(themeButton){
+
+themeButton.addEventListener(
+
+"click",
+
+()=>{
+
+showToast(
+
+"Theme",
+
+"Dark Theme Enabled"
+
+);
+
+}
+
+);
+
+}
+
+/* ====================================================== */
+/* [27] END : THEME BUTTON */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [28] START : SCROLL BUTTON */
+/* ====================================================== */
+
+window.addEventListener(
+
+"scroll",
+
+()=>{
+
+if(window.scrollY>300){
+
+scrollTopButton.classList.add("show");
+
+}else{
+
+scrollTopButton.classList.remove("show");
+
+}
+
+}
+
+);
+
+scrollTopButton.addEventListener(
+
+"click",
+
+()=>{
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+}
+
+);
+
+/* ====================================================== */
+/* [28] END : SCROLL BUTTON */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [29] START : MODAL */
+/* ====================================================== */
+
+const modal =
+document.getElementById("modal");
+
+const closeModal =
+document.getElementById("closeModal");
+
+closeModal.addEventListener(
+
+"click",
+
+()=>{
+
+modal.style.display="none";
+
+}
+
+);
+
+modal.addEventListener(
+
+"click",
+
+(event)=>{
+
+if(event.target===modal){
+
+modal.style.display="none";
+
+}
+
+}
+
+);
+
+/* ====================================================== */
+/* [29] END : MODAL */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [30] START : MOBILE DOUBLE TAP */
+/* ====================================================== */
+
+let lastTap=0;
+
+videoPlayer.addEventListener(
+
+"touchend",
+
+(event)=>{
+
+const currentTap=
+
+new Date().getTime();
+
+const tapLength=
+
+currentTap-lastTap;
+
+if(
+
+tapLength<300 &&
+
+tapLength>0
+
+){
+
+const half=
+
+window.innerWidth/2;
+
+const touchX=
+
+event.changedTouches[0].clientX;
+
+if(touchX<half){
+
+videoPlayer.currentTime-=10;
+
+}else{
+
+videoPlayer.currentTime+=10;
+
+}
+
+}
+
+lastTap=currentTap;
+
+}
+
+);
+
+/* ====================================================== */
+/* [30] END : MOBILE DOUBLE TAP */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [31] START : VIDEO CLICK */
+/* ====================================================== */
+
+videoPlayer.addEventListener(
+
+"click",
+
+()=>{
+
+playPauseButton.click();
+
+}
+
+);
+
+/* ====================================================== */
+/* [31] END : VIDEO CLICK */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [32] START : VIDEO STATES */
+/* ====================================================== */
+
+videoPlayer.addEventListener(
+
+"waiting",
+
+()=>{
+
+loadingLayer.style.display="flex";
+
+}
+
+);
+
+videoPlayer.addEventListener(
+
+"playing",
+
+()=>{
+
+loadingLayer.style.display="none";
+
+}
+
+);
+
+videoPlayer.addEventListener(
+
+"stalled",
+
+()=>{
+
+loadingLayer.style.display="flex";
+
+}
+
+);
+
+/* ====================================================== */
+/* [32] END : VIDEO STATES */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [33] START : ENTER KEY */
+/* ====================================================== */
+
+videoURL.addEventListener(
+
+"keydown",
+
+(event)=>{
+
+if(event.key==="Enter"){
+
+loadVideo();
+
+}
+
+}
+
+);
+
+/* ====================================================== */
+/* [33] END : ENTER KEY */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [34] START : INITIALIZE */
+/* ====================================================== */
+
+function initializePlayer(){
+
+loadingLayer.style.display="none";
+
+errorLayer.style.display="none";
+
+posterLayer.style.display="flex";
+
+pageLoader.style.display="none";
+
+seekBar.value=0;
+
+currentTime.textContent="00:00";
+
+totalTime.textContent="00:00";
+
+videoStatus.textContent="Waiting...";
+
+videoResolution.textContent="--";
+
+videoDuration.textContent="--";
+
+playbackStatus.textContent="Stopped";
+
+volumeSlider.value=100;
+
+videoPlayer.volume=1;
+
+speedControl.value="1";
+
+videoPlayer.playbackRate=1;
+
+}
+
+/* ====================================================== */
+/* [34] END : INITIALIZE */
+/* ====================================================== */
+
+
+
+
+
+
+
+/* ====================================================== */
+/* [35] START : START APPLICATION */
+/* ====================================================== */
+
+initializePlayer();
+
+/* ====================================================== */
+/* [35] END : START APPLICATION */
+/* ====================================================== */
+  
+
+    </script>
+
+    <!-- ====================================================== -->
+    <!-- [30] END : JAVASCRIPT -->
+    <!-- ====================================================== -->
+
+</body>
+
+</html>
