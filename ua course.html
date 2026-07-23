@@ -1082,30 +1082,21 @@ Next ➡
 <nav class="mobile-nav">
 
 
-<button>
-
+<button id="coursesTab">
 📚
-
 Courses
-
 </button>
 
 
-<button>
-
+<button id="lecturesTab">
 🎥
-
 Lectures
-
 </button>
 
 
-<button>
-
+<button id="playerTab">
 ▶
-
 Player
-
 </button>
 
 
@@ -1161,7 +1152,10 @@ const videoTitle = document.getElementById("videoTitle");
 const progress = document.getElementById("progress");
 
 
-
+const courseSidebar=document.querySelector(".course-sidebar");
+const lectureSidebar=document.querySelector(".lecture-sidebar");
+const contentArea=document.querySelector(".content-area");
+const menuBtn=document.getElementById("menuBtn");
 
 let currentLectures=[];
 
@@ -1314,6 +1308,14 @@ onclick="playLecture(${index})">
 
 list.innerHTML=html;
 
+if(window.innerWidth<=900){
+
+    courseSidebar.style.display="none";
+    lectureSidebar.style.display="block";
+    contentArea.style.display="none";
+
+}
+
 
 
 courseInfo.innerText=
@@ -1388,6 +1390,13 @@ updateActiveLecture();
 
 saveProgress();
 
+if(window.innerWidth<=900){
+
+    courseSidebar.style.display="none";
+    lectureSidebar.style.display="none";
+    contentArea.style.display="flex";
+
+}
 
 }
 
@@ -1720,11 +1729,51 @@ document.getElementById("previousBtn").click();
 
 
 
+menuBtn.onclick=function(){
 
+    courseSidebar.style.display="block";
+    lectureSidebar.style.display="none";
+    contentArea.style.display="none";
+
+}
 /* ===============================
  DEFAULT LOAD
 ================================ */
+document.getElementById("coursesTab").onclick=function(){
 
+courseSidebar.style.display="block";
+lectureSidebar.style.display="none";
+contentArea.style.display="none";
+
+}
+
+document.getElementById("lecturesTab").onclick=function(){
+
+courseSidebar.style.display="none";
+lectureSidebar.style.display="block";
+contentArea.style.display="none";
+
+}
+
+document.getElementById("playerTab").onclick=function(){
+
+courseSidebar.style.display="none";
+lectureSidebar.style.display="none";
+contentArea.style.display="flex";
+
+}
+
+window.onresize=function(){
+
+if(window.innerWidth>900){
+
+courseSidebar.style.display="";
+lectureSidebar.style.display="";
+contentArea.style.display="flex";
+
+}
+
+}
 
 loadCourse(courses[0]);
 
