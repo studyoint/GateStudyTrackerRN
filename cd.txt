@@ -1,0 +1,93 @@
+=====================================
+COURSE  : CSIT, DSAI & Interview Preparation - Comprehensive Course on Compiler Design
+TEACHER : Ankit Kumar
+=====================================
+
+========== LECTURE LINKS ==========
+
+Lecture 01:
+https://uamedia.uacdn.net/lesson-raw/GIKOL5RYOLR6AV7TC6E6/output.webm
+
+Lecture 02:
+https://uamedia.uacdn.net/lesson-raw/Z5W50TO8X7BI9FITCF14/output.webm
+
+Lecture 03:
+https://uamedia.uacdn.net/lesson-raw/P9L845B49RO9DMFU3H6U/output.webm
+
+Lecture 04:
+https://uamedia.uacdn.net/lesson-raw/7D6OTKG65WGM3I6VGSYX/output.webm
+
+Lecture 05:
+https://uamedia.uacdn.net/lesson-raw/C4BXVLWRXBA2LJMLI80B/output.webm
+
+Lecture 06:
+https://uamedia.uacdn.net/lesson-raw/5FMCU4W4Z6HWKMI9LWXY/output.webm
+
+Lecture 07:
+https://uamedia.uacdn.net/lesson-raw/X2CK948ZEBMIJJR3G1UN/output.webm
+
+Lecture 08:
+https://uamedia.uacdn.net/lesson-raw/0MHWLWBIOYNA4ZSN02Q3/output.webm
+
+Lecture 09:
+https://uamedia.uacdn.net/lesson-raw/TJYBOICP8KUEH6CLHC9V/output.webm
+
+Lecture 10:
+https://uamedia.uacdn.net/lesson-raw/QPG5RYVOP46AE5ZXETNS/output.webm
+
+Lecture 11:
+https://uamedia.uacdn.net/lesson-raw/WTRSD1Y9LI9X6IO04BC8/output.webm
+
+Lecture 12:
+https://uamedia.uacdn.net/lesson-raw/SAGSX5PG7R05YDHQGJYX/output.webm
+
+Lecture 13:
+https://uamedia.uacdn.net/lesson-raw/WGN2XAWFCV668V181C90/output.webm
+
+Lecture 14:
+https://uamedia.uacdn.net/lesson-raw/HQHUQZY7TVUAB05QHFWH/output.webm
+
+========== PDF LINKS ==========
+
+PDF 01:
+https://player.uacdn.net/slides_pdf/GIKOL5RYOLR6AV7TC6E6/Grammar_Part_I_with_anno.pdf
+
+PDF 02:
+https://player.uacdn.net/slides_pdf/Z5W50TO8X7BI9FITCF14/Grammar_Part_II_with_anno.pdf
+
+PDF 03:
+https://player.uacdn.net/slides_pdf/P9L845B49RO9DMFU3H6U/Top_Down_ParserPart_I_with_anno.pdf
+
+PDF 04:
+https://player.uacdn.net/slides_pdf/7D6OTKG65WGM3I6VGSYX/Top_Down_ParserPart_II_with_anno.pdf
+
+PDF 05:
+https://player.uacdn.net/slides_pdf/C4BXVLWRXBA2LJMLI80B/Bottom_Up_ParserPart_I_with_anno.pdf
+
+PDF 06:
+https://player.uacdn.net/slides_pdf/5FMCU4W4Z6HWKMI9LWXY/Bottom_Up_ParserPart_IV_with_anno.pdf
+
+PDF 07:
+https://player.uacdn.net/slides_pdf/X2CK948ZEBMIJJR3G1UN/Bottom_Up_ParserPart_II_with_anno.pdf
+
+PDF 08:
+https://player.uacdn.net/slides_pdf/0MHWLWBIOYNA4ZSN02Q3/Bottom_Up_ParserPart_V_with_anno.pdf
+
+PDF 09:
+https://player.uacdn.net/slides_pdf/TJYBOICP8KUEH6CLHC9V/Bottom_Up_ParserPart_III_with_anno.pdf
+
+PDF 10:
+https://player.uacdn.net/slides_pdf/QPG5RYVOP46AE5ZXETNS/Bottom_Up_ParserPart_VI_with_anno.pdf
+
+PDF 11:
+https://player.uacdn.net/slides_pdf/WTRSD1Y9LI9X6IO04BC8/SDT_Part_I_with_anno.pdf
+
+PDF 12:
+https://player.uacdn.net/slides_pdf/SAGSX5PG7R05YDHQGJYX/SDT_Part_II_with_anno.pdf
+
+PDF 13:
+https://player.uacdn.net/slides_pdf/WGN2XAWFCV668V181C90/SDT_Part_III_with_anno.pdf
+
+PDF 14:
+https://player.uacdn.net/slides_pdf/HQHUQZY7TVUAB05QHFWH/Code_optimization_Part_II_with_anno.pdf
+

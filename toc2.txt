@@ -1,0 +1,81 @@
+=====================================
+COURSE  : CSIT, DSAI & Interview Preparation - Complete Course On Theory Of Computation- Part 2
+TEACHER : Ankit Kumar
+=====================================
+
+========== LECTURE LINKS ==========
+
+Lecture 01:
+https://uamedia.uacdn.net/lesson-raw/7TDGBGVGXUODYZDLD9ZG/output.webm
+
+Lecture 02:
+https://uamedia.uacdn.net/lesson-raw/QAA0JFYSBA4R44JSS10W/output.webm
+
+Lecture 03:
+https://uamedia.uacdn.net/lesson-raw/K75PU2MV5NIMBJ6S53GD/output.webm
+
+Lecture 04:
+https://uamedia.uacdn.net/lesson-raw/VFRAKBG7YZE9F44OQQSB/output.webm
+
+Lecture 05:
+https://uamedia.uacdn.net/lesson-raw/V2Q2AK718N6FW1I0PTNJ/output.webm
+
+Lecture 06:
+https://uamedia.uacdn.net/lesson-raw/6B5GOD67D7ZY19RNPVRC/output.webm
+
+Lecture 07:
+https://uamedia.uacdn.net/lesson-raw/XX07X2BO69VNMF0353JE/output.webm
+
+Lecture 08:
+https://uamedia.uacdn.net/lesson-raw/X1CHBIK1L7ZOEVO97RII/output.webm
+
+Lecture 09:
+https://uamedia.uacdn.net/lesson-raw/8SBDV6BNNXEQMGWKN1NB/output.webm
+
+Lecture 10:
+https://uamedia.uacdn.net/lesson-raw/IJ1EMAL47SJ3595IKQ66/output.webm
+
+Lecture 11:
+https://uamedia.uacdn.net/lesson-raw/GBGEQDVI4PDHVIX63I93/output.webm
+
+Lecture 12:
+https://uamedia.uacdn.net/lesson-raw/9HO6T0WYN09JFYPCCHXK/output.webm
+
+========== PDF LINKS ==========
+
+PDF 01:
+https://player.uacdn.net/slides_pdf/7TDGBGVGXUODYZDLD9ZG/Turing_Machine_Part_I_with_anno.pdf
+
+PDF 02:
+https://player.uacdn.net/slides_pdf/QAA0JFYSBA4R44JSS10W/Turing_Machine_Part_II_with_anno.pdf
+
+PDF 03:
+https://player.uacdn.net/slides_pdf/K75PU2MV5NIMBJ6S53GD/Turing_Machine_Part_IV_with_anno.pdf
+
+PDF 04:
+https://player.uacdn.net/slides_pdf/VFRAKBG7YZE9F44OQQSB/Turing_Machine_Part_V_with_anno.pdf
+
+PDF 05:
+https://player.uacdn.net/slides_pdf/V2Q2AK718N6FW1I0PTNJ/Turing_Machine_Part_VI_with_anno.pdf
+
+PDF 06:
+https://player.uacdn.net/slides_pdf/6B5GOD67D7ZY19RNPVRC/Undecidability_Part_II_with_anno.pdf
+
+PDF 07:
+https://player.uacdn.net/slides_pdf/XX07X2BO69VNMF0353JE/Undecidability_Part_III_with_anno.pdf
+
+PDF 08:
+https://player.uacdn.net/slides_pdf/X1CHBIK1L7ZOEVO97RII/Undecidability_Part_IV_with_anno.pdf
+
+PDF 09:
+https://player.uacdn.net/slides_pdf/8SBDV6BNNXEQMGWKN1NB/Undecidability_Part_V_with_anno.pdf
+
+PDF 10:
+https://player.uacdn.net/slides_pdf/IJ1EMAL47SJ3595IKQ66/Undecidability_Part_VI_with_anno.pdf
+
+PDF 11:
+https://player.uacdn.net/slides_pdf/GBGEQDVI4PDHVIX63I93/GATE_PYQS_TOC_Part_II_with_anno.pdf
+
+PDF 12:
+https://player.uacdn.net/slides_pdf/9HO6T0WYN09JFYPCCHXK/GATE_PYQS_TOC_Part_III_with_anno.pdf
+

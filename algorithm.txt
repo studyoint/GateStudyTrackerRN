@@ -1,0 +1,315 @@
+=====================================
+COURSE  : CSIT, DSAI &amp; Interview Preparation - Comprehensive Course on Analysis of Algorithms
+TEACHER : Pankaj Sharma
+=====================================
+
+========== LECTURE LINKS ==========
+
+Lecture 01:
+https://uamedia.uacdn.net/lesson-raw/DVDBEV3KL09511HPHYFK/output.webm
+
+Lecture 02:
+https://uamedia.uacdn.net/lesson-raw/99OWXQMIML43JTTB1K90/output.webm
+
+Lecture 03:
+https://uamedia.uacdn.net/lesson-raw/BCLJP1002XZ37KHBMIIQ/output.webm
+
+Lecture 04:
+https://uamedia.uacdn.net/lesson-raw/XWMN6KO2QX9H6MUC85B6/output.webm
+
+Lecture 05:
+https://uamedia.uacdn.net/lesson-raw/H4ZLOCJ7IRIIJGRV89AM/output.webm
+
+Lecture 06:
+https://uamedia.uacdn.net/lesson-raw/E51YUXVB8YXUVKOD621U/output.webm
+
+Lecture 07:
+https://uamedia.uacdn.net/lesson-raw/XKJDAKRWTY6BRQK6D788/output.webm
+
+Lecture 08:
+https://uamedia.uacdn.net/lesson-raw/RIXEEI8S2FXRL38LRK15/output.webm
+
+Lecture 09:
+https://uamedia.uacdn.net/lesson-raw/X6ECJ7AHJ50T9I3I6SMU/output.webm
+
+Lecture 10:
+https://uamedia.uacdn.net/lesson-raw/R3O0ZTJGN12DM6C8O7XV/output.webm
+
+Lecture 11:
+https://uamedia.uacdn.net/lesson-raw/38VB7SMKNWEBXEYKE981/output.webm
+
+Lecture 12:
+https://uamedia.uacdn.net/lesson-raw/FLBD65VXW9RXGWTZLKO9/output.webm
+
+Lecture 13:
+https://uamedia.uacdn.net/lesson-raw/UU4J9UDO8FMNNJHBSHMA/output.webm
+
+Lecture 14:
+https://uamedia.uacdn.net/lesson-raw/A7JZ4I73MQC6FYNYY2TM/output.webm
+
+Lecture 15:
+https://uamedia.uacdn.net/lesson-raw/RZJN1Q3Z89LH6900ZGZU/output.webm
+
+Lecture 16:
+https://uamedia.uacdn.net/lesson-raw/WDSGDC4632C0HY0FIVLU/output.webm
+
+Lecture 17:
+https://uamedia.uacdn.net/lesson-raw/1PJQNS6UU7GRZAKC9HZP/output.webm
+
+Lecture 18:
+https://uamedia.uacdn.net/lesson-raw/8ALFP1D06QW3XW9D13IG/output.webm
+
+Lecture 19:
+https://uamedia.uacdn.net/lesson-raw/5IZPY8DCPDQUC1Z0RN0Q/output.webm
+
+Lecture 20:
+https://uamedia.uacdn.net/lesson-raw/TE65OQ9ZA7RN5IGW801J/output.webm
+
+Lecture 21:
+https://uamedia.uacdn.net/lesson-raw/1HKZA3T8A95N00R4EO9M/output.webm
+
+Lecture 22:
+https://uamedia.uacdn.net/lesson-raw/THAY5T8DY31R1NAYBQ3E/output.webm
+
+Lecture 23:
+https://uamedia.uacdn.net/lesson-raw/3KGRHRHQYX8CZYAGZLN7/output.webm
+
+Lecture 24:
+https://uamedia.uacdn.net/lesson-raw/EG0T1EOWJHVMRJD6T3MS/output.webm
+
+Lecture 25:
+https://uamedia.uacdn.net/lesson-raw/5C8KKZA0PMLGF0YK99FD/output.webm
+
+Lecture 26:
+https://uamedia.uacdn.net/lesson-raw/X8KTH8ZG7OOGGCRY1C2G/output.webm
+
+Lecture 27:
+https://uamedia.uacdn.net/lesson-raw/Z8T7Z66S3VY0IBSFPHBY/output.webm
+
+Lecture 28:
+https://uamedia.uacdn.net/lesson-raw/ZCN70D79708MUCJWGNNV/output.webm
+
+Lecture 29:
+https://uamedia.uacdn.net/lesson-raw/H59VCRHUI3JBAINKJ956/output.webm
+
+Lecture 30:
+https://uamedia.uacdn.net/lesson-raw/ZPVE5OF8YP5E3ZVP3BEN/output.webm
+
+Lecture 31:
+https://uamedia.uacdn.net/lesson-raw/PZAPS0GG3W1YU6ELJWW9/output.webm
+
+Lecture 32:
+https://uamedia.uacdn.net/lesson-raw/WJ47NQR2ZIUMIR3WNBR0/output.webm
+
+Lecture 33:
+https://uamedia.uacdn.net/lesson-raw/PQE2DGJZNNB4MIHJRDM8/output.webm
+
+Lecture 34:
+https://uamedia.uacdn.net/lesson-raw/8DQFSF27XFHHTEPH4SVC/output.webm
+
+Lecture 35:
+https://uamedia.uacdn.net/lesson-raw/WCJEMLQ8PRJ4U9511HO7/output.webm
+
+Lecture 36:
+https://uamedia.uacdn.net/lesson-raw/S9HYLMRQZOZV0HHBP573/output.webm
+
+Lecture 37:
+https://uamedia.uacdn.net/lesson-raw/ZQTGJJQM5T4DHYUHFU47/output.webm
+
+Lecture 38:
+https://uamedia.uacdn.net/lesson-raw/RK2SHC4Z6NRJKJSGV097/output.webm
+
+Lecture 39:
+https://uamedia.uacdn.net/lesson-raw/E0SFQB6QBY18GQN7AWSL/output.webm
+
+Lecture 40:
+https://uamedia.uacdn.net/lesson-raw/LTQQD178C0HXM8UIH97J/output.webm
+
+Lecture 41:
+https://uamedia.uacdn.net/lesson-raw/CDTTD3ZGKFM8RFONFMFR/output.webm
+
+Lecture 42:
+https://uamedia.uacdn.net/lesson-raw/A1X29SFV8F8LSHG8CE9R/output.webm
+
+Lecture 43:
+https://uamedia.uacdn.net/lesson-raw/VHJGP4K7PQBA5X2UXOX7/output.webm
+
+Lecture 44:
+https://uamedia.uacdn.net/lesson-raw/5UTM3XDNXZFZXC9LH5P4/output.webm
+
+Lecture 45:
+https://uamedia.uacdn.net/lesson-raw/S2TK4TW2CN5U7L7JE3F7/output.webm
+
+Lecture 46:
+https://uamedia.uacdn.net/lesson-raw/J34P1LKSQUMI076UP6M7/output.webm
+
+Lecture 47:
+https://uamedia.uacdn.net/lesson-raw/D3ROC9SD7BBZ822DIUI1/output.webm
+
+Lecture 48:
+https://uamedia.uacdn.net/lesson-raw/MOMHAKYU7W9XVXW94Q41/output.webm
+
+Lecture 49:
+https://uamedia.uacdn.net/lesson-raw/T2OC3API5NJ9EEZNKV2V/output.webm
+
+Lecture 50:
+https://uamedia.uacdn.net/lesson-raw/I84C6JBQNO8MP2XV2YZD/output.webm
+
+Lecture 51:
+https://uamedia.uacdn.net/lesson-raw/VS1EPEREBUS8QJMK45A8/output.webm
+
+========== PDF LINKS ==========
+
+PDF 01:
+https://player.uacdn.net/slides_pdf/DVDBEV3KL09511HPHYFK/Introduction_with_anno.pdf
+
+PDF 02:
+https://player.uacdn.net/slides_pdf/99OWXQMIML43JTTB1K90/Asymptotic_Analysis_I_with_anno.pdf
+
+PDF 03:
+https://player.uacdn.net/slides_pdf/BCLJP1002XZ37KHBMIIQ/Asymptotic_AnalysisII_with_anno.pdf
+
+PDF 04:
+https://player.uacdn.net/slides_pdf/XWMN6KO2QX9H6MUC85B6/Loop_Analysis_with_anno.pdf
+
+PDF 05:
+https://player.uacdn.net/slides_pdf/H4ZLOCJ7IRIIJGRV89AM/Analysis_of_Recursive_Algorithm_with_anno.pdf
+
+PDF 06:
+https://player.uacdn.net/slides_pdf/E51YUXVB8YXUVKOD621U/Recurrence_RelationsI_with_anno.pdf
+
+PDF 07:
+https://player.uacdn.net/slides_pdf/XKJDAKRWTY6BRQK6D788/Problem_Solving__Part_I_with_anno.pdf
+
+PDF 08:
+https://player.uacdn.net/slides_pdf/RIXEEI8S2FXRL38LRK15/Problem_Solving__Part_II_with_anno.pdf
+
+PDF 09:
+https://player.uacdn.net/slides_pdf/X6ECJ7AHJ50T9I3I6SMU/Recurrence_RelationsII_with_anno.pdf
+
+PDF 10:
+https://player.uacdn.net/slides_pdf/R3O0ZTJGN12DM6C8O7XV/Master_Theorem_with_anno.pdf
+
+PDF 11:
+https://player.uacdn.net/slides_pdf/38VB7SMKNWEBXEYKE981/Recurrence_Tree_Method_with_anno.pdf
+
+PDF 12:
+https://player.uacdn.net/slides_pdf/FLBD65VXW9RXGWTZLKO9/Problem_Solving_with_anno.pdf
+
+PDF 13:
+https://player.uacdn.net/slides_pdf/UU4J9UDO8FMNNJHBSHMA/Divide_And_Conquer__01_with_anno.pdf
+
+PDF 14:
+https://player.uacdn.net/slides_pdf/A7JZ4I73MQC6FYNYY2TM/DAC02_with_anno.pdf
+
+PDF 15:
+https://player.uacdn.net/slides_pdf/RZJN1Q3Z89LH6900ZGZU/Merge_Sort_with_anno.pdf
+
+PDF 16:
+https://player.uacdn.net/slides_pdf/WDSGDC4632C0HY0FIVLU/Quick_Sort_01_with_anno.pdf
+
+PDF 17:
+https://player.uacdn.net/slides_pdf/1PJQNS6UU7GRZAKC9HZP/Sorting_02_with_anno.pdf
+
+PDF 18:
+https://player.uacdn.net/slides_pdf/8ALFP1D06QW3XW9D13IG/Sorting_03_with_anno.pdf
+
+PDF 19:
+https://player.uacdn.net/slides_pdf/5IZPY8DCPDQUC1Z0RN0Q/Sorting_04_with_anno.pdf
+
+PDF 20:
+https://player.uacdn.net/slides_pdf/TE65OQ9ZA7RN5IGW801J/Greedy_Method_with_anno.pdf
+
+PDF 21:
+https://player.uacdn.net/slides_pdf/1HKZA3T8A95N00R4EO9M/Greedy_AlgorithmsJob_Scheduling_02_with_anno.pdf
+
+PDF 22:
+https://player.uacdn.net/slides_pdf/THAY5T8DY31R1NAYBQ3E/Greedy_AlgorithmsOptimal_Merge__Huffman_Encoding03_with_anno.pdf
+
+PDF 23:
+https://player.uacdn.net/slides_pdf/3KGRHRHQYX8CZYAGZLN7/MCST02_with_anno.pdf
+
+PDF 24:
+https://player.uacdn.net/slides_pdf/EG0T1EOWJHVMRJD6T3MS/Single_Source_Shortest_Path_Algorithm_with_anno.pdf
+
+PDF 25:
+https://player.uacdn.net/slides_pdf/5C8KKZA0PMLGF0YK99FD/Problem_Solving_with_anno.pdf
+
+PDF 26:
+https://player.uacdn.net/slides_pdf/X8KTH8ZG7OOGGCRY1C2G/Problem_Solving_with_anno.pdf
+
+PDF 27:
+https://player.uacdn.net/slides_pdf/Z8T7Z66S3VY0IBSFPHBY/Dynamic_Programming_02_with_anno.pdf
+
+PDF 28:
+https://player.uacdn.net/slides_pdf/ZCN70D79708MUCJWGNNV/Dynamic_Programming03_MCM_Problem_with_anno.pdf
+
+PDF 29:
+https://player.uacdn.net/slides_pdf/H59VCRHUI3JBAINKJ956/Dynamic_Programming04_with_anno.pdf
+
+PDF 30:
+https://player.uacdn.net/slides_pdf/ZPVE5OF8YP5E3ZVP3BEN/Dynamic_Programming06_with_anno.pdf
+
+PDF 31:
+https://player.uacdn.net/slides_pdf/PZAPS0GG3W1YU6ELJWW9/Greedy_Algorithms_01_with_anno.pdf
+
+PDF 32:
+https://player.uacdn.net/slides_pdf/WJ47NQR2ZIUMIR3WNBR0/Greedy_Algorithms_02_with_anno.pdf
+
+PDF 33:
+https://player.uacdn.net/slides_pdf/PQE2DGJZNNB4MIHJRDM8/Greedy_Algorithms_03_with_anno.pdf
+
+PDF 34:
+https://player.uacdn.net/slides_pdf/8DQFSF27XFHHTEPH4SVC/Greedy_Algorithms_04_with_anno.pdf
+
+PDF 35:
+https://player.uacdn.net/slides_pdf/WCJEMLQ8PRJ4U9511HO7/Greedy_Algorithms_06_with_anno.pdf
+
+PDF 36:
+https://player.uacdn.net/slides_pdf/S9HYLMRQZOZV0HHBP573/Greedy_Algorithms_08_with_anno.pdf
+
+PDF 37:
+https://player.uacdn.net/slides_pdf/ZQTGJJQM5T4DHYUHFU47/Greedy_Algorithms_09_with_anno.pdf
+
+PDF 38:
+https://player.uacdn.net/slides_pdf/RK2SHC4Z6NRJKJSGV097/Greedy_Algorithms_10_with_anno.pdf
+
+PDF 39:
+https://player.uacdn.net/slides_pdf/E0SFQB6QBY18GQN7AWSL/Greedy_Algorithms_11_with_anno.pdf
+
+PDF 40:
+https://player.uacdn.net/slides_pdf/LTQQD178C0HXM8UIH97J/Greedy_Algorithms_12_with_anno.pdf
+
+PDF 41:
+https://player.uacdn.net/slides_pdf/CDTTD3ZGKFM8RFONFMFR/Greedy_Algorithms_13_with_anno.pdf
+
+PDF 42:
+https://player.uacdn.net/slides_pdf/A1X29SFV8F8LSHG8CE9R/Dynamic_Programming_01_with_anno.pdf
+
+PDF 43:
+https://player.uacdn.net/slides_pdf/VHJGP4K7PQBA5X2UXOX7/Dynamic_Programming_02_with_anno.pdf
+
+PDF 44:
+https://player.uacdn.net/slides_pdf/5UTM3XDNXZFZXC9LH5P4/Dynamic_Programming__IV_with_anno.pdf
+
+PDF 45:
+https://player.uacdn.net/slides_pdf/S2TK4TW2CN5U7L7JE3F7/Dynamic_Programming__V_with_anno.pdf
+
+PDF 46:
+https://player.uacdn.net/slides_pdf/J34P1LKSQUMI076UP6M7/Dynamic_Programming__VI_with_anno.pdf
+
+PDF 47:
+https://player.uacdn.net/slides_pdf/D3ROC9SD7BBZ822DIUI1/Dynamic_Programming__VII_with_anno.pdf
+
+PDF 48:
+https://player.uacdn.net/slides_pdf/MOMHAKYU7W9XVXW94Q41/Dynamic_Programming__VIII_with_anno.pdf
+
+PDF 49:
+https://player.uacdn.net/slides_pdf/T2OC3API5NJ9EEZNKV2V/Dynamic_Programming__IX_with_anno.pdf
+
+PDF 50:
+https://player.uacdn.net/slides_pdf/I84C6JBQNO8MP2XV2YZD/Dynamic_programming_10_with_anno.pdf
+
+PDF 51:
+https://player.uacdn.net/slides_pdf/VS1EPEREBUS8QJMK45A8/Dynamic_programming_11_with_anno.pdf
+

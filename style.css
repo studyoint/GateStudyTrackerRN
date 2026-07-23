@@ -1,0 +1,86 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI,sans-serif;
+}
+
+body{
+    background:#0f1117;
+    color:#fff;
+    display:flex;
+    height:100vh;
+    overflow:hidden;
+}
+
+/* LEFT SIDE */
+
+#list{
+    width:340px;
+    background:#171b26;
+    overflow-y:auto;
+    padding:20px;
+    border-right:1px solid #2a3042;
+}
+
+#title{
+    position:fixed;
+    top:0;
+    left:0;
+    width:31    0px;
+    padding:18px;
+    font-size:10px;
+    font-weight:700;
+    background:#171b26;
+    border-bottom:1px solid #2a3042;
+    z-index:10;
+}
+
+#list{
+    padding-top:80px;
+}
+
+#list div{
+    background:#202638;
+    margin-bottom:12px;
+    padding:15px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:.25s;
+    border:1px solid transparent;
+}
+
+#list div:hover{
+    background:#2d3750;
+    transform:translateX(6px);
+    border-color:#4c8dff;
+}
+
+#list div:active{
+    transform:scale(.98);
+}
+
+/* RIGHT SIDE */
+
+#player{
+    flex:1;
+    width:100%;
+    height:100vh;
+    background:#000;
+    object-fit:contain;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#4b556d;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-track{
+    background:#171b26;
+}

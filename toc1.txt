@@ -1,0 +1,315 @@
+=====================================
+COURSE  : CSIT, DSAI & Interview Preparation - Complete Course On Theory Of Computation For GATE CS & IT
+TEACHER : Ankit Kumar
+=====================================
+
+========== LECTURE LINKS ==========
+
+Lecture 01:
+https://uamedia.uacdn.net/lesson-raw/LEIHEDKDD2B5HK2E07HL/output.webm
+
+Lecture 02:
+https://uamedia.uacdn.net/lesson-raw/3WN06RZSBR2QAAGR0RLA/output.webm
+
+Lecture 03:
+https://uamedia.uacdn.net/lesson-raw/NEA0YBA2H219OONI3GXW/output.webm
+
+Lecture 04:
+https://uamedia.uacdn.net/lesson-raw/QLJP1OKTAK0M5W2IBMCF/output.webm
+
+Lecture 05:
+https://uamedia.uacdn.net/lesson-raw/E2ZEUMM3ZXI7W7JW13DP/output.webm
+
+Lecture 06:
+https://uamedia.uacdn.net/lesson-raw/4TXYMQ3OWJ9NCFCR9LE1/output.webm
+
+Lecture 07:
+https://uamedia.uacdn.net/lesson-raw/NY66E95VRXF9GYLOTB1Y/output.webm
+
+Lecture 08:
+https://uamedia.uacdn.net/lesson-raw/7RASRAFZXCPXKI68IMG0/output.webm
+
+Lecture 09:
+https://uamedia.uacdn.net/lesson-raw/KIEEVHRGSFL78V32LDHC/output.webm
+
+Lecture 10:
+https://uamedia.uacdn.net/lesson-raw/FRO4DD6DHR5G7B20GZ31/output.webm
+
+Lecture 11:
+https://uamedia.uacdn.net/lesson-raw/RJGF0ZKMB0YLNHGS2UAY/output.webm
+
+Lecture 12:
+https://uamedia.uacdn.net/lesson-raw/39I98F0IWDGHOB9LMPXE/output.webm
+
+Lecture 13:
+https://uamedia.uacdn.net/lesson-raw/KSQ1Q9L6RRETQS7ZAW7S/output.webm
+
+Lecture 14:
+https://uamedia.uacdn.net/lesson-raw/MF76Q8L1KU1HPTTKHBB4/output.webm
+
+Lecture 15:
+https://uamedia.uacdn.net/lesson-raw/J8YKYKAE1Q31Q8ZEBG76/output.webm
+
+Lecture 16:
+https://uamedia.uacdn.net/lesson-raw/MFVIS3UZONFJS5C8ZCGQ/output.webm
+
+Lecture 17:
+https://uamedia.uacdn.net/lesson-raw/V3SDQXQQMY5MQ66V3KZS/output.webm
+
+Lecture 18:
+https://uamedia.uacdn.net/lesson-raw/ZZ86LUTR3AV7BR9ENZ33/output.webm
+
+Lecture 19:
+https://uamedia.uacdn.net/lesson-raw/8GJG46LMCQT344YHD3D3/output.webm
+
+Lecture 20:
+https://uamedia.uacdn.net/lesson-raw/XCJD55IE14VY53YY7RYW/output.webm
+
+Lecture 21:
+https://uamedia.uacdn.net/lesson-raw/ZAQ8SAHZE341Z6SKCH1I/output.webm
+
+Lecture 22:
+https://uamedia.uacdn.net/lesson-raw/OC072KRZ9CN10R1ITQ7Z/output.webm
+
+Lecture 23:
+https://uamedia.uacdn.net/lesson-raw/5XTE80T2XDNZEN8RC4O5/output.webm
+
+Lecture 24:
+https://uamedia.uacdn.net/lesson-raw/XNSXH26TE6CB4QWGCOTF/output.webm
+
+Lecture 25:
+https://uamedia.uacdn.net/lesson-raw/VSSWNGQBBJQQZVUZEWL1/output.webm
+
+Lecture 26:
+https://uamedia.uacdn.net/lesson-raw/7S45U2QTMF5D4NBO4SF9/output.webm
+
+Lecture 27:
+https://uamedia.uacdn.net/lesson-raw/9RR0LO5LHGRZXWGGXG99/output.webm
+
+Lecture 28:
+https://uamedia.uacdn.net/lesson-raw/I3CQIYBCIVHQD4VF3NXB/output.webm
+
+Lecture 29:
+https://uamedia.uacdn.net/lesson-raw/V1X9M8EBREM4592VOQMZ/output.webm
+
+Lecture 30:
+https://uamedia.uacdn.net/lesson-raw/PCYYSVV3ARN69T8RDOD6/output.webm
+
+Lecture 31:
+https://uamedia.uacdn.net/lesson-raw/CVGLZAI4N70GS0PEJYF5/output.webm
+
+Lecture 32:
+https://uamedia.uacdn.net/lesson-raw/79PNRVN91NM7GE1I6H1H/output.webm
+
+Lecture 33:
+https://uamedia.uacdn.net/lesson-raw/AKZ3EV371GBS1ZIZ5IW6/output.webm
+
+Lecture 34:
+https://uamedia.uacdn.net/lesson-raw/PDZF89XGB2F21TYVX9AL/output.webm
+
+Lecture 35:
+https://uamedia.uacdn.net/lesson-raw/B5TRHEGPQEQU50X8D0PE/output.webm
+
+Lecture 36:
+https://uamedia.uacdn.net/lesson-raw/YJHS7BA7K8YE1NAGXSKJ/output.webm
+
+Lecture 37:
+https://uamedia.uacdn.net/lesson-raw/2A6AMNC4KSUFC8B3UMWV/output.webm
+
+Lecture 38:
+https://uamedia.uacdn.net/lesson-raw/E7JTQR92DR2ORLBGCJGW/output.webm
+
+Lecture 39:
+https://uamedia.uacdn.net/lesson-raw/ZYED3M0VSILYT6RPGMI0/output.webm
+
+Lecture 40:
+https://uamedia.uacdn.net/lesson-raw/QTXWAYNOLJ8XHF85JNJW/output.webm
+
+Lecture 41:
+https://uamedia.uacdn.net/lesson-raw/QN08WI7G9V2693ASCABP/output.webm
+
+Lecture 42:
+https://uamedia.uacdn.net/lesson-raw/PNSBL8W1CIP2BIWNJBQU/output.webm
+
+Lecture 43:
+https://uamedia.uacdn.net/lesson-raw/T5HU4KFYESASMSBF277I/output.webm
+
+Lecture 44:
+https://uamedia.uacdn.net/lesson-raw/UQ0A0M2M327DS22J5V0R/output.webm
+
+Lecture 45:
+https://uamedia.uacdn.net/lesson-raw/C6V8MCPKEBJX8WSCU4LB/output.webm
+
+Lecture 46:
+https://uamedia.uacdn.net/lesson-raw/9R5F32MARVIG633CZGGW/output.webm
+
+Lecture 47:
+https://uamedia.uacdn.net/lesson-raw/376DIXJ91SN1EHMP2ZKM/output.webm
+
+Lecture 48:
+https://uamedia.uacdn.net/lesson-raw/U897G8I2POJ0BTEKAEZP/output.webm
+
+Lecture 49:
+https://uamedia.uacdn.net/lesson-raw/H827MQTDDLII5XQWHHYX/output.webm
+
+Lecture 50:
+https://uamedia.uacdn.net/lesson-raw/52A9FCHG440H320LA56Z/output.webm
+
+Lecture 51:
+https://uamedia.uacdn.net/lesson-raw/EMMC367PKYL5I6AG64NG/output.webm
+
+========== PDF LINKS ==========
+
+PDF 01:
+https://player.uacdn.net/slides_pdf/LEIHEDKDD2B5HK2E07HL/Introduction_to_TOC_with_anno.pdf
+
+PDF 02:
+https://player.uacdn.net/slides_pdf/3WN06RZSBR2QAAGR0RLA/Basics_of_TOCPart_I_with_anno.pdf
+
+PDF 03:
+https://player.uacdn.net/slides_pdf/NEA0YBA2H219OONI3GXW/Basics_of_TOCPart_II_with_anno.pdf
+
+PDF 04:
+https://player.uacdn.net/slides_pdf/QLJP1OKTAK0M5W2IBMCF/Basics_of_TOCPart_III_with_anno.pdf
+
+PDF 05:
+https://player.uacdn.net/slides_pdf/E2ZEUMM3ZXI7W7JW13DP/Finite_Automata_Part_I_with_anno.pdf
+
+PDF 06:
+https://player.uacdn.net/slides_pdf/4TXYMQ3OWJ9NCFCR9LE1/Finite_Automata_Part_II_with_anno.pdf
+
+PDF 07:
+https://player.uacdn.net/slides_pdf/NY66E95VRXF9GYLOTB1Y/Finite_Automata_Part_III_with_anno.pdf
+
+PDF 08:
+https://player.uacdn.net/slides_pdf/7RASRAFZXCPXKI68IMG0/Finite_Automata_Part_IV_with_anno.pdf
+
+PDF 09:
+https://player.uacdn.net/slides_pdf/KIEEVHRGSFL78V32LDHC/Finite_Automata_Part_V_with_anno.pdf
+
+PDF 10:
+https://player.uacdn.net/slides_pdf/FRO4DD6DHR5G7B20GZ31/Finite_Automata_Part_VI_with_anno.pdf
+
+PDF 11:
+https://player.uacdn.net/slides_pdf/RJGF0ZKMB0YLNHGS2UAY/Finite_Automata_Part_VII_with_anno.pdf
+
+PDF 12:
+https://player.uacdn.net/slides_pdf/39I98F0IWDGHOB9LMPXE/Finite_Automata_Part_VIII_with_anno.pdf
+
+PDF 13:
+https://player.uacdn.net/slides_pdf/KSQ1Q9L6RRETQS7ZAW7S/Finite_Automata_Part_IX_with_anno.pdf
+
+PDF 14:
+https://player.uacdn.net/slides_pdf/MF76Q8L1KU1HPTTKHBB4/Finite_Automata_Part_X_with_anno.pdf
+
+PDF 15:
+https://player.uacdn.net/slides_pdf/J8YKYKAE1Q31Q8ZEBG76/Finite_Automata_Part_XI_with_anno.pdf
+
+PDF 16:
+https://player.uacdn.net/slides_pdf/MFVIS3UZONFJS5C8ZCGQ/Regular_ExpressionPart_II_with_anno.pdf
+
+PDF 17:
+https://player.uacdn.net/slides_pdf/V3SDQXQQMY5MQ66V3KZS/Regular_ExpressionPart_IV_with_anno.pdf
+
+PDF 18:
+https://player.uacdn.net/slides_pdf/ZZ86LUTR3AV7BR9ENZ33/Regular_ExpressionPart_V_with_anno.pdf
+
+PDF 19:
+https://player.uacdn.net/slides_pdf/8GJG46LMCQT344YHD3D3/Mealy_and_Moore_MachinePart_I_with_anno.pdf
+
+PDF 20:
+https://player.uacdn.net/slides_pdf/XCJD55IE14VY53YY7RYW/Regular_ExpressionPart_I_with_anno.pdf
+
+PDF 21:
+https://player.uacdn.net/slides_pdf/ZAQ8SAHZE341Z6SKCH1I/Mealy_and_Moore_MachinePart_II_with_anno.pdf
+
+PDF 22:
+https://player.uacdn.net/slides_pdf/OC072KRZ9CN10R1ITQ7Z/Regular_GrammarPart_I_with_anno.pdf
+
+PDF 23:
+https://player.uacdn.net/slides_pdf/5XTE80T2XDNZEN8RC4O5/Regular_GrammarPart_II_with_anno.pdf
+
+PDF 24:
+https://player.uacdn.net/slides_pdf/XNSXH26TE6CB4QWGCOTF/Conversion_Techniques_with_anno.pdf
+
+PDF 25:
+https://player.uacdn.net/slides_pdf/VSSWNGQBBJQQZVUZEWL1/Finite_Automata_Part_XII_with_anno.pdf
+
+PDF 26:
+https://player.uacdn.net/slides_pdf/7S45U2QTMF5D4NBO4SF9/Regular__Non_Regular_Language_Part_II_with_anno.pdf
+
+PDF 27:
+https://player.uacdn.net/slides_pdf/9RR0LO5LHGRZXWGGXG99/Closure_Properties_Part_I_with_anno.pdf
+
+PDF 28:
+https://player.uacdn.net/slides_pdf/I3CQIYBCIVHQD4VF3NXB/Closure_Properties_Part_II_with_anno.pdf
+
+PDF 29:
+https://player.uacdn.net/slides_pdf/V1X9M8EBREM4592VOQMZ/Context_Free_Grammar_Part_II_with_anno.pdf
+
+PDF 30:
+https://player.uacdn.net/slides_pdf/PCYYSVV3ARN69T8RDOD6/Context_Free_Grammar_Part_III_with_anno.pdf
+
+PDF 31:
+https://player.uacdn.net/slides_pdf/CVGLZAI4N70GS0PEJYF5/Push_Down_Automata_Part_I_with_anno.pdf
+
+PDF 32:
+https://player.uacdn.net/slides_pdf/79PNRVN91NM7GE1I6H1H/Push_Down_Automata_Part_III_with_anno.pdf
+
+PDF 33:
+https://player.uacdn.net/slides_pdf/AKZ3EV371GBS1ZIZ5IW6/Push_Down_Automata_Part_IV_with_anno.pdf
+
+PDF 34:
+https://player.uacdn.net/slides_pdf/PDZF89XGB2F21TYVX9AL/Push_Down_Automata_Part_II_with_anno.pdf
+
+PDF 35:
+https://player.uacdn.net/slides_pdf/B5TRHEGPQEQU50X8D0PE/Turing_MachinePart_I_with_anno.pdf
+
+PDF 36:
+https://player.uacdn.net/slides_pdf/YJHS7BA7K8YE1NAGXSKJ/Turing_MachinePart_II_with_anno.pdf
+
+PDF 37:
+https://player.uacdn.net/slides_pdf/2A6AMNC4KSUFC8B3UMWV/Turing_MachinePart_III_with_anno.pdf
+
+PDF 38:
+https://player.uacdn.net/slides_pdf/E7JTQR92DR2ORLBGCJGW/Turing_MachinePart_IV_with_anno.pdf
+
+PDF 39:
+https://player.uacdn.net/slides_pdf/ZYED3M0VSILYT6RPGMI0/Decidable__Undecidable_Language_Part_I_with_anno.pdf
+
+PDF 40:
+https://player.uacdn.net/slides_pdf/QTXWAYNOLJ8XHF85JNJW/Decidable__Undecidable_Language_Part_II_with_anno.pdf
+
+PDF 41:
+https://player.uacdn.net/slides_pdf/QN08WI7G9V2693ASCABP/Extra_Class_with_anno.pdf
+
+PDF 42:
+https://player.uacdn.net/slides_pdf/PNSBL8W1CIP2BIWNJBQU/Extra_Class_with_anno.pdf
+
+PDF 43:
+https://player.uacdn.net/slides_pdf/T5HU4KFYESASMSBF277I/Extra_Class_with_anno.pdf
+
+PDF 44:
+https://player.uacdn.net/slides_pdf/UQ0A0M2M327DS22J5V0R/Extra_Class_with_anno.pdf
+
+PDF 45:
+https://player.uacdn.net/slides_pdf/C6V8MCPKEBJX8WSCU4LB/Extra_class_with_anno.pdf
+
+PDF 46:
+https://player.uacdn.net/slides_pdf/9R5F32MARVIG633CZGGW/Extra_Class_with_anno.pdf
+
+PDF 47:
+https://player.uacdn.net/slides_pdf/376DIXJ91SN1EHMP2ZKM/Extra_Class__Part_I_with_anno.pdf
+
+PDF 48:
+https://player.uacdn.net/slides_pdf/U897G8I2POJ0BTEKAEZP/Extra_Class__Part_II_with_anno.pdf
+
+PDF 49:
+https://player.uacdn.net/slides_pdf/H827MQTDDLII5XQWHHYX/Extra_Class__Part_IV_with_anno.pdf
+
+PDF 50:
+https://player.uacdn.net/slides_pdf/52A9FCHG440H320LA56Z/Extra_Class__Part_III_with_anno.pdf
+
+PDF 51:
+https://player.uacdn.net/slides_pdf/EMMC367PKYL5I6AG64NG/Extra_Class_with_anno.pdf
+

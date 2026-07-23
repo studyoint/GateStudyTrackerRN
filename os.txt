@@ -1,0 +1,297 @@
+=====================================
+COURSE  : CSIT, DSAI &amp; Interview Preparation - Foundation course on Operating System
+TEACHER : Vishal Rawtiya
+=====================================
+
+========== LECTURE LINKS ==========
+
+Lecture 01:
+https://uamedia.uacdn.net/lesson-raw/0JI26XYY40AFGKQS2E7X/output.webm
+
+Lecture 02:
+https://uamedia.uacdn.net/lesson-raw/ZNGFULUG7D2KS8174VIZ/output.webm
+
+Lecture 03:
+https://uamedia.uacdn.net/lesson-raw/JNCF4WX6I9P25CZ4WTQ8/output.webm
+
+Lecture 04:
+https://uamedia.uacdn.net/lesson-raw/94IZOPXPA3CXT2TAXB6O/output.webm
+
+Lecture 05:
+https://uamedia.uacdn.net/lesson-raw/Q3G5Q7HVWWE5QNVISY3X/output.webm
+
+Lecture 06:
+https://uamedia.uacdn.net/lesson-raw/WX2XGNIGRGXVOD2EK92F/output.webm
+
+Lecture 07:
+https://uamedia.uacdn.net/lesson-raw/9R5MQ1E5ZILTS0ARB046/output.webm
+
+Lecture 08:
+https://uamedia.uacdn.net/lesson-raw/QG7RF6A63Y12UUMYIJZG/output.webm
+
+Lecture 09:
+https://uamedia.uacdn.net/lesson-raw/R265SJLIRNCB4RKEK1RS/output.webm
+
+Lecture 10:
+https://uamedia.uacdn.net/lesson-raw/NT0SY4LA625DCVHKYD6B/output.webm
+
+Lecture 11:
+https://uamedia.uacdn.net/lesson-raw/8UJ9ZMIGM0E1TPQAK08M/output.webm
+
+Lecture 12:
+https://uamedia.uacdn.net/lesson-raw/JY6KMXZ722IRPLWF0Y3Z/output.webm
+
+Lecture 13:
+https://uamedia.uacdn.net/lesson-raw/JHFJA47A2JGFPOQ3HLV0/output.webm
+
+Lecture 14:
+https://uamedia.uacdn.net/lesson-raw/JA0BAYAIIHFVXHCY9R10/output.webm
+
+Lecture 15:
+https://uamedia.uacdn.net/lesson-raw/BE3C0D14UIEHUEFXKQFV/output.webm
+
+Lecture 16:
+https://uamedia.uacdn.net/lesson-raw/ODH7ZH4CX2DT02TYFL1B/output.webm
+
+Lecture 17:
+https://uamedia.uacdn.net/lesson-raw/PWO3QEB8N3FCP7EZOTM0/output.webm
+
+Lecture 18:
+https://uamedia.uacdn.net/lesson-raw/RNAPPLK2EKSTC7VBJ8CF/output.webm
+
+Lecture 19:
+https://uamedia.uacdn.net/lesson-raw/GLJY0O6WYTUY3AJZ9SM4/output.webm
+
+Lecture 20:
+https://uamedia.uacdn.net/lesson-raw/EPEFU9BZUK7127PMZ1LH/output.webm
+
+Lecture 21:
+https://uamedia.uacdn.net/lesson-raw/3E934KZTZE4IRDVLF65G/output.webm
+
+Lecture 22:
+https://uamedia.uacdn.net/lesson-raw/EO473F3MNS5KRAD8OS7S/output.webm
+
+Lecture 23:
+https://uamedia.uacdn.net/lesson-raw/ENXZ70XUIGDPHNOW8P1Z/output.webm
+
+Lecture 24:
+https://uamedia.uacdn.net/lesson-raw/92RIS5NUT1WJVW56YM1F/output.webm
+
+Lecture 25:
+https://uamedia.uacdn.net/lesson-raw/9WMCK305USA6X0960H2U/output.webm
+
+Lecture 26:
+https://uamedia.uacdn.net/lesson-raw/4HNJ70VRGTKL125NA6F5/output.webm
+
+Lecture 27:
+https://uamedia.uacdn.net/lesson-raw/VF2KYQ9ZT35ROWWEOT61/output.webm
+
+Lecture 28:
+https://uamedia.uacdn.net/lesson-raw/BQPRFL06C40PS2ZBODEH/output.webm
+
+Lecture 29:
+https://uamedia.uacdn.net/lesson-raw/LUC9UK39NG1TB2ACXZLU/output.webm
+
+Lecture 30:
+https://uamedia.uacdn.net/lesson-raw/0TN2HGRQHS6R9MX6V7PJ/output.webm
+
+Lecture 31:
+https://uamedia.uacdn.net/lesson-raw/T6O09NII184B3EOYQADC/output.webm
+
+Lecture 32:
+https://uamedia.uacdn.net/lesson-raw/9ES6F254E04B6ANCPTX5/output.webm
+
+Lecture 33:
+https://uamedia.uacdn.net/lesson-raw/MRM8EYXS9MII5R2HBFOQ/output.webm
+
+Lecture 34:
+https://uamedia.uacdn.net/lesson-raw/CXAUKT3GVZ0ACT8WK9EM/output.webm
+
+Lecture 35:
+https://uamedia.uacdn.net/lesson-raw/8NN1W53OVSC6FLPYBLPX/output.webm
+
+Lecture 36:
+https://uamedia.uacdn.net/lesson-raw/0LUFV9RAFTKMAUG2VBMD/output.webm
+
+Lecture 37:
+https://uamedia.uacdn.net/lesson-raw/RVSGR8WLXRSNZD0SYLEQ/output.webm
+
+Lecture 38:
+https://uamedia.uacdn.net/lesson-raw/ZV31MGZA6QMP8NBYA16C/output.webm
+
+Lecture 39:
+https://uamedia.uacdn.net/lesson-raw/S2KJQHLDW8UQBTC4E0TB/output.webm
+
+Lecture 40:
+https://uamedia.uacdn.net/lesson-raw/7P4GNI8JWC8Y8TIM7BVQ/output.webm
+
+Lecture 41:
+https://uamedia.uacdn.net/lesson-raw/R3XB3YZOHJWPFAPQRD9G/output.webm
+
+Lecture 42:
+https://uamedia.uacdn.net/lesson-raw/W4JAHTYK6IOLXHIML284/output.webm
+
+Lecture 43:
+https://uamedia.uacdn.net/lesson-raw/YF4ZKXV9IW0IWLAWQZ8L/output.webm
+
+Lecture 44:
+https://uamedia.uacdn.net/lesson-raw/CQR729QJRNPOVXI0DQJ7/output.webm
+
+Lecture 45:
+https://uamedia.uacdn.net/lesson-raw/DP4YX7C9X7QAO2X0OW42/output.webm
+
+Lecture 46:
+https://uamedia.uacdn.net/lesson-raw/4OC275F5U2EI9EFMEKOM/output.webm
+
+Lecture 47:
+https://uamedia.uacdn.net/lesson-raw/GLS9XD5BLSB2H6WJKBBV/output.webm
+
+Lecture 48:
+https://uamedia.uacdn.net/lesson-raw/DLJKB28XN7TNQ9LW501R/output.webm
+
+========== PDF LINKS ==========
+
+PDF 01:
+https://player.uacdn.net/slides_pdf/0JI26XYY40AFGKQS2E7X/Orientation_session_to_Operating_System_with_anno.pdf
+
+PDF 02:
+https://player.uacdn.net/slides_pdf/ZNGFULUG7D2KS8174VIZ/Basics_of_Operating_System_with_anno.pdf
+
+PDF 03:
+https://player.uacdn.net/slides_pdf/JNCF4WX6I9P25CZ4WTQ8/Process_management_Part1_with_anno.pdf
+
+PDF 04:
+https://player.uacdn.net/slides_pdf/94IZOPXPA3CXT2TAXB6O/Process_management_Part2_with_anno.pdf
+
+PDF 05:
+https://player.uacdn.net/slides_pdf/Q3G5Q7HVWWE5QNVISY3X/CPU_scheduling_algorithm_Part1_with_anno.pdf
+
+PDF 06:
+https://player.uacdn.net/slides_pdf/WX2XGNIGRGXVOD2EK92F/CPU_scheduling_algorithm_Part2_with_anno.pdf
+
+PDF 07:
+https://player.uacdn.net/slides_pdf/9R5MQ1E5ZILTS0ARB046/CPU_scheduling_algorithm_Part3_with_anno.pdf
+
+PDF 08:
+https://player.uacdn.net/slides_pdf/QG7RF6A63Y12UUMYIJZG/CPU_scheduling_algorithm_Part4_with_anno.pdf
+
+PDF 09:
+https://player.uacdn.net/slides_pdf/R265SJLIRNCB4RKEK1RS/CPU_scheduling_algorithm_Part6_with_anno.pdf
+
+PDF 10:
+https://player.uacdn.net/slides_pdf/NT0SY4LA625DCVHKYD6B/CPU_scheduling_algorithm_Part7_with_anno.pdf
+
+PDF 11:
+https://player.uacdn.net/slides_pdf/8UJ9ZMIGM0E1TPQAK08M/CPU_scheduling_algorithm_Part8_with_anno.pdf
+
+PDF 12:
+https://player.uacdn.net/slides_pdf/JY6KMXZ722IRPLWF0Y3Z/Deadlock_Part1_with_anno.pdf
+
+PDF 13:
+https://player.uacdn.net/slides_pdf/JHFJA47A2JGFPOQ3HLV0/Deadlock_Part2_with_anno.pdf
+
+PDF 14:
+https://player.uacdn.net/slides_pdf/JA0BAYAIIHFVXHCY9R10/Process_Synchronization_Part1_with_anno.pdf
+
+PDF 15:
+https://player.uacdn.net/slides_pdf/BE3C0D14UIEHUEFXKQFV/Process_Synchronization_Part2_with_anno.pdf
+
+PDF 16:
+https://player.uacdn.net/slides_pdf/ODH7ZH4CX2DT02TYFL1B/Process_Synchronization_Part3_with_anno.pdf
+
+PDF 17:
+https://player.uacdn.net/slides_pdf/PWO3QEB8N3FCP7EZOTM0/Process_Synchronization_Part4_with_anno.pdf
+
+PDF 18:
+https://player.uacdn.net/slides_pdf/RNAPPLK2EKSTC7VBJ8CF/Process_Synchronization_Part5_with_anno.pdf
+
+PDF 19:
+https://player.uacdn.net/slides_pdf/GLJY0O6WYTUY3AJZ9SM4/Process_Synchronization_Part6_with_anno.pdf
+
+PDF 20:
+https://player.uacdn.net/slides_pdf/EPEFU9BZUK7127PMZ1LH/Process_Synchronization_Part7_with_anno.pdf
+
+PDF 21:
+https://player.uacdn.net/slides_pdf/3E934KZTZE4IRDVLF65G/Process_Synchronization_Part8_with_anno.pdf
+
+PDF 22:
+https://player.uacdn.net/slides_pdf/EO473F3MNS5KRAD8OS7S/Extra_class_with_anno.pdf
+
+PDF 23:
+https://player.uacdn.net/slides_pdf/ENXZ70XUIGDPHNOW8P1Z/Process_Synchronization_Part9_with_anno.pdf
+
+PDF 24:
+https://player.uacdn.net/slides_pdf/92RIS5NUT1WJVW56YM1F/Process_Synchronization_Part10_with_anno.pdf
+
+PDF 25:
+https://player.uacdn.net/slides_pdf/9WMCK305USA6X0960H2U/Process_Synchronization_Part11_with_anno.pdf
+
+PDF 26:
+https://player.uacdn.net/slides_pdf/4HNJ70VRGTKL125NA6F5/Concurrent_programming_Part1_with_anno.pdf
+
+PDF 27:
+https://player.uacdn.net/slides_pdf/VF2KYQ9ZT35ROWWEOT61/Concurrent_programming_Part2_with_anno.pdf
+
+PDF 28:
+https://player.uacdn.net/slides_pdf/BQPRFL06C40PS2ZBODEH/Extra_class_with_anno.pdf
+
+PDF 29:
+https://player.uacdn.net/slides_pdf/LUC9UK39NG1TB2ACXZLU/Extra_class_with_anno.pdf
+
+PDF 30:
+https://player.uacdn.net/slides_pdf/0TN2HGRQHS6R9MX6V7PJ/Memory_Management_Part1_with_anno.pdf
+
+PDF 31:
+https://player.uacdn.net/slides_pdf/T6O09NII184B3EOYQADC/Memory_Management_Part2_with_anno.pdf
+
+PDF 32:
+https://player.uacdn.net/slides_pdf/9ES6F254E04B6ANCPTX5/Memory_Management_Part3_with_anno.pdf
+
+PDF 33:
+https://player.uacdn.net/slides_pdf/MRM8EYXS9MII5R2HBFOQ/Memory_Management_Part4_with_anno.pdf
+
+PDF 34:
+https://player.uacdn.net/slides_pdf/CXAUKT3GVZ0ACT8WK9EM/Memory_Management_Part5_with_anno.pdf
+
+PDF 35:
+https://player.uacdn.net/slides_pdf/8NN1W53OVSC6FLPYBLPX/Memory_Management_Part6_with_anno.pdf
+
+PDF 36:
+https://player.uacdn.net/slides_pdf/0LUFV9RAFTKMAUG2VBMD/Memory_Management_Part7_with_anno.pdf
+
+PDF 37:
+https://player.uacdn.net/slides_pdf/RVSGR8WLXRSNZD0SYLEQ/Memory_Management_Part8_with_anno.pdf
+
+PDF 38:
+https://player.uacdn.net/slides_pdf/ZV31MGZA6QMP8NBYA16C/Memory_Management_Part9_with_anno.pdf
+
+PDF 39:
+https://player.uacdn.net/slides_pdf/S2KJQHLDW8UQBTC4E0TB/Memory_Management_Part10_with_anno.pdf
+
+PDF 40:
+https://player.uacdn.net/slides_pdf/7P4GNI8JWC8Y8TIM7BVQ/File_system_Part1_with_anno.pdf
+
+PDF 41:
+https://player.uacdn.net/slides_pdf/R3XB3YZOHJWPFAPQRD9G/File_system_Part2_with_anno.pdf
+
+PDF 42:
+https://player.uacdn.net/slides_pdf/W4JAHTYK6IOLXHIML284/File_system_Part3_with_anno.pdf
+
+PDF 43:
+https://player.uacdn.net/slides_pdf/YF4ZKXV9IW0IWLAWQZ8L/File_system_Part4_with_anno.pdf
+
+PDF 44:
+https://player.uacdn.net/slides_pdf/CQR729QJRNPOVXI0DQJ7/File_system_Part5_with_anno.pdf
+
+PDF 45:
+https://player.uacdn.net/slides_pdf/DP4YX7C9X7QAO2X0OW42/File_system_Part6_with_anno.pdf
+
+PDF 46:
+https://player.uacdn.net/slides_pdf/4OC275F5U2EI9EFMEKOM/File_system_Part7_with_anno.pdf
+
+PDF 47:
+https://player.uacdn.net/slides_pdf/GLS9XD5BLSB2H6WJKBBV/Miscellaneous_Part1_with_anno.pdf
+
+PDF 48:
+https://player.uacdn.net/slides_pdf/DLJKB28XN7TNQ9LW501R/Miscellaneous_Part2_with_anno.pdf
+
