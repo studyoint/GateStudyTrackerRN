@@ -378,26 +378,43 @@
       // 📁 SECTION 2: On Process Button Click
       // ==================================================
       processBtn.addEventListener("click", async () => {
-        const files = pdfInput.files;
-        uploadedFiles = Array.from(files);
 
-        if (!files.length) {
-          alert("Please upload at least one PDF!");
-          return;
-        }
+    const files = pdfInput.files;
 
-        const mergedPdfBytes = await combinePDFs(uploadedFiles);
-        processedPDFMap.set("combined.pdf", mergedPdfBytes); // ✅ Save
+    uploadedFiles = Array.from(files);
 
-        const blob = new Blob([mergedPdfBytes], { type: "application/pdf" });
-        const url = URL.createObjectURL(blob);
+    if (!files.length) {
+        alert("Please upload at least one PDF!");
+        return;
+    }
 
-        downloadLink.href = url;
-        downloadLink.download = "Combined.pdf";
-        downloadLink.textContent = "📥 Download Combined PDF";
-        downloadLink.style.display = "inline-block";
-        previewBtn.style.display = "inline-block";
-      });
+    // Merge PDFs
+    let finalPdfBytes = await combinePDFs(uploadedFiles);
+
+    // Add page numbers if checkbox is checked
+    if (addPageNo.checked) {
+        finalPdfBytes = await addPageNumbers(finalPdfBytes);
+    }
+
+    processedPDFMap.set("combined.pdf", finalPdfBytes);
+
+    const blob = new Blob([finalPdfBytes], {
+        type: "application/pdf",
+    });
+
+    const url = URL.createObjectURL(blob);
+
+    downloadLink.href = url;
+
+    downloadLink.download = "Combined.pdf";
+
+    downloadLink.textContent = "📥 Download Combined PDF";
+
+    downloadLink.style.display = "inline-block";
+
+    previewBtn.style.display = "inline-block";
+
+});
 
       // ==================================================
       // 📁 SECTION 3: Add Page Numbers to PDF
