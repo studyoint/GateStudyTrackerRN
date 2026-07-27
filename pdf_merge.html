@@ -428,7 +428,6 @@ const cancelPopup = document.getElementById("cancelPopup");
       processBtn.addEventListener("click", async () => {
 
     const files = pdfInput.files;
-
     uploadedFiles = Array.from(files);
 
     if (!files.length) {
@@ -436,10 +435,31 @@ const cancelPopup = document.getElementById("cancelPopup");
         return;
     }
 
-    // Merge PDFs
+    // Single PDF
+    if (uploadedFiles.length === 1) {
+
+        outputName = uploadedFiles[0].name;
+        processPDF();
+
+    }
+
+    // Multiple PDFs
+    else {
+
+        outputFileName.value = "";
+        namePopup.style.display = "flex";
+        outputFileName.focus();
+
+    }
+
+});
+
+
+
+      async function processPDF() {
+
     let finalPdfBytes = await combinePDFs(uploadedFiles);
 
-    // Add page numbers if checkbox is checked
     if (addPageNo.checked) {
         finalPdfBytes = await addPageNumbers(finalPdfBytes);
     }
@@ -453,17 +473,12 @@ const cancelPopup = document.getElementById("cancelPopup");
     const url = URL.createObjectURL(blob);
 
     downloadLink.href = url;
-
-    downloadLink.download = "Combined.pdf";
-
+    downloadLink.download = outputName;
     downloadLink.textContent = "📥 Download Combined PDF";
-
     downloadLink.style.display = "inline-block";
 
     previewBtn.style.display = "inline-block";
-
-});
-
+      }
       // ==================================================
       // 📁 SECTION 3: Add Page Numbers to PDF
       // ==================================================
@@ -855,6 +870,50 @@ const cancelPopup = document.getElementById("cancelPopup");
           // footer.insertBefore(yearSpan, footer.querySelector('.rn'));
         });
       })();
+
+
+      cancelPopup.onclick = () => {
+
+    namePopup.style.display = "none";
+
+};
+
+
+      okPopup.onclick = async () => {
+
+    let name = outputFileName.value.trim();
+
+    if (name === "") {
+        alert("Please enter output file name.");
+        return;
+    }
+
+    // .pdf automatically add
+    if (!name.toLowerCase().endsWith(".pdf")) {
+        name += ".pdf";
+    }
+
+    outputName = name;
+
+    // Popup hide
+    namePopup.style.display = "none";
+
+    // PDF process start
+    await processPDF();
+
+};
+
+
+
+      outputFileName.addEventListener("keydown", (e) => {
+
+    if (e.key === "Enter") {
+
+        okPopup.click();
+
+    }
+
+});
     </script>
 
         <!-- stylish RN footer  end   -->
