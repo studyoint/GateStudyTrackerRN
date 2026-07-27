@@ -295,6 +295,64 @@
         color: #00ffff;
       }
       /* ================================================== */
+
+      #ytChannelBtn{
+
+    position:fixed;
+
+    right:20px;
+
+    bottom:90px;
+
+    z-index:99999;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:10px 16px;
+
+    text-decoration:none;
+
+    color:white;
+
+    font-weight:bold;
+
+    font-size:15px;
+
+    background:rgba(0,0,0,.75);
+
+    border:1px solid #ff0000;
+
+    border-radius:40px;
+
+    backdrop-filter:blur(10px);
+
+    transition:.3s;
+
+    box-shadow:0 0 12px rgba(255,0,0,.35);
+
+}
+
+#ytChannelBtn:hover{
+
+    transform:translateY(-2px);
+
+    background:#ff0000;
+
+    color:white;
+
+    box-shadow:0 0 18px red;
+
+}
+
+#ytChannelBtn svg{
+
+    flex-shrink:0;
+
+}
     </style>
   </head>
   <!-- ================================================== -->
@@ -343,6 +401,24 @@ z-index:99999;">
   <!-- ================================================== -->
   <!-- 📁 SECTION 2: Body UI -->
   <!-- ================================================== -->
+
+
+  <!-- Floating YouTube Button -->
+<a
+    id="ytChannelBtn"
+    href="https://www.youtube.com/@decodingGateCSE"
+    target="_blank"
+    title="Visit Decoding GATE CSE"
+>
+
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="#ff0000">
+        <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.2 0 12 0 12s0 3.8.5 5.8a3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-2 .5-5.8.5-5.8s0-3.8-.5-5.8z"/>
+        <path fill="#fff" d="M9.8 15.5V8.5L15.8 12z"/>
+    </svg>
+
+    <span>Decoding GATE CSE</span>
+
+</a>
   <body>
     <div class="container">
       <h1>🧩 Combine PDF Files</h1>
