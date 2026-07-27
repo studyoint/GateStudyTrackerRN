@@ -629,19 +629,40 @@ setTimeout(() => {
         const pages = pdfDoc.getPages();
         const font = await pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold);
 
-        pages.forEach((page, index) => {
-          const fontSize = 12;
-          const text = `[${index + 1}/${pages.length}]`;
+   pages.forEach((page, index) => {
 
-          page.drawText(text, {
-            x: 20, // Left padding
-            y: 20, // Bottom padding
-            size: fontSize,
-            font: font,
-            color: PDFLib.rgb(0, 1, 1), // Neon cyan (only for PDF)
-          });
-        });
+    const fontSize = 12;
+    const text = `[${index + 1}/${pages.length}]`;
 
+    page.drawText(text, {
+
+        x: 20,
+
+        y: 20,
+
+        size: fontSize,
+
+        font: font,
+
+        color: PDFLib.rgb(0, 1, 1),
+
+    });
+
+    page.drawText("▶ Decoding GATE CSE", {
+
+        x: page.getWidth() - 170,
+
+        y: 20,
+
+        size: 10,
+
+        font: font,
+
+        color: PDFLib.rgb(1, 0, 0),
+
+    });
+
+});
         return await pdfDoc.save();
       }
       // ==================================================
