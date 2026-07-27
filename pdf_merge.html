@@ -365,6 +365,33 @@ z-index:99999;">
 
       <!-- Download -->
       <a id="downloadLink" style="display: none">📥 Download Numbered PDF</a>
+
+      <!-- Progress Bar -->
+<div id="progressBox" style="display:none;margin-top:20px;">
+
+    <div id="progressText"
+         style="text-align:center;margin-bottom:8px;font-size:16px;color:#00ffff;">
+        Processing... 0%
+    </div>
+
+    <div style="
+        width:100%;
+        height:18px;
+        background:#333;
+        border-radius:20px;
+        overflow:hidden;">
+
+        <div id="progressBar"
+             style="
+             width:0%;
+             height:100%;
+             background:#00ffff;
+             transition:width .2s;">
+        </div>
+
+    </div>
+
+</div>
     </div>
 
     <!-- Scrollable Preview Box -->
@@ -407,6 +434,9 @@ z-index:99999;">
       const pdfListBox = document.getElementById("pdfListBox");
       const pdfList = document.getElementById("pdfList");
       const addPageNo = document.getElementById("addPageNo");
+      const progressBox = document.getElementById("progressBox");
+const progressBar = document.getElementById("progressBar");
+const progressText = document.getElementById("progressText");
 
       const namePopup = document.getElementById("namePopup");
 const outputFileName = document.getElementById("outputFileName");
@@ -458,10 +488,14 @@ const cancelPopup = document.getElementById("cancelPopup");
 
       async function processPDF() {
 
+        updateProgress(0, "Starting...");
+
     let finalPdfBytes = await combinePDFs(uploadedFiles);
+        updateProgress(40, "Combining PDFs...");
 
     if (addPageNo.checked) {
         finalPdfBytes = await addPageNumbers(finalPdfBytes);
+      updateProgress(80, "Adding Page Numbers...");
     }
 
     processedPDFMap.set("combined.pdf", finalPdfBytes);
@@ -476,6 +510,13 @@ const cancelPopup = document.getElementById("cancelPopup");
     downloadLink.download = outputName;
     downloadLink.textContent = "📥 Download Combined PDF";
     downloadLink.style.display = "inline-block";
+        updateProgress(100, "Completed");
+
+setTimeout(() => {
+
+    progressBox.style.display = "none";
+
+}, 700);
 
     previewBtn.style.display = "inline-block";
       }
@@ -543,6 +584,16 @@ const cancelPopup = document.getElementById("cancelPopup");
       }
       // ==================================================
 
+
+      function updateProgress(percent, text = "Processing") {
+
+    progressBox.style.display = "block";
+
+    progressBar.style.width = percent + "%";
+
+    progressText.textContent = `${text} ${percent}%`;
+
+}
       // ==================================================
       // 📁 SECTION 5: Show PDF Preview Using pdf.js
       // ==================================================
