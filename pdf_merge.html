@@ -408,6 +408,11 @@ z-index:99999;">
       const pdfList = document.getElementById("pdfList");
       const addPageNo = document.getElementById("addPageNo");
 
+      const namePopup = document.getElementById("namePopup");
+const outputFileName = document.getElementById("outputFileName");
+const okPopup = document.getElementById("okPopup");
+const cancelPopup = document.getElementById("cancelPopup");
+
       let currentPDFBytes = null; // 🧠 Store processed PDF to re-render preview
       let isPreviewVisible = false; // 🧠 Track preview state
       let uploadedFiles = []; // 🧠 Store all uploaded files
