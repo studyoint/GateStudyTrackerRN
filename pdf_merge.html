@@ -258,24 +258,53 @@
       }
       /* ================================================== */
 .watermark{
-    position: fixed;      /* Screen ke hisab se fix */
-    right: 10px;          /* Right edge se distance */
-    bottom: 10px;         /* Bottom edge se distance */
-    display: flex;
+    position: fixed;
+    right: 2px;
+    bottom: 8px;
+
+    display: inline-flex;
     align-items: center;
     gap: 6px;
-    text-decoration: none;
-    color: #555;
-    font-size: 13px;
+
+    padding: 4px 10px;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 11px;
     font-weight: 600;
-    opacity: 0.8;
-    z-index: 99999;
-    pointer-events: none; /* Click nahi hoga */
+    letter-spacing: .3px;
+    line-height: 1;
+
+    color: rgba(255,255,255,.75);
+
+    background: rgba(0,0,0,.18);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 999px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.08);
+
+    opacity: .65;
+
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+
+    z-index: 999999;
 }
 
 .watermark svg{
-    width:18px;
-    height:18px;
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    opacity: .9;
+}
+
+.watermark span{
+    white-space: nowrap;
 }
       /* ==================================================
 /* ==================================================
@@ -436,7 +465,7 @@ z-index:99999;">
         <path fill="#fff" d="M9.8 15.5V8.5L15.8 12z"/>
     </svg>
 
-    <span>Decoding GATE CSE</span>
+    <span>@Decoding GATE CSE</span>
 </a>
 
 </a>
