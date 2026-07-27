@@ -310,8 +310,17 @@
       <input type="file" id="pdfInput" accept="application/pdf" multiple />
 
       <!-- Action Buttons -->
-      <button id="processBtn">📎 Combine PDFs</button>
-      <button id="previewBtn" style="display: none">🔍 Show Preview</button>
+<!-- Action Buttons -->
+<button id="processBtn">📎 Combine PDFs</button>
+
+<label style="display:block; margin:15px 0; font-size:18px;">
+    <input type="checkbox" id="addPageNo">
+    Add Page Numbers
+</label>
+
+<button id="previewBtn" style="display:none">
+    🔍 Show Preview
+</button>
 
       <!-- Download -->
       <a id="downloadLink" style="display: none">📥 Download Numbered PDF</a>
