@@ -1331,15 +1331,13 @@ async function imagesToPDF(files) {
         });
       })();
 
-
-      cancelPopup.onclick = () => {
+cancelPopup.onclick = () => {
 
     namePopup.style.display = "none";
 
 };
 
-
-      okPopup.onclick = async () => {
+okPopup.onclick = async () => {
 
     let name = outputFileName.value.trim();
 
@@ -1358,14 +1356,20 @@ async function imagesToPDF(files) {
     // Popup hide
     namePopup.style.display = "none";
 
-    // PDF process start
-    await processPDF();
+    // Process according to current mode
+    if (currentMode === "pdf") {
+
+        await processPDF();
+
+    } else {
+
+        await processImages();
+
+    }
 
 };
 
-
-
-      outputFileName.addEventListener("keydown", (e) => {
+outputFileName.addEventListener("keydown", (e) => {
 
     if (e.key === "Enter") {
 
