@@ -554,9 +554,19 @@ Your files never leave your device.
       <!-- Upload Input -->
       <input type="file" id="pdfInput" accept="application/pdf" multiple />
 
+      <input
+type="file"
+id="imageInput"
+accept="image/*"
+multiple
+style="display:none">
+
       <!-- Action Buttons -->
 <!-- Action Buttons -->
 <button id="processBtn">📎 Combine PDFs</button>
+      <button id="imageBtn">
+🖼️ Images → PDF
+</button>
 
 <label style="display:block; margin:15px 0; font-size:18px;">
     <input type="checkbox" id="addPageNo">
