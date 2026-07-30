@@ -641,6 +641,8 @@ style="display:none">
       // ==================================================
       const pdfInput = document.getElementById("pdfInput");
       const processBtn = document.getElementById("processBtn");
+      const imageInput = document.getElementById("imageInput");
+const imageBtn = document.getElementById("imageBtn");
       const downloadLink = document.getElementById("downloadLink");
       const previewContainer = document.getElementById("preview");
       const previewBox = document.getElementById("previewBox");
@@ -666,10 +668,15 @@ const cancelPopup = document.getElementById("cancelPopup");
 
       // ==================================================
 
-      // ==================================================
-      // 📁 SECTION 2: On Process Button Click
-      // ==================================================
-      processBtn.addEventListener("click", async () => {
+ // ==================================================
+// 📁 SECTION 2: On Process Button Click
+// ==================================================
+
+let currentMode = "pdf";
+
+processBtn.addEventListener("click", async () => {
+
+    currentMode = "pdf";
 
     const files = pdfInput.files;
     uploadedFiles = Array.from(files);
@@ -698,18 +705,56 @@ const cancelPopup = document.getElementById("cancelPopup");
 
 });
 
+// ==================================================
+// 🖼️ SECTION 2A: On Image Button Click
+// ==================================================
 
+imageBtn.addEventListener("click", () => {
 
-      async function processPDF() {
+    currentMode = "image";
+    imageInput.click();
 
-        updateProgress(0, "Starting...");
+});
+
+imageInput.addEventListener("change", () => {
+
+    uploadedFiles = Array.from(imageInput.files);
+
+    if (!uploadedFiles.length) return;
+
+    // Single Image
+    if (uploadedFiles.length === 1) {
+
+        outputName =
+            uploadedFiles[0].name.replace(/\.[^/.]+$/, "") + ".pdf";
+
+        processImages();
+
+    }
+
+    // Multiple Images
+    else {
+
+        outputFileName.value = "";
+        namePopup.style.display = "flex";
+        outputFileName.focus();
+
+    }
+
+});
+
+async function processPDF() {
+
+    updateProgress(0, "Starting...");
 
     let finalPdfBytes = await combinePDFs(uploadedFiles);
-        updateProgress(40, "Combining PDFs...");
+    updateProgress(40, "Combining PDFs...");
 
     if (addPageNo.checked) {
+
         finalPdfBytes = await addPageNumbers(finalPdfBytes);
-      updateProgress(80, "Adding Page Numbers...");
+        updateProgress(80, "Adding Page Numbers...");
+
     }
 
     processedPDFMap.set("combined.pdf", finalPdfBytes);
@@ -724,16 +769,64 @@ const cancelPopup = document.getElementById("cancelPopup");
     downloadLink.download = outputName;
     downloadLink.textContent = "📥 Download Combined PDF";
     downloadLink.style.display = "inline-block";
-        updateProgress(100, "Completed");
 
-setTimeout(() => {
+    updateProgress(100, "Completed");
 
-    progressBox.style.display = "none";
+    setTimeout(() => {
 
-}, 700);
+        progressBox.style.display = "none";
+
+    }, 700);
 
     previewBtn.style.display = "inline-block";
-      }
+
+}
+
+      // ==================================================
+// 🖼️ SECTION 2B: Process Images
+// ==================================================
+
+async function processImages() {
+
+    updateProgress(0, "Starting...");
+
+    let finalPdfBytes = await imagesToPDF(uploadedFiles);
+
+    updateProgress(40, "Creating PDF...");
+
+    if (addPageNo.checked) {
+
+        finalPdfBytes = await addPageNumbers(finalPdfBytes);
+
+        updateProgress(80, "Adding Page Numbers...");
+
+    }
+
+    processedPDFMap.set("combined.pdf", finalPdfBytes);
+
+    const blob = new Blob([finalPdfBytes], {
+        type: "application/pdf",
+    });
+
+    const url = URL.createObjectURL(blob);
+
+    downloadLink.href = url;
+    downloadLink.download = outputName;
+    downloadLink.textContent = "📥 Download PDF";
+    downloadLink.style.display = "inline-block";
+
+    updateProgress(100, "Completed");
+
+    setTimeout(() => {
+
+        progressBox.style.display = "none";
+
+    }, 700);
+
+    previewBtn.style.display = "inline-block";
+
+}
+      
       // ==================================================
       // 📁 SECTION 3: Add Page Numbers to PDF
       // ==================================================
@@ -757,8 +850,89 @@ setTimeout(() => {
       }
 
 
+      // ==================================================
+// 🖼️ SECTION ?: Images To PDF
+// ==================================================
+
+async function imagesToPDF(files) {
+
+    const pdfDoc = await PDFLib.PDFDocument.create();
+
+    for (const file of files) {
+
+        const bytes = await file.arrayBuffer();
+
+        let image;
+
+        if (
+            file.type === "image/jpeg" ||
+            file.type === "image/jpg"
+        ) {
+
+            image = await pdfDoc.embedJpg(bytes);
+
+        }
+
+        else if (file.type === "image/png") {
+
+            image = await pdfDoc.embedPng(bytes);
+
+        }
+
+        else if (file.type === "image/webp") {
+
+            const bitmap = await createImageBitmap(file);
+
+            const canvas = document.createElement("canvas");
+
+            canvas.width = bitmap.width;
+            canvas.height = bitmap.height;
+
+            const ctx = canvas.getContext("2d");
+
+            ctx.drawImage(bitmap, 0, 0);
+
+            const blob = await new Promise(resolve =>
+                canvas.toBlob(resolve, "image/png")
+            );
+
+            const pngBytes = await blob.arrayBuffer();
+
+            image = await pdfDoc.embedPng(pngBytes);
+
+        }
+
+        else {
+
+            alert(file.name + " is not supported.");
+
+            continue;
+
+        }
+
+        const width = image.width;
+        const height = image.height;
+
+        const page = pdfDoc.addPage([width, height]);
+
+        page.drawImage(image, {
+
+            x: 0,
+            y: 0,
+            width,
+            height
+
+        });
+
+    }
+
+    return await pdfDoc.save();
+
+}
 
 
+
+      
       // ==================================================
       // 📁 SECTION 3: Add Page Numbers to PDF
       // ==================================================
