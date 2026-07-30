@@ -1354,59 +1354,27 @@ list.innerHTML=
 
 
 
-
 /* ===============================
    PLAY LECTURE
 ================================ */
 
-
 function playLecture(index){
 
+    // Current lecture object
+    let lecture = currentLectures[index];
 
+    // ==========================================
+    // STEP 1
+    // Open Custom Player Page
+    // ==========================================
 
-currentIndex=index;
+    // Video URL ko safely encode karo
+    const videoURL = encodeURIComponent(lecture.url);
 
+    // Player page open karo aur URL pass karo
+    window.location.href = "player.html?video=" + videoURL;
 
-
-let lecture=currentLectures[index];
-
-
-
-player.src=lecture.url;
-
-
-player.play();
-
-
-
-videoTitle.innerText=
-
-"Lecture "+lecture.number;
-
-
-
-updateActiveLecture();
-
-
-saveProgress();
-
-if(window.innerWidth<=900){
-
-    courseSidebar.style.display="none";
-    lectureSidebar.style.display="none";
-    contentArea.style.display="flex";
-
-}
-
-}
-
-
-
-
-
-
-
-/* ===============================
+}/* ===============================
  ACTIVE LECTURE
 ================================ */
 
