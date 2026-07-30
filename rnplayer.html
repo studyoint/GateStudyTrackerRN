@@ -1109,9 +1109,12 @@ function showControls() {
 
   container.addEventListener("mousemove", showControls);
   video.addEventListener("play", showControls);
-  video.addEventListener("pause", () => {
-    container.classList.remove("hide-controls");
-  });
+ video.addEventListener("pause", () => {
+    if (!document.fullscreenElement) {
+        container.classList.remove("hide-controls");
+        controlsBar.classList.remove("hidden");
+    }
+});
 
   video.addEventListener("click", () => {
     video.paused ? video.play() : video.pause();
@@ -1234,15 +1237,10 @@ video.addEventListener("ended", () => {
 
 // =========================== Section 13: Center Button + Watch Timer ===========================
 video.addEventListener("play", () => {
-  centerPlayPause.innerText = "⏸️ Pause";
-  showCenterIcon("⏸️");
-
   startWatchTimer();
 });
-video.addEventListener("pause", () => {
-  centerPlayPause.innerText = "▶️ Play";
-  showCenterIcon("▶️");
-});
+
+video.addEventListener("pause", () => {});
 // =========================== End of Section 13 ===========================
 
 // =========================== Section 14: Speed Controls ===========================
@@ -1330,13 +1328,11 @@ document.addEventListener("keydown", (e) => {
       break;
     case " ":
       e.preventDefault();
-      if (video.paused) {
-        video.play();
-        showControls();
-      } else {
-        video.pause();
-        container.classList.remove("hide-controls");
-      }
+     if (video.paused) {
+    video.play();
+} else {
+    video.pause();
+}
       break;
 
     case "[":
