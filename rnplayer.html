@@ -1351,10 +1351,18 @@ function showCenterIcon(icon) {
 document.addEventListener("keydown", (e) => {
   if (e.target.tagName.toLowerCase() === "input") return;
   switch (e.key.toLowerCase()) {
-    case "s":
-      captureScreenshotToClipboard();
-      break;
+   case "s":
+  console.log("🟢 S key pressed");
 
+  captureScreenshotToClipboard()
+    .then(() => {
+      console.log("✅ Screenshot Saved");
+    })
+    .catch((err) => {
+      console.error("❌ Screenshot Error:", err);
+    });
+
+  break;
     case "w":
       container.classList.toggle("minimal-mode");
       break;
