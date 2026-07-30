@@ -849,8 +849,7 @@ async function processImages() {
         return await mergedPdf.save();
       }
 
-
-      // ==================================================
+// ==================================================
 // 🖼️ SECTION ?: Images To PDF
 // ==================================================
 
@@ -858,16 +857,16 @@ async function imagesToPDF(files) {
 
     const pdfDoc = await PDFLib.PDFDocument.create();
 
+    const PAGE_MARGIN = 20;
+    const FOOTER_SPACE = 35;
+
     for (const file of files) {
 
         const bytes = await file.arrayBuffer();
 
         let image;
 
-        if (
-            file.type === "image/jpeg" ||
-            file.type === "image/jpg"
-        ) {
+        if (file.type === "image/jpeg" || file.type === "image/jpg") {
 
             image = await pdfDoc.embedJpg(bytes);
 
@@ -884,12 +883,10 @@ async function imagesToPDF(files) {
             const bitmap = await createImageBitmap(file);
 
             const canvas = document.createElement("canvas");
-
             canvas.width = bitmap.width;
             canvas.height = bitmap.height;
 
             const ctx = canvas.getContext("2d");
-
             ctx.drawImage(bitmap, 0, 0);
 
             const blob = await new Promise(resolve =>
@@ -905,22 +902,28 @@ async function imagesToPDF(files) {
         else {
 
             alert(file.name + " is not supported.");
-
             continue;
 
         }
 
-        const width = image.width;
-        const height = image.height;
+        const imgWidth = image.width;
+        const imgHeight = image.height;
 
-        const page = pdfDoc.addPage([width, height]);
+        // Page size with bottom space reserved
+        const pageWidth = imgWidth + PAGE_MARGIN * 2;
+        const pageHeight = imgHeight + PAGE_MARGIN * 2 + FOOTER_SPACE;
+
+        const page = pdfDoc.addPage([pageWidth, pageHeight]);
 
         page.drawImage(image, {
 
-            x: 0,
-            y: 0,
-            width,
-            height
+            x: PAGE_MARGIN,
+
+            y: PAGE_MARGIN + FOOTER_SPACE,
+
+            width: imgWidth,
+
+            height: imgHeight
 
         });
 
@@ -929,54 +932,50 @@ async function imagesToPDF(files) {
     return await pdfDoc.save();
 
 }
-
-
-
-      
-      // ==================================================
-      // 📁 SECTION 3: Add Page Numbers to PDF
-      // ==================================================
-      async function addPageNumbers(pdfBytes) {
-        const pdfDoc = await PDFLib.PDFDocument.load(pdfBytes);
-        const pages = pdfDoc.getPages();
-        const font = await pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold);
-
-   pages.forEach((page, index) => {
-
-    const fontSize = 12;
-    const text = `[${index + 1}/${pages.length}]`;
-
-    page.drawText(text, {
-
-        x: 20,
-
-        y: 20,
-
-        size: fontSize,
-
-        font: font,
-
-        color: PDFLib.rgb(0, 1, 1),
-
-    });
-
-    page.drawText(" Decoding GATE CSE", {
-
-        x: page.getWidth() - 170,
-
-        y: 20,
-
-        size: 10,
-
-        font: font,
-
-        color: PDFLib.rgb(1, 0, 0),
-
-    });
-
-});
-        return await pdfDoc.save();
-      }
+        // ==================================================
+        // 📁 SECTION 3: Add Page Numbers to PDF
+        // ==================================================
+        async function addPageNumbers(pdfBytes) {
+          const pdfDoc = await PDFLib.PDFDocument.load(pdfBytes);
+          const pages = pdfDoc.getPages();
+          const font = await pdfDoc.embedFont(PDFLib.StandardFonts.HelveticaBold);
+  
+     pages.forEach((page, index) => {
+  
+      const fontSize = 12;
+      const text = `[${index + 1}/${pages.length}]`;
+  
+      page.drawText(text, {
+  
+          x: 20,
+  
+          y: 20,
+  
+          size: fontSize,
+  
+          font: font,
+  
+          color: PDFLib.rgb(0, 1, 1),
+  
+      });
+  
+      page.drawText(" Decoding GATE CSE", {
+  
+          x: page.getWidth() - 170,
+  
+          y: 20,
+  
+          size: 10,
+  
+          font: font,
+  
+          color: PDFLib.rgb(1, 0, 0),
+  
+      });
+  
+  });
+          return await pdfDoc.save();
+        }
       // ==================================================
 
       // ==================================================
