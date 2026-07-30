@@ -778,6 +778,7 @@ input[type="file"] {
     <!-- <script src="player.js"></script> -->
 <script>
   // =========================== Section 1: DOM Elements ===========================
+  let screenshotDirectoryHandle = null;
 const video = document.getElementById("video");
 const fileInput = document.getElementById("fileInput");
 const speed = document.getElementById("speed");
@@ -835,6 +836,14 @@ function getIndianTimeNow() {
   });
 }
 // =========================== End of Section 3 ===========================
+  async function selectScreenshotFolder() {
+    try {
+        screenshotDirectoryHandle = await window.showDirectoryPicker();
+        alert("Screenshot folder selected successfully.");
+    } catch (err) {
+        console.log("Folder selection cancelled.");
+    }
+}
 
 // =========================== Section 4: To-do Helpers ===========================
 function getTodoKey() {
@@ -1496,36 +1505,40 @@ handleTap(document.getElementById("rightZone"), "right");
 async function captureScreenshotToClipboard() {
     if (!video.videoWidth || !video.videoHeight) return;
 
+    if (!screenshotDirectoryHandle) {
+        try {
+            screenshotDirectoryHandle = await window.showDirectoryPicker();
+        } catch {
+            return;
+        }
+    }
+
     const canvas = document.createElement("canvas");
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
 
     const ctx = canvas.getContext("2d");
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    ctx.drawImage(video, 0, 0);
+
+    const blob = await new Promise(resolve =>
+        canvas.toBlob(resolve, "image/png")
+    );
 
     const now = new Date();
     const filename =
-        `Screenshot_${now.getFullYear()}-` +
-        `${String(now.getMonth() + 1).padStart(2, "0")}-` +
-        `${String(now.getDate()).padStart(2, "0")}_` +
-        `${String(now.getHours()).padStart(2, "0")}-` +
-        `${String(now.getMinutes()).padStart(2, "0")}-` +
-        `${String(now.getSeconds()).padStart(2, "0")}.png`;
+        `Screenshot_${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}_` +
+        `${String(now.getHours()).padStart(2,"0")}-${String(now.getMinutes()).padStart(2,"0")}-${String(now.getSeconds()).padStart(2,"0")}.png`;
 
-    canvas.toBlob(blob => {
-        const url = URL.createObjectURL(blob);
+    const fileHandle = await screenshotDirectoryHandle.getFileHandle(filename, {
+        create: true
+    });
 
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
+    const writable = await fileHandle.createWritable();
+    await writable.write(blob);
+    await writable.close();
 
-        URL.revokeObjectURL(url);
-
-        showCenterIcon("📸");
-    }, "image/png");
+    showCenterIcon("📸");
+}, "image/png");
 }
 </script>
 
