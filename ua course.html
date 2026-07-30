@@ -1618,14 +1618,6 @@ fetch(file + ".txt")
 
     list.innerHTML = html;
 
-    if(window.innerWidth<=900){
-
-        courseSidebar.style.display="none";
-        lectureSidebar.style.display="block";
-        contentArea.style.display="none";
-
-    }
-
     courseInfo.innerText =
         currentLectures.length + " Lectures";
 
@@ -1985,49 +1977,13 @@ document.getElementById("previousBtn").click();
 
 
 
-menuBtn.onclick=function(){
 
-    courseSidebar.style.display="block";
-    lectureSidebar.style.display="none";
-    contentArea.style.display="none";
-
-}
 /* ===============================
  DEFAULT LOAD
 ================================ */
-document.getElementById("coursesTab").onclick=function(){
 
-courseSidebar.style.display="block";
-lectureSidebar.style.display="none";
-contentArea.style.display="none";
 
-}
 
-document.getElementById("lecturesTab").onclick=function(){
-
-courseSidebar.style.display="none";
-lectureSidebar.style.display="block";
-contentArea.style.display="none";
-
-}
-
-document.getElementById("playerTab").onclick=function(){
-
-courseSidebar.style.display="none";
-lectureSidebar.style.display="none";
-contentArea.style.display="flex";
-
-}
-
-window.onresize=function(){
-
-if(window.innerWidth>900){
-
-courseSidebar.style.display="";
-lectureSidebar.style.display="";
-contentArea.style.display="flex";
-
-}
 
 }
 
