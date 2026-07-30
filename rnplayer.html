@@ -297,6 +297,26 @@ input[type="file"] {
   right: 20px;
   z-index: 11;
 }
+
+  /* ==================================================
+   Hide Bottom Controls in Fullscreen
+================================================== */
+
+.video-wrapper:fullscreen .yt-controls-bar {
+    display: none !important;
+}
+
+.video-wrapper:-webkit-full-screen .yt-controls-bar {
+    display: none !important;
+}
+
+.video-wrapper:-moz-full-screen .yt-controls-bar {
+    display: none !important;
+}
+
+.video-wrapper:-ms-fullscreen .yt-controls-bar {
+    display: none !important;
+}
 /* ==================================================
    🎬 SECTION 14: YouTube-style Controls Bar
 ================================================== */
