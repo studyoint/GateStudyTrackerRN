@@ -1205,6 +1205,29 @@ function midnightResetCheck() {
 // =========================== Section 9: On Page Load ===========================
 // =========================== Section 9: On Page Load ===========================
 window.addEventListener("DOMContentLoaded", () => {
+  // ================= Direct URL Mode =================
+
+const params = new URLSearchParams(window.location.search);
+
+const directVideo = params.get("video");
+
+if (directVideo) {
+
+    video.src = decodeURIComponent(directVideo);
+
+    video.addEventListener("loadedmetadata", function () {
+
+        video.playbackRate = getCurrentSpeed();
+
+        video.volume = parseFloat(volume.value);
+
+        video.play();
+
+        startWatchTimer();
+
+    }, { once:true });
+
+}
   renderWatchLogSheet();
   renderTodoList();
   midnightResetCheck();
@@ -1231,7 +1254,11 @@ window.addEventListener("DOMContentLoaded", () => {
       askResume = true;
     }
   }
-    
+
+  // Agar direct URL mode hai
+// to file picker ki zarurat nahi
+
+if (directVideo) return;
       // ✅ Playlist load after file selection
       fileInput.addEventListener("change", (e) => {
         playlist = Array.from(e.target.files).map((file) => ({
