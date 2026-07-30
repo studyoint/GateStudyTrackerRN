@@ -1231,30 +1231,30 @@ window.addEventListener("DOMContentLoaded", () => {
       askResume = true;
     }
   }
-
-  // ✅ Playlist load after file selection
-  fileInput.addEventListener("change", (e) => {
-    playlist = Array.from(e.target.files).map((file) => ({
-      name: file.name,
-      file,
-    }));
-
-    const i = playlist.findIndex((v) => v.name === lastVideoName);
-    currentIndex = i !== -1 ? i : 0;
-    loadVideo(currentIndex, askResume);
-  });
-
-  // 🖱️ Mouse Controls
-function showControls() {
-  console.log("🖱️ Mouse moved - showControls() called");
-
-  // ✅ Step 1: Controls bar dikhado
-  controlsBar.classList.remove("hidden");
-  container.classList.remove("hide-controls");
-  document.querySelector("video").style.cursor = "default";
-
-  // ✅ Step 2: Clear previous timeout
-  clearTimeout(hideControlsTimeout);
+    
+      // ✅ Playlist load after file selection
+      fileInput.addEventListener("change", (e) => {
+        playlist = Array.from(e.target.files).map((file) => ({
+          name: file.name,
+          file,
+        }));
+    
+        const i = playlist.findIndex((v) => v.name === lastVideoName);
+        currentIndex = i !== -1 ? i : 0;
+        loadVideo(currentIndex, askResume);
+      });
+    
+      // 🖱️ Mouse Controls
+    function showControls() {
+      console.log("🖱️ Mouse moved - showControls() called");
+    
+      // ✅ Step 1: Controls bar dikhado
+      controlsBar.classList.remove("hidden");
+      container.classList.remove("hide-controls");
+      document.querySelector("video").style.cursor = "default";
+    
+      // ✅ Step 2: Clear previous timeout
+      clearTimeout(hideControlsTimeout);
 
   // ✅ Step 3: Set timeout to hide again
   hideControlsTimeout = setTimeout(() => {
@@ -1679,6 +1679,34 @@ async function captureScreenshotToClipboard() {
 
         showCenterIcon("📸");
     }, "image/png");
+}
+
+  /* =====================================================
+   STEP 2
+   Receive Video URL From Course Page
+===================================================== */
+
+// URL se parameter read karo
+const params = new URLSearchParams(window.location.search);
+
+// "video" parameter nikalo
+const videoURL = params.get("video");
+
+// Agar URL mila hai
+if (videoURL) {
+
+    // Decode karke video player me set karo
+    video.src = decodeURIComponent(videoURL);
+
+    // Metadata load hone ke baad autoplay
+    video.addEventListener("loadedmetadata", () => {
+
+        video.play().catch(() => {
+            console.log("Autoplay blocked by browser.");
+        });
+
+    });
+
 }
 </script>
 
