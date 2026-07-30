@@ -1493,34 +1493,40 @@ handleTap(document.getElementById("leftZone"), "left");
 handleTap(document.getElementById("rightZone"), "right");
 
 // =========================== Section 23: Screenshot to Clipboard ===========================
-function captureScreenshotToClipboard() {
-  const canvas = document.createElement("canvas");
-  const ctx = canvas.getContext("2d");
+async function captureScreenshotToClipboard() {
+    if (!video.videoWidth || !video.videoHeight) return;
 
-  canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
+    const canvas = document.createElement("canvas");
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
 
-  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-  canvas.toBlob(async (blob) => {
-    try {
-      await navigator.clipboard.write([
-        new ClipboardItem({
-          "image/png": blob,
-        }),
-      ]);
-      showCenterIcon("📸"); // Optional icon feedback in center
-      console.log("✅ Screenshot copied to clipboard");
-    } catch (err) {
-      console.error("❌ Failed to copy screenshot:", err);
-      alert("❌ Screenshot copy failed! Try in HTTPS or localhost.");
-    }
-  }, "image/png");
+    const now = new Date();
+    const filename =
+        `Screenshot_${now.getFullYear()}-` +
+        `${String(now.getMonth() + 1).padStart(2, "0")}-` +
+        `${String(now.getDate()).padStart(2, "0")}_` +
+        `${String(now.getHours()).padStart(2, "0")}-` +
+        `${String(now.getMinutes()).padStart(2, "0")}-` +
+        `${String(now.getSeconds()).padStart(2, "0")}.png`;
+
+    canvas.toBlob(blob => {
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+
+        URL.revokeObjectURL(url);
+
+        showCenterIcon("📸");
+    }, "image/png");
 }
-
-
-console.log("👀 Container Classes:", container.classList.value);
-
 </script>
 
            <!-- stylish RN footer  start   -->
