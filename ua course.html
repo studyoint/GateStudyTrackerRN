@@ -1660,7 +1660,7 @@ function playLecture(index){
     const videoURL = encodeURIComponent(lecture.url);
 
     // Player page open karo aur URL pass karo
-    window.location.href = "player.html?video=" + videoURL;
+   window.open("player.html?video=" + videoURL, "_blank", "noopener,noreferrer");
 
 }/* ===============================
  ACTIVE LECTURE
