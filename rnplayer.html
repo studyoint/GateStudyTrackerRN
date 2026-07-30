@@ -1166,11 +1166,14 @@ function startWatchTimer() {
     watchInterval = setInterval(() => {
       const elapsed = Date.now() - videoStartTime;
       sessionWatchTime = elapsed;
-      watchTimer.innerText = `⏱️ Actual Watch Time: ${formatTime(elapsed)}`;
+
+      if (watchTimer) {
+        watchTimer.innerText = `⏱️ Actual Watch Time: ${formatTime(elapsed)}`;
+      }
+
     }, 1000);
   }
 }
-
 function stopWatchTimer() {
   if (videoStartTime !== null) {
     const elapsed = Date.now() - videoStartTime;
