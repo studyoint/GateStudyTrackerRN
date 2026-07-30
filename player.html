@@ -1213,6 +1213,7 @@ const directVideo = params.get("video");
 
 if (directVideo) {
 
+    video.crossOrigin = "anonymous";
     video.src = decodeURIComponent(directVideo);
 
     video.addEventListener("loadedmetadata", function () {
