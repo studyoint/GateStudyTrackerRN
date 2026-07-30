@@ -675,6 +675,77 @@ input[type="file"] {
   transition: opacity 0.3s ease;
 }
 
+  /* ==================================================
+   ⌨️ SECTION 23 : Keyboard Shortcut Panel
+================================================== */
+
+.shortcut-panel{
+    margin-top:25px;
+    background:linear-gradient(145deg,#0f172a,#111827);
+    border:1px solid rgba(88,166,255,.35);
+    border-radius:16px;
+    padding:18px;
+    box-shadow:
+        0 0 18px rgba(88,166,255,.18),
+        inset 0 0 12px rgba(255,255,255,.03);
+}
+
+.shortcut-title{
+    text-align:center;
+    font-size:22px;
+    font-weight:700;
+    color:#58a6ff;
+    margin-bottom:18px;
+    text-shadow:0 0 10px #58a6ff;
+}
+
+.shortcut-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:12px;
+}
+
+.shortcut-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#161b22;
+    padding:12px 15px;
+    border-radius:10px;
+    border:1px solid #30363d;
+    transition:.25s;
+}
+
+.shortcut-item:hover{
+    transform:translateY(-3px);
+    border-color:#58a6ff;
+    box-shadow:0 0 15px rgba(88,166,255,.35);
+}
+
+.shortcut-item span{
+    color:#e6edf3;
+    font-size:15px;
+}
+
+.shortcut-item kbd{
+    background:#58a6ff;
+    color:#000;
+    font-weight:bold;
+    font-size:15px;
+    padding:5px 12px;
+    border-radius:8px;
+    min-width:55px;
+    text-align:center;
+    box-shadow:0 0 10px rgba(88,166,255,.45);
+}
+
+@media(max-width:700px){
+
+.shortcut-grid{
+grid-template-columns:1fr;
+}
+
+}
 /* ==================================================
    ✅ END OF CSS FILE
 ================================================== */
@@ -752,7 +823,7 @@ input[type="file"] {
       <input type="file" id="fileInput" accept="video/*" multiple />
       <div id="playlist"></div>
 
-      <!-- ✅ Log + To-Do -->
+          <!-- ✅ Log + To-Do -->
       <div class="log-todo-wrapper">
         <div id="watchLogSheet" class="log-box">
           <h3>📘 Daily Watch Log</h3>
@@ -760,6 +831,7 @@ input[type="file"] {
 
         <div id="todoListSection" class="todo-box">
           <h3>📝 Daily Lecture Checklist</h3>
+
           <label>
             Total Lectures Today:
             <input
@@ -770,9 +842,71 @@ input[type="file"] {
               value="10"
             />
           </label>
+
           <ul id="todoList"></ul>
+
         </div>
       </div>
+
+      <!-- ================= Keyboard Shortcuts ================= -->
+
+      <div class="shortcut-panel">
+
+        <div class="shortcut-title">
+          ⌨️ Keyboard Shortcuts
+        </div>
+
+        <div class="shortcut-grid">
+
+          <div class="shortcut-item">
+            <span>Play / Pause</span>
+            <kbd>Space</kbd>
+          </div>
+
+          <div class="shortcut-item">
+            <span>Seek Backward (10s)</span>
+            <kbd>[</kbd>
+          </div>
+
+          <div class="shortcut-item">
+            <span>Seek Forward (10s)</span>
+            <kbd>]</kbd>
+          </div>
+
+          <div class="shortcut-item">
+            <span>Fullscreen</span>
+            <kbd>F</kbd>
+          </div>
+
+          <div class="shortcut-item">
+            <span>Screenshot</span>
+            <kbd>S</kbd>
+          </div>
+
+          <div class="shortcut-item">
+            <span>Minimal Mode</span>
+            <kbd>W</kbd>
+          </div>
+
+          <div class="shortcut-item">
+            <span>Increase Speed</span>
+            <kbd>+</kbd>
+          </div>
+
+          <div class="shortcut-item">
+            <span>Decrease Speed</span>
+            <kbd>-</kbd>
+          </div>
+
+          <div class="shortcut-item">
+            <span>Reset Speed</span>
+            <kbd>R</kbd>
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
 
     <!-- <script src="player.js"></script> -->
