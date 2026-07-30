@@ -1,0 +1,76 @@
+============================================================
+Course No : 2
+Title     : GATE - CSIT, DSAI &amp; Interview Preparation - Complete Course on Compiler Design by Unacademy
+Course    : Complete Course on Compiler Design
+URL       : https://unacademy.com/plus/course/complete-course-on-compiler-design-473/5XKVLS1Z
+
+L1 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_0A488EIMZX/output.webm
+L2 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_0BMH63JMRH/output.webm
+L3 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_0FRW742QA1/output.webm
+L4 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_0L8J455PNJ/output.webm
+L5 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_0YAL61DXF3/output.webm
+L6 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_15OVY8L8KJ/output.webm
+L7 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_1D6AMXNR5K/output.webm
+L8 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_1KFEWN80MQ/output.webm
+L9 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_1L37QOOJRN/output.webm
+L10 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_1OAOQKRB5R/output.webm
+L11 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_21PYU8Q164/output.webm
+L12 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_3G1E9O9HV9/output.webm
+L13 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_3YH26XEPSO/output.webm
+L14 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_5S3XNLI36Y/output.webm
+L15 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_6XOFXW6TNQ/output.webm
+L16 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_7WPKGU9A3L/output.webm
+L17 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_A27I0RJ12S/output.webm
+L18 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_AMV8ARUMYC/output.webm
+L19 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_B5Q3FPG7DY/output.webm
+L20 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_BJRKGV3AMV/output.webm
+L21 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_BPT71PS3LZ/output.webm
+L22 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_BRWYSS1Z3I/output.webm
+L23 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_C5QIC6H9GI/output.webm
+L24 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_CEB2ODAHAG/output.webm
+L25 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_D2IKXCZH06/output.webm
+L26 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_DIRQ7Y8BOJ/output.webm
+L27 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_DW0NL7PG25/output.webm
+L28 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_FJOMBJFKS3/output.webm
+L29 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_FUHW6WPX2E/output.webm
+L30 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_H3RSDBOHQX/output.webm
+L31 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_HOT6Q152GH/output.webm
+L32 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_HRODN6ZBP8/output.webm
+L33 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_IIIJE0B7OS/output.webm
+L34 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_IQGD46IYKJ/output.webm
+L35 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_J2XSX7WIPU/output.webm
+L36 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_J3KRUMXWYD/output.webm
+L37 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_J4TS01OAC0/output.webm
+L38 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_JDVSYDAMLU/output.webm
+L39 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_JIA6SCIRO3/output.webm
+L40 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_JJQXCXRJ91/output.webm
+L41 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_K2VPI0G9B9/output.webm
+L42 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_KBD0333Z8D/output.webm
+L43 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_KR45PGJ9PM/output.webm
+L44 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_L77PICMJMY/output.webm
+L45 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_LJUU0PQD2R/output.webm
+L46 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_LPIOWZHN7K/output.webm
+L47 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_MC10MOTN51/output.webm
+L48 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_MCYCUEW2R8/output.webm
+L49 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_NIWLTBGT1H/output.webm
+L50 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_NM6UO87Y84/output.webm
+L51 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_NPQIDD6ENL/output.webm
+L52 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_PJLVEL1GK6/output.webm
+L53 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_PP35NNT5DU/output.webm
+L54 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_QDQ09S00QX/output.webm
+L55 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_QEEQFXWS0M/output.webm
+L56 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_QG9L9236H0/output.webm
+L57 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_QOGQ50KSQK/output.webm
+L58 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_R59WQUEO0Z/output.webm
+L59 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_R5MGFZNAV2/output.webm
+L60 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_S2OBVWLEEG/output.webm
+L61 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_SAHQUUMZNG/output.webm
+L62 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_UZC604UKSH/output.webm
+L63 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_V29J8JN9UV/output.webm
+L64 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_VKBPVRGQ6T/output.webm
+L65 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_VY2HDHZEQ9/output.webm
+L66 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_XV2Q0KQEKI/output.webm
+L67 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_XZJO8LPQSB/output.webm
+L68 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_YCYC32BBY1/output.webm
+L69 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_YI3KBNE09L/output.webm
+L70 https://uamedia.uacdn.net/lesson-raw/VIDEO_LIBRARY_YUKJ7KUCUZ/output.webm
