@@ -802,7 +802,7 @@ checkbox.textContent=pyq.completed ? "✅" : "☐";
 
         card.appendChild(title);
 
-        card.appendChild(marksContainer);
+        
 
         pyqGrid.appendChild(card);
 
