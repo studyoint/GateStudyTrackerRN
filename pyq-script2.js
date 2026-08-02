@@ -1023,12 +1023,7 @@ function updateProgress(){
 
     const pending=total-completed;
 
-    const starred=currentPlaylist.filter(pyq=>pyq.starred).length;
-
-    const oneMark=currentPlaylist.filter(pyq=>pyq.marks===1).length;
-
-    const twoMarks=currentPlaylist.filter(pyq=>pyq.marks===2).length;
-
+    
 
     /* ================= Progress ================= */
 
