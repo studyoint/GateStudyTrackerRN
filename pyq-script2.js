@@ -466,9 +466,7 @@ async function loadTXT(filePath){
 
             completed:false,
 
-            starred:false,
-
-            marks:1
+            
 
         };
 
