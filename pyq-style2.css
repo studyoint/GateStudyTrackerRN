@@ -981,3 +981,321 @@ img{
     user-select:none;
 
 }
+
+
+/* ===================mobile responsive ====================== */
+
+
+/* ==========================================================
+==================== MOBILE RESPONSIVE =======================
+========================================================== */
+
+@media (max-width:768px){
+
+    /* ---------- Header ---------- */
+
+    #header{
+
+        height:56px;
+
+        padding:0 10px;
+
+    }
+
+    #logo h1{
+
+        font-size:15px;
+
+        white-space:nowrap;
+
+    }
+
+    #searchContainer{
+
+        width:150px;
+
+    }
+
+    #searchBox{
+
+        height:34px;
+
+        font-size:13px;
+
+        padding:0 12px;
+
+    }
+
+
+    /* ---------- Main ---------- */
+
+    #mainContainer{
+
+        flex-direction:column;
+
+        height:auto;
+
+        padding:10px;
+
+        gap:10px;
+
+        overflow:visible;
+
+    }
+
+
+    /* ---------- Subject ---------- */
+
+    #subjectPanel{
+
+        width:100%;
+
+        height:180px;
+
+        flex:none;
+
+    }
+
+    #subjectList{
+
+        padding:10px;
+
+    }
+
+    .subject-card{
+
+        padding:12px;
+
+        margin-bottom:8px;
+
+    }
+
+
+    /* ---------- PYQ ---------- */
+
+    #pyqPanel{
+
+        width:100%;
+
+        min-height:500px;
+
+    }
+
+    #subjectHeader{
+
+        padding:12px;
+
+    }
+
+    #currentSubject{
+
+        font-size:16px;
+
+        margin-bottom:10px;
+
+    }
+
+    #subjectStats{
+
+        grid-template-columns:1fr;
+
+        gap:6px;
+
+    }
+
+
+    /* ---------- Grid ---------- */
+
+    #pyqGrid{
+
+        padding:10px;
+
+        gap:10px;
+
+        grid-template-columns:repeat(auto-fill,minmax(95px,1fr));
+
+    }
+
+    .pyq-button{
+
+        height:100px;
+
+    }
+
+    .pyq-title{
+
+        font-size:14px;
+
+    }
+
+    .pyq-check,
+
+    .pyq-star{
+
+        font-size:14px;
+
+    }
+
+    .pyq-mark-btn{
+
+        min-width:30px;
+
+        height:20px;
+
+        font-size:9px;
+
+    }
+
+
+    /* ---------- Status ---------- */
+
+    #statusBar{
+
+        height:auto;
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        padding:10px;
+
+        gap:10px;
+
+    }
+
+    .status-left{
+
+        width:100%;
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        gap:8px;
+
+    }
+
+    #progressContainer{
+
+        width:100%;
+
+    }
+
+    .status-right{
+
+        width:100%;
+
+        display:flex;
+
+    }
+
+    #prevBtn,
+
+    #nextBtn{
+
+        flex:1;
+
+        height:36px;
+
+    }
+
+
+    /* ---------- Footer ---------- */
+
+    #footer{
+
+        height:auto;
+
+        flex-wrap:wrap;
+
+        gap:12px;
+
+        padding:12px;
+
+    }
+
+}
+
+
+
+/* ==========================================================
+===================== SMALL MOBILE ===========================
+========================================================== */
+
+@media (max-width:480px){
+
+    #header{
+
+        padding:0 8px;
+
+    }
+
+    #logo h1{
+
+        font-size:13px;
+
+    }
+
+    #searchContainer{
+
+        width:120px;
+
+    }
+
+    #searchBox{
+
+        font-size:12px;
+
+    }
+
+    #subjectPanel{
+
+        height:160px;
+
+    }
+
+    #pyqGrid{
+
+        grid-template-columns:repeat(3,1fr);
+
+        gap:8px;
+
+        padding:8px;
+
+    }
+
+    .pyq-button{
+
+        height:92px;
+
+        border-radius:10px;
+
+    }
+
+    .pyq-title{
+
+        font-size:13px;
+
+    }
+
+    .stats-item{
+
+        padding:6px 8px;
+
+        font-size:12px;
+
+    }
+
+    #progressText{
+
+        font-size:12px;
+
+    }
+
+    .footer-link{
+
+        font-size:12px;
+
+    }
+
+}
