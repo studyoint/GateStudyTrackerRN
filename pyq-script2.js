@@ -107,7 +107,7 @@ let isLoading = false;
 
 /* ===================== Constants ===================== */
 
-const TXT_FOLDER = "pyq_txt/";
+const TXT_FOLDER = "";
 
 const STORAGE_KEY = "decoding_gate_cse_progress";
 
