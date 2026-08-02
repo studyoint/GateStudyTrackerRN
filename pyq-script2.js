@@ -373,9 +373,7 @@ async function loadSubject(subjectKey){
 
                 pyq.completed = savedProgress[currentSubjectKey][index].completed;
 
-                pyq.starred = savedProgress[currentSubjectKey][index].starred;
-
-                pyq.marks = savedProgress[currentSubjectKey][index].marks;
+                
 
             }
 
