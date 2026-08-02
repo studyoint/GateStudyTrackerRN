@@ -802,7 +802,7 @@ checkbox.textContent=pyq.completed ? "✅" : "☐";
 
         card.appendChild(checkbox);
 
-        card.appendChild(star);
+        
 
         card.appendChild(title);
 
