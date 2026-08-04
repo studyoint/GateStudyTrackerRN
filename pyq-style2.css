@@ -1,0 +1,1936 @@
+/* ==========================================================
+======================== RESET ==============================
+========================================================== */
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:"Inter",sans-serif;
+
+    background:#0f172a;
+
+    color:#ffffff;
+
+    overflow-x:hidden;
+
+}
+
+button{
+
+    font-family:inherit;
+
+    cursor:pointer;
+
+    border:none;
+
+    outline:none;
+
+}
+
+input{
+
+    font-family:inherit;
+
+    border:none;
+
+    outline:none;
+
+}
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+ul{
+
+    list-style:none;
+
+}
+
+/* ==========================================================
+===================== ROOT VARIABLES =========================
+========================================================== */
+
+:root{
+
+    --bg:#0f172a;
+
+    --card:#1e293b;
+
+    --card-hover:#273449;
+
+    --primary:#2563eb;
+
+    --success:#16a34a;
+
+    --danger:#dc2626;
+
+    --text:#ffffff;
+
+    --text-light:#cbd5e1;
+
+    --border:#334155;
+
+    --radius:16px;
+
+    --shadow:0 10px 30px rgba(0,0,0,.25);
+
+    --transition:.25s;
+
+}
+
+/* ==========================================================
+====================== APP LAYOUT ============================
+========================================================== */
+
+#app{
+
+    width:100%;
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+/* ==========================================================
+======================== PREMIUM HEADER ======================
+========================================================== */
+
+#header{
+
+    height:58px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 28px;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    background:rgba(17,24,39,.82);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.30),
+        inset 0 -1px rgba(255,255,255,.04);
+
+}
+
+/* Thin premium top glow */
+
+#header::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    width:100%;
+
+    height:1px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(96,165,250,.75),
+        transparent
+    );
+
+}
+
+/* ==========================================================
+======================== MENU BUTTON =========================
+========================================================== */
+
+#menuBtn{
+
+    display:none;
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    background:transparent;
+
+    color:#ffffff;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+    border-radius:10px;
+
+    transition:.25s;
+
+}
+
+#menuBtn:hover{
+
+    background:rgba(255,255,255,.08);
+
+}
+
+#menuBtn:active{
+
+    transform:scale(.92);
+
+}
+
+/* ==========================================================
+=========================== LOGO =============================
+========================================================== */
+
+#logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+#logo h1{
+
+    font-size:21px;
+
+    font-weight:700;
+
+    letter-spacing:.6px;
+
+    color:#ffffff;
+
+    user-select:none;
+
+    transition:.3s ease;
+
+    text-shadow:
+        0 0 12px rgba(59,130,246,.25);
+
+}
+
+#logo h1:hover{
+
+    color:#60a5fa;
+
+}
+
+/* ==========================================================
+========================= SEARCH =============================
+========================================================== */
+
+#searchContainer{
+
+    width:320px;
+
+    position:relative;
+
+}
+
+#searchBox{
+
+    width:100%;
+
+    height:46px;
+
+    padding:0 20px;
+
+    font-size:14px;
+
+    color:#ffffff;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:999px;
+
+    outline:none;
+
+    transition:.30s ease;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.04);
+
+}
+
+#searchBox::placeholder{
+
+    color:#94a3b8;
+
+    letter-spacing:.3px;
+
+}
+
+#searchBox:hover{
+
+    border-color:rgba(96,165,250,.35);
+
+    background:rgba(255,255,255,.06);
+
+}
+
+#searchBox:focus{
+
+    border-color:#3b82f6;
+
+    background:rgba(59,130,246,.08);
+
+    box-shadow:
+        0 0 0 4px rgba(59,130,246,.12),
+        0 10px 28px rgba(59,130,246,.18);
+
+}
+
+/* ==========================================================
+======================= RESPONSIVE ===========================
+========================================================== */
+
+@media(max-width:768px){
+
+    #header{
+
+        height:56px;
+
+        padding:0 14px;
+
+        display:grid;
+
+        grid-template-columns:44px 1fr;
+
+        align-items:center;
+
+    }
+
+    #menuBtn{
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:center;
+
+    }
+
+    #searchContainer{
+
+        display:none;
+
+    }
+
+    #logo{
+
+        justify-content:flex-end;
+
+    }
+
+    #logo h1{
+
+        font-size:17px;
+
+        white-space:nowrap;
+
+    }
+
+}
+
+#mainContainer{
+
+    flex:1;
+
+    display:flex;
+
+    gap:14px;
+
+    padding:14px;
+
+    overflow:hidden;
+
+}
+
+
+
+
+
+
+#subjectList{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    padding:18px;
+
+    scrollbar-width:thin;
+
+    scrollbar-color:#3b82f6 transparent;
+
+}
+
+/* Chrome Scrollbar */
+
+#subjectList::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+#subjectList::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+#subjectList::-webkit-scrollbar-thumb{
+
+    background:#334155;
+
+    border-radius:999px;
+
+}
+
+#subjectList::-webkit-scrollbar-thumb:hover{
+
+    background:#3b82f6;
+
+}
+
+/* ==========================================================
+======================= SUBJECT CARD =========================
+========================================================== */
+
+.subject-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:18px;
+
+    margin-bottom:14px;
+
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.03),
+            rgba(255,255,255,.015));
+
+    border:1px solid rgba(255,255,255,.05);
+
+    cursor:pointer;
+
+    transition:.30s ease;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.03);
+
+}
+
+/* Shine Effect */
+
+.subject-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:70%;
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.12),
+        transparent
+    );
+
+    transition:.7s;
+
+}
+
+/* Hover */
+
+.subject-card:hover{
+
+    transform:translateY(-4px);
+
+    border-color:#3b82f6;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(59,130,246,.14),
+            rgba(59,130,246,.05));
+
+    box-shadow:
+        0 12px 30px rgba(59,130,246,.22);
+
+}
+
+.subject-card:hover::before{
+
+    left:150%;
+
+}
+
+/* Active */
+
+.active-subject{
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(59,130,246,.22),
+            rgba(34,211,238,.10));
+
+    border:1px solid #3b82f6;
+
+    box-shadow:
+        0 0 22px rgba(59,130,246,.28);
+
+    transform:translateY(-2px);
+
+}
+
+/* Active Left Bar */
+
+.active-subject::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:12%;
+
+    width:4px;
+
+    height:76%;
+
+    border-radius:999px;
+
+    background:linear-gradient(
+        180deg,
+        #60a5fa,
+        #22d3ee
+    );
+
+}
+
+/* Click Animation */
+
+.subject-card:active{
+
+    transform:scale(.98);
+
+}
+/* ==========================================================
+========================= PYQ PANEL ==========================
+========================================================== */
+
+#pyqPanel{
+
+    flex:1;
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:hidden;
+
+}
+
+
+/* ==========================================================
+==================== PREMIUM SUBJECT HEADER =================
+========================================================== */
+
+#subjectHeader{
+
+    position: relative;
+
+    padding:22px 28px;
+
+    background:linear-gradient(
+        180deg,
+        rgba(255,255,255,.03),
+        rgba(255,255,255,.015)
+    );
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    overflow:hidden;
+
+    backdrop-filter:blur(12px);
+
+    -webkit-backdrop-filter:blur(12px);
+
+}
+
+/* Premium blue accent */
+
+#subjectHeader::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:2px;
+
+    background:linear-gradient(
+        90deg,
+        #3b82f6,
+        #60a5fa,
+        #22d3ee,
+        transparent
+    );
+
+}
+
+/* Soft glow */
+
+#subjectHeader::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:-60px;
+
+    right:-80px;
+
+    width:180px;
+
+    height:180px;
+
+    background:radial-gradient(
+        rgba(59,130,246,.18),
+        transparent 70%
+    );
+
+    pointer-events:none;
+
+}
+
+/* ==========================================================
+======================= SUBJECT TITLE ========================
+========================================================== */
+
+#currentSubject{
+
+    margin:0;
+
+    font-size:24px;
+
+    font-weight:800;
+
+    letter-spacing:.4px;
+
+    color:#ffffff;
+
+    text-shadow:
+        0 2px 12px rgba(59,130,246,.18);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+/* Optional underline */
+
+#currentSubject::after{
+
+    content:"";
+
+    display:block;
+
+    width:52px;
+
+    height:4px;
+
+    margin-left:8px;
+
+    border-radius:999px;
+
+    background:linear-gradient(
+        90deg,
+        #3b82f6,
+        #22d3ee
+    );
+
+}
+
+/* ==========================================================
+======================== RESPONSIVE ==========================
+========================================================== */
+
+@media(max-width:768px){
+
+    #subjectHeader{
+
+        padding:18px;
+
+    }
+
+    #currentSubject{
+
+        font-size:20px;
+
+    }
+
+}
+
+#subjectStats{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:8px 20px;
+
+    font-size:13px;
+
+    color:var(--text-light);
+
+}
+
+
+.stats-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:6px 10px;
+
+    background:rgba(255,255,255,.03);
+
+    border:1px solid rgba(255,255,255,.05);
+
+    border-radius:8px;
+
+}
+
+
+.stats-item span{
+
+    color:var(--text-light);
+
+}
+
+
+.stats-item strong{
+
+    color:#ffffff;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+
+/* ==========================================================
+========================== PYQ GRID ==========================
+========================================================== */
+
+#pyqGrid{
+
+    flex:1;
+
+    padding:20px;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fill,minmax(90px,1fr));
+
+    gap:15px;
+
+    align-content:start;
+
+    overflow-y:auto;
+
+}
+/* ==========================================================
+======================== PYQ BUTTONS =========================
+========================================================== */
+.pyq-button{
+
+    position: relative;
+
+    min-height: 80px;
+
+    padding: 16px 14px;
+
+    background: linear-gradient(180deg,#1f2937,#111827);
+
+    color: var(--text);
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    border-radius: 16px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    cursor: pointer;
+
+    overflow: visible;
+
+    transition: .25s ease;
+
+    box-shadow:
+        0 4px 10px rgba(0,0,0,.25),
+        inset 0 1px rgba(255,255,255,.05);
+
+}
+
+/* Hover */
+.pyq-button:hover{
+
+    transform: translateY(-3px);
+
+    border-color: #3b82f6;
+
+    box-shadow:
+        0 10px 25px rgba(59,130,246,.25),
+        inset 0 1px rgba(255,255,255,.08);
+
+}
+
+/* Click */
+.pyq-button:active{
+
+    transform: scale(.97);
+
+}
+.pyq-check{
+
+    position:absolute;
+
+    top:8px;
+
+    left:8px;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    z-index:2;
+
+}
+
+.pyq-star{
+
+    position:absolute;
+
+    top:8px;
+
+    right:8px;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    z-index:2;
+
+}
+
+.pyq-title{
+
+    font-size:15px;
+
+    font-weight:600;
+
+    letter-spacing:.3px;
+
+}
+
+
+/* ==========================================================
+======================== STATUS BAR ==========================
+========================================================== */
+
+#statusBar{
+
+    height:52px;
+
+    background:var(--card);
+
+    border-top:1px solid var(--border);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 16px;
+    
+
+}
+
+.status-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+#progressText{
+
+    font-size:13px;
+
+    color:var(--text-light);
+
+}
+
+#progressContainer{
+
+    width:160px;
+
+    height:6px;
+
+    background:var(--border);
+
+    border-radius:50px;
+
+    overflow:hidden;
+
+}
+
+#progressBar{
+
+    width:0%;
+
+    height:100%;
+
+    background:var(--success);
+
+    transition:.4s;
+
+}
+
+.status-right{
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+#prevBtn,
+#nextBtn{
+
+    height:34px;
+
+    padding:0 14px;
+
+    background:var(--primary);
+    font-size: 13px;
+
+    color:#fff;
+
+    border-radius:8px;
+
+    transition:var(--transition);
+
+}
+
+#prevBtn:hover,
+#nextBtn:hover{
+
+    transform:translateY(-2px);
+
+    filter:brightness(1.1);
+
+}
+
+/* ==========================================================
+========================== FOOTER ============================
+========================================================== */
+
+#footer{
+
+    height:50px;
+
+    display:flex;
+    font-size:13px;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:20px;
+
+    background:#111827;
+
+    border-top:1px solid var(--border);
+
+}
+
+.footer-link{
+
+    color:var(--text-light);
+
+    transition:var(--transition);
+
+}
+
+.footer-link:hover{
+
+    color:var(--primary);
+
+}
+
+/* ==========================================================
+======================== SCROLLBAR ===========================
+========================================================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+    height:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#475569;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#64748b;
+
+}
+
+/* ==========================================================
+======================== VIDEO MODAL =========================
+========================================================== */
+
+#videoModal{
+
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(0,0,0,.75);
+
+    backdrop-filter:blur(8px);
+
+    z-index:9999;
+
+}
+
+#modalContent{
+
+    width:min(96vw,1400px);
+
+    background:#111827;
+
+    border:1px solid #334155;
+
+    border-radius:18px;
+
+    overflow:visible;
+
+    box-shadow:0 30px 80px rgba(0,0,0,.55);
+
+    position:relative;
+
+    animation:popup .25s ease;
+
+}
+
+@keyframes popup{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.92);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+#youtubePlayer{
+
+    width:100%;
+
+    aspect-ratio:16/9;
+
+    background:#000;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+}
+
+#youtubePlayer iframe{
+
+    width:100%;
+
+    height:100%;
+
+    border:none;
+
+}
+
+/* ==========================================================
+======================== CLOSE BUTTON ========================
+========================================================== */
+
+#closePlayer{
+
+    position:absolute;
+top:-18px;
+
+right:-18px;
+
+   width:46px;
+height:46px;
+
+    border-radius:50%;
+
+   background:#ef4444;
+
+    color:#ffffff;
+
+    font-size:20px;
+font-weight:700;
+
+    z-index:2;
+
+    transition:var(--transition);
+
+}
+
+#closePlayer:hover{
+
+    background:#dc2626;
+
+    transform:scale(1.1);
+
+}
+
+/* ==========================================================
+===================== LARGE DESKTOP ==========================
+========================================================== */
+
+@media (min-width:1600px){
+
+    #subjectPanel{
+
+        width:320px;
+
+    }
+
+    #pyqGrid{
+
+        grid-template-columns:repeat(auto-fill,minmax(100px,1fr));
+
+    }
+
+}
+
+/* ==========================================================
+======================= LAYOUT FIX ===========================
+========================================================== */
+
+#mainContainer{
+
+height:calc(100vh - 58px - 52px - 36px);
+
+}
+
+#subjectPanel,
+#pyqPanel{
+
+    height:100%;
+     min-width:0;
+
+}
+
+#subjectList,
+#pyqGrid{
+
+    overflow-y:auto;
+
+}
+
+/* ==========================================================
+==================== STICKY SUBJECT HEADER ===================
+========================================================== */
+
+#subjectHeader{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:20;
+
+    background:var(--card);
+
+}
+
+/* ==========================================================
+====================== SMALL ANIMATIONS ======================
+========================================================== */
+
+.subject-card,
+.pyq-button,
+#prevBtn,
+#nextBtn,
+.footer-link{
+
+    transition:all .25s ease;
+
+}
+
+.subject-card:active,
+.pyq-button:active{
+
+    transform:scale(.96);
+
+}
+
+#searchBox{
+
+    transition:all .25s ease;
+
+}
+
+#searchBox:focus{
+
+    box-shadow:0 0 0 3px rgba(37,99,235,.25);
+
+}
+
+/* ==========================================================
+======================== SELECTION ===========================
+========================================================== */
+
+::selection{
+
+    background:var(--primary);
+
+    color:#ffffff;
+
+}
+
+/* ==========================================================
+======================= IMAGE SAFETY =========================
+========================================================== */
+
+img{
+
+    max-width:100%;
+
+    display:block;
+
+    user-select:none;
+
+}
+
+#closeMenuBtn{
+    visibility: hidden;
+}
+
+
+/* ===================mobile responsive ====================== */
+
+
+/* ==========================================================
+==================== MOBILE RESPONSIVE =======================
+========================================================== */
+
+@media (max-width:768px){
+
+    /* ---------- Header ---------- */
+
+    #header{
+
+        height:56px;
+
+        padding:0 10px;
+
+    }
+
+    #logo h1{
+
+        font-size:15px;
+
+        white-space:nowrap;
+
+    }
+
+    #searchContainer{
+
+        width:150px;
+
+    }
+
+    #searchBox{
+
+        height:34px;
+
+        font-size:13px;
+
+        padding:0 12px;
+
+    }
+
+
+    /* ---------- Main ---------- */
+
+    #mainContainer{
+
+        flex-direction:column;
+
+        height:auto;
+
+        padding:10px;
+
+        gap:10px;
+
+        overflow:visible;
+
+    }
+
+    /* ---------- Subject ---------- */
+
+    #subjectPanel{
+
+        position:fixed;
+
+        top:0;
+
+        left:-320px;
+
+        width:290px;
+
+        height:100vh;
+
+        flex:none;
+
+        z-index:2000;
+
+        border-radius:0 22px 22px 0;
+
+        transition:left .30s ease;
+
+        overflow:hidden;
+
+    }
+
+    /* Drawer Open */
+
+    #subjectPanel.open{
+
+        left:0;
+
+    }
+
+    /* Overlay */
+
+    #drawerOverlay{
+
+        position:fixed;
+
+        inset:0;
+
+        background:rgba(0,0,0,.45);
+
+        backdrop-filter:blur(4px);
+
+        -webkit-backdrop-filter:blur(4px);
+
+        opacity:0;
+
+        visibility:hidden;
+
+        transition:.30s;
+
+        z-index:1900;
+
+    }
+
+    #drawerOverlay.show{
+
+        opacity:1;
+
+        visibility:visible;
+
+    }
+
+    /* Drawer Header */
+
+    .panelTitle{
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:space-between;
+
+    }
+
+    #closeMenuBtn{
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:center;
+
+        width:36px;
+
+        height:36px;
+
+        border:none;
+
+        border-radius:10px;
+
+        background:rgba(255,255,255,.08);
+
+        color:#fff;
+
+        font-size:20px;
+
+        cursor:pointer;
+
+        transition:.25s;
+
+    }
+
+    #closeMenuBtn:hover{
+
+        background:rgba(255,255,255,.14);
+
+    }
+
+    #subjectList{
+
+      flex:1;
+
+    height:calc(100vh - 90px);
+
+    padding:12px;
+
+    overflow-y:auto;
+
+    overscroll-behavior:contain;
+
+    }
+
+    .subject-card{
+
+        padding:14px;
+
+        margin-bottom:10px;
+
+    }
+    /* ---------- PYQ ---------- */
+
+    #pyqPanel{
+
+        width:100%;
+
+        min-height:500px;
+
+    }
+
+    #subjectHeader{
+
+        padding:12px;
+
+    }
+
+    #currentSubject{
+
+        font-size:16px;
+
+        margin-bottom:10px;
+
+    }
+
+    #subjectStats{
+
+        grid-template-columns:1fr;
+
+        gap:6px;
+
+    }
+
+
+    /* ---------- Grid ---------- */
+
+    #pyqGrid{
+
+        padding:10px;
+
+        gap:10px;
+
+        grid-template-columns:repeat(auto-fill,minmax(95px,1fr));
+
+    }
+
+    .pyq-button{
+
+        height:100px;
+
+    }
+
+    .pyq-title{
+
+        font-size:14px;
+
+    }
+
+    .pyq-check,
+
+    .pyq-star{
+
+        font-size:14px;
+
+    }
+
+    .pyq-mark-btn{
+
+        min-width:30px;
+
+        height:20px;
+
+        font-size:9px;
+
+    }
+
+
+    /* ---------- Status ---------- */
+
+    #statusBar{
+
+        height:auto;
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        padding:10px;
+
+        gap:10px;
+
+    }
+
+    .status-left{
+
+        width:100%;
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        gap:8px;
+
+    }
+
+    #progressContainer{
+
+        width:100%;
+
+    }
+
+    .status-right{
+
+        width:100%;
+
+        display:flex;
+
+    }
+
+    #prevBtn,
+
+    #nextBtn{
+
+        flex:1;
+
+        height:36px;
+
+    }
+
+
+    /* ---------- Footer ---------- */
+
+    #footer{
+
+        height:auto;
+
+        flex-wrap:wrap;
+
+        gap:12px;
+
+        padding:12px;
+
+    }
+
+    #modalContent{
+
+    width:98vw;
+
+    border-radius:12px;
+
+}
+
+#closePlayer{
+
+    top:-14px;
+
+    right:8px;
+
+    width:40px;
+
+    height:40px;
+    display:none;
+
+}
+
+}
+
+
+
+/* ==========================================================
+===================== SMALL MOBILE ===========================
+========================================================== */
+
+@media (max-width:480px){
+
+    #header{
+
+        padding:0 8px;
+
+    }
+
+    #logo h1{
+
+        font-size:13px;
+
+    }
+
+    #searchContainer{
+
+        width:120px;
+
+    }
+
+    #searchBox{
+
+        font-size:12px;
+
+    }
+
+    #subjectPanel{
+
+         width:290px;
+
+    height:100vh;
+
+    }
+
+    #pyqGrid{
+
+        grid-template-columns:repeat(3,1fr);
+
+        gap:8px;
+
+        padding:8px;
+
+    }
+
+    .pyq-button{
+
+        height:92px;
+
+        border-radius:10px;
+
+    }
+
+    .pyq-title{
+
+        font-size:13px;
+
+    }
+
+    .stats-item{
+
+        padding:6px 8px;
+
+        font-size:12px;
+
+    }
+
+    #progressText{
+
+        font-size:12px;
+
+    }
+
+    .footer-link{
+
+        font-size:12px;
+
+    }
+
+}
+
+/* ==========================================================
+================ SECTION 22 : PLAYER FOOTER ==================
+========================================================== */
+
+#playerFooter{
+
+    padding:18px 22px;
+
+    background:#111827;
+
+    border-top:1px solid #374151;
+
+}
+
+#playerSubject{
+
+    margin:0;
+
+    margin-bottom:16px;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#ffffff;
+
+    text-align:center;
+
+    letter-spacing:.3px;
+
+}
+
+#playerControls{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+#playerPrev,
+#playerNext{
+
+    background:#2563eb;
+
+    color:#fff;
+
+    border:none;
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+#playerPrev:hover,
+#playerNext:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-2px);
+
+}
+
+#playerCounter{
+
+    background:#1e293b;
+
+    color:#fff;
+
+    padding:10px 22px;
+
+    border-radius:999px;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    min-width:90px;
+
+    text-align:center;
+
+}
+
+/* ================= Mobile ================= */
+
+@media(max-width:768px){
+
+    #playerFooter{
+
+        padding:14px;
+
+    }
+
+    #playerSubject{
+
+        font-size:17px;
+
+        margin-bottom:14px;
+
+    }
+
+    #playerControls{
+
+        gap:10px;
+
+    }
+
+    #playerPrev,
+    #playerNext{
+
+        flex:1;
+
+        padding:10px;
+
+        font-size:14px;
+
+    }
+
+    #playerCounter{
+
+        min-width:70px;
+
+        padding:10px 12px;
+
+        font-size:14px;
+
+    }
+
+}
+
+/* ==========================================================
+================ END SECTION 22 =============================
+========================================================== */
