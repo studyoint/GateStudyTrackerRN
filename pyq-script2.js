@@ -189,7 +189,7 @@ subjects = {
 
         name:"Computer Networks",
 
-        file:TXT_FOLDER + "cn_pyq.txt"
+        file:TXT_FOLDER + "cn-gw-pyq.txt"
 
     },
 
