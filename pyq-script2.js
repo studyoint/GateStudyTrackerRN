@@ -181,7 +181,7 @@ subjects = {
 
         name:"Operating System",
 
-        file:TXT_FOLDER + "os_pyq.txt"
+        file:TXT_FOLDER + "os-pyq-gw-yt-rn.txt"
 
     },
 
@@ -197,7 +197,7 @@ subjects = {
 
         name:"Theory of Computation",
 
-        file:TXT_FOLDER + "toc_pyq.txt"
+        file:TXT_FOLDER + "toc-pyq-gw-yt-rn.txt"
 
     },
 
@@ -205,7 +205,7 @@ subjects = {
 
         name:"Computer Organization & Architecture",
 
-        file:TXT_FOLDER + "coa_pyq.txt"
+        file:TXT_FOLDER + "coa-pyq-gw-yt-rn.txt"
 
     },
 
@@ -213,7 +213,7 @@ subjects = {
 
         name:"Compiler Design",
 
-        file:TXT_FOLDER + "cd_pyq.txt"
+        file:TXT_FOLDER + "cd-pyq-gw-yt-rn.txt"
 
     },
 
@@ -221,7 +221,7 @@ subjects = {
 
         name:"Discrete Mathematics",
 
-        file:TXT_FOLDER + "dm_pyq.txt"
+        file:TXT_FOLDER + "dm-pyq-gw-yt-rn.txt"
 
     },
 
@@ -229,9 +229,33 @@ subjects = {
 
         name:"Algorithms",
 
-        file:TXT_FOLDER + "algo_pyq.txt"
+        file:TXT_FOLDER + "algo-pyq-gw-yt-rn.txt"
+
+    },
+        dl:{
+
+        name:"DL",
+
+        file:TXT_FOLDER + "dl-pyq-gw-yt-rn.txt"
+
+    },
+ cds:{
+
+        name:"CDS",
+
+        file:TXT_FOLDER + "cds-pyq-gw-yt-rn.txt"
+
+    },
+
+     em:{
+
+        name:"EM",
+
+        file:TXT_FOLDER + "em-pyq-gw-yt-rn.txt"
 
     }
+
+    
 
 };
 
