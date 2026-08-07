@@ -1574,3 +1574,62 @@ playerNext.addEventListener("click",()=>{
 /* ==========================================================
 ================ END SECTION 23 =============================
 ========================================================== */
+
+
+
+/* ==========================================================
+================ SECTION 24 : QUICK NOTES ====================
+========================================================== */
+
+const notesBtn=document.getElementById("notesBtn");
+
+const notesPanel=document.getElementById("notesPanel");
+
+const notesBox=document.getElementById("notesBox");
+
+const closeNotes=document.getElementById("closeNotes");
+
+/* Load */
+
+notesBox.value=
+localStorage.getItem("quick_notes") || "";
+
+/* Open Close */
+
+notesBtn.addEventListener("click",()=>{
+
+    notesPanel.style.display=
+
+    notesPanel.style.display==="flex"
+
+    ? "none"
+
+    : "flex";
+
+});
+
+/* Close */
+
+closeNotes.addEventListener("click",()=>{
+
+    notesPanel.style.display="none";
+
+});
+
+/* Auto Save */
+
+notesBox.addEventListener("input",()=>{
+
+    localStorage.setItem(
+
+        "quick_notes",
+
+        notesBox.value
+
+    );
+
+});
+
+/* ==========================================================
+================ END SECTION 24 ==============================
+========================================================== */
