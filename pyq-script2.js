@@ -483,6 +483,11 @@ currentPlaylist = playlist;
     updatePlayerFooter();
 
     updateProgress();
+    if(notesPanel && notesPanel.style.display==="flex"){
+
+    loadNotes();
+
+}
 
 }
 
@@ -1576,7 +1581,6 @@ playerNext.addEventListener("click",()=>{
 ========================================================== */
 
 
-
 /* ==========================================================
 ================ SECTION 24 : QUICK NOTES ====================
 ========================================================== */
@@ -1590,13 +1594,24 @@ const notesBox=document.getElementById("notesBox");
 const closeNotes=document.getElementById("closeNotes");
 
 /* Load */
+/* Load */
 
-notesBox.value=
-localStorage.getItem("quick_notes") || "";
+function loadNotes(){
 
+    document.querySelector("#notesHeader span").textContent =
+    currentSubjectName + " Notes";
+
+    notesBox.value =
+    localStorage.getItem(
+        "notes_" + currentSubjectKey
+    ) || "";
+
+}
 /* Open Close */
 
 notesBtn.addEventListener("click",()=>{
+
+    loadNotes();
 
     notesPanel.style.display=
 
@@ -1622,7 +1637,7 @@ notesBox.addEventListener("input",()=>{
 
     localStorage.setItem(
 
-        "quick_notes",
+        "notes_" + currentSubjectKey,
 
         notesBox.value
 
