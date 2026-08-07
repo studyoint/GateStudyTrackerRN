@@ -122,7 +122,8 @@ let savedProgress = {};
 /* ===================== Application ===================== */
 
 let isLoading = false;
-
+let pendingVideoID = "";
+let loadToken = 0;
 
 /* ===================== Constants ===================== */
 
@@ -385,6 +386,7 @@ function renderSubjects(){
 ========================================================== */
 
 async function loadSubject(subjectKey){
+    const token = ++loadToken;
 
     /* Validate Subject */
 
@@ -436,11 +438,15 @@ async function loadSubject(subjectKey){
 
     /* Load TXT */
 
-    currentPlaylist = await loadTXT(
+  const playlist = await loadTXT(
+    subjects[subjectKey].file
+);
 
-        subjects[subjectKey].file
+if(token !== loadToken){
+    return;
+}
 
-    );
+currentPlaylist = playlist;
 
 
     /* Load Saved Progress */
@@ -847,6 +853,7 @@ renderPYQGrid();
         /* Extract YouTube Video ID */
 
         const videoID = extractVideoID(videoLink);
+        pendingVideoID = videoID;
 
         if(videoID===""){
 
@@ -862,12 +869,17 @@ renderPYQGrid();
 
         /* Load Video */
 
-        if(player && isPlayerReady){
+       if(!player || !isPlayerReady){
+    return;
+}
 
-            player.loadVideoById(videoID);
-            player.setPlaybackRate(1.5);
+player.stopVideo();
 
-        }
+player.loadVideoById(videoID);
+
+player.setPlaybackRate(1.5);
+
+pendingVideoID = "";
 
     }
 
@@ -929,8 +941,15 @@ function onPlayerReady(){
 
     player.setPlaybackRate(1.5);
 
-}
+    if(pendingVideoID){
 
+        player.loadVideoById(pendingVideoID);
+
+        pendingVideoID = "";
+
+    }
+
+}
 
 /* ===================== Player State ===================== */
 
@@ -940,7 +959,7 @@ function onPlayerStateChange(event){
 
 
     if(event.data===YT.PlayerState.PLAYING){
-        console.log("VIDEO ENDED");
+        console.log("VIDEO PLAYING");
 
     player.setPlaybackRate(1.5);
 
@@ -1462,7 +1481,9 @@ function closeVideoPlayer(){
 
     if(player && isPlayerReady){
 
-        player.stopVideo();
+       player.stopVideo();
+
+pendingVideoID = "";
 
     }
 
