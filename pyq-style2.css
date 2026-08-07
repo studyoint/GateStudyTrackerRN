@@ -1934,3 +1934,251 @@ img{
 /* ==========================================================
 ================ END SECTION 22 =============================
 ========================================================== */
+
+
+
+/* ==========================================================
+================ SECTION 24 : QUICK NOTES ====================
+========================================================== */
+
+/* Floating Button */
+
+#notesBtn{
+
+    position:fixed;
+
+    right:18px;
+
+    bottom:18px;
+
+    width:58px;
+
+    height:58px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#ffcc00;
+
+    color:#111;
+
+    font-size:26px;
+
+    cursor:pointer;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+
+    transition:.25s;
+
+    z-index:9999;
+
+}
+
+#notesBtn:hover{
+
+    transform:scale(1.08);
+
+}
+
+/* Panel */
+
+#notesPanel{
+
+    position:fixed;
+
+    right:20px;
+
+    bottom:90px;
+
+    width:360px;
+
+    height:460px;
+
+    display:none;
+
+    flex-direction:column;
+
+    background:#181818;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.45);
+
+    z-index:9999;
+
+}
+
+/* Header */
+
+#notesHeader{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:14px 18px;
+
+    background:#202020;
+
+    color:#fff;
+
+    font-weight:700;
+
+}
+
+#closeNotes{
+
+    background:none;
+
+    border:none;
+
+    color:#fff;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+}
+
+/* Textarea */
+
+#notesBox{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    resize:none;
+
+    background:#181818;
+
+    color:#fff;
+
+    padding:18px;
+
+    font-size:15px;
+
+    line-height:1.7;
+
+    font-family:Inter,sans-serif;
+
+}
+
+#notesBox::placeholder{
+
+    color:#8a8a8a;
+
+}
+
+/* ================= Mobile ================= */
+
+@media(max-width:768px){
+
+    #notesBtn{
+
+        width:50px;
+
+        height:50px;
+
+        right:12px;
+
+        bottom:12px;
+
+        font-size:22px;
+
+    }
+
+    #notesPanel{
+
+        width:92vw;
+
+        height:60vh;
+
+        right:4vw;
+
+        bottom:72px;
+
+        border-radius:16px;
+
+    }
+
+    #notesHeader{
+
+        padding:12px 15px;
+
+        font-size:15px;
+
+    }
+
+    #notesBox{
+
+        padding:14px;
+
+        font-size:14px;
+
+    }
+
+}
+
+/* ================= Small Phones ================= */
+
+@media(max-width:480px){
+
+    #notesBtn{
+
+        width:46px;
+
+        height:46px;
+
+        font-size:20px;
+
+        right:10px;
+
+        bottom:10px;
+
+    }
+
+    #notesPanel{
+
+        width:95vw;
+
+        height:65vh;
+
+        right:2.5vw;
+
+        bottom:64px;
+
+        border-radius:14px;
+
+    }
+
+    #notesHeader{
+
+        padding:10px 14px;
+
+    }
+
+    #notesBox{
+
+        padding:12px;
+
+        font-size:13px;
+
+        line-height:1.6;
+
+    }
+
+}
+
+/* ==========================================================
+================ END SECTION 24 ==============================
+========================================================== */
